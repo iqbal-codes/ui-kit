@@ -3,7 +3,7 @@
 import * as React from "react"
 import { TrendingDown, TrendingUp, LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Card, CardContent, CardHeader, CardTitle } from "@/shadcn/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/atom/card"
 
 export interface StatsCardProps {
   title: string

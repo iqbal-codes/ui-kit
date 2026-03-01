@@ -3,8 +3,8 @@
 import * as React from "react"
 import { Search, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Input } from "@/shadcn/input"
-import { Button } from "@/shadcn/button"
+import { Input } from "@/atom/input"
+import { Button } from "@/atom/button"
 
 export interface SearchInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {

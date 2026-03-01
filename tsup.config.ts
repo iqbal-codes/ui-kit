@@ -3,7 +3,7 @@ import { defineConfig } from 'tsup'
 export default defineConfig({
   entry: {
     index: 'src/index.ts',
-    'shadcn/index': 'src/shadcn/index.ts',
+    'atom/index': 'src/atom/index.ts',
     'tokens/index': 'src/tokens/index.ts',
     'molecules/index': 'src/molecules/index.ts',
     'organisms/index': 'src/organisms/index.ts',

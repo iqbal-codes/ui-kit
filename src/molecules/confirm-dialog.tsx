@@ -12,7 +12,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/shadcn/alert-dialog"
+} from "@/atom/alert-dialog"
 
 export interface ConfirmDialogProps {
   open?: boolean

@@ -10,8 +10,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/shadcn/table"
-import { Input } from "@/shadcn/input"
+} from "@/atom/table"
+import { Input } from "@/atom/input"
 
 export interface Column<T> {
   key: keyof T | string
