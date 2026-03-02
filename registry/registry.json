@@ -246,6 +246,20 @@
             "composition": "Use with LoadingOverlay for complete loading experience",
             "antiPatterns": "Don't use for static content or after data loads"
           }
+        },
+        {
+          "name": "ConnectionStatus",
+          "description": "Badge showing WebSocket/API connection status with animated states",
+          "type": "block",
+          "category": "feedback",
+          "files": ["connection-status.tsx", "index.ts"],
+          "primitives": ["badge"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When displaying real-time connection status in header or status bar",
+            "composition": "Use with ToastManager for connection error notifications",
+            "antiPatterns": "Don't use for static status indicators"
+          }
         }
       ]
     },

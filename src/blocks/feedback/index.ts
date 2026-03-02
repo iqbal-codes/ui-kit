@@ -8,3 +8,4 @@ export { LoadingOverlay, type LoadingOverlayProps } from './loading-overlay';
 export { ErrorFallback, type ErrorFallbackProps } from './error-fallback';
 export { ToastManager, type ToastManagerProps } from './toast-manager';
 export { SkeletonGenerator, type SkeletonGeneratorProps } from './skeleton-generator';
+export { ConnectionStatus, type ConnectionStatusProps, type ConnectionState } from './connection-status';
