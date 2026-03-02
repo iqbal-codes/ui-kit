@@ -288,6 +288,20 @@
             "composition": "Use with ToastManager for connection error notifications",
             "antiPatterns": "Don't use for static status indicators"
           }
+        },
+        {
+          "name": "ProgressTracker",
+          "description": "Multi-step process tracker with horizontal or vertical orientation",
+          "type": "block",
+          "category": "feedback",
+          "files": ["progress-tracker.tsx", "index.ts"],
+          "primitives": [],
+          "dependencies": [],
+          "ai": {
+            "usage": "When showing multi-step progress for wizards or workflows",
+            "composition": "Use with FormWizard for multi-step forms",
+            "antiPatterns": "Don't use for single-step processes"
+          }
         }
       ]
     },
