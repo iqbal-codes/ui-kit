@@ -143,6 +143,20 @@
               "composition": "Use with EntityCard, StatCard for card layouts",
               "antiPatterns": "Don't use for single cards or non-card content"
             }
+          },
+          {
+            "name": "MetricCard",
+            "description": "KPI display with value, trend indicator, and optional comparison",
+            "type": "block",
+            "category": "data-display",
+            "files": ["metric-card.tsx", "index.ts"],
+            "primitives": ["card", "badge"],
+            "dependencies": [],
+            "ai": {
+              "usage": "When displaying KPIs and metrics with trend indicators",
+              "composition": "Use with CardGrid for dashboard layouts",
+              "antiPatterns": "Don't use for non-metric data"
+            }
           }
         ]
       },
