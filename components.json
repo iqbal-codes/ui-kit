@@ -5,7 +5,7 @@
   "tsx": true,
   "tailwind": {
     "config": "",
-    "css": "app/globals.css",
+    "css": "src/globals.css",
     "baseColor": "slate",
     "cssVariables": true,
     "prefix": ""
@@ -13,9 +13,9 @@
   "iconLibrary": "lucide",
   "rtl": false,
   "aliases": {
-    "components": "@/atom",
+    "components": "@/shadcn",
     "utils": "@/lib/utils",
-    "ui": "@/atom",
+    "ui": "@/shadcn",
     "lib": "@/lib",
     "hooks": "@/hooks"
   },

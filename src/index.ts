@@ -1,17 +1,8 @@
 // Export atom components (shadcn/ui based)
-export * from './atom'
+export * from "./shadcn";
 
 // Export design tokens
-export * from './tokens'
-
-// Export molecules
-export * from './molecules'
-
-// Export organisms
-export * from './organisms'
-
-// Export templates
-export * from './templates'
+export * from "./tokens";
 
 // Export utilities
-export { cn } from './lib/utils'
+export { cn } from "./lib/utils";

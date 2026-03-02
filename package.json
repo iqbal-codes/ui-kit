@@ -1,12 +1,12 @@
 {
-  "name": "@iqbal-codes/atomic-design-system",
+  "name": "@iqbal-codes/ui-kit",
   "version": "0.1.0",
-  "description": "Atomic design system with bundled shadcn/ui components for React 19 and Next.js App Router",
+  "description": "shadcnic design system with bundled shadcn/ui components for React 19 and Next.js App Router",
   "author": "iqbal-codes",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/iqbal-codes/atomic-design-system.git"
+    "url": "https://github.com/iqbal-codes/ui-kit.git"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -17,35 +17,20 @@
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./atom": {
-      "import": "./dist/atom/index.mjs",
-      "require": "./dist/atom/index.js",
-      "types": "./dist/atom/index.d.ts"
+    "./shadcn": {
+      "import": "./dist/shadcn/index.mjs",
+      "require": "./dist/shadcn/index.js",
+      "types": "./dist/shadcn/index.d.ts"
     },
     "./tokens": {
       "import": "./dist/tokens/index.mjs",
       "require": "./dist/tokens/index.js",
       "types": "./dist/tokens/index.d.ts"
-    },
-    "./molecules": {
-      "import": "./dist/molecules/index.mjs",
-      "require": "./dist/molecules/index.js",
-      "types": "./dist/molecules/index.d.ts"
-    },
-    "./organisms": {
-      "import": "./dist/organisms/index.mjs",
-      "require": "./dist/organisms/index.js",
-      "types": "./dist/organisms/index.d.ts"
-    },
-    "./templates": {
-      "import": "./dist/templates/index.mjs",
-      "require": "./dist/templates/index.js",
-      "types": "./dist/templates/index.d.ts"
     }
   },
   "sideEffects": [
     "*.css",
-    "src/atom/**/*.tsx"
+    "src/shadcn/**/*.tsx"
   ],
   "files": [
     "dist",
