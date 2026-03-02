@@ -488,6 +488,20 @@
             "composition": "Use with StickyHeader for fixed navigation",
             "antiPatterns": "Don't use for single-section pages"
           }
+        },
+        {
+          "name": "TabsPanel",
+          "description": "Tabbed content container with multiple variants",
+          "type": "block",
+          "category": "navigation",
+          "files": ["tabs-panel.tsx", "index.ts"],
+          "primitives": ["tabs"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When organizing content into switchable tabs",
+            "composition": "Use with SectionJumper for complex navigation",
+            "antiPatterns": "Don't use for single tab content"
+          }
         }
       ]
     }
