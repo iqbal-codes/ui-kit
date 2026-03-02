@@ -87,12 +87,55 @@
           "files": ["stat-card.tsx", "index.ts"],
           "primitives": ["card", "badge"],
           "dependencies": []
-        }
+        },
+          {
+            "name": "SectionHeader",
+            "description": "Section title with optional description and action button",
+            "type": "block",
+            "category": "data-display",
+            "files": ["section-header.tsx", "index.ts"],
+            "primitives": ["card", "button"],
+            "dependencies": [],
+            "ai": {
+              "usage": "When displaying a section title with optional description and action button",
+              "composition": "Use with StatCard for dashboard sections, EmptyState for list pages",
+              "antiPatterns": "Don't use for page-level titles - use PageHeader instead"
+            }
+          },
+          {
+            "name": "EntityCard",
+            "description": "Rich data card with badges, progress bars, avatars, and metadata",
+            "type": "block",
+            "category": "data-display",
+            "files": ["entity-card.tsx", "index.ts"],
+            "primitives": ["card", "badge", "progress", "avatar"],
+            "dependencies": [],
+            "ai": {
+              "usage": "When displaying entity details with status, progress, and metadata",
+              "composition": "Use with CardGrid for lists, Pagination for navigation",
+              "antiPatterns": "Don't use for simple text-only items"
+            }
+          }
       ]
     },
     "data-entry": {
       "path": "src/blocks/data-entry",
-      "components": []
+      "components": [
+        {
+          "name": "SearchBar",
+          "description": "Search input with debounce and clear button",
+          "type": "block",
+          "category": "data-entry",
+          "files": ["search-bar.tsx", "index.ts"],
+          "primitives": ["input", "button"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When adding search functionality to lists or pages",
+            "composition": "Use with DataTable, EntityCard list for filtering",
+            "antiPatterns": "Don't use for simple onetime search without debounce needs"
+          }
+        }
+      ]
     },
     "feedback": {
       "path": "src/blocks/feedback",
@@ -105,12 +148,83 @@
           "files": ["empty-state.tsx", "index.ts"],
           "primitives": ["button"],
           "dependencies": []
+        },
+        {
+          "name": "LoadingOverlay",
+          "description": "Full-screen or inline spinner with contextual messages",
+          "type": "block",
+          "category": "feedback",
+          "files": ["loading-overlay.tsx", "index.ts"],
+          "primitives": ["spinner"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When showing loading state for data fetching or processing",
+            "composition": "Use with SkeletonGenerator for content placeholders",
+            "antiPatterns": "Don't use for quick operations under 200ms"
+          }
+        },
+        {
+          "name": "ErrorFallback",
+          "description": "Error boundary UI with retry action and error ID",
+          "type": "block",
+          "category": "feedback",
+          "files": ["error-fallback.tsx", "index.ts"],
+          "primitives": ["button", "card"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When wrapping components that may throw errors",
+            "composition": "Use with LoadingOverlay for complete error handling",
+            "antiPatterns": "Don't use for expected error states - use conditional rendering"
+          }
+        },
+        {
+          "name": "ToastManager",
+          "description": "Notification container with position and theme configuration",
+          "type": "block",
+          "category": "feedback",
+          "files": ["toast-manager.tsx", "index.ts"],
+          "primitives": ["sonner"],
+          "dependencies": ["sonner"],
+          "ai": {
+            "usage": "When displaying toast notifications anywhere in the app",
+            "composition": "Place once at app root, use toast() function to show notifications",
+            "antiPatterns": "Don't create multiple instances - use single instance at root"
+          }
         }
       ]
     },
     "navigation": {
       "path": "src/blocks/navigation",
-      "components": []
+      "components": [
+        {
+          "name": "Pagination",
+          "description": "Page navigation with first/last buttons and ellipsis",
+          "type": "block",
+          "category": "navigation",
+          "files": ["pagination.tsx", "index.ts"],
+          "primitives": ["button"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When displaying paginated data or long lists",
+            "composition": "Use with DataTable, EntityCard list, or any paginated content",
+            "antiPatterns": "Don't use for fewer than 2 pages"
+          }
+        },
+        {
+          "name": "BreadcrumbTrail",
+          "description": "Dynamic breadcrumbs with history dropdown and collapse support",
+          "type": "block",
+          "category": "navigation",
+          "files": ["breadcrumb-trail.tsx", "index.ts"],
+          "primitives": ["breadcrumb"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When showing navigation path in hierarchical content",
+            "composition": "Use with PageHeader for complete page header",
+            "antiPatterns": "Don't use for flat pages without hierarchy"
+          }
+        }
+      ]
     }
   }
 }

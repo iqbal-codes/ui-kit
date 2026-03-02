@@ -1,2 +1,2 @@
 // Data entry blocks - form patterns, search
-export {};
+export { SearchBar, type SearchBarProps } from "./search-bar";
