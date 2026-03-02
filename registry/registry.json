@@ -115,9 +115,23 @@
               "composition": "Use with CardGrid for lists, Pagination for navigation",
               "antiPatterns": "Don't use for simple text-only items"
             }
+          },
+          {
+            "name": "CardGrid",
+            "description": "Responsive grid layout for cards with configurable columns and gap",
+            "type": "block",
+            "category": "data-display",
+            "files": ["card-grid.tsx", "index.ts"],
+            "primitives": [],
+            "dependencies": [],
+            "ai": {
+              "usage": "When displaying multiple cards in a responsive grid layout",
+              "composition": "Use with EntityCard, StatCard for card layouts",
+              "antiPatterns": "Don't use for single cards or non-card content"
+            }
           }
-      ]
-    },
+        ]
+      },
     "data-entry": {
       "path": "src/blocks/data-entry",
       "components": [
