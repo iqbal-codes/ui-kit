@@ -502,6 +502,20 @@
             "composition": "Use with SectionJumper for complex navigation",
             "antiPatterns": "Don't use for single tab content"
           }
+        },
+        {
+          "name": "CommandPalette",
+          "description": "Global search dialog with keyboard navigation and filtering",
+          "type": "block",
+          "category": "navigation",
+          "files": ["command-palette.tsx", "index.ts"],
+          "primitives": ["command", "dialog"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When adding Cmd+K global search functionality",
+            "composition": "Use with Keyboard shortcuts for best experience",
+            "antiPatterns": "Don't use for simple dropdown menus"
+          }
         }
       ]
     }

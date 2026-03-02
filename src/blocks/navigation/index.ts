@@ -4,3 +4,4 @@ export { BreadcrumbTrail, type BreadcrumbTrailProps, type BreadcrumbItemType } f
 export { MobileNav, type MobileNavProps, type MobileNavItem } from './mobile-nav';
 export { SectionJumper, type SectionJumperProps, type SectionJumperSection } from './section-jumper';
 export { TabsPanel, type TabsPanelProps, type TabItem } from './tabs-panel';
+export { CommandPalette, type CommandPaletteProps, type CommandItem } from './command-palette';

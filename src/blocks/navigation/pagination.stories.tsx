@@ -1,65 +1,84 @@
-import React, { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import { Pagination } from './pagination'
+import * as React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Pagination } from "./pagination";
 
-const meta: Meta<typeof Pagination> = {
-  title: 'Blocks/Navigation/Pagination',
+const meta = {
+  title: "Blocks/Navigation/Pagination",
   component: Pagination,
-  parameters: { layout: 'padded' },
-  tags: ['autodocs'],
-}
+  parameters: { layout: "padded" },
+  tags: ["autodocs"],
+  argTypes: {
+    onPageChange: { action: "pageChanged" },
+  },
+} satisfies Meta<typeof Pagination>;
 
-export default meta
-type Story = StoryObj<typeof Pagination>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
+/**
+ * Default pagination with standard settings
+ */
 export const Default: Story = {
-  render: () => {
-    const [page, setPage] = useState(1)
+  render: (args) => {
+    const [page, setPage] = React.useState(args.page || 1);
     return (
       <Pagination
+        {...args}
         page={page}
-        totalPages={10}
-        onPageChange={setPage}
+        onPageChange={(p) => {
+          setPage(p);
+          args.onPageChange?.(p);
+        }}
       />
-    )
+    );
   },
   args: {
     page: 1,
     totalPages: 10,
+    siblingCount: 1,
   },
-}
+};
 
+/**
+ * With first/last page buttons
+ */
 export const WithFirstLast: Story = {
-  render: () => {
-    const [page, setPage] = useState(5)
+  render: (args) => {
+    const [page, setPage] = React.useState(5);
     return (
       <Pagination
+        {...args}
         page={page}
-        totalPages={20}
-        onPageChange={setPage}
-        showFirstLast
+        onPageChange={(p) => {
+          setPage(p);
+          args.onPageChange?.(p);
+        }}
       />
-    )
+    );
   },
   args: {
     page: 5,
     totalPages: 20,
     showFirstLast: true,
   },
-}
+};
 
+/**
+ * Many pages with ellipsis
+ */
 export const ManyPages: Story = {
-  render: () => {
-    const [page, setPage] = useState(15)
+  render: (args) => {
+    const [page, setPage] = React.useState(15);
     return (
       <Pagination
+        {...args}
         page={page}
-        totalPages={100}
-        onPageChange={setPage}
-        showFirstLast
-        siblingCount={2}
+        onPageChange={(p) => {
+          setPage(p);
+          args.onPageChange?.(p);
+        }}
       />
-    )
+    );
   },
   args: {
     page: 15,
@@ -67,21 +86,99 @@ export const ManyPages: Story = {
     showFirstLast: true,
     siblingCount: 2,
   },
-}
+};
 
+/**
+ * Few pages (no ellipsis needed)
+ */
 export const FewPages: Story = {
-  render: () => {
-    const [page, setPage] = useState(1)
+  render: (args) => {
+    const [page, setPage] = React.useState(1);
     return (
       <Pagination
+        {...args}
         page={page}
-        totalPages={3}
-        onPageChange={setPage}
+        onPageChange={(p) => {
+          setPage(p);
+          args.onPageChange?.(p);
+        }}
       />
-    )
+    );
   },
   args: {
     page: 1,
     totalPages: 3,
   },
-}
+};
+
+/**
+ * Compact mode - only prev/next with page indicator
+ */
+export const Compact: Story = {
+  render: (args) => {
+    const [page, setPage] = React.useState(5);
+    return (
+      <Pagination
+        {...args}
+        page={page}
+        onPageChange={(p) => {
+          setPage(p);
+          args.onPageChange?.(p);
+        }}
+      />
+    );
+  },
+  args: {
+    page: 5,
+    totalPages: 50,
+    compact: true,
+  },
+};
+
+/**
+ * First page boundary
+ */
+export const FirstPage: Story = {
+  render: (args) => {
+    const [page, setPage] = React.useState(1);
+    return (
+      <Pagination
+        {...args}
+        page={page}
+        onPageChange={(p) => {
+          setPage(p);
+          args.onPageChange?.(p);
+        }}
+      />
+    );
+  },
+  args: {
+    page: 1,
+    totalPages: 10,
+    showFirstLast: true,
+  },
+};
+
+/**
+ * Last page boundary
+ */
+export const LastPage: Story = {
+  render: (args) => {
+    const [page, setPage] = React.useState(10);
+    return (
+      <Pagination
+        {...args}
+        page={page}
+        onPageChange={(p) => {
+          setPage(p);
+          args.onPageChange?.(p);
+        }}
+      />
+    );
+  },
+  args: {
+    page: 10,
+    totalPages: 10,
+    showFirstLast: true,
+  },
+};
