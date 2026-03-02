@@ -302,6 +302,20 @@
             "composition": "Use with FormWizard for multi-step forms",
             "antiPatterns": "Don't use for single-step processes"
           }
+        },
+        {
+          "name": "ConfirmationDialog",
+          "description": "Contextual confirmation dialog with warning severity levels",
+          "type": "block",
+          "category": "feedback",
+          "files": ["confirmation-dialog.tsx", "index.ts"],
+          "primitives": ["alert-dialog", "button"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When requiring user confirmation for destructive or important actions",
+            "composition": "Use with ToastManager for success feedback after confirm",
+            "antiPatterns": "Don't use for non-critical actions"
+          }
         }
       ]
     },

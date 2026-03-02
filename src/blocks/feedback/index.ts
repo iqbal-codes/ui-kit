@@ -10,3 +10,4 @@ export { ToastManager, type ToastManagerProps } from './toast-manager';
 export { SkeletonGenerator, type SkeletonGeneratorProps } from './skeleton-generator';
 export { ConnectionStatus, type ConnectionStatusProps, type ConnectionState } from './connection-status';
 export { ProgressTracker, type ProgressTrackerProps, type ProgressStep } from './progress-tracker';
+export { ConfirmationDialog, type ConfirmationDialogProps, type ConfirmationVariant } from './confirmation-dialog';
