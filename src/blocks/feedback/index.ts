@@ -1,2 +1,6 @@
 // Feedback blocks - empty states, loading
-export {};
+export {
+  EmptyState,
+  type EmptyStateProps,
+  type EmptyStateAction,
+} from './empty-state';

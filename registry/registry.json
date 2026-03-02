@@ -96,7 +96,17 @@
     },
     "feedback": {
       "path": "src/blocks/feedback",
-      "components": []
+      "components": [
+        {
+          "name": "EmptyState",
+          "description": "Zero-state illustration with message and CTA",
+          "type": "block",
+          "category": "feedback",
+          "files": ["empty-state.tsx", "index.ts"],
+          "primitives": ["button"],
+          "dependencies": []
+        }
+      ]
     },
     "navigation": {
       "path": "src/blocks/navigation",
