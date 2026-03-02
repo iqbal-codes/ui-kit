@@ -10,7 +10,7 @@ export * from './animations'
 // Combined tokens object for easy access
 import { baseColors, semanticColors } from './colors'
 import { fontFamilies, fontSizes, fontWeights, lineHeights, letterSpacings, typography } from './typography'
-import { spacing, semanticSpacing, borderRadius, container, breakpoints, zIndex, shadows, grid } from './spacing'
+import { spacing, semanticSpacing, borderRadius, container, breakpoints, zIndex, shadows, grid, baseRadius } from './spacing'
 import { durations, easings, animations, keyframes, transitions } from './animations'
 
 export const tokens = {
@@ -35,6 +35,7 @@ export const tokens = {
     scale: spacing,
     semantic: semanticSpacing,
     borderRadius,
+    baseRadius,
     container,
     breakpoints,
     zIndex,

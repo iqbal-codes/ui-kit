@@ -1,21 +1,21 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 export interface PageHeaderProps {
-  title: string
-  description?: string
-  action?: React.ReactNode
-  className?: string
+  title: string;
+  description?: string;
+  action?: React.ReactNode;
+  className?: string;
 }
 
 const PageHeader = React.forwardRef<HTMLDivElement, PageHeaderProps>(
-  ({ title, description, action, className }, ref) => {
+  ({ title, description, actions, className }, ref) => {
     return (
       <div
         ref={ref}
         className={cn(
           "flex flex-col gap-4 pb-6 md:flex-row md:items-start md:justify-between",
-          className
+          className,
         )}
       >
         <div className="space-y-1">
@@ -24,11 +24,11 @@ const PageHeader = React.forwardRef<HTMLDivElement, PageHeaderProps>(
             <p className="text-sm text-muted-foreground">{description}</p>
           )}
         </div>
-        {action && <div className="flex-shrink-0">{action}</div>}
+        {actions && <div className="flex-shrink-0">{actions}</div>}
       </div>
-    )
-  }
-)
-PageHeader.displayName = "PageHeader"
+    );
+  },
+);
+PageHeader.displayName = "PageHeader";
 
-export { PageHeader }
+export { PageHeader };

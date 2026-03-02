@@ -68,15 +68,19 @@ export const semanticSpacing = {
 // Border radius tokens
 export const borderRadius = {
   none: '0px',
-  sm: '0.125rem',    // 2px
-  DEFAULT: '0.25rem', // 4px
-  md: '0.375rem',    // 6px
-  lg: '0.5rem',      // 8px
-  xl: '0.75rem',     // 12px
-  '2xl': '1rem',     // 16px
-  '3xl': '1.5rem',   // 24px
+  sm: '0.375rem',    // calc(0.625rem - 4px)
+  DEFAULT: '0.5rem',   // calc(0.625rem - 2px)
+  md: '0.5rem',      // calc(0.625rem - 2px)
+  lg: '0.625rem',    // var(--radius)
+  xl: '0.875rem',    // calc(0.625rem + 4px)
+  '2xl': '1.125rem', // calc(0.625rem + 8px)
+  '3xl': '1.375rem', // calc(0.625rem + 12px)
+  '4xl': '1.625rem', // calc(0.625rem + 16px)
   full: '9999px',
 } as const
+
+// Base radius value (matches --radius in globals.css)
+export const baseRadius = '0.625rem' as const
 
 // Container max-widths
 export const container = {
@@ -146,6 +150,7 @@ export const grid = {
 export type Spacing = typeof spacing
 export type SemanticSpacing = typeof semanticSpacing
 export type BorderRadius = typeof borderRadius
+export type BaseRadius = typeof baseRadius
 export type Container = typeof container
 export type Breakpoints = typeof breakpoints
 export type ZIndex = typeof zIndex

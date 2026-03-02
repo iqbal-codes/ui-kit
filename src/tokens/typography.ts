@@ -4,7 +4,7 @@
 // Font families
 export const fontFamilies = {
   sans: [
-    'var(--font-inter)',
+    'var(--font-geist-sans)',
     'system-ui',
     '-apple-system',
     'BlinkMacSystemFont',
@@ -21,7 +21,7 @@ export const fontFamilies = {
   ].join(', '),
 
   serif: [
-    'var(--font-geist-serif)',
+    'ui-serif',
     'Georgia',
     'Cambria',
     '"Times New Roman"',

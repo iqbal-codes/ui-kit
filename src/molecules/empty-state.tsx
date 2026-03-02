@@ -1,33 +1,36 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { LucideIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/atom/button"
+import * as React from "react";
+import { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/atom/button";
 
 export interface EmptyStateProps {
-  icon?: LucideIcon
-  title: string
-  description?: string
+  icon?: LucideIcon;
+  title: string;
+  description?: string;
   action?: {
-    label: string
-    onClick: () => void
-  }
+    label: string;
+    onClick: () => void;
+  };
   secondaryAction?: {
-    label: string
-    onClick: () => void
-  }
-  className?: string
+    label: string;
+    onClick: () => void;
+  };
+  className?: string;
 }
 
 const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
-  ({ icon: Icon, title, description, action, secondaryAction, className }, ref) => {
+  (
+    { icon: Icon, title, description, action, secondaryAction, className },
+    ref,
+  ) => {
     return (
       <div
         ref={ref}
         className={cn(
           "flex flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center animate-in fade-in-50",
-          className
+          className,
         )}
       >
         {Icon && (
@@ -52,9 +55,9 @@ const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
           </div>
         )}
       </div>
-    )
-  }
-)
-EmptyState.displayName = "EmptyState"
+    );
+  },
+);
+EmptyState.displayName = "EmptyState";
 
-export { EmptyState }
+export { EmptyState };
