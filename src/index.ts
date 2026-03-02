@@ -1,5 +1,5 @@
-// Export atom components (shadcn/ui based)
-export * from "./shadcn";
+// Export primitives (shadcn/ui based components)
+export * from "./primitives";
 
 // Export design tokens
 export * from "./tokens";
