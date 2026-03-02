@@ -5,3 +5,4 @@ export { EntityCard, type EntityCardProps } from './entity-card';
 export { CardGrid, type CardGridProps } from './card-grid';
 export { MetricCard, type MetricCardProps, type TrendDirection as MetricTrendDirection } from './metric-card';
 export { ActivityTimeline, type ActivityTimelineProps, type TimelineItem } from './activity-timeline';
+export { MasonryBoard, type MasonryBoardProps, type MasonryItem } from './masonry-board';

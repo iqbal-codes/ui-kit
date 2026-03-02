@@ -87,6 +87,34 @@
             "composition": "Use with BreadcrumbTrail for navigation, PageHeader for titles",
             "antiPatterns": "Don't use for non-scrolling pages"
           }
+        },
+        {
+          "name": "RightDrawer",
+          "description": "Slide-out panel for secondary actions",
+          "type": "block",
+          "category": "layout",
+          "files": ["right-drawer.tsx", "index.ts"],
+          "primitives": ["sheet"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When showing detail panels or forms in a slide-out drawer",
+            "composition": "Use with EntityCard for detail views",
+            "antiPatterns": "Don't use for main content"
+          }
+        },
+        {
+          "name": "SplitPane",
+          "description": "Resizable two-pane layout with draggable divider",
+          "type": "block",
+          "category": "layout",
+          "files": ["split-pane.tsx", "index.ts"],
+          "primitives": [],
+          "dependencies": [],
+          "ai": {
+            "usage": "When creating resizable split views for code/files/document comparison",
+            "composition": "Use with CardGrid or EntityCard lists",
+            "antiPatterns": "Don't use for fixed layouts"
+          }
         }
       ]
     },
@@ -166,14 +194,28 @@
             "files": ["activity-timeline.tsx", "index.ts"],
             "primitives": [],
             "dependencies": [],
-            "ai": {
-              "usage": "When displaying chronological activity or event history",
-              "composition": "Use with EntityCard for detailed views",
-              "antiPatterns": "Don't use for static non-chronological content"
-            }
+          "ai": {
+            "usage": "When displaying chronological activity or event history",
+            "composition": "Use with EntityCard for detailed views",
+            "antiPatterns": "Don't use for static non-chronological content"
           }
-        ]
-      },
+        },
+        {
+          "name": "MasonryBoard",
+          "description": "Pinterest-style layout for irregular height content",
+          "type": "block",
+          "category": "data-display",
+          "files": ["masonry-board.tsx", "index.ts"],
+          "primitives": [],
+          "dependencies": [],
+          "ai": {
+            "usage": "When displaying cards or images with varying heights in a Pinterest-style grid",
+            "composition": "Use with CardGrid for different layouts",
+            "antiPatterns": "Don't use for uniform height content"
+          }
+        }
+      ]
+    },
     "data-entry": {
       "path": "src/blocks/data-entry",
       "components": [
@@ -229,8 +271,21 @@
           "dependencies": [],
           "ai": {
             "usage": "When creating sticky action bars for forms with save/cancel buttons",
-            "composition": "Use with FormSection for long forms",
             "antiPatterns": "Don't use for simple inline forms"
+          }
+        },
+        {
+          "name": "DurationPicker",
+          "description": "Time duration selector with preset shortcuts",
+          "type": "block",
+          "category": "data-entry",
+          "files": ["duration-picker.tsx", "index.ts"],
+          "primitives": ["input", "button"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When selecting time durations with common presets",
+            "composition": "Use with FormSection for forms",
+            "antiPatterns": "Don't use for date/time picking"
           }
         }
       ]
@@ -376,6 +431,34 @@
             "usage": "When showing navigation path in hierarchical content",
             "composition": "Use with PageHeader for complete page header",
             "antiPatterns": "Don't use for flat pages without hierarchy"
+          }
+        },
+        {
+          "name": "MobileNav",
+          "description": "Bottom tab bar with badge counts for mobile navigation",
+          "type": "block",
+          "category": "navigation",
+          "files": ["mobile-nav.tsx", "index.ts"],
+          "primitives": ["badge"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When creating mobile app-style bottom navigation",
+            "composition": "Use with StickyHeader for mobile layouts",
+            "antiPatterns": "Don't use for desktop layouts"
+          }
+        },
+        {
+          "name": "SectionJumper",
+          "description": "In-page anchor navigation with scroll spy",
+          "type": "block",
+          "category": "navigation",
+          "files": ["section-jumper.tsx", "index.ts"],
+          "primitives": [],
+          "dependencies": [],
+          "ai": {
+            "usage": "When creating quick navigation between page sections",
+            "composition": "Use with StickyHeader for fixed navigation",
+            "antiPatterns": "Don't use for single-section pages"
           }
         }
       ]
