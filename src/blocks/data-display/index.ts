@@ -1,2 +1,2 @@
 // Data display blocks - cards, stats, tables
-export {};
+export { StatCard, type StatCardProps, type TrendDirection } from './stat-card';

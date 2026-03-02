@@ -78,7 +78,17 @@
     },
     "data-display": {
       "path": "src/blocks/data-display",
-      "components": []
+      "components": [
+        {
+          "name": "StatCard",
+          "description": "Metric card with value and trend indicator",
+          "type": "block",
+          "category": "data-display",
+          "files": ["stat-card.tsx", "index.ts"],
+          "primitives": ["card", "badge"],
+          "dependencies": []
+        }
+      ]
     },
     "data-entry": {
       "path": "src/blocks/data-entry",
