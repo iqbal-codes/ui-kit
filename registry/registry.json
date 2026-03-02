@@ -232,6 +232,20 @@
             "composition": "Place once at app root, use toast() function to show notifications",
             "antiPatterns": "Don't create multiple instances - use single instance at root"
           }
+        },
+        {
+          "name": "SkeletonGenerator",
+          "description": "Automatic skeleton screens matching data shapes (card, list, table)",
+          "type": "block",
+          "category": "feedback",
+          "files": ["skeleton-generator.tsx", "index.ts"],
+          "primitives": ["skeleton"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When showing loading placeholders while data is fetching",
+            "composition": "Use with LoadingOverlay for complete loading experience",
+            "antiPatterns": "Don't use for static content or after data loads"
+          }
         }
       ]
     },
