@@ -213,6 +213,20 @@
             "composition": "Use with CardGrid for different layouts",
             "antiPatterns": "Don't use for uniform height content"
           }
+        },
+        {
+          "name": "StatusGrid",
+          "description": "Color-coded status overview with progress rings and counters",
+          "type": "block",
+          "category": "data-display",
+          "files": ["status-grid.tsx", "index.ts"],
+          "primitives": [],
+          "dependencies": [],
+          "ai": {
+            "usage": "When displaying status counts with visual progress indicators",
+            "composition": "Use with MetricCard for dashboard overview",
+            "antiPatterns": "Don't use for single status or complex data"
+          }
         }
       ]
     },

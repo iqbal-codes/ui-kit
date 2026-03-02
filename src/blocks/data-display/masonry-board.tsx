@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noArrayIndexKey: <explanation> */
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
