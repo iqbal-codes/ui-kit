@@ -155,12 +155,26 @@
           "type": "block",
           "category": "data-entry",
           "files": ["search-bar.tsx", "index.ts"],
-          "primitives": ["input", "button"],
+          "primitives": ["input-group", "button"],
           "dependencies": [],
           "ai": {
             "usage": "When adding search functionality to lists or pages",
             "composition": "Use with DataTable, EntityCard list for filtering",
             "antiPatterns": "Don't use for simple onetime search without debounce needs"
+          }
+        },
+        {
+          "name": "FilterChip",
+          "description": "Selectable filter tag with optional count and remove button",
+          "type": "block",
+          "category": "data-entry",
+          "files": ["filter-chip.tsx", "index.ts"],
+          "primitives": ["badge"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When displaying selectable filter tags",
+            "composition": "Use with SearchBar for complete filter experience",
+            "antiPatterns": "Don't use for single static labels"
           }
         }
       ]
