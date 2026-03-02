@@ -157,6 +157,20 @@
               "composition": "Use with CardGrid for dashboard layouts",
               "antiPatterns": "Don't use for non-metric data"
             }
+          },
+          {
+            "name": "ActivityTimeline",
+            "description": "Vertical timeline showing activity history with status indicators",
+            "type": "block",
+            "category": "data-display",
+            "files": ["activity-timeline.tsx", "index.ts"],
+            "primitives": [],
+            "dependencies": [],
+            "ai": {
+              "usage": "When displaying chronological activity or event history",
+              "composition": "Use with EntityCard for detailed views",
+              "antiPatterns": "Don't use for static non-chronological content"
+            }
           }
         ]
       },

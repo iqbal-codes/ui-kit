@@ -4,3 +4,4 @@ export { SectionHeader, type SectionHeaderProps } from './section-header';
 export { EntityCard, type EntityCardProps } from './entity-card';
 export { CardGrid, type CardGridProps } from './card-grid';
 export { MetricCard, type MetricCardProps, type TrendDirection as MetricTrendDirection } from './metric-card';
+export { ActivityTimeline, type ActivityTimelineProps, type TimelineItem } from './activity-timeline';
