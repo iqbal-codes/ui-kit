@@ -227,6 +227,20 @@
             "composition": "Use with MetricCard for dashboard overview",
             "antiPatterns": "Don't use for single status or complex data"
           }
+        },
+        {
+          "name": "DataGrid",
+          "description": "Responsive data table with configurable columns and clickable rows",
+          "type": "block",
+          "category": "data-display",
+          "files": ["data-grid.tsx", "index.ts"],
+          "primitives": [],
+          "dependencies": [],
+          "ai": {
+            "usage": "When displaying tabular data with customizable columns",
+            "composition": "Use with SearchBar and Pagination for complete table functionality",
+            "antiPatterns": "Don't use for complex tables with sorting/filtering (use SmartDataTable)"
+          }
         }
       ]
     },

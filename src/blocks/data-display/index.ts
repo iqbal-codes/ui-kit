@@ -7,3 +7,4 @@ export { MetricCard, type MetricCardProps, type TrendDirection as MetricTrendDir
 export { ActivityTimeline, type ActivityTimelineProps, type TimelineItem } from './activity-timeline';
 export { MasonryBoard, type MasonryBoardProps, type MasonryItem } from './masonry-board';
 export { StatusGrid, type StatusGridProps, type StatusItem } from './status-grid';
+export { DataGrid, type DataGridProps, type DataGridColumn, type DataGridRow } from './data-grid';
