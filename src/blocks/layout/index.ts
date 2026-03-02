@@ -1,2 +1,2 @@
 // Layout blocks - page structure and shells
-export {};
+export { PageHeader, type PageHeaderProps } from './page-header';

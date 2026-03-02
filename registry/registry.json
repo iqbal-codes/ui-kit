@@ -64,7 +64,17 @@
   "blocks": {
     "layout": {
       "path": "src/blocks/layout",
-      "components": []
+      "components": [
+        {
+          "name": "PageHeader",
+          "description": "Page title with breadcrumbs and actions",
+          "type": "block",
+          "category": "layout",
+          "files": ["page-header.tsx", "index.ts"],
+          "primitives": ["breadcrumb", "separator"],
+          "dependencies": []
+        }
+      ]
     },
     "data-display": {
       "path": "src/blocks/data-display",
