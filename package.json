@@ -17,10 +17,15 @@
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./shadcn": {
-      "import": "./dist/shadcn/index.mjs",
-      "require": "./dist/shadcn/index.js",
-      "types": "./dist/shadcn/index.d.ts"
+    "./primitives": {
+      "import": "./dist/primitives/index.mjs",
+      "require": "./dist/primitives/index.js",
+      "types": "./dist/primitives/index.d.ts"
+    },
+    "./blocks": {
+      "import": "./dist/blocks/index.mjs",
+      "require": "./dist/blocks/index.js",
+      "types": "./dist/blocks/index.d.ts"
     },
     "./tokens": {
       "import": "./dist/tokens/index.mjs",

@@ -5,6 +5,7 @@ export default defineConfig({
   entry: {
     index: "src/index.ts",
     "primitives/index": "src/primitives/index.ts",
+    "blocks/index": "src/blocks/index.ts",
     "tokens/index": "src/tokens/index.ts",
   },
   format: ["esm", "cjs"],
