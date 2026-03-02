@@ -204,6 +204,20 @@
             "composition": "Use with SearchBar for complete filter experience",
             "antiPatterns": "Don't use for single static labels"
           }
+        },
+        {
+          "name": "FormSection",
+          "description": "Collapsible form grouping with validation status indicator",
+          "type": "block",
+          "category": "data-entry",
+          "files": ["form-section.tsx", "index.ts"],
+          "primitives": ["collapsible"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When organizing long forms into collapsible sections",
+            "composition": "Use with StickyActions for form submission",
+            "antiPatterns": "Don't use for simple 2-3 field forms"
+          }
         }
       ]
     },
