@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { PackageOpen, type LucideIcon } from 'lucide-react'
 
 import { Button } from '@/primitives/button'

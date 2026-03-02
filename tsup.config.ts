@@ -9,10 +9,9 @@ export default defineConfig({
     "tokens/index": "src/tokens/index.ts",
   },
   format: ["esm", "cjs"],
-  dts: true,
   sourcemap: true,
   clean: true,
-  splitting: true,
+  splitting: false,
   treeshake: true,
   external: ["react", "react-dom", "next", "tailwindcss"],
   esbuildOptions(options) {

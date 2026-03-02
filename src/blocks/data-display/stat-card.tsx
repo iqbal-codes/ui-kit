@@ -1,16 +1,17 @@
-import { ArrowDownIcon, ArrowUpIcon, MinusIcon } from 'lucide-react';
+import * as React from "react";
+import { ArrowDownIcon, ArrowUpIcon, MinusIcon } from "lucide-react";
 
-import { Badge } from '@/primitives/badge'
+import { Badge } from "@/primitives/badge";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/primitives/card'
-import { cn } from '@/lib/utils'
+} from "@/primitives/card";
+import { cn } from "@/lib/utils";
 
-export type TrendDirection = 'up' | 'down' | 'neutral';
+export type TrendDirection = "up" | "down" | "neutral";
 
 export interface StatCardProps {
   /** Card title (metric name) */
@@ -47,15 +48,18 @@ function TrendBadge({
   };
 
   const variants = {
-    up: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300',
-    down: 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300',
-    neutral: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
+    up: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300",
+    down: "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300",
+    neutral: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
   };
 
   const Icon = icons[direction];
 
   return (
-    <Badge variant="outline" className={cn('gap-1 font-normal', variants[direction])}>
+    <Badge
+      variant="outline"
+      className={cn("gap-1 font-normal", variants[direction])}
+    >
       <Icon className="h-3 w-3" />
       <span>{value}</span>
       {label && <span className="text-muted-foreground">{label}</span>}
@@ -74,9 +78,9 @@ export function StatCard({
   return (
     <Card
       className={cn(
-        'transition-colors',
-        onClick && 'cursor-pointer hover:bg-muted/50',
-        className
+        "transition-colors",
+        onClick && "cursor-pointer hover:bg-muted/50",
+        className,
       )}
       onClick={onClick}
     >

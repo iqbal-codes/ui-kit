@@ -1,9 +1,7 @@
 import * as React from "react";
-import { SearchIcon, XIcon } from "lucide-react";
-
-import { Input } from "@/primitives/input";
+import { Search, X } from "lucide-react";
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@/primitives/input-group";
 import { Button } from "@/primitives/button";
-import { cn } from "@/lib/utils";
 
 export interface SearchBarProps {
   /** Current search value */
@@ -18,7 +16,6 @@ export interface SearchBarProps {
   isLoading?: boolean;
   /** Debounce delay in ms */
   debounce?: number;
-  /** Additional CSS classes */
   className?: string;
 }
 
@@ -43,7 +40,7 @@ export function SearchBar({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setInputValue(newValue);
-
+    
     if (debounceRef.current) {
       clearTimeout(debounceRef.current);
     }
@@ -63,27 +60,30 @@ export function SearchBar({
   };
 
   return (
-    <div className={cn("relative flex items-center w-full max-w-sm", className)}>
-      <SearchIcon className="absolute left-3 h-4 w-4 text-muted-foreground" />
-      <Input
+    <InputGroup className={className}>
+      <InputGroupAddon align="inline-start">
+        <Search className="h-4 w-4" />
+      </InputGroupAddon>
+      <InputGroupInput
         type="search"
         placeholder={placeholder}
         value={inputValue}
         onChange={handleChange}
-        className="pr-8"
         disabled={isLoading}
       />
       {inputValue && !isLoading && (
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute right-0 h-full px-2 hover:bg-transparent"
-          onClick={handleClear}
-        >
-          <XIcon className="h-4 w-4" />
-        </Button>
+        <InputGroupAddon align="inline-end">
+          <Button 
+            variant="ghost" 
+            size="icon-xs" 
+            onClick={handleClear}
+            className="h-auto p-0 hover:bg-transparent"
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </InputGroupAddon>
       )}
-    </div>
+    </InputGroup>
   );
 }
 
