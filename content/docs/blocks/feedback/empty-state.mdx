@@ -1,0 +1,96 @@
+---
+title: EmptyState
+description: Zero-state illustration with message and CTA
+---
+
+# EmptyState
+
+A component for empty states, providing context and a clear call-to-action.
+
+## Usage
+
+```tsx
+import { EmptyState } from '@iqbal-codes/ui-kit/blocks';
+import { FilePlus } from 'lucide-react';
+
+export default function EmptyProjects() {
+  return (
+    <EmptyState
+      title="No projects yet"
+      description="Get started by creating your first project."
+      icon={FilePlus}
+      action={{
+        label: 'Create Project',
+        onClick: () => createProject(),
+      }}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `title` | `string` | Title text |
+| `description` | `string` | Descriptive message |
+| `icon` | `LucideIcon` | Icon component (defaults to PackageOpen) |
+| `action` | `{label: string, onClick: () => void, variant?: ButtonVariant, icon?: ReactNode}` | Primary action |
+| `secondaryAction` | `{label: string, onClick: () => void, variant?: ButtonVariant, icon?: ReactNode}` | Secondary action |
+| `compact` | `boolean` | Compact mode for inline empty states |
+| `className` | `string` | Additional CSS classes |
+
+## Examples
+
+### Full Size (Default)
+
+```tsx
+<EmptyState
+  title="No results found"
+  description="Try adjusting your search or filters."
+/>
+```
+
+### With Actions
+
+```tsx
+<EmptyState
+  title="No notifications"
+  description="You're all caught up!"
+  action={{
+    label: 'View Archive',
+    onClick: () => {},
+  }}
+  secondaryAction={{
+    label: 'Settings',
+    variant: 'outline',
+    onClick: () => {},
+  }}
+/>
+```
+
+### Compact (Inline)
+
+```tsx
+<EmptyState
+  title="No items"
+  description="Add an item to get started."
+  compact
+  action={{
+    label: 'Add Item',
+    onClick: () => {},
+  }}
+/>
+```
+
+### Custom Icon
+
+```tsx
+import { Inbox } from 'lucide-react';
+
+<EmptyState
+  title="Inbox empty"
+  icon={Inbox}
+  description="No new messages."
+/>
+```

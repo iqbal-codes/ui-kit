@@ -1,0 +1,31 @@
+---
+title: Primitives
+description: Low-level UI building blocks from shadcn/ui
+---
+
+# Primitives
+
+Primitives are the foundational UI components from shadcn/ui. They are atomic elements that serve as building blocks for higher-level Blocks.
+
+## Available Primitives
+
+The following primitives are available:
+
+- **Layout**: Card, Dialog, Sheet, Alert
+- **Forms**: Input, Textarea, Select, Checkbox, Radio, Switch
+- **Navigation**: Breadcrumb, Tabs, Pagination, Menubar
+- **Feedback**: Alert, Progress, Skeleton, Sonner
+- **Data Display**: Avatar, Badge, Table, Calendar, Chart
+- **Overlay**: Dialog, Drawer, Popover, Tooltip, HoverCard
+
+## Usage
+
+While you can import primitives directly, the recommended approach is to use Blocks which compose these primitives into common patterns.
+
+```tsx
+// Direct primitive import (discouraged for apps)
+import { Button, Card } from '@iqbal-codes/ui-kit/primitives';
+
+// Block import (recommended)
+import { StatCard } from '@iqbal-codes/ui-kit/blocks';
+```

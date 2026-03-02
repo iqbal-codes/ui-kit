@@ -1,0 +1,76 @@
+---
+title: PageHeader
+description: Page title with breadcrumbs and actions
+---
+
+# PageHeader
+
+A consistent page header pattern that combines title, breadcrumbs, actions, and optional content.
+
+## Usage
+
+```tsx
+import { PageHeader } from '@iqbal-codes/ui-kit/blocks';
+
+export default function Page() {
+  return (
+    <PageHeader
+      title="Dashboard"
+      subtitle="Overview of your system"
+      breadcrumbs={[
+        { label: 'Home', href: '/' },
+        { label: 'Dashboard' },
+      ]}
+      actions={
+        <Button>Create New</Button>
+      }
+    />
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `title` | `string` | Page title |
+| `subtitle` | `string` | Optional subtitle below title |
+| `breadcrumbs` | `Array<{label: string, href?: string}>` | Breadcrumb navigation items |
+| `actions` | `ReactNode` | Action buttons or controls |
+| `children` | `ReactNode` | Custom content below title |
+| `className` | `string` | Additional CSS classes |
+
+## Examples
+
+### Basic Usage
+
+```tsx
+<PageHeader title="Settings" />
+```
+
+### With Breadcrumbs
+
+```tsx
+<PageHeader
+  title="User Profile"
+  breadcrumbs={[
+    { label: 'Home', href: '/' },
+    { label: 'Users', href: '/users' },
+    { label: 'Profile' },
+  ]}
+/>
+```
+
+### With Actions
+
+```tsx
+<PageHeader
+  title="Products"
+  actions={
+    <>
+      <Button variant="outline">Export</Button>
+      <Button>Add Product</Button>
+    </>
+  }
+/>
+```

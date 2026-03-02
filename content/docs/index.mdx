@@ -1,0 +1,42 @@
+---
+title: Getting Started
+description: Welcome to the UI Kit documentation
+---
+
+# UI Kit
+
+A comprehensive design system for React applications, featuring a two-layer architecture of Primitives and Blocks.
+
+## Architecture
+
+### Primitives
+Low-level building blocks from shadcn/ui. These are the atomic elements like Button, Card, Input, etc.
+
+### Blocks
+Composite UI patterns built from primitives, organized by functional objective:
+
+- **Layout**: Page structure components (PageHeader, PageShell)
+- **Data Display**: Presenting data (StatCard, DataList)
+- **Data Entry**: Input patterns (SearchBar, FormSection)
+- **Feedback**: System feedback (EmptyState, LoadingState)
+- **Navigation**: Wayfinding components (BreadcrumbNav, Pagination)
+
+## Installation
+
+```bash
+npm install @iqbal-codes/ui-kit
+```
+
+## Usage
+
+### Import Blocks (Recommended)
+
+```tsx
+import { PageHeader, StatCard, EmptyState } from '@iqbal-codes/ui-kit/blocks';
+```
+
+### Import Primitives (When Needed)
+
+```tsx
+import { Button, Card, Input } from '@iqbal-codes/ui-kit/primitives';
+```
