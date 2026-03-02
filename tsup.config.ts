@@ -4,7 +4,7 @@ import path from "path";
 export default defineConfig({
   entry: {
     index: "src/index.ts",
-    "shadcn/index": "src/shadcn/index.ts",
+    "primitives/index": "src/primitives/index.ts",
     "tokens/index": "src/tokens/index.ts",
   },
   format: ["esm", "cjs"],
