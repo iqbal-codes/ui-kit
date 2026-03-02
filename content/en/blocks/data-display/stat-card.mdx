@@ -1,0 +1,76 @@
+---
+title: StatCard
+description: Metric card with value and trend indicator
+---
+
+import { StatCard } from "@/blocks/data-display/stat-card";
+
+# StatCard
+
+A card component for displaying metrics with optional trend indicators.
+
+## Usage
+
+```tsx
+import { StatCard } from "@iqbal-codes/ui-kit/blocks";
+
+export default function Stats() {
+  return (
+    <StatCard
+      title="Total Revenue"
+      value="$45,231"
+      description="Revenue for this month"
+      trend={{
+        direction: "up",
+        value: "+12%",
+        label: "vs last month",
+      }}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop          | Type                                                                      | Description                          |
+| ------------- | ------------------------------------------------------------------------- | ------------------------------------ |
+| `title`       | `string`                                                                  | Metric name                          |
+| `value`       | `string \| number`                                                        | Current value                        |
+| `description` | `string`                                                                  | Optional description                 |
+| `trend`       | `{direction: 'up' \| 'down' \| 'neutral', value: string, label?: string}` | Trend indicator                      |
+| `className`   | `string`                                                                  | Additional CSS classes               |
+| `onClick`     | `() => void`                                                              | Click handler (makes card clickable) |
+
+## Trend Directions
+
+- `up`: Green indicator, shows increase
+- `down`: Red indicator, shows decrease
+- `neutral`: Gray indicator, no change
+
+## Examples
+
+### Basic Stat
+
+```tsx
+<StatCard title="Users" value="2,420" />
+```
+
+### With Trend
+
+```tsx
+<StatCard
+  title="Conversion Rate"
+  value="3.2%"
+  trend={{
+    direction: "up",
+    value: "+0.4%",
+    label: "vs last week",
+  }}
+/>
+```
+
+### Clickable
+
+```tsx
+<StatCard title="Orders" value="124" onClick={() => router.push("/orders")} />
+```

@@ -11,14 +11,12 @@ A component for empty states, providing context and a clear call-to-action.
 
 ```tsx
 import { EmptyState } from '@iqbal-codes/ui-kit/blocks';
-import { FilePlus } from 'lucide-react';
 
 export default function EmptyProjects() {
   return (
     <EmptyState
       title="No projects yet"
       description="Get started by creating your first project."
-      icon={FilePlus}
       action={{
         label: 'Create Project',
         onClick: () => createProject(),
@@ -83,7 +81,7 @@ export default function EmptyProjects() {
 />
 ```
 
-### Custom Icon
+### With Custom Icon
 
 ```tsx
 import { Inbox } from 'lucide-react';

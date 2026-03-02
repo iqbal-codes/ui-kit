@@ -1,16 +1,45 @@
-import { RootProvider } from 'fumadocs-ui/provider/next';
-import { Inter } from 'next/font/google';
-import type { ReactNode } from 'react';
-import '@/src/globals.css';
+import { Footer, Layout, Navbar } from "nextra-theme-docs";
+import { Banner, Head } from "nextra/components";
+import { getPageMap } from "nextra/page-map";
+import "nextra-theme-docs/style.css";
+import type { FC, ReactNode } from "react";
 
-const inter = Inter({ subsets: ['latin'] });
+export const metadata = {
+  title: "UI Kit Documentation",
+  description: "A comprehensive design system for React applications",
+};
 
-export default function Layout({ children }: { children: ReactNode }) {
+type LayoutProps = Readonly<{
+  children: ReactNode;
+}>;
+
+const banner = <Banner storageKey="ui-kit">UI Kit Documentation</Banner>;
+
+const navbar = (
+  <Navbar
+    logo={<b>UI Kit</b>}
+  />
+);
+
+const footer = <Footer>MIT {new Date().getFullYear()} © UI Kit.</Footer>;
+
+const RootLayout: FC<LayoutProps> = async ({ children }) => {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen">
-        <RootProvider>{children}</RootProvider>
+    <html lang="en" dir="ltr" suppressHydrationWarning>
+      <Head />
+      <body>
+        <Layout
+          banner={banner}
+          navbar={navbar}
+          pageMap={await getPageMap()}
+          docsRepositoryBase="https://github.com/iqbal-codes/ui-kit"
+          footer={footer}
+        >
+          {children}
+        </Layout>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;
