@@ -218,6 +218,20 @@
             "composition": "Use with StickyActions for form submission",
             "antiPatterns": "Don't use for simple 2-3 field forms"
           }
+        },
+        {
+          "name": "StickyActions",
+          "description": "Bottom bar for form actions with unsaved changes warning",
+          "type": "block",
+          "category": "data-entry",
+          "files": ["sticky-actions.tsx", "index.ts"],
+          "primitives": [],
+          "dependencies": [],
+          "ai": {
+            "usage": "When creating sticky action bars for forms with save/cancel buttons",
+            "composition": "Use with FormSection for long forms",
+            "antiPatterns": "Don't use for simple inline forms"
+          }
         }
       ]
     },
