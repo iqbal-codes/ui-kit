@@ -1,7 +1,3 @@
-import { docs } from '@/.source';
-import { loader } from 'fumadocs-core/source';
+import { source } from '@/.source';
 
-export const source = loader({
-  baseUrl: '/docs',
-  docs,
-});
+export { source };

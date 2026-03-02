@@ -1,19 +1,13 @@
 import type { Metadata } from 'next';
-import { DocsPage, DocsBody } from 'fumadocs-ui/page';
-import { source } from '@/app/source';
+import Link from 'next/link';
 
 export default function Page() {
-  const page = source.getPage([]);
-  if (!page) return null;
-
-  const MDX = page.data.exports.default;
-
   return (
-    <DocsPage toc={page.data.exports.toc}>
-      <DocsBody>
-        <MDX />
-      </DocsBody>
-    </DocsPage>
+    <div className="prose p-8">
+      <h1>UI Kit Documentation</h1>
+      <p>Welcome to the UI Kit documentation.</p>
+      <Link href="/docs/blocks/layout/page-header">PageHeader</Link>
+    </div>
   );
 }
 

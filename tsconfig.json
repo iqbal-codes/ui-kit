@@ -17,9 +17,10 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*", "./*"],
+      "@/.source": [".source/index.ts"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "app/**/*", "types/**/*"],
   "exclude": ["node_modules", "dist", "**/*.stories.tsx", "**/*.test.tsx"]
 }
