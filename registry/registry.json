@@ -1,0 +1,29 @@
+{
+  "version": "0.1.0",
+  "primitives": {
+    "path": "src/primitives",
+    "components": []
+  },
+  "blocks": {
+    "layout": {
+      "path": "src/blocks/layout",
+      "components": []
+    },
+    "data-display": {
+      "path": "src/blocks/data-display",
+      "components": []
+    },
+    "data-entry": {
+      "path": "src/blocks/data-entry",
+      "components": []
+    },
+    "feedback": {
+      "path": "src/blocks/feedback",
+      "components": []
+    },
+    "navigation": {
+      "path": "src/blocks/navigation",
+      "components": []
+    }
+  }
+}

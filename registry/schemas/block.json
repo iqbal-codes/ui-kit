@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ui-kit/registry/block",
+  "title": "Block Manifest",
+  "description": "Schema for UI Kit block component manifests",
+  "type": "object",
+  "required": ["name", "type", "files"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "PascalCase component name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["block", "smart"],
+      "description": "Block type - block (simple) or smart (with external deps)"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["layout", "data-display", "data-entry", "feedback", "navigation"],
+      "description": "Functional category"
+    },
+    "files": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Files that make up this block"
+    },
+    "primitives": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Primitive dependencies"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "External NPM dependencies (for smart blocks)"
+    }
+  }
+}
