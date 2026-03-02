@@ -73,6 +73,20 @@
           "files": ["page-header.tsx", "index.ts"],
           "primitives": ["breadcrumb", "separator"],
           "dependencies": []
+        },
+        {
+          "name": "StickyHeader",
+          "description": "Header that pins on scroll with optional border/shadow",
+          "type": "block",
+          "category": "layout",
+          "files": ["sticky-header.tsx", "index.ts"],
+          "primitives": [],
+          "dependencies": [],
+          "ai": {
+            "usage": "When creating a header that stays fixed at top on scroll",
+            "composition": "Use with BreadcrumbTrail for navigation, PageHeader for titles",
+            "antiPatterns": "Don't use for non-scrolling pages"
+          }
         }
       ]
     },
