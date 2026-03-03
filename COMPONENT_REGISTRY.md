@@ -10,6 +10,7 @@
 // Import from the UI kit - NEVER from shadcn/ui directly
 import { Button, Card } from "@iqbal-codes/ui-kit/primitives";
 import { EntityCard, StatCard } from "@iqbal-codes/ui-kit/blocks";
+import { DraggableKanbanBoard, KanbanCard } from "@iqbal-codes/ui-kit/blocks/kanban";
 ```
 
 ---
@@ -23,6 +24,7 @@ import { EntityCard, StatCard } from "@iqbal-codes/ui-kit/blocks";
 │  Smart Blocks (complete features)   │  ← Use first
 │  ├─ FormBuilder                     │
 │  ├─ SmartDataTable                  │
+│  ├─ DraggableKanbanBoard            │
 │  └─ ...                            │
 ├─────────────────────────────────────┤
 │  Layout Blocks (structure)          │  ← Use for layouts
@@ -115,7 +117,7 @@ Base UI components from shadcn/ui. Use these when no Block component fits your n
 
 ---
 
-### 🏗️ Blocks (30+ components)
+### 🏗️ Blocks (60+ components)
 
 Composite components for business applications. **Always prefer Blocks over building from Primitives.**
 
@@ -230,6 +232,80 @@ Use for navigation patterns.
 | `MobileNav` | `@iqbal-codes/ui-kit/blocks` | Bottom tab bar |
 | `Pagination` | `@iqbal-codes/ui-kit/blocks` | Page navigation |
 | `SectionJumper` | `@iqbal-codes/ui-kit/blocks` | In-page anchors |
+| `TabsPanel` | `@iqbal-codes/ui-kit/blocks` | Tabbed content container |
+
+#### Kanban Board Blocks
+
+Use for workflow and task management boards with drag-and-drop.
+
+| Component | Import | Use For |
+|-----------|--------|---------|
+| `DraggableKanbanBoard` | `@iqbal-codes/ui-kit/blocks/kanban` | Full drag-and-drop kanban board |
+| `KanbanBoardProvider` | `@iqbal-codes/ui-kit/blocks/kanban` | State management context |
+| `KanbanCard` | `@iqbal-codes/ui-kit/blocks/kanban` | Compound card component |
+| `KanbanCard.Header` | `@iqbal-codes/ui-kit/blocks/kanban` | Card header area |
+| `KanbanCard.Content` | `@iqbal-codes/ui-kit/blocks/kanban` | Card content area |
+| `KanbanCard.Footer` | `@iqbal-codes/ui-kit/blocks/kanban` | Card footer (metadata) |
+| `KanbanCard.Title` | `@iqbal-codes/ui-kit/blocks/kanban` | Card title |
+| `KanbanCard.Description` | `@iqbal-codes/ui-kit/blocks/kanban` | Card description |
+| `KanbanCard.Badge` | `@iqbal-codes/ui-kit/blocks/kanban` | Priority badge |
+| `KanbanCard.Label` | `@iqbal-codes/ui-kit/blocks/kanban` | Single tag/label |
+| `KanbanCard.Labels` | `@iqbal-codes/ui-kit/blocks/kanban` | Multiple labels container |
+| `KanbanCard.Avatar` | `@iqbal-codes/ui-kit/blocks/kanban` | Assignee avatar |
+| `KanbanCard.DueDate` | `@iqbal-codes/ui-kit/blocks/kanban` | Due date display |
+| `KanbanCard.Subtasks` | `@iqbal-codes/ui-kit/blocks/kanban` | Subtask progress |
+| `KanbanCard.Attachments` | `@iqbal-codes/ui-kit/blocks/kanban` | Attachment count |
+| `DraggableColumn` | `@iqbal-codes/ui-kit/blocks/kanban` | Individual column |
+| `BoardToolbar` | `@iqbal-codes/ui-kit/blocks/kanban` | Search + filters toolbar |
+| `ColumnHeader` | `@iqbal-codes/ui-kit/blocks/kanban` | Column title with actions |
+| `QuickAddCard` | `@iqbal-codes/ui-kit/blocks/kanban` | Inline card creation |
+
+**Example:**
+```tsx
+import {
+  DraggableKanbanBoard,
+  KanbanCard,
+  BoardToolbar,
+} from "@iqbal-codes/ui-kit/blocks/kanban";
+
+<div className="h-screen flex flex-col">
+  <BoardToolbar
+    searchQuery={search}
+    onSearchChange={setSearch}
+    filtersCount={filters.length}
+  />
+  <DraggableKanbanBoard
+    columns={columns}
+    onCardMove={handleCardMove}
+    renderCard={(card) => (
+      <KanbanCard>
+        <KanbanCard.Header>
+          <KanbanCard.Title>{card.title}</KanbanCard.Title>
+          <KanbanCard.Badge priority={card.priority}>
+            {card.priority}
+          </KanbanCard.Badge>
+        </KanbanCard.Header>
+        <KanbanCard.Content>
+          <KanbanCard.Description>
+            {card.description}
+          </KanbanCard.Description>
+          <KanbanCard.Labels>
+            {card.tags?.map(tag => (
+              <KanbanCard.Label key={tag.id} color={tag.color}>
+                {tag.label}
+              </KanbanCard.Label>
+            ))}
+          </KanbanCard.Labels>
+        </KanbanCard.Content>
+        <KanbanCard.Footer>
+          <KanbanCard.Avatar name={card.assignee?.name} />
+          <KanbanCard.DueDate date={card.dueDate} />
+        </KanbanCard.Footer>
+      </KanbanCard>
+    )}
+  />
+</div>
+```
 
 ---
 
@@ -239,7 +315,7 @@ When building a UI component, follow this decision tree:
 
 ```
 1. Is there a Smart Block for this feature?
-   └─ YES → Use Smart Block (e.g., SmartDataTable, FormBuilder)
+   └─ YES → Use Smart Block (e.g., SmartDataTable, FormBuilder, DraggableKanbanBoard)
    └─ NO → Continue to 2
 
 2. Is this a layout/structure pattern?
@@ -268,13 +344,16 @@ function MyTable() { /* custom table */ }  // Use SmartDataTable
 
 // Don't nest Smart Blocks
 <SmartDataTable>
-  <SmartDataTable />  {/* WRONG */}
+  <SmartDataTable /> {/* WRONG */}
 </SmartDataTable>
 
 // Don't use Layout Blocks inside Domain Blocks
 <EntityCard>
-  <PageHeader />  {/* WRONG */}
+  <PageHeader /> {/* WRONG */}
 </EntityCard>
+
+// Don't build custom drag-and-drop
+function MyKanban() { /* custom DnD */ } // Use DraggableKanbanBoard
 ```
 
 ### ✅ Do this:
@@ -283,13 +362,23 @@ function MyTable() { /* custom table */ }  // Use SmartDataTable
 // Always import from UI kit
 import { Button } from "@iqbal-codes/ui-kit/primitives";
 import { SmartDataTable } from "@iqbal-codes/ui-kit/blocks";
+import { DraggableKanbanBoard } from "@iqbal-codes/ui-kit/blocks/kanban";
+
+// Use Smart Blocks first
+<SmartDataTable data={data} columns={columns} />
 
 // Compose correctly
 <PageHeader
   title="Orders"
-  actions={<Button>Create Order</Button>}
+  breadcrumb={<BreadcrumbTrail items={items} />}
+  actions={<Button>Create</Button>}
 />
-<SmartDataTable data={orders} columns={columns} />
+
+// Use Kanban for workflows
+<DraggableKanbanBoard
+  columns={columns}
+  onCardMove={handleCardMove}
+/>
 ```
 
 ---

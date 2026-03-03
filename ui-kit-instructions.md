@@ -40,6 +40,13 @@ import {
   FormBuilder,     // Smart feature
   EmptyState,      // Feedback
 } from "@iqbal-codes/ui-kit/blocks";
+
+// Kanban Board
+import {
+  DraggableKanbanBoard,
+  KanbanCard,
+  BoardToolbar,
+} from "@iqbal-codes/ui-kit/blocks/kanban";
 ```
 
 ---
@@ -67,6 +74,8 @@ import {
 | **Mobile nav** | `MobileNav` | `/blocks` |
 | **Split view** | `SplitPane` | `/blocks` |
 | **Slide-out panel** | `RightDrawer` | `/blocks` |
+| **Kanban board** | `DraggableKanbanBoard` | `/blocks/kanban` |
+| **Kanban card** | `KanbanCard` | `/blocks/kanban` |
 
 ### When No Block Exists
 
@@ -115,6 +124,56 @@ export default function OrdersPage() {
       />
       
       <Pagination currentPage={1} totalPages={5} />
+    </div>
+  );
+}
+```
+
+### Kanban Board
+
+```tsx
+import {
+  DraggableKanbanBoard,
+  KanbanCard,
+  BoardToolbar,
+} from "@iqbal-codes/ui-kit/blocks/kanban";
+
+export default function TaskBoard() {
+  const [search, setSearch] = React.useState("");
+  
+  return (
+    <div className="h-screen flex flex-col">
+      <BoardToolbar
+        searchQuery={search}
+        onSearchChange={setSearch}
+        filtersCount={0}
+      />
+      
+      <DraggableKanbanBoard
+        columns={columns}
+        onCardMove={async (cardId, from, to, index) => {
+          await api.moveCard(cardId, to, index);
+        }}
+        renderCard={(card) => (
+          <KanbanCard>
+            <KanbanCard.Header>
+              <KanbanCard.Title>{card.title}</KanbanCard.Title>
+              <KanbanCard.Badge priority={card.priority}>
+                {card.priority}
+              </KanbanCard.Badge>
+            </KanbanCard.Header>
+            <KanbanCard.Content>
+              <KanbanCard.Description>
+                {card.description}
+              </KanbanCard.Description>
+            </KanbanCard.Content>
+            <KanbanCard.Footer>
+              <KanbanCard.Avatar name={card.assignee?.name} />
+              <KanbanCard.DueDate date={card.dueDate} />
+            </KanbanCard.Footer>
+          </KanbanCard>
+        )}
+      />
     </div>
   );
 }
@@ -218,6 +277,9 @@ function MyTable() { /* 200 lines of custom table */ }
 <EntityCard>
   <PageHeader />  {/* Wrong! */}
 </EntityCard>
+
+// Don't build custom kanban
+function MyKanban() { /* custom DnD */ }  // Use DraggableKanbanBoard
 ```
 
 ### ✅ Always Do This
@@ -226,6 +288,7 @@ function MyTable() { /* 200 lines of custom table */ }
 // Import from UI kit
 import { Button } from "@iqbal-codes/ui-kit/primitives";
 import { SmartDataTable } from "@iqbal-codes/ui-kit/blocks";
+import { DraggableKanbanBoard } from "@iqbal-codes/ui-kit/blocks/kanban";
 
 // Use Smart Blocks first
 <SmartDataTable data={data} columns={columns} />
@@ -236,6 +299,12 @@ import { SmartDataTable } from "@iqbal-codes/ui-kit/blocks";
   breadcrumb={<BreadcrumbTrail items={items} />}
   actions={<Button>Create</Button>}
 />
+
+// Use Kanban for workflows
+<DraggableKanbanBoard
+  columns={columns}
+  onCardMove={handleCardMove}
+/>
 ```
 
 ---
@@ -245,7 +314,7 @@ import { SmartDataTable } from "@iqbal-codes/ui-kit/blocks";
 ```
 Need a UI component?
 │
-├─ Is there a Smart Block? (FormBuilder, SmartDataTable)
+├─ Is there a Smart Block? (FormBuilder, SmartDataTable, DraggableKanbanBoard)
 │  └─ YES → Use it!
 │  └─ NO → Continue ↓
 │
@@ -264,15 +333,60 @@ Need a UI component?
 
 ## Available Components
 
-### Blocks (30+)
+### Blocks (60+)
 - **Layout**: PageHeader, StickyHeader, SplitPane, RightDrawer
 - **Data Display**: EntityCard, StatCard, MetricCard, StatusGrid, SmartDataTable, DataGrid, CardGrid, ActivityTimeline, MasonryBoard, SectionHeader
 - **Data Entry**: FormBuilder, SearchBar, FilterChip, FormSection, StickyActions, DurationPicker
 - **Feedback**: EmptyState, LoadingOverlay, SkeletonGenerator, ToastManager, ErrorFallback, ConfirmationDialog, ProgressTracker, ConnectionStatus
-- **Navigation**: BreadcrumbTrail, CommandPalette, MobileNav, Pagination, SectionJumper
+- **Navigation**: BreadcrumbTrail, CommandPalette, MobileNav, Pagination, SectionJumper, TabsPanel
+- **Kanban**: DraggableKanbanBoard, KanbanBoardProvider, KanbanCard (with compound parts), DraggableColumn, BoardToolbar, ColumnHeader, QuickAddCard
 
 ### Primitives (58)
 - Button, Input, Card, Dialog, Sheet, Table, Badge, Avatar, Select, Checkbox, Radio, Switch, Tabs, Breadcrumb, Pagination, Alert, Progress, Skeleton, Tooltip, Popover, etc.
+
+---
+
+## Kanban Card Compound Components
+
+The `KanbanCard` uses a compound component pattern for maximum flexibility:
+
+```tsx
+<KanbanCard>
+  <KanbanCard.Header>
+    <KanbanCard.Title>Title</KanbanCard.Title>
+    <KanbanCard.Badge priority="high">High</KanbanCard.Badge>
+  </KanbanCard.Header>
+  
+  <KanbanCard.Content>
+    <KanbanCard.Description>Description</KanbanCard.Description>
+    <KanbanCard.Labels>
+      <KanbanCard.Label color="red">Bug</KanbanCard.Label>
+      <KanbanCard.Label color="blue">Frontend</KanbanCard.Label>
+    </KanbanCard.Labels>
+  </KanbanCard.Content>
+  
+  <KanbanCard.Footer>
+    <KanbanCard.Avatar name="John Doe" />
+    <KanbanCard.DueDate date="2024-03-15" />
+    <KanbanCard.Subtasks completed={3} total={5} />
+    <KanbanCard.Attachments count={2} />
+  </KanbanCard.Footer>
+</KanbanCard>
+```
+
+**Available parts:**
+- `KanbanCard.Header` - Header container
+- `KanbanCard.Content` - Content area
+- `KanbanCard.Footer` - Footer metadata
+- `KanbanCard.Title` - Card title
+- `KanbanCard.Description` - Description text
+- `KanbanCard.Badge` - Priority badge
+- `KanbanCard.Label` - Single tag
+- `KanbanCard.Labels` - Multiple tags container
+- `KanbanCard.Avatar` - Assignee avatar
+- `KanbanCard.DueDate` - Due date display
+- `KanbanCard.Subtasks` - Subtask progress
+- `KanbanCard.Attachments` - Attachment count
 
 ---
 

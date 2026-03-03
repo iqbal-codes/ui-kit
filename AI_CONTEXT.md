@@ -15,6 +15,13 @@ import { Button, Card, Input } from "@iqbal-codes/ui-kit/primitives";
 // Blocks (composite business components)
 import { EntityCard, StatCard, SearchBar } from "@iqbal-codes/ui-kit/blocks";
 
+// Kanban Board (drag-and-drop)
+import { 
+  DraggableKanbanBoard,
+  KanbanBoardProvider,
+  KanbanCard 
+} from "@iqbal-codes/ui-kit/blocks/kanban";
+
 // Design tokens
 import { colorTokens } from "@iqbal-codes/ui-kit/tokens";
 
@@ -47,6 +54,13 @@ import { cn } from "@iqbal-codes/ui-kit";
 - `SearchBar` - Search with debounce
 - `FilterChip` - Filter tags
 - `Pagination` - Page navigation
+
+**Kanban Boards**
+- `DraggableKanbanBoard` - Full drag-and-drop kanban board
+- `KanbanBoardProvider` - State management with optimistic updates
+- `KanbanCard` - Compound card component (Header, Content, Footer, Badges, etc.)
+- `BoardToolbar` - Search and filters toolbar
+- `DraggableColumn` - Individual column with drag support
 
 **Forms**
 - `FormBuilder` - Complete form with field types (TextField, SelectField, CheckboxField, etc.)
@@ -98,6 +112,36 @@ import { cn } from "@iqbal-codes/ui-kit";
   sortable
   pagination
 />
+
+// Kanban with compound cards
+<DraggableKanbanBoard
+  columns={columns}
+  onCardMove={handleCardMove}
+  renderCard={(card, column) => (
+    <KanbanCard>
+      <KanbanCard.Header>
+        <KanbanCard.Title>{card.title}</KanbanCard.Title>
+        <KanbanCard.Badge priority={card.priority}>
+          {card.priority}
+        </KanbanCard.Badge>
+      </KanbanCard.Header>
+      <KanbanCard.Content>
+        <KanbanCard.Description>{card.description}</KanbanCard.Description>
+        <KanbanCard.Labels>
+          {card.tags?.map(tag => (
+            <KanbanCard.Label key={tag.id} color={tag.color}>
+              {tag.label}
+            </KanbanCard.Label>
+          ))}
+        </KanbanCard.Labels>
+      </KanbanCard.Content>
+      <KanbanCard.Footer>
+        {card.assignee && <KanbanCard.Avatar name={card.assignee.name} />}
+        {card.dueDate && <KanbanCard.DueDate date={card.dueDate} />}
+      </KanbanCard.Footer>
+    </KanbanCard>
+  )}
+/>
 ```
 
 ### ❌ DON'T
@@ -115,6 +159,9 @@ import { Button } from "@/components/ui/button" // WRONG
 <EntityCard>
   <PageHeader /> {/* WRONG */}
 </EntityCard>
+
+// Don't build custom drag-and-drop when DraggableKanbanBoard exists
+function MyKanban() { /* custom DnD */ } // WRONG
 ```
 
 ---
@@ -148,15 +195,16 @@ Primitives (shadcn/ui)
 | Navigation | `Breadcrumb`, `Tabs`, `Pagination`, `Menubar`, `Command` |
 | Feedback | `Alert`, `AlertDialog`, `Progress`, `Skeleton`, `Sonner`, `Spinner` |
 
-### Blocks (30+ available)
+### Blocks (60+ available)
 
 | Category | Key Components |
 |----------|----------------|
 | Layout | `PageHeader`, `StickyHeader`, `SplitPane`, `RightDrawer` |
-| Data Display | `EntityCard`, `StatCard`, `MetricCard`, `StatusGrid`, `SmartDataTable`, `DataGrid` |
-| Data Entry | `SearchBar`, `FilterChip`, `FormBuilder`, `FormSection`, `StickyActions` |
-| Feedback | `EmptyState`, `LoadingOverlay`, `SkeletonGenerator`, `ToastManager`, `ConfirmationDialog` |
-| Navigation | `BreadcrumbTrail`, `CommandPalette`, `MobileNav`, `Pagination` |
+| Data Display | `EntityCard`, `StatCard`, `MetricCard`, `StatusGrid`, `SmartDataTable`, `DataGrid`, `CardGrid`, `ActivityTimeline`, `MasonryBoard`, `SectionHeader` |
+| Data Entry | `SearchBar`, `FilterChip`, `FormBuilder`, `FormSection`, `StickyActions`, `DurationPicker` |
+| Feedback | `EmptyState`, `LoadingOverlay`, `SkeletonGenerator`, `ToastManager`, `ErrorFallback`, `ConfirmationDialog`, `ProgressTracker`, `ConnectionStatus` |
+| Navigation | `BreadcrumbTrail`, `CommandPalette`, `MobileNav`, `Pagination`, `SectionJumper`, `TabsPanel` |
+| **Kanban** | `DraggableKanbanBoard`, `KanbanBoardProvider`, `KanbanCard`, `DraggableColumn`, `BoardToolbar`, `QuickAddCard`, `ColumnHeader` |
 
 ---
 
@@ -194,6 +242,98 @@ export default function OrdersPage() {
 }
 ```
 
+## Example: Building a Kanban Board
+
+```tsx
+import {
+  DraggableKanbanBoard,
+  KanbanCard,
+  type KanbanColumn,
+  type BaseCardMetadata,
+} from "@iqbal-codes/ui-kit/blocks/kanban";
+
+interface Task extends BaseCardMetadata {
+  assignee?: { name: string; avatarUrl?: string };
+}
+
+const columns: KanbanColumn<Task>[] = [
+  {
+    id: "todo",
+    title: "To Do",
+    cards: [
+      {
+        id: "1",
+        title: "Fix login bug",
+        description: "Users can't login",
+        priority: "high",
+        assignee: { name: "John Doe" },
+        dueDate: "2024-03-15",
+        tags: [{ id: "t1", label: "Bug", color: "red" }],
+      },
+    ],
+    color: "gray",
+  },
+  {
+    id: "in-progress",
+    title: "In Progress",
+    cards: [],
+    color: "blue",
+  },
+  {
+    id: "done",
+    title: "Done",
+    cards: [],
+    color: "green",
+  },
+];
+
+export default function KanbanPage() {
+  const handleCardMove = async (
+    cardId: string,
+    fromColumnId: string,
+    toColumnId: string,
+    newIndex: number
+  ) => {
+    // API call to persist
+    await api.moveCard(cardId, toColumnId, newIndex);
+  };
+
+  return (
+    <div className="h-screen">
+      <DraggableKanbanBoard<Task>
+        columns={columns}
+        onCardMove={handleCardMove}
+        renderCard={(card) => (
+          <KanbanCard>
+            <KanbanCard.Header>
+              <KanbanCard.Title>{card.title}</KanbanCard.Title>
+              {card.priority && (
+                <KanbanCard.Badge priority={card.priority}>
+                  {card.priority}
+                </KanbanCard.Badge>
+              )}
+            </KanbanCard.Header>
+            <KanbanCard.Content>
+              {card.description && (
+                <KanbanCard.Description>
+                  {card.description}
+                </KanbanCard.Description>
+              )}
+            </KanbanCard.Content>
+            <KanbanCard.Footer>
+              {card.assignee && (
+                <KanbanCard.Avatar name={card.assignee.name} />
+              )}
+              {card.dueDate && <KanbanCard.DueDate date={card.dueDate} />}
+            </KanbanCard.Footer>
+          </KanbanCard>
+        )}
+      />
+    </div>
+  );
+}
+```
+
 ---
 
 ## AI System Prompt
@@ -205,6 +345,7 @@ When generating code, always:
 3. **Follow composition rules** - Layout > Domain > Primitives
 4. **Use correct imports** - `@iqbal-codes/ui-kit/blocks` or `/primitives`
 5. **Leverage Smart Blocks** - They handle state management automatically
+6. **Use Kanban for workflow management** - Use `DraggableKanbanBoard` for task/workflow boards
 
 ---
 
@@ -214,5 +355,5 @@ Before building custom UI, check if it exists:
 
 - **Layout patterns** → Layout Blocks
 - **Business UI** (cards, grids, status) → Domain Blocks  
-- **Complete features** (forms, tables, lists) → Smart Blocks
+- **Complete features** (forms, tables, lists, kanban) → Smart Blocks
 - **Base elements** (buttons, inputs, dialogs) → Primitives

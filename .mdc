@@ -7,13 +7,15 @@ Always follow these rules when working with @iqbal-codes/ui-kit:
 1. **Always use @iqbal-codes/ui-kit components** when building React/Next.js UIs
    - Import from `@iqbal-codes/ui-kit/primitives` for base components
    - Import from `@iqbal-codes/ui-kit/blocks` for composite components
+   - Import from `@iqbal-codes/ui-kit/blocks/kanban` for kanban boards
    - NEVER import from shadcn/ui or @/components/ui directly
 
 2. **Prefer Blocks over Primitives**
    - Check for existing Block components before building from Primitives
-   - Smart Blocks (FormBuilder, SmartDataTable) handle complete features
+   - Smart Blocks (FormBuilder, SmartDataTable, DraggableKanbanBoard) handle complete features
    - Layout Blocks (PageHeader, SplitPane) provide structure
    - Domain Blocks (EntityCard, StatCard) display business data
+   - Kanban Blocks (DraggableKanbanBoard, KanbanCard) for workflow management
 
 3. **Follow the composition hierarchy**
    ```
@@ -29,7 +31,8 @@ Always follow these rules when working with @iqbal-codes/ui-kit:
    // ✅ Correct
    import { Button } from "@iqbal-codes/ui-kit/primitives";
    import { EntityCard } from "@iqbal-codes/ui-kit/blocks";
-   
+   import { DraggableKanbanBoard } from "@iqbal-codes/ui-kit/blocks/kanban";
+
    // ❌ Wrong
    import { Button } from "@/components/ui/button";
    import { Button } from "shadcn-ui";
@@ -38,6 +41,7 @@ Always follow these rules when working with @iqbal-codes/ui-kit:
 5. **Leverage Smart Blocks for complex features**
    - FormBuilder: Complete forms with validation
    - SmartDataTable: Tables with filters, sorting, pagination
+   - DraggableKanbanBoard: Drag-and-drop kanban boards
    - These handle state management automatically
 
 6. **Use Feedback Blocks for all user feedback**
@@ -52,6 +56,35 @@ Always follow these rules when working with @iqbal-codes/ui-kit:
    - EntityCard: Use with CardGrid for lists
    - SearchBar: Provides built-in debounce
    - StickyActions: Shows unsaved changes warning
+   - KanbanCard: Use compound pattern for customization
+
+## Kanban Board Rules
+
+When building kanban boards:
+
+1. **Always use DraggableKanbanBoard** - Don't build custom drag-and-drop
+2. **Use KanbanCard compound components** - Compose with Header, Content, Footer
+3. **Implement onCardMove callback** - Handle card movement between columns
+4. **Use BoardToolbar for filters** - Add search and filter functionality
+5. **Leverage optimistic updates** - Use KanbanBoardProvider for state management
+
+```tsx
+// ✅ Correct
+<DraggableKanbanBoard
+  columns={columns}
+  onCardMove={handleCardMove}
+  renderCard={(card) => (
+    <KanbanCard>
+      <KanbanCard.Header>
+        <KanbanCard.Title>{card.title}</KanbanCard.Title>
+      </KanbanCard.Header>
+    </KanbanCard>
+  )}
+/>
+
+// ❌ Wrong - building custom DnD
+function MyKanban() { /* custom implementation */ }
+```
 
 ## When Building New Features
 
@@ -68,3 +101,16 @@ When generating code:
 - Follow existing component patterns
 - Include error handling with Feedback Blocks
 - Add loading states with SkeletonGenerator or LoadingOverlay
+- For kanban: use compound KanbanCard components
+- For forms: use FormBuilder with proper validation
+- For tables: use SmartDataTable with filters
+
+## Available Component Categories
+
+- **Layout Blocks**: PageHeader, StickyHeader, SplitPane, RightDrawer
+- **Data Display**: EntityCard, StatCard, SmartDataTable, DataGrid
+- **Data Entry**: FormBuilder, SearchBar, FormSection, StickyActions
+- **Feedback**: EmptyState, LoadingOverlay, ToastManager, ConfirmationDialog
+- **Navigation**: BreadcrumbTrail, CommandPalette, Pagination, TabsPanel
+- **Kanban**: DraggableKanbanBoard, KanbanCard, BoardToolbar, DraggableColumn
+- **Primitives**: Button, Input, Card, Dialog, Badge, Avatar, etc.

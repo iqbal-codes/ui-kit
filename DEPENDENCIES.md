@@ -29,6 +29,9 @@ These are required for the UI kit to function:
 | `sonner` | Toast notifications |
 | `vaul` | Drawer component |
 | `zod` | Schema validation |
+| `@dnd-kit/core` | Drag-and-drop core (Kanban) |
+| `@dnd-kit/sortable` | Sortable lists (Kanban) |
+| `@dnd-kit/utilities` | DnD utilities (Kanban) |
 
 ### ✅ Consumers MUST Have (peerDependencies)
 
@@ -70,7 +73,7 @@ npm install @iqbal-codes/ui-kit
 They get:
 ```
 node_modules/@iqbal-codes/ui-kit/
-├── dist/                    # Built components (~500KB gzipped)
+├── dist/                    # Built components (~550KB gzipped)
 │   ├── index.js
 │   ├── index.mjs
 │   ├── primitives/
@@ -80,6 +83,7 @@ node_modules/@iqbal-codes/ui-kit/
 ├── COMPONENT_REGISTRY.md    # Component catalog
 ├── ui-kit-instructions.md   # AI instructions
 ├── .mdc                     # Cursor IDE rules
+├── DEPENDENCIES.md          # This file
 └── README.md                # Documentation
 ```
 
@@ -102,6 +106,7 @@ These are bundled with your components and required at runtime:
 - `recharts` - Chart components
 - `sonner` - Toast notifications
 - `lucide-react` - Icons throughout components
+- `@dnd-kit/*` - Drag-and-drop for Kanban boards
 
 ### 2. Peer Dependencies (peerDependencies)
 
@@ -141,6 +146,8 @@ After installing the UI kit, a consumer's project looks like:
     "react-hook-form": "^7.71.2",
     "sonner": "^2.0.7",
     "zod": "^4.3.6",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
     // ... etc (all runtime dependencies)
   },
   "devDependencies": {
@@ -166,6 +173,7 @@ npm ls @iqbal-codes/ui-kit
 
 # See why a package was installed
 npm why radix-ui
+npm why @dnd-kit/core
 
 # Check bundle size
 npm install -g bundlephobia
@@ -186,6 +194,9 @@ import { Button } from "@iqbal-codes/ui-kit/primitives";
 
 // ✅ Only imports SmartDataTable
 import { SmartDataTable } from "@iqbal-codes/ui-kit/blocks";
+
+// ✅ Only imports Kanban components
+import { DraggableKanbanBoard } from "@iqbal-codes/ui-kit/blocks/kanban";
 ```
 
 ### Code Splitting
@@ -195,6 +206,7 @@ Each component can be imported individually for smaller bundles:
 ```tsx
 // Future: Import single component
 import Button from "@iqbal-codes/ui-kit/primitives/button";
+import KanbanCard from "@iqbal-codes/ui-kit/blocks/kanban/kanban-card";
 ```
 
 ---
@@ -204,3 +216,4 @@ import Button from "@iqbal-codes/ui-kit/primitives/button";
 - **Why is `recharts` so large?** - It's a comprehensive charting library. Consider lazy-loading chart components.
 - **Do I need all these dependencies?** - Only the components you use will be in your bundle (tree shaking).
 - **Can I use my own icons?** - Yes! Lucide is used internally, but you can customize icons via props.
+- **Why @dnd-kit?** - It's the industry standard for React drag-and-drop, used by DraggableKanbanBoard.
