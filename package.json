@@ -4,10 +4,24 @@
   "description": "shadcnic design system with bundled shadcn/ui components for React 19 and Next.js App Router",
   "author": "iqbal-codes",
   "license": "MIT",
+  "keywords": [
+    "ui-kit",
+    "react",
+    "nextjs",
+    "shadcn",
+    "design-system",
+    "components",
+    "tailwindcss",
+    "radix-ui"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/iqbal-codes/ui-kit.git"
   },
+  "bugs": {
+    "url": "https://github.com/iqbal-codes/ui-kit/issues"
+  },
+  "homepage": "https://github.com/iqbal-codes/ui-kit#readme",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

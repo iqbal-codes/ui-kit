@@ -1,0 +1,53 @@
+# Source code
+src/
+app/
+content/
+registry/
+scripts/
+types/
+
+# Development
+.storybook/
+.claude/
+.worktrees/
+.ruff_cache/
+
+# Build artifacts
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Logs
+*.log
+debug-*.log
+.next/
+storybook-static/
+dist-web/
+
+# Testing
+coverage/
+.rpt2_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# Documentation (keep README, AI docs)
+docs/
+AI_CONTEXT_SETUP.md
+DEPENDENCIES.md
+
+# Config files (not needed in published package)
+vitest.config.ts
+tsup.config.ts
+next.config.ts
+proxy.ts
+components.json
+
+# Skill files
+*.skill
