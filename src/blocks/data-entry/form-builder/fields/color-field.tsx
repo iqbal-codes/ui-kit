@@ -31,6 +31,9 @@ export interface ColorFieldProps<T extends FieldValues = FieldValues> {
   presets?: string[];
   /** Show color preview swatch */
   showPreview?: boolean;
+  // Controlled props
+  value?: any;
+  onChange?: (value: any) => void;
 }
 
 // Common color presets
@@ -68,9 +71,102 @@ export function ColorField<T extends FieldValues>({
   showAlpha = false,
   presets = DEFAULT_PRESETS,
   showPreview = true,
+  value,
+  onChange,
 }: ColorFieldProps<T>) {
   const { control } = useFormContext<T>();
   const [open, setOpen] = React.useState(false);
+  const isControlled = value !== undefined && onChange !== undefined;
+
+  if (isControlled) {
+    const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange(e.target.value);
+    };
+
+    return (
+      <FormItem className={cn(className)}>
+        {label && (
+          <FormLabel htmlFor={name}>
+            {label}
+            {required && <span className="text-destructive ml-1">*</span>}
+          </FormLabel>
+        )}
+        <FormControl>
+          <div className="flex flex-col gap-3">
+            <div className="flex gap-2">
+              {showPreview && (
+                <Popover open={open} onOpenChange={setOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className={cn("h-9 w-9 shrink-0 p-0 border-2")}
+                      disabled={disabled || readOnly}
+                      style={{
+                        backgroundColor: value || "transparent",
+                      }}
+                      aria-label="Select color"
+                    />
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-3" align="start">
+                    <div className="space-y-3">
+                      {/* Native color picker */}
+                      <div className="flex justify-center">
+                        <Input
+                          type="color"
+                          value={value || "#000000"}
+                          onChange={handleColorChange}
+                          className="h-20 w-20 cursor-pointer border-0 p-0"
+                          disabled={disabled || readOnly}
+                        />
+                      </div>
+
+                      {/* Preset colors */}
+                      {presets && presets.length > 0 && (
+                        <div className="grid grid-cols-5 gap-1.5">
+                          {presets.map((preset) => (
+                            <button
+                              key={preset}
+                              type="button"
+                              onClick={() => {
+                                onChange(preset);
+                                setOpen(false);
+                              }}
+                              className={cn(
+                                "h-6 w-6 rounded border border-border transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1",
+                                value === preset && "ring-2 ring-ring ring-offset-2"
+                              )}
+                              style={{ backgroundColor: preset }}
+                              aria-label={`Select color ${preset}`}
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              )}
+
+              <div className="flex-1">
+                <Input
+                  id={name}
+                  type="text"
+                  placeholder="#000000"
+                  value={formatColor(value)}
+                  onChange={(e) => onChange(e.target.value)}
+                  disabled={disabled || readOnly}
+                  className={cn("font-mono", showPreview && "flex-1")}
+                />
+              </div>
+            </div>
+
+            {description && <FormDescription>{description}</FormDescription>}
+            <FormMessage />
+          </div>
+        </FormControl>
+      </FormItem>
+    );
+  }
 
   // Convert color to display format
   const formatColor = React.useCallback((value: string): string => {

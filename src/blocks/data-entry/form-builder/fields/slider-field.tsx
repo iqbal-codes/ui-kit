@@ -38,6 +38,9 @@ export interface SliderFieldProps<T extends FieldValues = FieldValues> {
   orientation?: "horizontal" | "vertical";
   /** Invert the slider direction */
   inverted?: boolean;
+  // Controlled props
+  value?: any;
+  onChange?: (value: any) => void;
 }
 
 export function SliderField<T extends FieldValues>({
@@ -56,9 +59,117 @@ export function SliderField<T extends FieldValues>({
   suffix,
   orientation = "horizontal",
   inverted = false,
+  value,
+  onChange,
 }: SliderFieldProps<T>) {
   const { control } = useFormContext<T>();
   const [localValue, setLocalValue] = React.useState<number>(min);
+  const isControlled = value !== undefined && onChange !== undefined;
+
+  if (isControlled) {
+    // Sync local value with controlled value
+    React.useEffect(() => {
+      const controlledValue = value !== undefined ? Number(value) : min;
+      setLocalValue(Math.min(Math.max(controlledValue, min), max));
+    }, [value]);
+
+    const handleSliderChange = (values: number[]) => {
+      const newValue = values[0];
+      setLocalValue(newValue);
+      onChange(newValue);
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const inputValue = parseFloat(e.target.value);
+      if (Number.isNaN(inputValue)) {
+        setLocalValue(min);
+        onChange(min);
+      } else {
+        const clampedValue = Math.min(Math.max(inputValue, min), max);
+        setLocalValue(clampedValue);
+        onChange(clampedValue);
+      }
+    };
+
+    const valueLabel = `${localValue}${suffix || ""}`;
+
+    return (
+      <FormItem className={cn(className)}>
+        {label && (
+          <FormLabel htmlFor={name}>
+            {label}
+            {required && <span className="text-destructive ml-1">*</span>}
+          </FormLabel>
+        )}
+        <FormControl>
+          <div
+            className={cn("flex items-center gap-4", orientation === "vertical" && "flex-col")}
+          >
+            <div className={cn("flex-1", orientation === "vertical" && "h-48 w-full")}>
+              <Slider
+                value={[localValue]}
+                onValueChange={handleSliderChange}
+                min={min}
+                max={max}
+                step={step}
+                disabled={disabled || readOnly}
+                inverted={inverted}
+                orientation={orientation}
+                aria-label={label}
+                className={cn("rounded")}
+              />
+            </div>
+
+            {showValue && (
+              <div
+                className={cn(
+                  "flex items-center gap-2",
+                  orientation === "vertical" && "w-full justify-between"
+                )}
+              >
+                {showInput ? (
+                  <Input
+                    type="number"
+                    value={localValue}
+                    onChange={handleInputChange}
+                    min={min}
+                    max={max}
+                    step={step}
+                    disabled={disabled || readOnly}
+                    className="w-20"
+                    aria-label={`${label} value`}
+                  />
+                ) : (
+                  <span className="text-sm font-medium tabular-nums min-w-[3rem] text-center">
+                    {valueLabel}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
+        </FormControl>
+        {description && <FormDescription>{description}</FormDescription>}
+        <FormMessage />
+
+        {/* Min/Max labels */}
+        <div
+          className={cn(
+            "flex justify-between text-xs text-muted-foreground mt-1",
+            orientation === "vertical" && "flex-row"
+          )}
+        >
+          <span>
+            {min}
+            {suffix}
+          </span>
+          <span>
+            {max}
+            {suffix}
+          </span>
+        </div>
+      </FormItem>
+    );
+  }
 
   return (
     <FormItem className={cn(className)}>

@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Controller, type FieldPath, type FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from "@/primitives/form";
@@ -22,6 +23,9 @@ export interface RadioGroupFieldProps<T extends FieldValues = FieldValues> {
   required?: boolean;
   orientation?: "horizontal" | "vertical";
   className?: string;
+  // Controlled props
+  value?: any;
+  onValueChange?: (value: any) => void;
 }
 
 export function RadioGroupField<T extends FieldValues>({
@@ -33,8 +37,62 @@ export function RadioGroupField<T extends FieldValues>({
   required = false,
   orientation = "vertical",
   className,
+  value,
+  onValueChange,
 }: RadioGroupFieldProps<T>) {
   const { control } = useFormContext<T>();
+  const isControlled = value !== undefined && onValueChange !== undefined;
+
+  if (isControlled) {
+    return (
+      <FormItem className={cn(className)}>
+        {label && (
+          <FormLabel>
+            {label}
+            {required && <span className="text-destructive ml-1">*</span>}
+          </FormLabel>
+        )}
+        <FormControl>
+          <RadioGroup
+            onValueChange={onValueChange}
+            value={value}
+            disabled={disabled}
+            orientation={orientation}
+            className={cn(orientation === "horizontal" && "flex flex-wrap gap-4")}
+          >
+            {options.map((option) => (
+              <div
+                key={option.value}
+                className={cn("flex items-start gap-2", orientation === "vertical" && "flex-col")}
+              >
+                <RadioGroupItem
+                  id={`${name}-${option.value}`}
+                  value={option.value}
+                  disabled={disabled || option.disabled}
+                />
+                <div className="space-y-1">
+                  <Label
+                    htmlFor={`${name}-${option.value}`}
+                    className={cn(
+                      "font-medium",
+                      (disabled || option.disabled) && "cursor-not-allowed opacity-50"
+                    )}
+                  >
+                    {option.label}
+                  </Label>
+                  {option.description && (
+                    <p className="text-sm text-muted-foreground">{option.description}</p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </RadioGroup>
+        </FormControl>
+        {description && <FormDescription>{description}</FormDescription>}
+        <FormMessage />
+      </FormItem>
+    );
+  }
 
   return (
     <Controller

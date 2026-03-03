@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import type { FieldValues, Path } from "react-hook-form";
+import { type FieldValues, type Path, useFormContext, useWatch } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import {
   CheckboxField,
@@ -10,6 +10,7 @@ import {
   CurrencyField,
   DateField,
   FileUploadField,
+  InputChipField,
   OTPField,
   PercentageField,
   PhoneField,
@@ -20,23 +21,99 @@ import {
   SwitchField,
   TextareaField,
   TextField,
+  ArrayField,
 } from "./fields";
 import type { FieldConfig } from "./types";
 
 export type FieldRendererProps<T extends FieldValues> = FieldConfig<T>;
 
+/**
+ * Enhanced FieldRenderer with support for:
+ * - watchFields: Only watch specific fields for better performance
+ * - isDisabled: Dynamic disabled state based on watched values
+ * - isHidden: Dynamic hidden state based on watched values
+ * - onChangeCallback: Custom onChange with access to watched values
+ */
 export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T>) {
-  const { type, render } = props;
+  const {
+    type,
+    name,
+    watchFields,
+    isDisabled,
+    isHidden,
+    when,
+    onChangeCallback,
+    disabled: staticDisabled,
+  } = props;
 
-  if (render) {
-    return render(props as any, {} as any);
+  const { control, getValues, setValue } = useFormContext<T>();
+
+  // Get watched values - either specific fields or all values
+  const watchedValues = useWatch({
+    control,
+    ...(watchFields
+      ? { name: watchFields as any }
+      : {}),
+  }) as Partial<T>;
+
+  // Get current field value
+  const currentValue = React.useMemo(() => {
+    try {
+      return getValues(name as any);
+    } catch {
+      return undefined;
+    }
+  }, [getValues, name, ...(watchFields || [])]);
+
+  // Check if field should be hidden
+  const shouldBeHidden = React.useMemo(() => {
+    if (isHidden) {
+      return isHidden(watchedValues, currentValue);
+    }
+    if (when) {
+      return !when(watchedValues);
+    }
+    return false;
+  }, [isHidden, when, watchedValues, currentValue]);
+
+  // Check if field should be disabled
+  const shouldBeDisabled = React.useMemo(() => {
+    if (staticDisabled === true) {
+      return true;
+    }
+    if (isDisabled) {
+      return isDisabled(watchedValues, currentValue);
+    }
+    return false;
+  }, [staticDisabled, isDisabled, watchedValues, currentValue]);
+
+  // Create custom onChange handler that wraps setValue with callback
+  const handleValueChange = React.useCallback(
+    (value: any) => {
+      setValue(name as any, value);
+      if (onChangeCallback) {
+        onChangeCallback(value, watchedValues, { control, getValues, setValue });
+      }
+    },
+    [name, setValue, onChangeCallback, watchedValues, control, getValues]
+  );
+
+  if (shouldBeHidden) {
+    return null;
+  }
+
+  if (props.render) {
+    return props.render(
+      { ...props, disabled: shouldBeDisabled, value: currentValue, onChange: handleValueChange },
+      { control, getValues, setValue, watchedValues }
+    );
   }
 
   const commonProps = {
     name: props.name,
     label: props.label,
     description: props.description,
-    disabled: props.disabled,
+    disabled: shouldBeDisabled,
     required: props.rules?.required as boolean,
     className: props.className,
   };
@@ -54,6 +131,8 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
           type={type}
           placeholder={props.placeholder}
           readOnly={props.readOnly}
+          value={currentValue}
+          onChange={handleValueChange}
         />
       );
 
@@ -64,12 +143,20 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
           placeholder={props.placeholder}
           readOnly={props.readOnly}
           rows={props.rows}
+          value={currentValue}
+          onChange={handleValueChange}
         />
       );
 
     case "select":
       return (
-        <SelectField {...commonProps} options={props.options} placeholder={props.placeholder} />
+        <SelectField
+          {...commonProps}
+          options={props.options}
+          placeholder={props.placeholder}
+          value={currentValue}
+          onChange={handleValueChange}
+        />
       );
 
     case "combobox":
@@ -80,24 +167,60 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
           options={props.options}
           placeholder={props.placeholder}
           searchable={type === "combobox"}
+          value={currentValue}
+          onChange={handleValueChange}
         />
       );
 
     case "checkbox":
-      return <CheckboxField {...commonProps} />;
+      return (
+        <CheckboxField
+          {...commonProps}
+          checked={!!currentValue}
+          onCheckedChange={handleValueChange}
+        />
+      );
 
     case "switch":
-      return <SwitchField {...commonProps} />;
+      return (
+        <SwitchField
+          {...commonProps}
+          checked={!!currentValue}
+          onCheckedChange={handleValueChange}
+        />
+      );
 
     case "radio":
-      return <RadioGroupField {...commonProps} options={props.options} />;
+      return (
+        <RadioGroupField
+          {...commonProps}
+          options={props.options}
+          value={currentValue}
+          onChange={handleValueChange}
+        />
+      );
 
     case "date":
     case "datetime":
-      return <DateField {...commonProps} showTime={type === "datetime"} />;
+      return (
+        <DateField
+          {...commonProps}
+          showTime={type === "datetime"}
+          value={currentValue}
+          onChange={handleValueChange}
+        />
+      );
 
     case "time":
-      return <TextField {...commonProps} type="text" placeholder="HH:MM" />;
+      return (
+        <TextField
+          {...commonProps}
+          type="text"
+          placeholder="HH:MM"
+          value={currentValue}
+          onChange={handleValueChange}
+        />
+      );
 
     case "file":
       return (
@@ -107,6 +230,8 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
           maxSize={props.maxSize}
           maxFiles={props.maxFiles}
           onUpload={props.onUpload}
+          value={currentValue}
+          onChange={handleValueChange}
         />
       );
 
@@ -122,6 +247,8 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
           decimalPlaces={props.decimalPlaces}
           minValue={props.minValue}
           maxValue={props.maxValue}
+          value={currentValue}
+          onChange={handleValueChange}
         />
       );
 
@@ -134,6 +261,8 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
           defaultCountry={props.defaultCountry}
           showCountrySelect={props.showCountrySelect}
           countryFieldName={props.countryFieldName}
+          value={currentValue}
+          onChange={handleValueChange}
         />
       );
 
@@ -147,6 +276,8 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
           maxValue={props.maxValue}
           decimalPlaces={props.decimalPlaces}
           step={props.step}
+          value={currentValue}
+          onChange={handleValueChange}
         />
       );
 
@@ -158,6 +289,8 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
           otpType={props.otpType}
           showSeparator={props.showSeparator}
           groupSize={props.groupSize}
+          value={currentValue}
+          onChange={handleValueChange}
         />
       );
 
@@ -171,6 +304,8 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
           size={props.size}
           allowClear={props.allowClear}
           icon={props.icon}
+          value={currentValue}
+          onChange={handleValueChange}
         />
       );
 
@@ -182,6 +317,8 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
           showAlpha={props.showAlpha}
           presets={props.presets}
           showPreview={props.showPreview}
+          value={currentValue}
+          onChange={handleValueChange}
         />
       );
 
@@ -197,22 +334,75 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
           suffix={props.suffix}
           orientation={props.orientation}
           inverted={props.inverted}
+          value={currentValue}
+          onChange={handleValueChange}
+        />
+      );
+
+    case "array":
+      return (
+        <ArrayField
+          {...commonProps}
+          fields={props.fields}
+          minItems={props.minItems}
+          maxItems={props.maxItems}
+          addItemLabel={props.addItemLabel}
+          showReorder={props.showReorder}
+          itemTitleField={props.itemTitleField}
+          itemTitleTemplate={props.itemTitleTemplate}
+          itemDefaultValue={props.itemDefaultValue}
+          collapsibleItems={props.collapsibleItems}
+          defaultCollapsed={props.defaultCollapsed}
+        />
+      );
+
+    case "chip":
+      return (
+        <InputChipField
+          {...commonProps}
+          placeholder={props.placeholder}
+          maxChips={props.maxChips}
+          allowDuplicates={props.allowDuplicates}
+          transform={props.transform}
+          validateChip={props.validateChip}
         />
       );
 
     case "rich-text":
     case "code":
-      // Placeholder - render as textarea for now
-      return <TextareaField {...commonProps} placeholder={(props as any).placeholder} rows={6} />;
+      return (
+        <TextareaField
+          {...commonProps}
+          placeholder={props.placeholder}
+          rows={6}
+          value={currentValue}
+          onChange={handleValueChange}
+        />
+      );
 
     case "address":
     case "name":
     case "credit-card":
-      // Placeholders - render as text for now
-      return <TextField {...commonProps} type="text" placeholder={(props as any).placeholder} />;
+      return (
+        <TextField
+          {...commonProps}
+          type="text"
+          placeholder={props.placeholder}
+          value={currentValue}
+          onChange={handleValueChange}
+        />
+      );
 
     default:
-      return <TextField {...commonProps} type="text" placeholder={(props as any).placeholder} />;
+      return (
+        <TextField
+          {...commonProps}
+          type="text"
+          placeholder={props.placeholder}
+          value={currentValue}
+          onChange={handleValueChange}
+        />
+      );
   }
 }
 

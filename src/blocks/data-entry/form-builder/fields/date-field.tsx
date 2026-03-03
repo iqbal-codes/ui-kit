@@ -19,6 +19,9 @@ export interface DateFieldProps<T extends FieldValues = FieldValues> {
   showTime?: boolean;
   dateFormat?: string;
   className?: string;
+  // Controlled props
+  value?: any;
+  onChange?: (value: any) => void;
 }
 
 export function DateField<T extends FieldValues>({
@@ -31,8 +34,52 @@ export function DateField<T extends FieldValues>({
   showTime = false,
   dateFormat = "PPP",
   className,
+  value,
+  onChange,
 }: DateFieldProps<T>) {
   const { control } = useFormContext<T>();
+  const isControlled = value !== undefined && onChange !== undefined;
+
+  if (isControlled) {
+    return (
+      <FormItem className={cn(className)}>
+        {label && (
+          <FormLabel htmlFor={name}>
+            {label}
+            {required && <span className="text-destructive ml-1">*</span>}
+          </FormLabel>
+        )}
+        <Popover>
+          <PopoverTrigger asChild>
+            <FormControl>
+              <Button
+                variant="outline"
+                className={cn(
+                  "w-full justify-start text-left font-normal",
+                  !value && "text-muted-foreground"
+                )}
+                disabled={disabled}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {value ? format(value, dateFormat) : <span>{placeholder}</span>}
+              </Button>
+            </FormControl>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0" align="start">
+            <Calendar
+              mode="single"
+              selected={value}
+              onSelect={onChange}
+              disabled={disabled}
+              autoFocus
+            />
+          </PopoverContent>
+        </Popover>
+        {description && <FormDescription>{description}</FormDescription>}
+        <FormMessage />
+      </FormItem>
+    );
+  }
 
   return (
     <Controller
@@ -69,7 +116,7 @@ export function DateField<T extends FieldValues>({
                 selected={field.value}
                 onSelect={field.onChange}
                 disabled={disabled}
-                initialFocus
+                autoFocus
               />
             </PopoverContent>
           </Popover>

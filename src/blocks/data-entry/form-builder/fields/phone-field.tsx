@@ -30,6 +30,9 @@ export interface PhoneFieldProps<T extends FieldValues = FieldValues> {
   showCountrySelect?: boolean;
   /** Country field name for two-field setup */
   countryFieldName?: string;
+  // Controlled props
+  value?: any;
+  onChange?: (value: any) => void;
 }
 
 // Common country codes for phone input
@@ -98,10 +101,95 @@ export function PhoneField<T extends FieldValues>({
   defaultCountry = "US",
   showCountrySelect = true,
   countryFieldName,
+  value,
+  onChange,
 }: PhoneFieldProps<T>) {
   const { control, setValue, watch } = useFormContext<T>();
   const [displayValue, setDisplayValue] = React.useState("");
   const [selectedCountry, setSelectedCountry] = React.useState(defaultCountry);
+  const isControlled = value !== undefined && onChange !== undefined;
+
+  if (isControlled) {
+    // Update display value when value changes externally
+    React.useEffect(() => {
+      if (value !== undefined && value !== null) {
+        const digits = value.toString().replace(/\D/g, "");
+        setDisplayValue(formatPhoneNumber(digits));
+      } else {
+        setDisplayValue("");
+      }
+    }, [value]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const inputValue = e.target.value;
+      const digits = inputValue.replace(/\D/g, "");
+
+      if (digits.length > 10) return;
+
+      const formatted = formatPhoneNumber(digits);
+      setDisplayValue(formatted);
+
+      const dialCode = getDialCode(selectedCountry);
+      const fullNumber = dialCode + digits;
+      onChange(fullNumber);
+    };
+
+    const handleCountryChange = (countryCode: string) => {
+      setSelectedCountry(countryCode);
+      if (countryFieldName) {
+        setValue(countryFieldName as FieldPath<T>, countryCode as any);
+      }
+      const digits = displayValue.replace(/\D/g, "");
+      const dialCode = getDialCode(countryCode);
+      const fullNumber = dialCode + digits;
+      onChange(fullNumber);
+    };
+
+    return (
+      <FormItem className={cn(className)}>
+        {label && (
+          <FormLabel htmlFor={name}>
+            {label}
+            {required && <span className="text-destructive ml-1">*</span>}
+          </FormLabel>
+        )}
+        <div className="flex gap-2">
+          {showCountrySelect && (
+            <Select value={selectedCountry} onValueChange={handleCountryChange}>
+              <SelectTrigger className="w-[110px]">
+                <SelectValue placeholder="Select" />
+              </SelectTrigger>
+              <SelectContent>
+                {COUNTRY_CODES.map((country) => (
+                  <SelectItem key={country.code} value={country.code}>
+                    {country.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+          <div className="flex-1">
+            <FormControl>
+              <InputGroup>
+                <InputGroupInput
+                  id={name}
+                  type="tel"
+                  inputMode="tel"
+                  placeholder={placeholder}
+                  value={displayValue}
+                  onChange={handleChange}
+                  disabled={disabled}
+                  readOnly={readOnly}
+                />
+              </InputGroup>
+            </FormControl>
+          </div>
+        </div>
+        {description && <FormDescription>{description}</FormDescription>}
+        <FormMessage />
+      </FormItem>
+    );
+  }
 
   // Get country value if using two-field setup
   const countryValue = countryFieldName ? watch(countryFieldName as FieldPath<T>) : null;

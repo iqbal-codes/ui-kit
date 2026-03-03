@@ -232,7 +232,7 @@ function FilterFieldInput({
                 mode="single"
                 selected={value ? new Date(value) : undefined}
                 onSelect={(date) => onChange(date ? date.toISOString() : null)}
-                initialFocus
+                autoFocus
               />
             </PopoverContent>
           </Popover>

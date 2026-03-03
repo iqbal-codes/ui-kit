@@ -33,6 +33,9 @@ export interface RatingFieldProps<T extends FieldValues = FieldValues> {
   allowClear?: boolean;
   /** Icon to use for rating */
   icon?: "star" | "heart" | "thumbs-up";
+  // Controlled props
+  value?: any;
+  onChange?: (value: any) => void;
 }
 
 export function RatingField<T extends FieldValues>({
@@ -49,9 +52,12 @@ export function RatingField<T extends FieldValues>({
   size = "md",
   allowClear = true,
   icon = "star",
+  value,
+  onChange,
 }: RatingFieldProps<T>) {
   const { control } = useFormContext<T>();
   const [hoverValue, setHoverValue] = React.useState<number | null>(null);
+  const isControlled = value !== undefined && onChange !== undefined;
 
   const sizeClasses = {
     sm: "h-4 w-4",
@@ -73,6 +79,91 @@ export function RatingField<T extends FieldValues>({
               <path d="M1 21h4V9H1v12zm22 0h-6v-9h6v9zM10.69 3.86L9.28 2.45a1 1 0 00-1.41 0l-1.42 1.41L1 9.41V21h22V9.41l-5.44-5.55-1.41 1.41a6 6 0 01-8.46 0z" />
             </svg>
           );
+
+  if (isControlled) {
+    const currentValue = value || 0;
+
+    const handleKeyDown = (e: React.KeyboardEvent, rating: number) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        if (!readOnly && !disabled) {
+          onChange(rating);
+        }
+      }
+    };
+
+    return (
+      <FormItem className={cn(className)}>
+        {label && (
+          <FormLabel>
+            {label}
+            {required && <span className="text-destructive ml-1">*</span>}
+          </FormLabel>
+        )}
+        <FormControl>
+          <div className="flex flex-col gap-2">
+            <div
+              className="flex items-center gap-1"
+              role="radiogroup"
+              aria-labelledby={label ? `${name}-label` : undefined}
+            >
+              {Array.from({ length: maxRating }).map((_, index) => {
+                const rating = index + 1;
+                const isFilled =
+                  hoverValue !== null ? rating <= hoverValue : rating <= currentValue;
+
+                return (
+                  <button
+                    key={index}
+                    type="button"
+                    disabled={disabled || readOnly}
+                    onClick={() => {
+                      if (!readOnly && !disabled) {
+                        const newValue = allowClear && currentValue === rating ? 0 : rating;
+                        onChange(newValue);
+                      }
+                    }}
+                    onMouseEnter={() => !readOnly && !disabled && setHoverValue(rating)}
+                    onMouseLeave={() => setHoverValue(null)}
+                    onKeyDown={(e) => handleKeyDown(e, rating)}
+                    className={cn(
+                      "transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded",
+                      disabled || readOnly
+                        ? "cursor-default"
+                        : "cursor-pointer hover:scale-110",
+                      (disabled || readOnly) && "opacity-50"
+                    )}
+                    aria-checked={currentValue === rating}
+                    role="radio"
+                    aria-label={`${rating} out of ${maxRating}`}
+                    tabIndex={disabled || readOnly ? -1 : 0}
+                  >
+                    <IconComponent
+                      className={cn(
+                        sizeClasses[size],
+                        isFilled ? "text-yellow-400 fill-yellow-400" : "text-muted-foreground"
+                      )}
+                    />
+                  </button>
+                );
+              })}
+            </div>
+            {(showNumbers || labels) && (
+              <div className="flex justify-between text-xs text-muted-foreground">
+                {Array.from({ length: maxRating }).map((_, index) => (
+                  <span key={index} className="flex-1 text-center">
+                    {labels?.[index] || (showNumbers ? index + 1 : "")}
+                  </span>
+                ))}
+              </div>
+            )}
+            {description && <FormDescription>{description}</FormDescription>}
+            <FormMessage />
+          </div>
+        </FormControl>
+      </FormItem>
+    );
+  }
 
   return (
     <FormItem className={cn(className)}>

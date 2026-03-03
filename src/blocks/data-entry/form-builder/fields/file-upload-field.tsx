@@ -23,6 +23,9 @@ export interface FileUploadFieldProps<T extends FieldValues = FieldValues> {
   required?: boolean;
   onUpload?: (files: File[]) => void | Promise<void>;
   className?: string;
+  // Controlled props
+  value?: any;
+  onChange?: (value: any) => void;
 }
 
 export function FileUploadField<T extends FieldValues>({
@@ -36,11 +39,86 @@ export function FileUploadField<T extends FieldValues>({
   required = false,
   onUpload,
   className,
+  value,
+  onChange,
 }: FileUploadFieldProps<T>) {
   const { control } = useFormContext<T>();
   const [isUploading, setIsUploading] = React.useState(false);
   const [uploadProgress, setUploadProgress] = React.useState<number>();
   const [uploadedFiles, setUploadedFiles] = React.useState<UploadedFile[]>([]);
+  const isControlled = value !== undefined && onChange !== undefined;
+
+  if (isControlled) {
+    const handleFilesSelected = React.useCallback(
+      async (files: File[]) => {
+        if (!onUpload) return;
+
+        setIsUploading(true);
+        setUploadProgress(0);
+
+        try {
+          const interval = setInterval(() => {
+            setUploadProgress((prev) => {
+              if (prev === undefined) return 0;
+              if (prev >= 100) {
+                clearInterval(interval);
+                return 100;
+              }
+              return prev + 10;
+            });
+          }, 200);
+
+          await onUpload(files);
+
+          setUploadProgress(100);
+          clearInterval(interval);
+
+          setUploadedFiles((prev) => [
+            ...prev,
+            ...files.map((file) => ({
+              name: file.name,
+              size: file.size,
+            })),
+          ]);
+        } finally {
+          setIsUploading(false);
+          setUploadProgress(undefined);
+        }
+      },
+      [onUpload]
+    );
+
+    const handleFileRemove = React.useCallback((file: UploadedFile) => {
+      setUploadedFiles((prev) => prev.filter((f) => f.name !== file.name));
+    }, []);
+
+    return (
+      <FormItem className={cn(className)}>
+        {label && (
+          <FormLabel>
+            {label}
+            {required && <span className="text-destructive ml-1">*</span>}
+          </FormLabel>
+        )}
+        <FormControl>
+          <UploadDropzone
+            accept={accept}
+            maxSize={maxSize}
+            maxFiles={maxFiles}
+            onFilesSelected={handleFilesSelected}
+            isUploading={isUploading}
+            uploadProgress={uploadProgress}
+            uploadedFiles={uploadedFiles}
+            onFileRemove={handleFileRemove}
+            disabled={disabled}
+            label={value?.length ? "Add more files" : "Upload files"}
+            description={description}
+          />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    );
+  }
 
   const handleFilesSelected = React.useCallback(
     async (files: File[]) => {

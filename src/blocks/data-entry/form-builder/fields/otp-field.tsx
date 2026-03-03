@@ -33,6 +33,9 @@ export interface OTPFieldProps<T extends FieldValues = FieldValues> {
   autoFocus?: boolean;
   /** Placeholder for empty slots */
   placeholder?: string;
+  // Controlled props
+  value?: any;
+  onChange?: (value: any) => void;
 }
 
 export function OTPField<T extends FieldValues>({
@@ -49,9 +52,81 @@ export function OTPField<T extends FieldValues>({
   groupSize = 3,
   autoFocus = false,
   placeholder = "○",
+  value,
+  onChange,
 }: OTPFieldProps<T>) {
   const { control } = useFormContext<T>();
-  const [value, setValue] = React.useState("");
+  const [otpValue, setOtpValue] = React.useState("");
+  const isControlled = value !== undefined && onChange !== undefined;
+
+  if (isControlled) {
+    // Sync with external value changes
+    React.useEffect(() => {
+      if (value !== undefined && value !== null) {
+        setOtpValue(value.toString());
+      } else {
+        setOtpValue("");
+      }
+    }, [value]);
+
+    const handleChange = (newValue: string) => {
+      setOtpValue(newValue);
+      onChange(newValue);
+    };
+
+    // Calculate group positions
+    const firstGroupSize = showSeparator ? groupSize : otpLength;
+    const secondGroupSize = showSeparator ? otpLength - groupSize : 0;
+
+    return (
+      <FormItem className={cn(className)}>
+        {label && (
+          <FormLabel htmlFor={name}>
+            {label}
+            {required && <span className="text-destructive ml-1">*</span>}
+          </FormLabel>
+        )}
+        <FormControl>
+          <div className="flex flex-col items-start gap-2">
+            <InputOTP
+              maxLength={otpLength}
+              value={otpValue}
+              onChange={handleChange}
+              disabled={disabled}
+              readOnly={readOnly}
+              autoFocus={autoFocus}
+              pattern={otpType === "numeric" ? "[0-9]*" : "[0-9a-zA-Z]*"}
+              inputMode={otpType === "numeric" ? "numeric" : "text"}
+            >
+              <InputOTPGroup>
+                {Array.from({ length: firstGroupSize }).map((_, index) => (
+                  <InputOTPSlot
+                    key={index}
+                    index={index}
+                    className={cn("h-12 w-12 text-lg")}
+                  />
+                ))}
+              </InputOTPGroup>
+              {showSeparator && secondGroupSize > 0 && <InputOTPSeparator />}
+              {secondGroupSize > 0 && (
+                <InputOTPGroup>
+                  {Array.from({ length: secondGroupSize }).map((_, index) => (
+                    <InputOTPSlot
+                      key={index}
+                      index={firstGroupSize + index}
+                      className={cn("h-12 w-12 text-lg")}
+                    />
+                  ))}
+                </InputOTPGroup>
+              )}
+            </InputOTP>
+            {description && <FormDescription>{description}</FormDescription>}
+            <FormMessage />
+          </div>
+        </FormControl>
+      </FormItem>
+    );
+  }
 
   return (
     <FormItem className={cn(className)}>

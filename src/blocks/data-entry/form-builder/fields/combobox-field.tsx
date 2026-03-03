@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Controller, type FieldPath, type FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import {
@@ -28,6 +29,9 @@ export interface ComboboxFieldProps<T extends FieldValues = FieldValues> {
   required?: boolean;
   searchable?: boolean;
   className?: string;
+  // Controlled props
+  value?: any;
+  onChange?: (value: any) => void;
 }
 
 export function ComboboxField<T extends FieldValues>({
@@ -40,8 +44,50 @@ export function ComboboxField<T extends FieldValues>({
   required = false,
   searchable = true,
   className,
+  value,
+  onChange,
 }: ComboboxFieldProps<T>) {
   const { control } = useFormContext<T>();
+  const isControlled = value !== undefined && onChange !== undefined;
+
+  if (isControlled) {
+    return (
+      <FormItem className={cn(className)}>
+        {label && (
+          <FormLabel htmlFor={name}>
+            {label}
+            {required && <span className="text-destructive ml-1">*</span>}
+          </FormLabel>
+        )}
+        <FormControl>
+          <Combobox value={value} onValueChange={onChange} disabled={disabled}>
+            <ComboboxInput
+              placeholder={placeholder}
+              disabled={disabled}
+              showClear
+              showTrigger={false}
+            />
+            <ComboboxContent>
+              <ComboboxList>
+                {options.map((option) => (
+                  <ComboboxItem
+                    key={option.value}
+                    value={option.value}
+                    disabled={option.disabled}
+                  >
+                    {option.label}
+                  </ComboboxItem>
+                ))}
+                <ComboboxEmpty>No results found</ComboboxEmpty>
+              </ComboboxList>
+            </ComboboxContent>
+          </Combobox>
+        </FormControl>
+        {description && <FormDescription>{description}</FormDescription>}
+        <FormMessage />
+      </FormItem>
+    );
+  }
 
   return (
     <Controller

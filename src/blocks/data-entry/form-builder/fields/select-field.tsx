@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Controller, type FieldPath, type FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from "@/primitives/form";
@@ -20,6 +21,9 @@ export interface SelectFieldProps<T extends FieldValues = FieldValues> {
   disabled?: boolean;
   required?: boolean;
   className?: string;
+  // Controlled props
+  value?: any;
+  onChange?: (value: any) => void;
 }
 
 export function SelectField<T extends FieldValues>({
@@ -31,8 +35,40 @@ export function SelectField<T extends FieldValues>({
   disabled = false,
   required = false,
   className,
+  value,
+  onChange,
 }: SelectFieldProps<T>) {
   const { control } = useFormContext<T>();
+  const isControlled = value !== undefined && onChange !== undefined;
+
+  if (isControlled) {
+    return (
+      <FormItem className={cn(className)}>
+        {label && (
+          <FormLabel htmlFor={name}>
+            {label}
+            {required && <span className="text-destructive ml-1">*</span>}
+          </FormLabel>
+        )}
+        <FormControl>
+          <Select onValueChange={onChange} value={value} disabled={disabled}>
+            <SelectTrigger id={name} className="w-full">
+              <SelectValue placeholder={placeholder} />
+            </SelectTrigger>
+            <SelectContent>
+              {options.map((option) => (
+                <SelectItem key={option.value} value={option.value} disabled={option.disabled}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </FormControl>
+        {description && <FormDescription>{description}</FormDescription>}
+        <FormMessage />
+      </FormItem>
+    );
+  }
 
   return (
     <Controller

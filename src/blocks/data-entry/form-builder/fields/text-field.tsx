@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Controller, type FieldPath, type FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from "@/primitives/form";
@@ -15,6 +16,9 @@ export interface TextFieldProps<T extends FieldValues = FieldValues> {
   readOnly?: boolean;
   required?: boolean;
   className?: string;
+  // Controlled props (when used without internal Controller)
+  value?: any;
+  onChange?: (value: any) => void;
 }
 
 export function TextField<T extends FieldValues>({
@@ -27,8 +31,39 @@ export function TextField<T extends FieldValues>({
   readOnly = false,
   required = false,
   className,
+  value,
+  onChange,
 }: TextFieldProps<T>) {
   const { control } = useFormContext<T>();
+
+  // Check if component is controlled (value/onChange provided)
+  const isControlled = value !== undefined && onChange !== undefined;
+
+  if (isControlled) {
+    return (
+      <FormItem className={cn(className)}>
+        {label && (
+          <FormLabel htmlFor={name}>
+            {label}
+            {required && <span className="text-destructive ml-1">*</span>}
+          </FormLabel>
+        )}
+        <FormControl>
+          <Input
+            id={name}
+            type={type}
+            value={value || ""}
+            onChange={onChange}
+            placeholder={placeholder}
+            disabled={disabled}
+            readOnly={readOnly}
+          />
+        </FormControl>
+        {description && <FormDescription>{description}</FormDescription>}
+        <FormMessage />
+      </FormItem>
+    );
+  }
 
   return (
     <Controller

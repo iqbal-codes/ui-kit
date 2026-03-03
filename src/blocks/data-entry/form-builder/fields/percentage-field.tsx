@@ -31,6 +31,9 @@ export interface PercentageFieldProps<T extends FieldValues = FieldValues> {
   decimalPlaces?: number;
   /** Step increment for arrow keys */
   step?: number;
+  // Controlled props
+  value?: any;
+  onChange?: (value: any) => void;
 }
 
 export function PercentageField<T extends FieldValues>({
@@ -46,9 +49,100 @@ export function PercentageField<T extends FieldValues>({
   maxValue = 100,
   decimalPlaces = 0,
   step = 1,
+  value,
+  onChange,
 }: PercentageFieldProps<T>) {
   const { control } = useFormContext<T>();
   const [displayValue, setDisplayValue] = React.useState("");
+  const isControlled = value !== undefined && onChange !== undefined;
+
+  if (isControlled) {
+    // Update display value when value changes externally
+    React.useEffect(() => {
+      if (value !== undefined && value !== null) {
+        const numValue = typeof value === "number" ? value : parseFloat(value);
+        if (!Number.isNaN(numValue)) {
+          setDisplayValue(formatPercentage(numValue.toString()));
+        }
+      } else {
+        setDisplayValue("");
+      }
+    }, [value]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const inputValue = e.target.value;
+
+      if (inputValue === "") {
+        setDisplayValue("");
+        onChange("");
+        return;
+      }
+
+      const validInput = /^-?\d*\.?\d*$/.test(inputValue);
+      if (!validInput) return;
+
+      const number = parseFloat(inputValue);
+
+      if (!Number.isNaN(number)) {
+        if (number < minValue) {
+          return;
+        }
+        if (number > maxValue) {
+          return;
+        }
+      }
+
+      setDisplayValue(inputValue);
+      onChange(number);
+    };
+
+    const handleBlur = () => {
+      if (displayValue) {
+        const number = parseFloat(displayValue);
+        if (!Number.isNaN(number)) {
+          setDisplayValue(formatPercentage(displayValue));
+        }
+      }
+    };
+
+    return (
+      <FormItem className={cn(className)}>
+        {label && (
+          <FormLabel htmlFor={name}>
+            {label}
+            {required && <span className="text-destructive ml-1">*</span>}
+          </FormLabel>
+        )}
+        <FormControl>
+          <InputGroup>
+            <InputGroupInput
+              id={name}
+              type="text"
+              inputMode="decimal"
+              placeholder={placeholder}
+              value={displayValue}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              disabled={disabled}
+              readOnly={readOnly}
+            />
+            <InputGroupAddon align="inline-end">%</InputGroupAddon>
+          </InputGroup>
+        </FormControl>
+        {description && (
+          <FormDescription>
+            {description}{" "}
+            {minValue !== 0 || maxValue !== 100 ? (
+              <span className="text-xs">
+                ({minValue}% - {maxValue}%)
+              </span>
+            ) : null}
+          </FormDescription>
+        )}
+        <FormMessage />
+      </FormItem>
+    );
+  }
 
   // Format percentage value
   const formatPercentage = React.useCallback(

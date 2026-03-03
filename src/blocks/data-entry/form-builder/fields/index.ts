@@ -1,5 +1,7 @@
 // Form Builder Field Components
 
+export type { ArrayFieldProps } from "./array-field";
+export { ArrayField } from "./array-field";
 export type { CheckboxFieldProps } from "./checkbox-field";
 export { CheckboxField } from "./checkbox-field";
 export type { ColorFieldProps } from "./color-field";
@@ -12,6 +14,8 @@ export type { DateFieldProps } from "./date-field";
 export { DateField } from "./date-field";
 export type { FileUploadFieldProps, UploadedFile } from "./file-upload-field";
 export { FileUploadField } from "./file-upload-field";
+export type { InputChipFieldProps } from "./input-chip-field";
+export { InputChipField } from "./input-chip-field";
 export type { OTPFieldProps } from "./otp-field";
 export { OTPField } from "./otp-field";
 export type { PercentageFieldProps } from "./percentage-field";

@@ -32,7 +32,9 @@ export type FieldType =
   | "code"
   | "address"
   | "name"
-  | "credit-card";
+  | "credit-card"
+  | "array"
+  | "chip";
 
 export interface FieldOption {
   value: string;
@@ -44,7 +46,7 @@ export interface FieldOption {
 /**
  * Base field config shared by all field types
  */
-interface BaseFieldConfig<T extends FieldValues = FieldValues> {
+export interface BaseFieldConfig<T extends FieldValues = FieldValues> {
   /** Field name (dot notation for nested: 'user.email') */
   name: Path<T>;
   /** Field label */
@@ -65,12 +67,20 @@ interface BaseFieldConfig<T extends FieldValues = FieldValues> {
     pattern?: { value: RegExp; message: string };
     validate?: (value: any) => boolean | string;
   };
-  /** Disabled state */
+  /** Disabled state (static) */
   disabled?: boolean;
   /** Read-only state */
   readOnly?: boolean;
-  /** Conditional rendering */
+  /** Conditional rendering - hide field based on form values */
   when?: (values: Partial<T>) => boolean;
+  /** Fields to watch for changes (for performance optimization) */
+  watchFields?: Path<T>[];
+  /** Dynamic disabled state - function to determine if field should be disabled */
+  isDisabled?: (values: Partial<T>, currentValue?: any) => boolean;
+  /** Dynamic hidden state - function to determine if field should be hidden (alternative to `when`) */
+  isHidden?: (values: Partial<T>, currentValue?: any) => boolean;
+  /** Custom onChange callback with access to watched values */
+  onChangeCallback?: (value: any, watchedValues: Partial<T>, form: any) => void;
   /** Custom field component */
   render?: (field: any, form: any) => React.ReactNode;
   /** Additional CSS classes */
@@ -277,6 +287,50 @@ interface CreditCardFieldConfig<T extends FieldValues = FieldValues> extends Bas
 }
 
 /**
+ * Array/repeatable field group
+ * Each item in the array contains the same set of fields
+ */
+export interface ArrayFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "array";
+  /** The fields to repeat for each array item */
+  fields: FieldConfig<any>[];
+  /** Minimum number of items required */
+  minItems?: number;
+  /** Maximum number of items allowed */
+  maxItems?: number;
+  /** Label for the "Add Item" button */
+  addItemLabel?: string;
+  /** Show drag-and-drop reordering controls */
+  showReorder?: boolean;
+  /** Field to use as item title when collapsed (e.g., 'itemName') */
+  itemTitleField?: Path<T>;
+  /** Custom item title template (supports dot notation for nested fields) */
+  itemTitleTemplate?: string;
+  /** Default values for new items */
+  itemDefaultValue?: any;
+  /** Collapsible items */
+  collapsibleItems?: boolean;
+  /** Start with all items collapsed */
+  defaultCollapsed?: boolean;
+}
+
+/**
+ * Input chip/tag field for string arrays
+ * Allows users to add/remove multiple string values as chips
+ */
+export interface ChipFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "chip";
+  /** Maximum number of chips allowed */
+  maxChips?: number;
+  /** Allow duplicate chips */
+  allowDuplicates?: boolean;
+  /** Transform chip value (e.g., lowercase, trim) */
+  transform?: (value: string) => string;
+  /** Validation function for individual chips */
+  validateChip?: (value: string) => boolean | string;
+}
+
+/**
  * Union of all field config types - enables type-safe field configurations
  * When type is "select", only "options" prop is shown, not currency/phone/etc props
  */
@@ -300,7 +354,9 @@ export type FieldConfig<T extends FieldValues = FieldValues> =
   | RichTextFieldConfig<T>
   | AddressFieldConfig<T>
   | NameFieldConfig<T>
-  | CreditCardFieldConfig<T>;
+  | CreditCardFieldConfig<T>
+  | ArrayFieldConfig<T>
+  | ChipFieldConfig<T>;
 
 /**
  * Helper type to get field-specific config based on type

@@ -35,6 +35,9 @@ export interface CurrencyFieldProps<T extends FieldValues = FieldValues> {
   minValue?: number;
   /** Maximum value allowed */
   maxValue?: number;
+  // Controlled props
+  value?: any;
+  onChange?: (value: any) => void;
 }
 
 export function CurrencyField<T extends FieldValues>({
@@ -52,9 +55,97 @@ export function CurrencyField<T extends FieldValues>({
   decimalPlaces = 2,
   minValue,
   maxValue,
+  value,
+  onChange,
 }: CurrencyFieldProps<T>) {
   const { control } = useFormContext<T>();
   const [displayValue, setDisplayValue] = React.useState("");
+  const isControlled = value !== undefined && onChange !== undefined;
+
+  if (isControlled) {
+    // Update display value when value changes externally
+    React.useEffect(() => {
+      if (value !== undefined && value !== null) {
+        const numValue = typeof value === "number" ? value : parseFloat(value);
+        if (!Number.isNaN(numValue)) {
+          setDisplayValue(formatCurrency(numValue.toString()));
+        }
+      } else {
+        setDisplayValue("");
+      }
+    }, [value]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const inputValue = e.target.value;
+
+      if (inputValue === "") {
+        setDisplayValue("");
+        onChange("");
+        return;
+      }
+
+      const rawValue = parseValue(inputValue);
+      const number = parseFloat(rawValue);
+
+      if (!allowNegative && number < 0) {
+        return;
+      }
+
+      if (minValue !== undefined && number < minValue) {
+        return;
+      }
+      if (maxValue !== undefined && number > maxValue) {
+        return;
+      }
+
+      const formatted = formatCurrency(rawValue);
+      setDisplayValue(formatted);
+      onChange(number);
+    };
+
+    const handleBlur = () => {
+      if (displayValue) {
+        const number = parseFloat(parseValue(displayValue));
+        if (!Number.isNaN(number)) {
+          setDisplayValue(formatCurrency(number.toString()));
+        }
+      }
+    };
+
+    return (
+      <FormItem className={cn(className)}>
+        {label && (
+          <FormLabel htmlFor={name}>
+            {label}
+            {required && <span className="text-destructive ml-1">*</span>}
+          </FormLabel>
+        )}
+        <FormControl>
+          <InputGroup>
+            {currencyPosition === "prefix" && (
+              <InputGroupAddon align="inline-start">{currencySymbol}</InputGroupAddon>
+            )}
+            <InputGroupInput
+              id={name}
+              type="text"
+              inputMode="decimal"
+              placeholder={placeholder}
+              value={displayValue}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              disabled={disabled}
+              readOnly={readOnly}
+            />
+            {currencyPosition === "suffix" && (
+              <InputGroupAddon align="inline-end">{currencySymbol}</InputGroupAddon>
+            )}
+          </InputGroup>
+        </FormControl>
+        {description && <FormDescription>{description}</FormDescription>}
+        <FormMessage />
+      </FormItem>
+    );
+  }
 
   // Format number with thousand separators
   const formatCurrency = React.useCallback(
