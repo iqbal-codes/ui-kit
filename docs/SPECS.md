@@ -5,7 +5,7 @@ _Declarative Architecture for Shadcn-Based Component Ecosystem_
 
 ## 1. Executive Summary
 
-This specification defines the architecture for a comprehensive UI kit designed for AI-assisted development workflows. The system establishes a strict two-layer hierarchy—**Primitives** (pure shadcn/ui components) and **Blocks** (compositional business components)—delivered through a single-repository registry pattern with integrated Fumadocs documentation.
+This specification defines the architecture for a comprehensive UI kit designed for AI-assisted development workflows. The system establishes a strict two-layer hierarchy—**Primitives** (pure shadcn/ui components) and **Blocks** (compositional business components)—delivered through a single-repository registry pattern with integrated documentation.
 
 **Core Objective**: Enable AI agents to generate manufacturing and business applications with zero ambiguity about component availability, composition patterns, and architectural boundaries.
 
@@ -41,8 +41,13 @@ A unified codebase containing source components, registry manifests, documentati
 **Primary Directories**:
 
 - **Source**: Component implementations segregated by architectural layer
+  - `src/primitives/` - shadcn/ui base components
+  - `src/blocks/` - Composite business components
+  - `src/tokens/` - Design tokens
+  - `src/hooks/` - Shared React hooks
+  - `src/lib/` - Utilities
 - **Registry**: Machine-readable component manifests and dependency graphs
-- **Site**: Fumadocs-based documentation and component showcase
+- **Site**: Documentation and component showcase
 - **Scripts**: CLI tooling for component installation and synchronization
 
 ### 3.2 Distribution Strategy
@@ -64,7 +69,9 @@ Pure UI elements vendored directly from shadcn/ui. These represent the atomic vi
 - Visual-only modifications allowed (touch targets, safety color variants)
 - Importable only by Blocks, never by application code directly
 
-**Categories**: Actions (buttons, toggles), Inputs (text fields, selectors), Display (badges, cards), Overlays (dialogs, sheets), and Data (tables, lists).
+**Categories**: Actions (buttons, toggles), Inputs (text fields, selectors), Display (badges, cards), Overlays (dialogs, sheets), Navigation (breadcrumb, tabs), Feedback (alerts, progress), Layout (resizable, collapsible), Forms, and Charts.
+
+**Current Count**: 58 components
 
 ### 4.2 Blocks Layer
 
@@ -74,11 +81,19 @@ Composite components constructed from Primitives. Organized into three sub-categ
 
 Structural templates providing page-level composition frameworks. These accept content via slot-based props (header, content, sidebar, footer, modal portals) and establish consistent spatial relationships.
 
+**Current Components**: PageHeader, StickyHeader, SplitPane
+
 **Purpose**: Eliminate repetitive layout boilerplate in AI-generated code. Provide manufacturing-specific structural patterns (dashboard shells, split-pane workflows, mobile-responsive resource layouts).
 
 #### Domain Blocks
 
 Business-specific UI components containing manufacturing terminology and logic. These represent reusable business objects (work order cards, production timelines, status indicators, operator assignments).
+
+**Current Components**:
+- **Data Display**: EntityCard, StatCard, MetricCard, StatusGrid, SectionHeader, ActivityTimeline, CardGrid, DataGrid, MasonryBoard, SmartDataTable
+- **Data Entry**: SearchBar, FormSection, StickyActions, DurationPicker, FilterChip
+- **Feedback**: ToastManager, LoadingOverlay, ErrorFallback, EmptyState, ConfirmationDialog, ProgressTracker, SkeletonGenerator, ConnectionStatus
+- **Navigation**: BreadcrumbTrail, CommandPalette, MobileNav, SectionJumper, Pagination
 
 **Purpose**: Encapsulate domain knowledge so AI agents use correct terminology and patterns without hallucinating business logic.
 
@@ -86,16 +101,25 @@ Business-specific UI components containing manufacturing terminology and logic. 
 
 Comprehensive feature solutions integrating external state management libraries. These provide declarative interfaces to complex functionality (list pages with URL-persisted filters, auto-saving forms, real-time dashboards).
 
+**Current Components**: FormBuilder (with 12+ field types including TextField, SelectField, CheckboxField, RadioGroupField, SwitchField, ComboboxField, DateField, FileUploadField, CurrencyField, PercentageField, SliderField, TextareaField, PhoneField), SmartDataTable (with built-in filtering, sorting, pagination)
+
 **Purpose**: Enable single-component solutions for common manufacturing workflows. AI agents configure via props rather than wiring disparate libraries.
 
 ### 4.3 Dependency Hierarchy
 
 Strict dependency flow preventing circular references:
 
-- Primitives depend on utility libraries only
-- Domain Blocks depend on Primitives
-- Layout Blocks depend on Primitives and Domain Blocks
-- Smart Blocks depend on all lower layers plus external state libraries (nuqs, react-hook-form, tanstack-query)
+```
+Primitives → utility libraries only
+     ↓
+Domain Blocks → Primitives
+     ↓
+Layout Blocks → Primitives + Domain Blocks
+     ↓
+Smart Blocks → all lower layers + external state libraries
+```
+
+External state libraries: nuqs (URL state), react-hook-form (forms), tanstack-query (server state)
 
 ---
 
@@ -118,7 +142,7 @@ Centralized registry.json serving as the single source of truth for component di
 
 ### 5.3 API Exposure
 
-Documentation site exposes REST endpoints providing:
+Documentation site exposes endpoints providing:
 
 - Full component library with source code
 - Props interfaces and TypeScript definitions
@@ -127,13 +151,13 @@ Documentation site exposes REST endpoints providing:
 
 ---
 
-## 6. Documentation Architecture (Fumadocs)
+## 6. Documentation Architecture
 
 ### 6.1 Auto-Generated Component Pages
 
 Documentation pages generate at build time from registry manifests and source code analysis. Each component receives:
 
-- Interactive visual preview
+- Interactive visual preview (via Storybook)
 - Props documentation extracted from TypeScript definitions
 - Installation command specific to component type
 - Source code viewing with syntax highlighting
@@ -161,9 +185,9 @@ Documentation site serves JSON endpoints for AI agent consumption, enabling prog
 
 Component installation occurs via single command resolving three phases:
 
-1. Dependency Resolution: Identify and install required NPM packages (state libraries, utilities)
-2. Primitive Resolution: Install required shadcn/ui primitives via standard CLI
-3. Source Replication: Copy block source code into consuming project with path mapping updates
+1. **Dependency Resolution**: Identify and install required NPM packages (state libraries, utilities)
+2. **Primitive Resolution**: Install required shadcn/ui primitives via standard CLI
+3. **Source Replication**: Copy block source code into consuming project with path mapping updates
 
 ### 7.2 Version Pinning
 
@@ -243,7 +267,83 @@ Success measured by:
 
 ---
 
-## 11. Success Criteria
+## 11. Current Project Status
+
+### Implementation Progress
+
+| Layer | Status | Count | Notes |
+|-------|--------|-------|-------|
+| Primitives | ✅ Complete | 58 | All shadcn/ui components implemented |
+| Layout Blocks | 🟡 In Progress | 3 | PageHeader, StickyHeader, SplitPane |
+| Domain Blocks | 🟡 In Progress | 18 | Data display, navigation, feedback |
+| Smart Blocks | 🟡 In Progress | 2+ | FormBuilder, SmartDataTable |
+| Tokens | ✅ Complete | - | Design tokens implemented |
+| Registry | 🔴 Pending | - | Manifest system to be built |
+| Documentation | 🔴 Pending | - | Fumadocs integration pending |
+| CLI Tool | 🔴 Pending | - | Installation CLI to be built |
+
+### Block Inventory
+
+**Layout Blocks**:
+- [x] PageHeader
+- [x] StickyHeader
+- [x] SplitPane
+
+**Navigation Blocks**:
+- [x] BreadcrumbTrail
+- [x] CommandPalette
+- [x] MobileNav
+- [x] SectionJumper
+- [x] Pagination
+
+**Data Display Blocks**:
+- [x] EntityCard
+- [x] StatCard
+- [x] MetricCard
+- [x] StatusGrid
+- [x] SectionHeader
+- [x] ActivityTimeline
+- [x] CardGrid
+- [x] DataGrid
+- [x] MasonryBoard
+- [x] SmartDataTable
+
+**Data Entry Blocks**:
+- [x] SearchBar
+- [x] FormSection
+- [x] StickyActions
+- [x] DurationPicker
+- [x] FilterChip
+- [x] FormBuilder (with 12 field types)
+
+**Feedback Blocks**:
+- [x] ToastManager
+- [x] LoadingOverlay
+- [x] ErrorFallback
+- [x] EmptyState
+- [x] ConfirmationDialog
+- [x] ProgressTracker
+- [x] SkeletonGenerator
+- [x] ConnectionStatus
+
+### Technical Stack
+
+- **Build**: tsup (ESM + CJS output)
+- **Testing**: Vitest + React Testing Library
+- **Linting**: Biome
+- **Documentation**: Storybook (interactive previews)
+- **Package Manager**: Bun
+
+### Next Milestones
+
+1. **Registry System**: Build component manifests and global registry
+2. **Documentation Site**: Integrate Fumadocs for auto-generated pages
+3. **CLI Tool**: Implement installation command with dependency resolution
+4. **AI Context Files**: Add system prompts and composition guides
+
+---
+
+## 12. Success Criteria
 
 **Hierarchy Integrity**: AI agents correctly distinguish between Primitives (visual only), Domain Blocks (business UI), Layout Blocks (structural), and Smart Blocks (comprehensive solutions) without architectural confusion.
 
