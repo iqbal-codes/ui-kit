@@ -1,5 +1,6 @@
 "use client";
 
+import React from 'react'
 import { SearchBar } from "@/blocks/data-entry/search-bar";
 import { cn } from "@/lib/utils";
 import { Button } from "@/primitives/button";

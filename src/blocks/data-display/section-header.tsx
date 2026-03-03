@@ -1,4 +1,4 @@
-import type * as React from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/primitives/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/primitives/card";

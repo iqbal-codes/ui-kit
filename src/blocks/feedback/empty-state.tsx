@@ -1,5 +1,5 @@
 import { type LucideIcon, PackageOpen } from "lucide-react";
-import type * as React from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/primitives/button";
 

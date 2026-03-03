@@ -1,5 +1,7 @@
+/** biome-ignore-all lint/style/useImportType: <explanation> */
+/** biome-ignore-all assist/source/organizeImports: <explanation> */
+import React from 'react'
 import { CircleIcon, ClockIcon } from "lucide-react";
-import type * as React from "react";
 import { cn } from "@/lib/utils";
 
 export interface TimelineItem {
