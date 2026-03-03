@@ -1,6 +1,5 @@
+import { SearchIcon } from "lucide-react";
 import * as React from "react";
-import { SearchIcon, FileIcon, SettingsIcon, UserIcon } from "lucide-react";
-import { Command } from "@/primitives/command";
 import { Dialog, DialogContent } from "@/primitives/dialog";
 
 export interface CommandItem {
@@ -27,7 +26,7 @@ export function CommandPalette({
 }: CommandPaletteProps) {
   const [query, setQuery] = React.useState("");
 
-  const filteredItems = items.filter(item =>
+  const filteredItems = items.filter((item) =>
     item.label.toLowerCase().includes(query.toLowerCase())
   );
 

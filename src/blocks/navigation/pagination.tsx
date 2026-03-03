@@ -1,34 +1,33 @@
 "use client";
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/primitives/button";
-import {
-  Pagination as PaginationPrimitive,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationPrevious,
-  PaginationNext,
-  PaginationEllipsis,
-} from "@/primitives/pagination";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   ChevronsLeftIcon,
   ChevronsRightIcon,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/primitives/button";
+import {
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  Pagination as PaginationPrimitive,
+} from "@/primitives/pagination";
 
 /**
  * Pagination component with smart page calculation
- * 
+ *
  * A comprehensive pagination component that handles:
  * - Page number calculation with ellipsis
  * - First/Last page navigation (optional)
  * - Previous/Next navigation
  * - Disabled states for boundaries
  * - Accessibility (ARIA labels)
- * 
+ *
  * @example
  * ```tsx
  * <Pagination
@@ -59,12 +58,12 @@ export interface PaginationProps {
 
 /**
  * Calculate visible page numbers with ellipsis
- * 
+ *
  * Algorithm:
  * - Shows first page, last page, current page
  * - Shows siblingCount pages on each side of current
  * - Uses ellipsis (...) when pages are skipped
- * 
+ *
  * @example
  * ```
  * Page 50 of 100, siblingCount=1: [1, "...", 49, 50, 51, "...", 100]
@@ -72,11 +71,7 @@ export interface PaginationProps {
  * Page 8 of 10, siblingCount=1: [1, "...", 6, 7, 8, 9, 10]
  * ```
  */
-function getPageNumbers(
-  current: number,
-  total: number,
-  siblingCount: number
-): (number | "...")[] {
+function getPageNumbers(current: number, total: number, siblingCount: number): (number | "...")[] {
   const totalItems = siblingCount * 2 + 3; // siblings + first + last + current
   const dots: "..." = "...";
 
@@ -94,11 +89,7 @@ function getPageNumbers(
   // Near start: [1, 2, 3, 4, 5, "...", 100]
   if (!showLeftDots && showRightDots) {
     const leftItemCount = siblingCount * 2 + 3;
-    return [
-      ...Array.from({ length: leftItemCount }, (_, i) => i + 1),
-      dots,
-      total,
-    ];
+    return [...Array.from({ length: leftItemCount }, (_, i) => i + 1), dots, total];
   }
 
   // Near end: [1, "...", 96, 97, 98, 99, 100]
@@ -107,10 +98,7 @@ function getPageNumbers(
     return [
       1,
       dots,
-      ...Array.from(
-        { length: rightItemCount },
-        (_, i) => total - rightItemCount + i + 1
-      ),
+      ...Array.from({ length: rightItemCount }, (_, i) => total - rightItemCount + i + 1),
     ];
   }
 
@@ -129,7 +117,7 @@ function getPageNumbers(
 
 /**
  * Smart Pagination Component
- * 
+ *
  * Uses primitive pagination components with added logic for:
  * - Page number calculation
  * - Boundary handling

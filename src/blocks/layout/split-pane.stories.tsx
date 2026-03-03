@@ -1,17 +1,16 @@
-import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/primitives/card'
-import { SplitPane } from './split-pane'
+import type { Meta, StoryObj } from "@storybook/react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/primitives/card";
+import { SplitPane } from "./split-pane";
 
 const meta: Meta<typeof SplitPane> = {
-  title: 'Blocks/Layout/SplitPane',
+  title: "Blocks/Layout/SplitPane",
   component: SplitPane,
-  parameters: { layout: 'fullscreen' },
-  tags: ['autodocs'],
-}
+  parameters: { layout: "fullscreen" },
+  tags: ["autodocs"],
+};
 
-export default meta
-type Story = StoryObj<typeof SplitPane>
+export default meta;
+type Story = StoryObj<typeof SplitPane>;
 
 export const Default: Story = {
   render: () => (
@@ -40,7 +39,7 @@ export const Default: Story = {
       />
     </div>
   ),
-}
+};
 
 export const Vertical: Story = {
   render: () => (
@@ -61,6 +60,6 @@ export const Vertical: Story = {
     </div>
   ),
   args: {
-    orientation: 'vertical',
+    orientation: "vertical",
   },
-}
+};

@@ -1,17 +1,16 @@
-import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import { StickyHeader } from './sticky-header'
-import { BreadcrumbTrail } from '../navigation/breadcrumb-trail'
+import type { Meta, StoryObj } from "@storybook/react";
+import { BreadcrumbTrail } from "../navigation/breadcrumb-trail";
+import { StickyHeader } from "./sticky-header";
 
 const meta: Meta<typeof StickyHeader> = {
-  title: 'Blocks/Layout/StickyHeader',
+  title: "Blocks/Layout/StickyHeader",
   component: StickyHeader,
-  parameters: { layout: 'padded' },
-  tags: ['autodocs'],
-}
+  parameters: { layout: "padded" },
+  tags: ["autodocs"],
+};
 
-export default meta
-type Story = StoryObj<typeof StickyHeader>
+export default meta;
+type Story = StoryObj<typeof StickyHeader>;
 
 export const Default: Story = {
   render: () => (
@@ -20,8 +19,8 @@ export const Default: Story = {
         <div className="p-4 border-b">
           <BreadcrumbTrail
             items={[
-              { label: 'Home', href: '/' },
-              { label: 'Dashboard', isActive: true },
+              { label: "Home", href: "/" },
+              { label: "Dashboard", isActive: true },
             ]}
           />
         </div>
@@ -37,7 +36,7 @@ export const Default: Story = {
     offset: 0,
     showBorder: true,
   },
-}
+};
 
 export const NoBorder: Story = {
   render: () => (
@@ -57,4 +56,4 @@ export const NoBorder: Story = {
   args: {
     showBorder: false,
   },
-}
+};

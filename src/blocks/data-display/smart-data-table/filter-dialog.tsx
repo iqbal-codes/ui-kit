@@ -1,42 +1,23 @@
 "use client";
 
+import { format } from "date-fns";
 import * as React from "react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/primitives/button";
-import { Input } from "@/primitives/input";
-import { Label } from "@/primitives/label";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/primitives/dialog";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetFooter,
-} from "@/primitives/sheet";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/primitives/select";
 import { Calendar } from "@/primitives/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/primitives/popover";
 import {
   Combobox,
-  ComboboxInput,
   ComboboxContent,
-  ComboboxList,
-  ComboboxItem,
   ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
 } from "@/primitives/combobox";
-import { format } from "date-fns";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/primitives/dialog";
+import { Input } from "@/primitives/input";
+import { Label } from "@/primitives/label";
+import { Popover, PopoverContent, PopoverTrigger } from "@/primitives/popover";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/primitives/select";
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from "@/primitives/sheet";
 import type { FilterDialogProps, FilterField } from "./types";
 
 export function FilterDialog({
@@ -162,9 +143,7 @@ export function FilterDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
-        {Content}
-      </DialogContent>
+      <DialogContent className="sm:max-w-md">{Content}</DialogContent>
     </Dialog>
   );
 }
@@ -205,11 +184,7 @@ function FilterFieldInput({
             </SelectTrigger>
             <SelectContent>
               {field.options?.map((option) => (
-                <SelectItem
-                  key={option.value}
-                  value={option.value}
-                  disabled={option.disabled}
-                >
+                <SelectItem key={option.value} value={option.value} disabled={option.disabled}>
                   {option.label}
                 </SelectItem>
               ))}
@@ -222,10 +197,7 @@ function FilterFieldInput({
       return (
         <div className="space-y-2">
           <Label htmlFor={field.name}>{field.label}</Label>
-          <Combobox
-            value={value || ""}
-            onValueChange={onChange}
-          >
+          <Combobox value={value || ""} onValueChange={onChange}>
             <ComboboxInput
               placeholder={field.placeholder || "Select..."}
               showClear
@@ -234,11 +206,7 @@ function FilterFieldInput({
             <ComboboxContent>
               <ComboboxList>
                 {field.options?.map((option) => (
-                  <ComboboxItem
-                    key={option.value}
-                    value={option.value}
-                    disabled={option.disabled}
-                  >
+                  <ComboboxItem key={option.value} value={option.value} disabled={option.disabled}>
                     {option.label}
                   </ComboboxItem>
                 ))}
@@ -255,15 +223,8 @@ function FilterFieldInput({
           <Label htmlFor={field.name}>{field.label}</Label>
           <Popover>
             <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className="w-full justify-start text-left font-normal"
-              >
-                {value ? (
-                  format(value, "PPP")
-                ) : (
-                  <span>{field.placeholder || "Pick a date"}</span>
-                )}
+              <Button variant="outline" className="w-full justify-start text-left font-normal">
+                {value ? format(value, "PPP") : <span>{field.placeholder || "Pick a date"}</span>}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">

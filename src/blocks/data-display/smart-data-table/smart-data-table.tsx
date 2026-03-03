@@ -1,25 +1,25 @@
 "use client";
 
 import * as React from "react";
+import { DataGrid } from "@/blocks/data-display/data-grid";
+import { Pagination } from "@/blocks/navigation/pagination";
 import { cn } from "@/lib/utils";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/primitives/select";
 import { FilterBar } from "./filter-bar";
 import { FilterChips } from "./filter-chips";
 import { FilterDialog } from "./filter-dialog";
-import { DataGrid } from "@/blocks/data-display/data-grid";
-import { Pagination } from "@/blocks/navigation/pagination";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/primitives/select";
-import type { SmartDataTableProps, FilterState, ActiveFilter, FilterField } from "./types";
+import type { ActiveFilter, FilterState, SmartDataTableProps } from "./types";
 
 /**
  * SmartDataTable - Full-featured data table with search and filters
- * 
+ *
  * Features:
  * - Inline search with debounce
  * - Filter dialog/sheet (responsive)
  * - Filter chips display
  * - Optional URL state persistence
  * - Sorting, pagination, row selection (coming soon)
- * 
+ *
  * @example
  * ```tsx
  * <SmartDataTable
@@ -77,7 +77,7 @@ export function SmartDataTable<TData extends Record<string, any>>({
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
@@ -120,7 +120,7 @@ export function SmartDataTable<TData extends Record<string, any>>({
   // Convert filters to ActiveFilter array for chips
   const activeFilters: ActiveFilter[] = React.useMemo(() => {
     if (!localFilters) return [];
-    
+
     return Object.entries(localFilters)
       .filter(([_, value]) => value !== "" && value !== null && value !== undefined)
       .map(([field, value]) => {
@@ -208,18 +208,21 @@ export function SmartDataTable<TData extends Record<string, any>>({
           }))}
           rows={paginatedData.map((item, index) => ({
             id: (item as any).id || `row-${index}`,
-            cells: columns.reduce((acc, col) => ({
-              ...acc,
-              [col.id]: col.cell ? col.cell(item) : item[col.accessorKey as keyof TData],
-            }), {}),
+            cells: columns.reduce(
+              (acc, col) => ({
+                ...acc,
+                [col.id]: col.cell ? col.cell(item) : item[col.accessorKey as keyof TData],
+              }),
+              {}
+            ),
           }))}
           showHeader
           striped
           hoverable
           onRowClick={(row) => {
             if (enableRowSelection && onRowSelectionChange) {
-              const dataIndex = paginatedData.findIndex((item, i) => 
-                (item as any).id === row.id || `row-${i}` === row.id
+              const dataIndex = paginatedData.findIndex(
+                (item, i) => (item as any).id === row.id || `row-${i}` === row.id
               );
               if (dataIndex >= 0) {
                 onRowSelectionChange([paginatedData[dataIndex]]);

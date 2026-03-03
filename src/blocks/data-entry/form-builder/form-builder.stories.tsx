@@ -1,7 +1,5 @@
-import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { FormBuilder } from "./form-builder";
-import { Button } from "@/primitives/button";
 
 const meta = {
   title: "Blocks/Data Entry/FormBuilder",
@@ -220,8 +218,7 @@ export const ConditionalFields: Story = {
             name: "hasBenefits",
             type: "checkbox",
             label: "Enroll in benefits program",
-            description:
-              "Check to enroll in health, dental, and vision insurance",
+            description: "Check to enroll in health, dental, and vision insurance",
           },
           {
             name: "managerName",
@@ -370,9 +367,7 @@ export const WithCustomLayout: Story = {
     header: (
       <div className="mb-6">
         <h2 className="text-2xl font-bold">Create Account</h2>
-        <p className="text-muted-foreground">
-          Fill in the form below to create your account
-        </p>
+        <p className="text-muted-foreground">Fill in the form below to create your account</p>
       </div>
     ),
     footer: (
@@ -380,10 +375,7 @@ export const WithCustomLayout: Story = {
         <h4 className="font-medium mb-2">Need Help?</h4>
         <p className="text-sm text-muted-foreground">
           Contact support at{" "}
-          <a
-            href="mailto:support@example.com"
-            className="text-primary underline"
-          >
+          <a href="mailto:support@example.com" className="text-primary underline">
             support@example.com
           </a>
         </p>

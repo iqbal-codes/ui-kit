@@ -13,11 +13,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "baseUrl": ".",
+    "baseUrl": "..",
     "paths": {
       "@/*": ["./src/*", "./*"]
     }
   },
-  "include": [".storybook/**/*", "src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["./**/*", "../src/**/*"],
+  "exclude": ["../node_modules", "../dist"]
 }

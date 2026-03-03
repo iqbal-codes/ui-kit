@@ -1,15 +1,14 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { Plus, Search, Users, FileText } from 'lucide-react';
-import { EmptyState } from './empty-state';
+import type { Meta, StoryObj } from "@storybook/react";
+import { FileText, Plus, Search, Users } from "lucide-react";
+import { EmptyState } from "./empty-state";
 
 const meta: Meta<typeof EmptyState> = {
-  title: 'Blocks/Feedback/EmptyState',
+  title: "Blocks/Feedback/EmptyState",
   component: EmptyState,
   parameters: {
-    layout: 'padded',
+    layout: "padded",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 };
 
 export default meta;
@@ -18,67 +17,67 @@ type Story = StoryObj<typeof EmptyState>;
 
 export const Default: Story = {
   args: {
-    title: 'No items found',
-    description: 'Try adjusting your search or filters to find what you\'re looking for.',
+    title: "No items found",
+    description: "Try adjusting your search or filters to find what you're looking for.",
   },
 };
 
 export const WithPrimaryAction: Story = {
   args: {
-    title: 'No users yet',
-    description: 'Start by adding your first user to the system.',
+    title: "No users yet",
+    description: "Start by adding your first user to the system.",
     action: {
-      label: 'Add User',
-      onClick: () => console.log('Add user clicked'),
+      label: "Add User",
+      onClick: () => console.log("Add user clicked"),
     },
   },
 };
 
 export const WithBothActions: Story = {
   args: {
-    title: 'No documents',
-    description: 'Upload your first document to get started.',
+    title: "No documents",
+    description: "Upload your first document to get started.",
     action: {
-      label: 'Upload Document',
-      onClick: () => console.log('Upload clicked'),
+      label: "Upload Document",
+      onClick: () => console.log("Upload clicked"),
     },
     secondaryAction: {
-      label: 'Learn More',
-      variant: 'outline',
-      onClick: () => console.log('Learn more clicked'),
+      label: "Learn More",
+      variant: "outline",
+      onClick: () => console.log("Learn more clicked"),
     },
   },
 };
 
 export const CustomIcon: Story = {
   args: {
-    title: 'No search results',
-    description: 'We couldn\'t find any matches for your search.',
+    title: "No search results",
+    description: "We couldn't find any matches for your search.",
     icon: Search,
     action: {
-      label: 'Clear Search',
-      onClick: () => console.log('Clear search clicked'),
+      label: "Clear Search",
+      onClick: () => console.log("Clear search clicked"),
     },
   },
 };
 
 export const Compact: Story = {
   args: {
-    title: 'No items',
-    description: 'There are no items to display.',
+    title: "No items",
+    description: "There are no items to display.",
     compact: true,
   },
 };
 
 export const CompactWithAction: Story = {
   args: {
-    title: 'No results',
-    description: 'Try a different search term.',
+    title: "No results",
+    description: "Try a different search term.",
     compact: true,
     action: {
-      label: 'Clear',
-      variant: 'ghost',
-      onClick: () => console.log('Clear clicked'),
+      label: "Clear",
+      variant: "ghost",
+      onClick: () => console.log("Clear clicked"),
     },
   },
 };
@@ -91,7 +90,7 @@ export const DifferentIcons: Story = {
         description="Add users to your organization"
         icon={Users}
         action={{
-          label: 'Add User',
+          label: "Add User",
           onClick: () => {},
         }}
       />
@@ -100,7 +99,7 @@ export const DifferentIcons: Story = {
         description="Upload your first file"
         icon={FileText}
         action={{
-          label: 'Upload File',
+          label: "Upload File",
           onClick: () => {},
         }}
       />
@@ -109,7 +108,7 @@ export const DifferentIcons: Story = {
         description="Try a different search"
         icon={Search}
         action={{
-          label: 'Search Again',
+          label: "Search Again",
           onClick: () => {},
         }}
       />
@@ -118,7 +117,7 @@ export const DifferentIcons: Story = {
         description="Create your first item"
         icon={Plus}
         action={{
-          label: 'Create New',
+          label: "Create New",
           onClick: () => {},
         }}
       />
@@ -128,6 +127,6 @@ export const DifferentIcons: Story = {
 
 export const TitleOnly: Story = {
   args: {
-    title: 'Nothing here yet',
+    title: "Nothing here yet",
   },
 };

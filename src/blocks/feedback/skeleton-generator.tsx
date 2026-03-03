@@ -1,6 +1,5 @@
-import * as React from "react";
-import { Skeleton } from "@/primitives/skeleton";
 import { cn } from "@/lib/utils";
+import { Skeleton } from "@/primitives/skeleton";
 
 export interface SkeletonGeneratorProps {
   /** Type of skeleton */

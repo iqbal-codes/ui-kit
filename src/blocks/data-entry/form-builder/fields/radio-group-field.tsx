@@ -1,17 +1,10 @@
 "use client";
 
-import * as React from "react";
-import { useFormContext, Controller, type FieldPath, type FieldValues } from "react-hook-form";
+import { Controller, type FieldPath, type FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
-import { RadioGroup, RadioGroupItem } from "@/primitives/radio-group";
+import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from "@/primitives/form";
 import { Label } from "@/primitives/label";
-import {
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormMessage,
-} from "@/primitives/form";
+import { RadioGroup, RadioGroupItem } from "@/primitives/radio-group";
 
 export interface RadioOption {
   value: string;
@@ -61,18 +54,13 @@ export function RadioGroupField<T extends FieldValues>({
               value={field.value}
               disabled={disabled}
               orientation={orientation}
-              className={cn(
-                orientation === "horizontal" && "flex flex-wrap gap-4"
-              )}
+              className={cn(orientation === "horizontal" && "flex flex-wrap gap-4")}
               aria-invalid={!!error}
             >
               {options.map((option) => (
                 <div
                   key={option.value}
-                  className={cn(
-                    "flex items-start gap-2",
-                    orientation === "vertical" && "flex-col"
-                  )}
+                  className={cn("flex items-start gap-2", orientation === "vertical" && "flex-col")}
                 >
                   <RadioGroupItem
                     id={`${name}-${option.value}`}
@@ -84,16 +72,13 @@ export function RadioGroupField<T extends FieldValues>({
                       htmlFor={`${name}-${option.value}`}
                       className={cn(
                         "font-medium",
-                        (disabled || option.disabled) &&
-                          "cursor-not-allowed opacity-50"
+                        (disabled || option.disabled) && "cursor-not-allowed opacity-50"
                       )}
                     >
                       {option.label}
                     </Label>
                     {option.description && (
-                      <p className="text-sm text-muted-foreground">
-                        {option.description}
-                      </p>
+                      <p className="text-sm text-muted-foreground">{option.description}</p>
                     )}
                   </div>
                 </div>

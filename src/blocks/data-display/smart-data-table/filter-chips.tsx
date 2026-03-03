@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/primitives/badge";
@@ -9,29 +8,19 @@ import type { FilterChipsProps } from "./types";
 
 /**
  * FilterChips - Bottom row displaying active filter chips
- * 
+ *
  * Layout:
  * - Chips wrap horizontally
  * - Each chip has label = value format with remove button
  * - Clear All button at the end (optional)
  */
-export function FilterChips({
-  filters,
-  onRemoveFilter,
-  onClearAll,
-  className,
-}: FilterChipsProps) {
+export function FilterChips({ filters, onRemoveFilter, onClearAll, className }: FilterChipsProps) {
   if (filters.length === 0) {
     return null;
   }
 
   return (
-    <div
-      className={cn(
-        "flex flex-wrap items-center gap-2 py-2",
-        className
-      )}
-    >
+    <div className={cn("flex flex-wrap items-center gap-2 py-2", className)}>
       {/* Filter Chips */}
       {filters.map((filter) => (
         <Badge

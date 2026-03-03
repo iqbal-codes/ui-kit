@@ -1,17 +1,34 @@
 // Design Tokens - Centralized design system tokens
 // Following Tailwind CSS v4 CSS-first configuration with OKLCH colors
 
+export * from "./animations";
 // Export all token categories
-export * from './colors'
-export * from './typography'
-export * from './spacing'
-export * from './animations'
+export * from "./colors";
+export * from "./spacing";
+export * from "./typography";
 
+import { animations, durations, easings, keyframes, transitions } from "./animations";
 // Combined tokens object for easy access
-import { baseColors, semanticColors } from './colors'
-import { fontFamilies, fontSizes, fontWeights, lineHeights, letterSpacings, typography } from './typography'
-import { spacing, semanticSpacing, borderRadius, container, breakpoints, zIndex, shadows, grid, baseRadius } from './spacing'
-import { durations, easings, animations, keyframes, transitions } from './animations'
+import { baseColors, semanticColors } from "./colors";
+import {
+  baseRadius,
+  borderRadius,
+  breakpoints,
+  container,
+  grid,
+  semanticSpacing,
+  shadows,
+  spacing,
+  zIndex,
+} from "./spacing";
+import {
+  fontFamilies,
+  fontSizes,
+  fontWeights,
+  letterSpacings,
+  lineHeights,
+  typography,
+} from "./typography";
 
 export const tokens = {
   // Colors
@@ -51,7 +68,7 @@ export const tokens = {
     keyframes,
     transitions,
   },
-} as const
+} as const;
 
 // Type export for the complete token structure
-export type Tokens = typeof tokens
+export type Tokens = typeof tokens;

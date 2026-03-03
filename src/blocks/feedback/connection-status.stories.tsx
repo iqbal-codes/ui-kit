@@ -1,49 +1,48 @@
-import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import { ConnectionStatus } from './connection-status'
+import type { Meta, StoryObj } from "@storybook/react";
+import { ConnectionStatus } from "./connection-status";
 
 const meta: Meta<typeof ConnectionStatus> = {
-  title: 'Blocks/Feedback/ConnectionStatus',
+  title: "Blocks/Feedback/ConnectionStatus",
   component: ConnectionStatus,
-  parameters: { layout: 'padded' },
-  tags: ['autodocs'],
-}
+  parameters: { layout: "padded" },
+  tags: ["autodocs"],
+};
 
-export default meta
-type Story = StoryObj<typeof ConnectionStatus>
+export default meta;
+type Story = StoryObj<typeof ConnectionStatus>;
 
 export const Connected: Story = {
   args: {
-    status: 'connected',
+    status: "connected",
   },
-}
+};
 
 export const Disconnected: Story = {
   args: {
-    status: 'disconnected',
+    status: "disconnected",
   },
-}
+};
 
 export const Connecting: Story = {
   args: {
-    status: 'connecting',
+    status: "connecting",
   },
-}
+};
 
 export const NoIcon: Story = {
   args: {
-    status: 'connected',
+    status: "connected",
     showIcon: false,
   },
-}
+};
 
 export const CustomLabels: Story = {
   args: {
-    status: 'connected',
+    status: "connected",
     labels: {
-      connected: 'Online',
-      disconnected: 'Offline',
-      connecting: 'Reconnecting...',
+      connected: "Online",
+      disconnected: "Offline",
+      connecting: "Reconnecting...",
     },
   },
-}
+};

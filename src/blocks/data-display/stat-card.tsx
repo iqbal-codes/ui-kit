@@ -1,15 +1,7 @@
-import * as React from "react";
 import { ArrowDownIcon, ArrowUpIcon, MinusIcon } from "lucide-react";
-
-import { Badge } from "@/primitives/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/primitives/card";
 import { cn } from "@/lib/utils";
+import { Badge } from "@/primitives/badge";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/primitives/card";
 
 export type TrendDirection = "up" | "down" | "neutral";
 
@@ -56,10 +48,7 @@ function TrendBadge({
   const Icon = icons[direction];
 
   return (
-    <Badge
-      variant="outline"
-      className={cn("gap-1 font-normal", variants[direction])}
-    >
+    <Badge variant="outline" className={cn("gap-1 font-normal", variants[direction])}>
       <Icon className="h-3 w-3" />
       <span>{value}</span>
       {label && <span className="text-muted-foreground">{label}</span>}
@@ -67,36 +56,19 @@ function TrendBadge({
   );
 }
 
-export function StatCard({
-  title,
-  value,
-  description,
-  trend,
-  className,
-  onClick,
-}: StatCardProps) {
+export function StatCard({ title, value, description, trend, className, onClick }: StatCardProps) {
   return (
     <Card
-      className={cn(
-        "transition-colors",
-        onClick && "cursor-pointer hover:bg-muted/50",
-        className,
-      )}
+      className={cn("transition-colors", onClick && "cursor-pointer hover:bg-muted/50", className)}
       onClick={onClick}
     >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <div className="space-y-1">
           <CardTitle className="text-sm font-medium">{title}</CardTitle>
-          {description && (
-            <CardDescription className="text-xs">{description}</CardDescription>
-          )}
+          {description && <CardDescription className="text-xs">{description}</CardDescription>}
         </div>
         {trend && (
-          <TrendBadge
-            direction={trend.direction}
-            value={trend.value}
-            label={trend.label}
-          />
+          <TrendBadge direction={trend.direction} value={trend.value} label={trend.label} />
         )}
       </CardHeader>
       <CardContent>

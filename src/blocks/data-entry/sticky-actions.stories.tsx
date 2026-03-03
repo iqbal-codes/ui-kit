@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import { Button } from '@/primitives/button'
-import { StickyActions } from './sticky-actions'
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { Button } from "@/primitives/button";
+import { StickyActions } from "./sticky-actions";
 
 const meta: Meta<typeof StickyActions> = {
-  title: 'Blocks/Data Entry/StickyActions',
+  title: "Blocks/Data Entry/StickyActions",
   component: StickyActions,
-  parameters: { layout: 'fullscreen' },
-  tags: ['autodocs'],
-}
+  parameters: { layout: "fullscreen" },
+  tags: ["autodocs"],
+};
 
-export default meta
-type Story = StoryObj<typeof StickyActions>
+export default meta;
+type Story = StoryObj<typeof StickyActions>;
 
 export const Default: Story = {
   render: () => (
@@ -29,18 +29,18 @@ export const Default: Story = {
       </StickyActions>
     </div>
   ),
-}
+};
 
 export const WithDirtyWarning: Story = {
   render: () => {
-    const [isDirty, setIsDirty] = useState(false)
+    const [isDirty, setIsDirty] = useState(false);
     return (
       <div className="min-h-[400px] flex flex-col">
         <div className="flex-1 p-4 space-y-4">
           <h2 className="text-lg font-semibold">Form with Dirty State</h2>
           <label className="flex items-center gap-2">
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               checked={isDirty}
               onChange={(e) => setIsDirty(e.target.checked)}
             />
@@ -56,13 +56,13 @@ export const WithDirtyWarning: Story = {
           <Button>Save</Button>
         </StickyActions>
       </div>
-    )
+    );
   },
   args: {
     showDirtyWarning: true,
     isDirty: false,
   },
-}
+};
 
 export const Top: Story = {
   render: () => (
@@ -82,6 +82,6 @@ export const Top: Story = {
     </div>
   ),
   args: {
-    position: 'top',
+    position: "top",
   },
-}
+};

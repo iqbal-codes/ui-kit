@@ -1,15 +1,12 @@
 import * as React from "react";
-
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/primitives/breadcrumb";
-import { cn } from "@/lib/utils";
 
 export interface BreadcrumbItemType {
   /** Display label */
@@ -43,16 +40,16 @@ export function BreadcrumbTrail({
 
   const getDisplayItems = (): Array<BreadcrumbItemType & { key: string }> => {
     if (!shouldCollapse) return items.map((item, i) => ({ ...item, key: `item-${i}` }));
-    
+
     const first = items[0];
     const last = items[items.length - 1];
     const middle = items.slice(1, items.length - 1);
-    
+
     return [
-      { ...first, key: 'first' },
-      { label: "...", key: 'ellipsis' },
+      { ...first, key: "first" },
+      { label: "...", key: "ellipsis" },
       ...middle.slice(-(maxItems - 2)).map((item, i) => ({ ...item, key: `middle-${i}` })),
-      { ...last, key: 'last' },
+      { ...last, key: "last" },
     ];
   };
 
@@ -67,9 +64,7 @@ export function BreadcrumbTrail({
               {item.isActive || index === displayItems.length - 1 ? (
                 <BreadcrumbPage>{item.label}</BreadcrumbPage>
               ) : item.href ? (
-                <BreadcrumbLink href={item.href}>
-                  {item.label}
-                </BreadcrumbLink>
+                <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
               ) : (
                 <span className="text-muted-foreground">{item.label}</span>
               )}

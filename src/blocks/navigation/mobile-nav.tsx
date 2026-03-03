@@ -1,7 +1,7 @@
-import * as React from "react";
-import { Badge } from "@/primitives/badge";
+import { BellIcon, HomeIcon, MenuIcon, SearchIcon, SettingsIcon, UserIcon } from "lucide-react";
+import type * as React from "react";
 import { cn } from "@/lib/utils";
-import { HomeIcon, UserIcon, SettingsIcon, BellIcon, SearchIcon, MenuIcon } from "lucide-react";
+import { Badge } from "@/primitives/badge";
 
 export interface MobileNavItem {
   /** Unique identifier */
@@ -30,7 +30,7 @@ export interface MobileNavProps {
   className?: string;
 }
 
-const defaultIcons = {
+const _defaultIcons = {
   home: <HomeIcon className="h-5 w-5" />,
   user: <UserIcon className="h-5 w-5" />,
   settings: <SettingsIcon className="h-5 w-5" />,

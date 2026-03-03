@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { cn } from "@/lib/utils";
 
 export interface CardGridProps {
@@ -26,23 +26,9 @@ const columnSizes = {
   6: "grid-cols-6",
 };
 
-export function CardGrid({
-  columns = 3,
-  gap = "md",
-  children,
-  className,
-}: CardGridProps) {
+export function CardGrid({ columns = 3, gap = "md", children, className }: CardGridProps) {
   return (
-    <div
-      className={cn(
-        "grid",
-        columnSizes[columns],
-        gapSizes[gap],
-        className
-      )}
-    >
-      {children}
-    </div>
+    <div className={cn("grid", columnSizes[columns], gapSizes[gap], className)}>{children}</div>
   );
 }
 

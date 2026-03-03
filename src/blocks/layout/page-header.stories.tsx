@@ -1,5 +1,5 @@
 /** biome-ignore-all lint/suspicious/noRedeclare: false positive */
-import React from "react";
+
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "@/primitives/button";
 import { PageHeader } from "./page-header";
@@ -53,10 +53,7 @@ export const Full: Story = {
   args: {
     title: "User Management",
     subtitle: "Manage user accounts and permissions",
-    breadcrumbs: [
-      { label: "Dashboard", href: "/dashboard" },
-      { label: "Settings" },
-    ],
+    breadcrumbs: [{ label: "Dashboard", href: "/dashboard" }, { label: "Settings" }],
     actions: (
       <>
         <Button variant="outline">Export</Button>
@@ -69,11 +66,7 @@ export const Full: Story = {
 export const Children: Story = {
   args: {
     title: "Page Title",
-    children: (
-      <p className="text-sm text-muted-foreground">
-        Custom content below the title
-      </p>
-    ),
+    children: <p className="text-sm text-muted-foreground">Custom content below the title</p>,
   },
 };
 

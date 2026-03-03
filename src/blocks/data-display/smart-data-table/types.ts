@@ -1,10 +1,10 @@
-import type { FieldValues, Path } from "react-hook-form";
+import type { FieldValues } from "react-hook-form";
 
 /**
  * Filter field configuration
  * Defines the structure for each filter field in the dialog
  */
-export interface FilterField<T extends FieldValues = FieldValues> {
+export interface FilterField<_T extends FieldValues = FieldValues> {
   /** Unique field identifier (matches data key) */
   name: string;
   /** Display label for the field */

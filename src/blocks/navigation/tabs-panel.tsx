@@ -1,6 +1,6 @@
-import * as React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/primitives/tabs";
+import type * as React from "react";
 import { cn } from "@/lib/utils";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/primitives/tabs";
 
 export interface TabItem {
   /** Unique identifier */
@@ -36,22 +36,19 @@ export function TabsPanel({
   className,
 }: TabsPanelProps) {
   const defaultValue = defaultTab || items[0]?.id;
-  const variantClass = variant === "pills" ? "bg-muted p-1" : variant === "outline" ? "border-b" : "";
+  const variantClass =
+    variant === "pills" ? "bg-muted p-1" : variant === "outline" ? "border-b" : "";
 
   return (
-    <Tabs 
-      defaultValue={defaultValue} 
-      value={value} 
+    <Tabs
+      defaultValue={defaultValue}
+      value={value}
       onValueChange={onValueChange}
       className={className}
     >
       <TabsList className={cn(variantClass)}>
         {items.map((item) => (
-          <TabsTrigger 
-            key={item.id} 
-            value={item.id}
-            disabled={item.disabled}
-          >
+          <TabsTrigger key={item.id} value={item.id} disabled={item.disabled}>
             {item.label}
           </TabsTrigger>
         ))}

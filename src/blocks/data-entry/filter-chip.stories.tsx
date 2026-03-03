@@ -1,54 +1,50 @@
-import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import { FilterChip } from './filter-chip'
+import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
+import { FilterChip } from "./filter-chip";
 
 const meta: Meta<typeof FilterChip> = {
-  title: 'Blocks/Data Entry/FilterChip',
+  title: "Blocks/Data Entry/FilterChip",
   component: FilterChip,
-  parameters: { layout: 'padded' },
-  tags: ['autodocs'],
-}
+  parameters: { layout: "padded" },
+  tags: ["autodocs"],
+};
 
-export default meta
-type Story = StoryObj<typeof FilterChip>
+export default meta;
+type Story = StoryObj<typeof FilterChip>;
 
 export const Default: Story = {
   args: {
-    label: 'Status',
+    label: "Status",
     selected: false,
   },
-}
+};
 
 export const Selected: Story = {
   args: {
-    label: 'Status',
+    label: "Status",
     selected: true,
   },
-}
+};
 
 export const WithCount: Story = {
   args: {
-    label: 'Active',
+    label: "Active",
     count: 12,
   },
-}
+};
 
 export const Removable: Story = {
   args: {
-    label: 'Filter',
-    onRemove: () => console.log('removed'),
+    label: "Filter",
+    onRemove: () => console.log("removed"),
   },
-}
+};
 
 export const Interactive: Story = {
   render: () => {
-    const [selected, setSelected] = React.useState(false)
+    const [selected, setSelected] = React.useState(false);
     return (
-      <FilterChip
-        label="Toggle Me"
-        selected={selected}
-        onToggle={() => setSelected(!selected)}
-      />
-    )
+      <FilterChip label="Toggle Me" selected={selected} onToggle={() => setSelected(!selected)} />
+    );
   },
-}
+};

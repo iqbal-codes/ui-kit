@@ -1,7 +1,6 @@
-import * as React from "react";
-
-import { Spinner } from "@/primitives/spinner";
+import type * as React from "react";
 import { cn } from "@/lib/utils";
+import { Spinner } from "@/primitives/spinner";
 
 export interface LoadingOverlayProps {
   /** Show/hide the overlay */
@@ -48,12 +47,8 @@ export function LoadingOverlay({
           )}
         >
           <Spinner className="size-8" />
-          {message && (
-            <p className="text-sm font-medium text-foreground">{message}</p>
-          )}
-          {description && (
-            <p className="text-sm text-muted-foreground">{description}</p>
-          )}
+          {message && <p className="text-sm font-medium text-foreground">{message}</p>}
+          {description && <p className="text-sm text-muted-foreground">{description}</p>}
         </div>
       )}
     </div>

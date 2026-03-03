@@ -1,27 +1,9 @@
 "use client";
 
-import * as React from "react";
-import {
-  useFormContext,
-  Controller,
-  type FieldPath,
-  type FieldValues,
-} from "react-hook-form";
+import { Controller, type FieldPath, type FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/primitives/select";
-import {
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormMessage,
-} from "@/primitives/form";
+import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from "@/primitives/form";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/primitives/select";
 
 export interface SelectOption {
   value: string;
@@ -65,21 +47,13 @@ export function SelectField<T extends FieldValues>({
             </FormLabel>
           )}
           <FormControl>
-            <Select
-              onValueChange={field.onChange}
-              value={field.value}
-              disabled={disabled}
-            >
+            <Select onValueChange={field.onChange} value={field.value} disabled={disabled}>
               <SelectTrigger id={name} className="w-full">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
               <SelectContent>
                 {options.map((option) => (
-                  <SelectItem
-                    key={option.value}
-                    value={option.value}
-                    disabled={option.disabled}
-                  >
+                  <SelectItem key={option.value} value={option.value} disabled={option.disabled}>
                     {option.label}
                   </SelectItem>
                 ))}

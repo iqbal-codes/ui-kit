@@ -1,15 +1,10 @@
 "use client";
 
-import * as React from "react";
-import { useFormContext, Controller, type FieldPath, type FieldValues } from "react-hook-form";
+import { Controller, type FieldPath, type FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
-import { Switch } from "@/primitives/switch";
+import { FormDescription, FormItem, FormMessage } from "@/primitives/form";
 import { Label } from "@/primitives/label";
-import {
-  FormItem,
-  FormDescription,
-  FormMessage,
-} from "@/primitives/form";
+import { Switch } from "@/primitives/switch";
 
 export interface SwitchFieldProps<T extends FieldValues = FieldValues> {
   name: FieldPath<T>;

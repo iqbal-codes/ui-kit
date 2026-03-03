@@ -1,9 +1,9 @@
-import * as React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { PackageOpen, Plus } from "lucide-react";
+import * as React from "react";
+import { EmptyState } from "@/blocks/feedback/empty-state";
 import { SmartDataTable } from "./smart-data-table";
 import type { ColumnDef } from "./types";
-import { EmptyState } from "@/blocks/feedback/empty-state";
-import { Plus, PackageOpen } from "lucide-react";
 
 const meta = {
   title: "Blocks/Data Display/SmartDataTable",

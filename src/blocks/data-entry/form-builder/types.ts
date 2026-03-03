@@ -1,5 +1,8 @@
 import type { FieldValues, Path, UseFormReturn } from "react-hook-form";
 
+/**
+ * Union type of all available field types
+ */
 export type FieldType =
   | "text"
   | "email"
@@ -17,7 +20,19 @@ export type FieldType =
   | "combobox"
   | "multi-select"
   | "tel"
-  | "url";
+  | "url"
+  | "currency"
+  | "phone"
+  | "percentage"
+  | "otp"
+  | "rating"
+  | "color"
+  | "slider"
+  | "rich-text"
+  | "code"
+  | "address"
+  | "name"
+  | "credit-card";
 
 export interface FieldOption {
   value: string;
@@ -26,11 +41,12 @@ export interface FieldOption {
   disabled?: boolean;
 }
 
-export interface FieldConfig<T extends FieldValues = FieldValues> {
+/**
+ * Base field config shared by all field types
+ */
+interface BaseFieldConfig<T extends FieldValues = FieldValues> {
   /** Field name (dot notation for nested: 'user.email') */
   name: Path<T>;
-  /** Field type */
-  type: FieldType;
   /** Field label */
   label?: string;
   /** Field description/help text */
@@ -49,10 +65,6 @@ export interface FieldConfig<T extends FieldValues = FieldValues> {
     pattern?: { value: RegExp; message: string };
     validate?: (value: any) => boolean | string;
   };
-  /** Options for select/radio/checkbox groups */
-  options?: FieldOption[];
-  /** Multiple selection for select/combobox */
-  multiple?: boolean;
   /** Disabled state */
   disabled?: boolean;
   /** Read-only state */
@@ -61,14 +73,245 @@ export interface FieldConfig<T extends FieldValues = FieldValues> {
   when?: (values: Partial<T>) => boolean;
   /** Custom field component */
   render?: (field: any, form: any) => React.ReactNode;
-  /** File upload specific */
-  accept?: string;
-  maxSize?: number;
-  maxFiles?: number;
-  onUpload?: (files: File[]) => void | Promise<void>;
-  /** Textarea specific */
+  /** Additional CSS classes */
+  className?: string;
+}
+
+/**
+ * Text-based input fields
+ */
+interface TextFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "text" | "email" | "password" | "number" | "tel" | "url";
+  inputMode?: "text" | "email" | "numeric" | "tel" | "url";
+  autoComplete?: string;
+}
+
+/**
+ * Multi-line text input
+ */
+interface TextareaFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "textarea";
   rows?: number;
 }
+
+/**
+ * Select dropdown with options
+ */
+interface SelectFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "select";
+  options: FieldOption[];
+  placeholder?: string;
+}
+
+/**
+ * Checkbox field
+ */
+interface CheckboxFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "checkbox";
+}
+
+/**
+ * Switch/toggle field
+ */
+interface SwitchFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "switch";
+}
+
+/**
+ * Radio group with options
+ */
+interface RadioGroupFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "radio";
+  options: FieldOption[];
+}
+
+/**
+ * Date picker field
+ */
+interface DateFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "date" | "datetime" | "time";
+}
+
+/**
+ * File upload field
+ */
+interface FileUploadFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "file";
+  accept?: string;
+  maxSize?: number; // in bytes
+  maxFiles?: number;
+  onUpload?: (files: File[]) => void | Promise<void>;
+}
+
+/**
+ * Combobox (searchable select) field
+ */
+interface ComboboxFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "combobox" | "multi-select";
+  options: FieldOption[];
+  searchable?: boolean;
+  multiple?: boolean;
+}
+
+/**
+ * Currency input with formatting
+ */
+interface CurrencyFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "currency";
+  currencySymbol?: string;
+  currencyPosition?: "prefix" | "suffix";
+  allowNegative?: boolean;
+  decimalPlaces?: number;
+  minValue?: number;
+  maxValue?: number;
+}
+
+/**
+ * Phone number input with country code
+ */
+interface PhoneFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "phone";
+  defaultCountry?: string;
+  showCountrySelect?: boolean;
+  countryFieldName?: Path<T>;
+}
+
+/**
+ * Percentage input
+ */
+interface PercentageFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "percentage";
+  minValue?: number;
+  maxValue?: number;
+  decimalPlaces?: number;
+  step?: number;
+}
+
+/**
+ * OTP (One-Time Password) input
+ */
+interface OTPFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "otp";
+  otpLength?: number;
+  otpType?: "numeric" | "alphanumeric";
+  showSeparator?: boolean;
+  groupSize?: number;
+}
+
+/**
+ * Star rating input
+ */
+interface RatingFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "rating";
+  maxRating?: number;
+  showNumbers?: boolean;
+  labels?: string[];
+  size?: "sm" | "md" | "lg";
+  allowClear?: boolean;
+  icon?: "star" | "heart" | "thumbs-up";
+}
+
+/**
+ * Color picker input
+ */
+interface ColorFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "color";
+  format?: "hex" | "rgb" | "hsl";
+  showAlpha?: boolean;
+  presets?: string[];
+  showPreview?: boolean;
+}
+
+/**
+ * Slider/range input
+ */
+interface SliderFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "slider";
+  min?: number;
+  max?: number;
+  step?: number;
+  showInput?: boolean;
+  showValue?: boolean;
+  suffix?: string;
+  orientation?: "horizontal" | "vertical";
+  inverted?: boolean;
+}
+
+/**
+ * Rich text editor field (placeholder for future implementation)
+ */
+interface RichTextFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "rich-text" | "code";
+  minHeight?: string;
+  toolbar?: string[];
+}
+
+/**
+ * Address field group (placeholder for future implementation)
+ */
+interface AddressFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "address";
+  showCounty?: boolean;
+  showCountry?: boolean;
+  defaultCountry?: string;
+}
+
+/**
+ * Name field group (placeholder for future implementation)
+ */
+interface NameFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "name";
+  showMiddleName?: boolean;
+  showPrefix?: boolean;
+  showSuffix?: boolean;
+}
+
+/**
+ * Credit card input (placeholder for future implementation)
+ */
+interface CreditCardFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "credit-card";
+  showExpiry?: boolean;
+  showCvv?: boolean;
+  showCardHolder?: boolean;
+}
+
+/**
+ * Union of all field config types - enables type-safe field configurations
+ * When type is "select", only "options" prop is shown, not currency/phone/etc props
+ */
+export type FieldConfig<T extends FieldValues = FieldValues> =
+  | TextFieldConfig<T>
+  | TextareaFieldConfig<T>
+  | SelectFieldConfig<T>
+  | CheckboxFieldConfig<T>
+  | SwitchFieldConfig<T>
+  | RadioGroupFieldConfig<T>
+  | DateFieldConfig<T>
+  | FileUploadFieldConfig<T>
+  | ComboboxFieldConfig<T>
+  | CurrencyFieldConfig<T>
+  | PhoneFieldConfig<T>
+  | PercentageFieldConfig<T>
+  | OTPFieldConfig<T>
+  | RatingFieldConfig<T>
+  | ColorFieldConfig<T>
+  | SliderFieldConfig<T>
+  | RichTextFieldConfig<T>
+  | AddressFieldConfig<T>
+  | NameFieldConfig<T>
+  | CreditCardFieldConfig<T>;
+
+/**
+ * Helper type to get field-specific config based on type
+ * @example
+ * type SelectConfig = FieldConfigByType<"select">
+ * // Result: SelectFieldConfig with required "options" prop
+ */
+export type FieldConfigByType<
+  K extends FieldConfig["type"],
+  T extends FieldValues = FieldValues,
+> = Extract<FieldConfig<T>, { type: K }>;
 
 export interface FormSectionConfig<T extends FieldValues = FieldValues> {
   /** Section identifier */

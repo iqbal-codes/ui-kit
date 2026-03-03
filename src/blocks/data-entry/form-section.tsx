@@ -1,7 +1,7 @@
+import { AlertCircleIcon, CheckCircleIcon, ChevronDownIcon } from "lucide-react";
 import * as React from "react";
-import { ChevronDownIcon, CheckCircleIcon, AlertCircleIcon } from "lucide-react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/primitives/collapsible";
 import { cn } from "@/lib/utils";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/primitives/collapsible";
 
 export type ValidationStatus = "valid" | "invalid" | "pending" | "none";
 
@@ -72,7 +72,7 @@ export function FormSection({
     onOpenChange?.(newOpen);
   };
 
-  const status = statusConfig[validationStatus];
+  const _status = statusConfig[validationStatus];
 
   const sectionContent = (
     <div className={cn("space-y-4", className)}>
@@ -117,9 +117,7 @@ export function FormSection({
       </div>
 
       {/* Description */}
-      {description && (
-        <p className="text-sm text-muted-foreground">{description}</p>
-      )}
+      {description && <p className="text-sm text-muted-foreground">{description}</p>}
 
       {/* Error message */}
       {error && (

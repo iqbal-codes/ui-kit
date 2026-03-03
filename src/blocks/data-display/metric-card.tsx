@@ -1,14 +1,8 @@
-import * as React from "react";
 import { ArrowDownIcon, ArrowUpIcon, MinusIcon } from "lucide-react";
-import { Badge } from "@/primitives/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/primitives/card";
+import * as React from "react";
 import { cn } from "@/lib/utils";
+import { Badge } from "@/primitives/badge";
+import { Card, CardContent, CardDescription, CardHeader } from "@/primitives/card";
 
 export type TrendDirection = "up" | "down" | "neutral";
 
@@ -66,18 +60,15 @@ export function MetricCard({
   const changePercent = React.useMemo(() => {
     if (!previousValue || !trend) return null;
     const current = typeof value === "number" ? value : parseFloat(String(value));
-    const prev = typeof previousValue === "number" ? previousValue : parseFloat(String(previousValue));
-    if (isNaN(current) || isNaN(prev) || prev === 0) return null;
-    return ((current - prev) / prev * 100).toFixed(1);
+    const prev =
+      typeof previousValue === "number" ? previousValue : parseFloat(String(previousValue));
+    if (Number.isNaN(current) || Number.isNaN(prev) || prev === 0) return null;
+    return (((current - prev) / prev) * 100).toFixed(1);
   }, [value, previousValue, trend]);
 
   return (
     <Card
-      className={cn(
-        "transition-colors",
-        onClick && "cursor-pointer hover:bg-muted/50",
-        className
-      )}
+      className={cn("transition-colors", onClick && "cursor-pointer hover:bg-muted/50", className)}
       onClick={onClick}
     >
       <CardHeader className={cn("pb-2", compact && "pb-1")}>
@@ -96,13 +87,9 @@ export function MetricCard({
         </div>
       </CardHeader>
       <CardContent>
-        <div className={cn("font-bold", compact ? "text-xl" : "text-3xl")}>
-          {value}
-        </div>
+        <div className={cn("font-bold", compact ? "text-xl" : "text-3xl")}>{value}</div>
         {description && !compact && (
-          <CardDescription className="mt-1 text-xs">
-            {description}
-          </CardDescription>
+          <CardDescription className="mt-1 text-xs">{description}</CardDescription>
         )}
       </CardContent>
     </Card>

@@ -1,20 +1,13 @@
 "use client";
 
-import * as React from "react";
-import { useFormContext, Controller, type FieldPath, type FieldValues } from "react-hook-form";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
+import { Controller, type FieldPath, type FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import { Button } from "@/primitives/button";
 import { Calendar } from "@/primitives/calendar";
+import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from "@/primitives/form";
 import { Popover, PopoverContent, PopoverTrigger } from "@/primitives/popover";
-import {
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormMessage,
-} from "@/primitives/form";
 
 export interface DateFieldProps<T extends FieldValues = FieldValues> {
   name: FieldPath<T>;
@@ -66,11 +59,7 @@ export function DateField<T extends FieldValues>({
                   disabled={disabled}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
-                  {field.value ? (
-                    format(field.value, dateFormat)
-                  ) : (
-                    <span>{placeholder}</span>
-                  )}
+                  {field.value ? format(field.value, dateFormat) : <span>{placeholder}</span>}
                 </Button>
               </FormControl>
             </PopoverTrigger>

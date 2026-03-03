@@ -1,11 +1,15 @@
-import * as React from "react";
-
-import { Toaster } from "@/primitives/sonner";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/primitives/sonner";
 
 export interface ToastManagerProps {
   /** Position of the toaster */
-  position?: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
+  position?:
+    | "top-left"
+    | "top-center"
+    | "top-right"
+    | "bottom-left"
+    | "bottom-center"
+    | "bottom-right";
   /** Theme */
   theme?: "light" | "dark" | "system";
   /** Additional CSS classes */
@@ -14,7 +18,7 @@ export interface ToastManagerProps {
 
 /**
  * ToastManager - Container for displaying toast notifications
- * 
+ *
  * Use with sonner's toast() function:
  * import { toast } from 'sonner'
  * toast.success('Saved!')
@@ -25,13 +29,7 @@ export function ToastManager({
   theme = "system",
   className,
 }: ToastManagerProps) {
-  return (
-    <Toaster 
-      position={position} 
-      theme={theme}
-      className={cn(className)}
-    />
-  );
+  return <Toaster position={position} theme={theme} className={cn(className)} />;
 }
 
 export default ToastManager;

@@ -1,6 +1,6 @@
+import { GripVerticalIcon } from "lucide-react";
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { GripVerticalIcon } from "lucide-react";
 
 export interface SplitPaneProps {
   /** Primary panel content */
@@ -79,17 +79,10 @@ export function SplitPane({
   return (
     <div
       ref={containerRef}
-      className={cn(
-        "flex",
-        isHorizontal ? "flex-row" : "flex-col",
-        className
-      )}
+      className={cn("flex", isHorizontal ? "flex-row" : "flex-col", className)}
     >
       {/* Primary panel */}
-      <div
-        className="overflow-auto"
-        style={{ [isHorizontal ? "width" : "height"]: `${ratio}%` }}
-      >
+      <div className="overflow-auto" style={{ [isHorizontal ? "width" : "height"]: `${ratio}%` }}>
         {primary}
       </div>
 

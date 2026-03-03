@@ -1,14 +1,7 @@
-import * as React from "react";
-
-import { Button } from "@/primitives/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/primitives/card";
 import { AlertTriangleIcon, RefreshCwIcon } from "lucide-react";
+import * as React from "react";
+import { Button } from "@/primitives/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/primitives/card";
 
 export interface ErrorFallbackProps {
   /** The error that occurred */
@@ -56,9 +49,7 @@ export function ErrorFallback({
           <div>
             <CardTitle className="text-lg">{title}</CardTitle>
             {errorId && (
-              <CardDescription className="text-xs font-mono">
-                Error ID: {errorId}
-              </CardDescription>
+              <CardDescription className="text-xs font-mono">Error ID: {errorId}</CardDescription>
             )}
           </div>
         </div>
@@ -70,18 +61,11 @@ export function ErrorFallback({
           <div className="rounded-md bg-muted p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-medium">Error Details</span>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleCopyError}
-                className="h-6 text-xs"
-              >
+              <Button variant="ghost" size="sm" onClick={handleCopyError} className="h-6 text-xs">
                 {copied ? "Copied!" : "Copy"}
               </Button>
             </div>
-            <pre className="text-xs text-destructive overflow-auto max-h-32">
-              {error.message}
-            </pre>
+            <pre className="text-xs text-destructive overflow-auto max-h-32">{error.message}</pre>
           </div>
         )}
 

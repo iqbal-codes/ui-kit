@@ -1,15 +1,8 @@
-import * as React from "react";
-
-import { Badge } from "@/primitives/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/primitives/card";
-import { Progress } from "@/primitives/progress";
+import type * as React from "react";
 import { cn } from "@/lib/utils";
+import { Badge } from "@/primitives/badge";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/primitives/card";
+import { Progress } from "@/primitives/progress";
 
 export interface EntityCardProps {
   /** The entity name/title - required */
@@ -38,7 +31,7 @@ export interface EntityCardProps {
   className?: string;
 }
 
-const statusVariants = {
+const _statusVariants = {
   default: "bg-primary/10 text-primary",
   secondary: "bg-secondary text-secondary-foreground",
   destructive: "bg-destructive/10 text-destructive",
@@ -61,11 +54,7 @@ export function EntityCard({
 }: EntityCardProps) {
   return (
     <Card
-      className={cn(
-        "transition-colors",
-        onClick && "cursor-pointer hover:bg-muted/50",
-        className
-      )}
+      className={cn("transition-colors", onClick && "cursor-pointer hover:bg-muted/50", className)}
       onClick={onClick}
     >
       <CardHeader className="space-y-3">
@@ -76,24 +65,17 @@ export function EntityCard({
               <div className="flex items-center gap-2">
                 <CardTitle className="text-base truncate">{title}</CardTitle>
                 {status && (
-                  <Badge
-                    variant={status.variant || "secondary"}
-                    className="shrink-0 text-xs"
-                  >
+                  <Badge variant={status.variant || "secondary"} className="shrink-0 text-xs">
                     {status.label}
                   </Badge>
                 )}
               </div>
-              {subtitle && (
-                <CardDescription className="text-sm">{subtitle}</CardDescription>
-              )}
+              {subtitle && <CardDescription className="text-sm">{subtitle}</CardDescription>}
             </div>
           </div>
         </div>
         {description && (
-          <CardDescription className="text-sm line-clamp-2">
-            {description}
-          </CardDescription>
+          <CardDescription className="text-sm line-clamp-2">{description}</CardDescription>
         )}
       </CardHeader>
       {(progress !== undefined || metadata) && (

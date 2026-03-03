@@ -1,14 +1,7 @@
-import * as React from "react";
-
-import { Button } from "@/primitives/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/primitives/card";
+import type * as React from "react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/primitives/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/primitives/card";
 
 export interface SectionHeaderProps {
   /** The section title - required */
@@ -28,27 +21,15 @@ export interface SectionHeaderProps {
   className?: string;
 }
 
-export function SectionHeader({
-  title,
-  description,
-  action,
-  icon,
-  className,
-}: SectionHeaderProps) {
+export function SectionHeader({ title, description, action, icon, className }: SectionHeaderProps) {
   return (
     <Card className={cn("border-0 shadow-none bg-transparent", className)}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 px-0 pb-4">
         <div className="flex items-center gap-3">
           {icon && <div className="flex items-center">{icon}</div>}
           <div className="space-y-1">
-            <CardTitle className="text-xl font-semibold tracking-tight">
-              {title}
-            </CardTitle>
-            {description && (
-              <CardDescription className="text-sm">
-                {description}
-              </CardDescription>
-            )}
+            <CardTitle className="text-xl font-semibold tracking-tight">{title}</CardTitle>
+            {description && <CardDescription className="text-sm">{description}</CardDescription>}
           </div>
         </div>
         {action && (

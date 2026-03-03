@@ -1,6 +1,6 @@
-import * as React from "react";
-import { cn } from "@/lib/utils";
 import { CircleIcon, ClockIcon } from "lucide-react";
+import type * as React from "react";
+import { cn } from "@/lib/utils";
 
 export interface TimelineItem {
   /** Unique identifier */
@@ -46,19 +46,12 @@ export function ActivityTimeline({
       {items.map((item, index) => (
         <div
           key={item.id}
-          className={cn(
-            "relative flex gap-4",
-            !compact && "pb-8",
-            compact && "pb-4 last:pb-0"
-          )}
+          className={cn("relative flex gap-4", !compact && "pb-8", compact && "pb-4 last:pb-0")}
         >
           {/* Line connector */}
           {index !== items.length - 1 && (
             <div
-              className={cn(
-                "absolute left-[11px] top-6 h-full w-0.5 bg-muted",
-                compact && "top-4"
-              )}
+              className={cn("absolute left-[11px] top-6 h-full w-0.5 bg-muted", compact && "top-4")}
             />
           )}
 
@@ -78,9 +71,7 @@ export function ActivityTimeline({
 
           {/* Content */}
           <div className={cn("flex-1 space-y-1", compact && "space-y-0.5")}>
-            <p className={cn("text-sm font-medium", compact && "text-xs")}>
-              {item.title}
-            </p>
+            <p className={cn("text-sm font-medium", compact && "text-xs")}>{item.title}</p>
             {item.description && (
               <p className={cn("text-sm text-muted-foreground", compact && "text-xs")}>
                 {item.description}

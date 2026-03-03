@@ -1,6 +1,6 @@
-import * as React from "react";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/primitives/sheet";
+import type * as React from "react";
 import { cn } from "@/lib/utils";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/primitives/sheet";
 
 export interface RightDrawerProps {
   /** Whether drawer is open */

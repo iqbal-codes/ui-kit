@@ -1,7 +1,7 @@
-import * as React from "react";
-import { Button } from "@/primitives/button";
-import { cn } from "@/lib/utils";
 import { ChevronRightIcon } from "lucide-react";
+import type * as React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/primitives/button";
 
 export interface SectionJumperSection {
   /** Unique identifier */

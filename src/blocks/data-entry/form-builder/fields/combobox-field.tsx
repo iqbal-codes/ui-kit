@@ -1,23 +1,16 @@
 "use client";
 
-import * as React from "react";
-import { useFormContext, Controller, type FieldPath, type FieldValues } from "react-hook-form";
+import { Controller, type FieldPath, type FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import {
   Combobox,
-  ComboboxInput,
   ComboboxContent,
-  ComboboxList,
-  ComboboxItem,
   ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
 } from "@/primitives/combobox";
-import {
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormMessage,
-} from "@/primitives/form";
+import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from "@/primitives/form";
 
 export interface ComboboxOption {
   value: string;
@@ -63,11 +56,7 @@ export function ComboboxField<T extends FieldValues>({
             </FormLabel>
           )}
           <FormControl>
-            <Combobox
-              value={field.value}
-              onValueChange={field.onChange}
-              disabled={disabled}
-            >
+            <Combobox value={field.value} onValueChange={field.onChange} disabled={disabled}>
               <ComboboxInput
                 placeholder={placeholder}
                 disabled={disabled}

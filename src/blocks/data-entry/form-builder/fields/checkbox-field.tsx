@@ -1,15 +1,10 @@
 "use client";
 
-import * as React from "react";
-import { useFormContext, Controller, type FieldPath, type FieldValues } from "react-hook-form";
+import { Controller, type FieldPath, type FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/primitives/checkbox";
+import { FormDescription, FormItem, FormMessage } from "@/primitives/form";
 import { Label } from "@/primitives/label";
-import {
-  FormItem,
-  FormDescription,
-  FormMessage,
-} from "@/primitives/form";
 
 export interface CheckboxFieldProps<T extends FieldValues = FieldValues> {
   name: FieldPath<T>;

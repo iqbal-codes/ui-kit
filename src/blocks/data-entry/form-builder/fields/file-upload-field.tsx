@@ -1,16 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { useFormContext, Controller, type FieldPath, type FieldValues } from "react-hook-form";
+import { Controller, type FieldPath, type FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
+import { FormControl, FormItem, FormLabel, FormMessage } from "@/primitives/form";
 import { UploadDropzone } from "@/primitives/upload-dropzone";
-import {
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormMessage,
-} from "@/primitives/form";
 
 export interface UploadedFile {
   name: string;

@@ -130,70 +130,70 @@
           "primitives": ["card", "badge"],
           "dependencies": []
         },
-          {
-            "name": "SectionHeader",
-            "description": "Section title with optional description and action button",
-            "type": "block",
-            "category": "data-display",
-            "files": ["section-header.tsx", "index.ts"],
-            "primitives": ["card", "button"],
-            "dependencies": [],
-            "ai": {
-              "usage": "When displaying a section title with optional description and action button",
-              "composition": "Use with StatCard for dashboard sections, EmptyState for list pages",
-              "antiPatterns": "Don't use for page-level titles - use PageHeader instead"
-            }
-          },
-          {
-            "name": "EntityCard",
-            "description": "Rich data card with badges, progress bars, avatars, and metadata",
-            "type": "block",
-            "category": "data-display",
-            "files": ["entity-card.tsx", "index.ts"],
-            "primitives": ["card", "badge", "progress", "avatar"],
-            "dependencies": [],
-            "ai": {
-              "usage": "When displaying entity details with status, progress, and metadata",
-              "composition": "Use with CardGrid for lists, Pagination for navigation",
-              "antiPatterns": "Don't use for simple text-only items"
-            }
-          },
-          {
-            "name": "CardGrid",
-            "description": "Responsive grid layout for cards with configurable columns and gap",
-            "type": "block",
-            "category": "data-display",
-            "files": ["card-grid.tsx", "index.ts"],
-            "primitives": [],
-            "dependencies": [],
-            "ai": {
-              "usage": "When displaying multiple cards in a responsive grid layout",
-              "composition": "Use with EntityCard, StatCard for card layouts",
-              "antiPatterns": "Don't use for single cards or non-card content"
-            }
-          },
-          {
-            "name": "MetricCard",
-            "description": "KPI display with value, trend indicator, and optional comparison",
-            "type": "block",
-            "category": "data-display",
-            "files": ["metric-card.tsx", "index.ts"],
-            "primitives": ["card", "badge"],
-            "dependencies": [],
-            "ai": {
-              "usage": "When displaying KPIs and metrics with trend indicators",
-              "composition": "Use with CardGrid for dashboard layouts",
-              "antiPatterns": "Don't use for non-metric data"
-            }
-          },
-          {
-            "name": "ActivityTimeline",
-            "description": "Vertical timeline showing activity history with status indicators",
-            "type": "block",
-            "category": "data-display",
-            "files": ["activity-timeline.tsx", "index.ts"],
-            "primitives": [],
-            "dependencies": [],
+        {
+          "name": "SectionHeader",
+          "description": "Section title with optional description and action button",
+          "type": "block",
+          "category": "data-display",
+          "files": ["section-header.tsx", "index.ts"],
+          "primitives": ["card", "button"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When displaying a section title with optional description and action button",
+            "composition": "Use with StatCard for dashboard sections, EmptyState for list pages",
+            "antiPatterns": "Don't use for page-level titles - use PageHeader instead"
+          }
+        },
+        {
+          "name": "EntityCard",
+          "description": "Rich data card with badges, progress bars, avatars, and metadata",
+          "type": "block",
+          "category": "data-display",
+          "files": ["entity-card.tsx", "index.ts"],
+          "primitives": ["card", "badge", "progress", "avatar"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When displaying entity details with status, progress, and metadata",
+            "composition": "Use with CardGrid for lists, Pagination for navigation",
+            "antiPatterns": "Don't use for simple text-only items"
+          }
+        },
+        {
+          "name": "CardGrid",
+          "description": "Responsive grid layout for cards with configurable columns and gap",
+          "type": "block",
+          "category": "data-display",
+          "files": ["card-grid.tsx", "index.ts"],
+          "primitives": [],
+          "dependencies": [],
+          "ai": {
+            "usage": "When displaying multiple cards in a responsive grid layout",
+            "composition": "Use with EntityCard, StatCard for card layouts",
+            "antiPatterns": "Don't use for single cards or non-card content"
+          }
+        },
+        {
+          "name": "MetricCard",
+          "description": "KPI display with value, trend indicator, and optional comparison",
+          "type": "block",
+          "category": "data-display",
+          "files": ["metric-card.tsx", "index.ts"],
+          "primitives": ["card", "badge"],
+          "dependencies": [],
+          "ai": {
+            "usage": "When displaying KPIs and metrics with trend indicators",
+            "composition": "Use with CardGrid for dashboard layouts",
+            "antiPatterns": "Don't use for non-metric data"
+          }
+        },
+        {
+          "name": "ActivityTimeline",
+          "description": "Vertical timeline showing activity history with status indicators",
+          "type": "block",
+          "category": "data-display",
+          "files": ["activity-timeline.tsx", "index.ts"],
+          "primitives": [],
+          "dependencies": [],
           "ai": {
             "usage": "When displaying chronological activity or event history",
             "composition": "Use with EntityCard for detailed views",

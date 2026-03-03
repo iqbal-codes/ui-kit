@@ -1,6 +1,6 @@
-import { Footer, Layout, Navbar } from "nextra-theme-docs";
 import { Banner, Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
+import { Footer, Layout, Navbar } from "nextra-theme-docs";
 import "nextra-theme-docs/style.css";
 import type { FC, ReactNode } from "react";
 
@@ -15,11 +15,7 @@ type LayoutProps = Readonly<{
 
 const banner = <Banner storageKey="ui-kit">UI Kit Documentation</Banner>;
 
-const navbar = (
-  <Navbar
-    logo={<b>UI Kit</b>}
-  />
-);
+const navbar = <Navbar logo={<b>UI Kit</b>} />;
 
 const footer = <Footer>MIT {new Date().getFullYear()} © UI Kit.</Footer>;
 

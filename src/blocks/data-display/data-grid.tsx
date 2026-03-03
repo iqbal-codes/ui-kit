@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { cn } from "@/lib/utils";
 
 export interface DataGridColumn {
@@ -94,10 +94,7 @@ export function DataGrid({
           ))}
           {rows.length === 0 && (
             <tr>
-              <td
-                colSpan={columns.length}
-                className="p-8 text-center text-muted-foreground"
-              >
+              <td colSpan={columns.length} className="p-8 text-center text-muted-foreground">
                 No data available
               </td>
             </tr>

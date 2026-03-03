@@ -1,6 +1,6 @@
+import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 
 export interface ProgressStep {
   /** Unique identifier */
@@ -38,13 +38,7 @@ export function ProgressTracker({
   const isHorizontal = orientation === "horizontal";
 
   return (
-    <div
-      className={cn(
-        "flex",
-        isHorizontal ? "flex-row items-center" : "flex-col",
-        className
-      )}
-    >
+    <div className={cn("flex", isHorizontal ? "flex-row items-center" : "flex-col", className)}>
       {steps.map((step, index) => {
         const isCompleted = index < currentStep;
         const isCurrent = index === currentStep;
@@ -57,9 +51,7 @@ export function ProgressTracker({
               <div
                 className={cn(
                   "flex-1",
-                  isHorizontal
-                    ? "h-0.5 mx-2 bg-muted"
-                    : "w-0.5 my-2 ml-[11px] bg-muted"
+                  isHorizontal ? "h-0.5 mx-2 bg-muted" : "w-0.5 my-2 ml-[11px] bg-muted"
                 )}
               >
                 <div
@@ -73,20 +65,14 @@ export function ProgressTracker({
             )}
 
             {/* Step content */}
-            <div
-              className={cn(
-                "flex items-center gap-3",
-                !isHorizontal && "min-h-[60px]"
-              )}
-            >
+            <div className={cn("flex items-center gap-3", !isHorizontal && "min-h-[60px]")}>
               {/* Step indicator */}
               <div
                 {...(isClickable
                   ? {
                       role: "button",
                       onClick: step.onClick,
-                      onKeyDown: (e: React.KeyboardEvent) =>
-                        e.key === "Enter" && step.onClick?.(),
+                      onKeyDown: (e: React.KeyboardEvent) => e.key === "Enter" && step.onClick?.(),
                       tabIndex: 0,
                     }
                   : {})}
@@ -120,9 +106,7 @@ export function ProgressTracker({
                     {step.title}
                   </span>
                   {showDescriptions && step.description && (
-                    <span className="text-xs text-muted-foreground">
-                      {step.description}
-                    </span>
+                    <span className="text-xs text-muted-foreground">{step.description}</span>
                   )}
                 </div>
               )}

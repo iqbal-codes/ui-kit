@@ -1,7 +1,6 @@
-import * as React from "react";
-import { Badge } from "@/primitives/badge";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Badge } from "@/primitives/badge";
 
 export interface FilterChipProps {
   /** Chip label */
@@ -36,9 +35,7 @@ export function FilterChip({
       onClick={onToggle}
     >
       {label}
-      {count !== undefined && (
-        <span className="ml-1 text-xs opacity-70">({count})</span>
-      )}
+      {count !== undefined && <span className="ml-1 text-xs opacity-70">({count})</span>}
       {onRemove && (
         <button
           type="button"

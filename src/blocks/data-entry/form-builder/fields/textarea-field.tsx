@@ -1,16 +1,9 @@
 "use client";
 
-import * as React from "react";
-import { useFormContext, Controller, type FieldPath, type FieldValues } from "react-hook-form";
+import { Controller, type FieldPath, type FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
+import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from "@/primitives/form";
 import { Textarea } from "@/primitives/textarea";
-import {
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormMessage,
-} from "@/primitives/form";
 
 export interface TextareaFieldProps<T extends FieldValues = FieldValues> {
   name: FieldPath<T>;

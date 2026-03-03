@@ -1,7 +1,7 @@
 import * as React from "react";
+import { cn } from "@/lib/utils";
 import { Button } from "@/primitives/button";
 import { Input } from "@/primitives/input";
-import { cn } from "@/lib/utils";
 
 export interface DurationPickerProps {
   /** Duration value in minutes */
@@ -52,12 +52,12 @@ export function DurationPicker({
   };
 
   const handleHoursChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const h = parseInt(e.target.value) || 0;
+    const h = parseInt(e.target.value, 10) || 0;
     handleChange(h, minutes);
   };
 
   const handleMinutesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const m = parseInt(e.target.value) || 0;
+    const m = parseInt(e.target.value, 10) || 0;
     handleChange(hours, m);
   };
 

@@ -1,12 +1,7 @@
-import * as React from "react";
 import { Loader2Icon, Search, X } from "lucide-react";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-} from "@/primitives/input-group";
+import * as React from "react";
 import { Button } from "@/primitives/button";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/primitives/input-group";
 
 export interface SearchBarProps {
   /** Current search value */

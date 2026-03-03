@@ -1,14 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { useForm, FormProvider, type FieldValues } from "react-hook-form";
-import { cn } from "@/lib/utils";
+import { type FieldValues, FormProvider, useForm } from "react-hook-form";
 import { FormSection, type ValidationStatus } from "@/blocks/data-entry/form-section";
 import { StickyActions } from "@/blocks/data-entry/sticky-actions";
+import { cn } from "@/lib/utils";
 import { Button } from "@/primitives/button";
 import { Spinner } from "@/primitives/spinner";
 import { FieldRenderer } from "./form-field-renderer";
-import type { FormBuilderProps, FieldConfig, FormSectionConfig } from "./types";
+import type { FormBuilderProps, FormSectionConfig } from "./types";
 
 export function FormBuilder<T extends FieldValues>({
   id,
@@ -51,7 +51,7 @@ export function FormBuilder<T extends FieldValues>({
     }, autoSaveDelay);
 
     return () => clearTimeout(timer);
-  }, [watch(), onAutoSave, autoSaveDelay, isDirty]);
+  }, [onAutoSave, autoSaveDelay, isDirty, watch]);
 
   // Track open sections
   const [openSections, setOpenSections] = React.useState<Record<string, boolean>>({});
@@ -73,7 +73,8 @@ export function FormBuilder<T extends FieldValues>({
     const sectionErrors = sectionFields.filter((field) => errors[field as string]);
 
     if (sectionErrors.length > 0) return "invalid";
-    if (sectionFields.every((field) => dirtyFields[field as keyof typeof dirtyFields])) return "valid";
+    if (sectionFields.every((field) => dirtyFields[field as keyof typeof dirtyFields]))
+      return "valid";
     return section.validationStatus || "none";
   };
 
@@ -100,11 +101,7 @@ export function FormBuilder<T extends FieldValues>({
 
   return (
     <FormProvider {...form}>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className={cn("w-full space-y-6", className)}
-        id={id}
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className={cn("w-full space-y-6", className)} id={id}>
         {/* Header */}
         {header}
 
@@ -156,25 +153,9 @@ export function FormBuilder<T extends FieldValues>({
                         renderField(fieldConfig, form)
                       ) : (
                         <FieldRenderer
-                          type={fieldConfig.type}
-                          name={fieldConfig.name}
-                          label={fieldConfig.label}
-                          description={fieldConfig.description}
-                          placeholder={fieldConfig.placeholder}
-                          options={fieldConfig.options}
-                          disabled={fieldConfig.disabled}
-                          readOnly={fieldConfig.readOnly}
-                          required={fieldConfig.rules?.required as boolean}
-                          multiple={fieldConfig.multiple}
-                          accept={fieldConfig.accept}
-                          maxSize={fieldConfig.maxSize}
-                          maxFiles={fieldConfig.maxFiles}
-                          onUpload={fieldConfig.onUpload}
-                          rows={fieldConfig.rows}
+                          {...fieldConfig}
                           render={
-                            fieldConfig.render
-                              ? () => fieldConfig.render!(form, form)
-                              : undefined
+                            fieldConfig.render ? () => fieldConfig.render?.(form, form) : undefined
                           }
                         />
                       )}
@@ -198,9 +179,7 @@ export function FormBuilder<T extends FieldValues>({
 
         {/* Non-sticky actions alternative */}
         {!stickyFooter && (
-          <div className="flex justify-end gap-2 pt-4 border-t">
-            {actionsContent}
-          </div>
+          <div className="flex justify-end gap-2 pt-4 border-t">{actionsContent}</div>
         )}
       </form>
     </FormProvider>

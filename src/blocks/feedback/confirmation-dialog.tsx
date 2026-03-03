@@ -1,5 +1,4 @@
-import * as React from "react";
-import { AlertTriangleIcon, InfoIcon, HelpCircleIcon } from "lucide-react";
+import { AlertTriangleIcon, HelpCircleIcon, InfoIcon } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,7 +9,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/primitives/alert-dialog";
-import { Button } from "@/primitives/button";
 
 export type ConfirmationVariant = "danger" | "warning" | "info" | "question";
 
@@ -95,9 +93,12 @@ export function ConfirmationDialog({
             <div
               className={cn(
                 "flex h-10 w-10 items-center justify-center rounded-full",
-                variant === "danger" && "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400",
-                variant === "warning" && "bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400",
-                variant === "info" && "bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400",
+                variant === "danger" &&
+                  "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400",
+                variant === "warning" &&
+                  "bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400",
+                variant === "info" &&
+                  "bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400",
                 variant === "question" && "bg-muted text-muted-foreground"
               )}
             >
@@ -106,9 +107,7 @@ export function ConfirmationDialog({
             <AlertDialogTitle>{title}</AlertDialogTitle>
           </div>
           {description && (
-            <AlertDialogDescription className="ml-13">
-              {description}
-            </AlertDialogDescription>
+            <AlertDialogDescription className="ml-13">{description}</AlertDialogDescription>
           )}
         </AlertDialogHeader>
         <AlertDialogFooter className="mt-4">

@@ -1,7 +1,7 @@
 "use client";
 
+import { File, UploadCloud, X } from "lucide-react";
 import * as React from "react";
-import { UploadCloud, File, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/primitives/button";
 import { Progress } from "@/primitives/progress";
@@ -73,7 +73,7 @@ export function UploadDropzone({
       const fileName = file.name.toLowerCase();
       const isAccepted = acceptedTypes.some((type) => {
         if (type.startsWith("image/") || type.startsWith("video/") || type.startsWith("audio/")) {
-          return fileType === type || fileType.startsWith(type.split("/")[0] + "/");
+          return fileType === type || fileType.startsWith(`${type.split("/")[0]}/`);
         }
         if (type.startsWith(".")) {
           return fileName.endsWith(type.toLowerCase());
@@ -113,7 +113,7 @@ export function UploadDropzone({
         }
       }
     },
-    [maxFiles, onFilesSelected, onFileSelected]
+    [maxFiles, onFilesSelected, onFileSelected, validateFile]
   );
 
   const handleDrop = React.useCallback(
@@ -154,7 +154,7 @@ export function UploadDropzone({
     const k = 1024;
     const sizes = ["Bytes", "KB", "MB", "GB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + " " + sizes[i];
+    return `${Math.round((bytes / k ** i) * 100) / 100} ${sizes[i]}`;
   };
 
   return (
@@ -182,18 +182,22 @@ export function UploadDropzone({
           className="hidden"
           disabled={disabled}
         />
-        
-        <UploadCloud className={cn("mb-4 h-10 w-10", isDragOver ? "text-primary" : "text-muted-foreground")} />
-        
+
+        <UploadCloud
+          className={cn("mb-4 h-10 w-10", isDragOver ? "text-primary" : "text-muted-foreground")}
+        />
+
         <p className="mb-1 text-sm font-medium">{label}</p>
-        {description && (
-          <p className="text-center text-sm text-muted-foreground">{description}</p>
-        )}
-        
+        {description && <p className="text-center text-sm text-muted-foreground">{description}</p>}
+
         <div className="mt-2 flex flex-wrap justify-center gap-2 text-xs text-muted-foreground">
           {accept && (
             <span>
-              Accepted: {accept.split(",").map((t) => t.trim().toUpperCase()).join(", ")}
+              Accepted:{" "}
+              {accept
+                .split(",")
+                .map((t) => t.trim().toUpperCase())
+                .join(", ")}
             </span>
           )}
           {maxSize && <span>Max size: {formatFileSize(maxSize)}</span>}

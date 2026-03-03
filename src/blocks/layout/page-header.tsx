@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { cn } from '@/lib/utils';
+import * as React from "react";
+import { cn } from "@/lib/utils";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,8 +7,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@/primitives/breadcrumb';
-import { Separator } from '@/primitives/separator';
+} from "@/primitives/breadcrumb";
+import { Separator } from "@/primitives/separator";
 
 export interface PageHeaderProps {
   /** Page title */
@@ -37,7 +37,7 @@ export function PageHeader({
   className,
 }: PageHeaderProps) {
   return (
-    <div className={cn('space-y-4', className)}>
+    <div className={cn("space-y-4", className)}>
       {breadcrumbs && breadcrumbs.length > 0 && (
         <Breadcrumb>
           <BreadcrumbList>
@@ -49,9 +49,7 @@ export function PageHeader({
                     {isLast ? (
                       <BreadcrumbPage>{crumb.label}</BreadcrumbPage>
                     ) : crumb.href ? (
-                      <BreadcrumbLink href={crumb.href}>
-                        {crumb.label}
-                      </BreadcrumbLink>
+                      <BreadcrumbLink href={crumb.href}>{crumb.label}</BreadcrumbLink>
                     ) : (
                       <span>{crumb.label}</span>
                     )}
@@ -67,9 +65,7 @@ export function PageHeader({
       <div className="flex items-start justify-between gap-4">
         <div className="space-y-1">
           <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
-          {subtitle && (
-            <p className="text-sm text-muted-foreground">{subtitle}</p>
-          )}
+          {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
         </div>
         {actions && <div className="flex items-center gap-2">{actions}</div>}
       </div>

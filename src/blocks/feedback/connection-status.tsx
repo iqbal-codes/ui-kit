@@ -1,7 +1,6 @@
-import * as React from "react";
-import { Badge } from "@/primitives/badge";
+import { Loader2, Wifi, WifiOff } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Wifi, WifiOff, Loader2 } from "lucide-react";
+import { Badge } from "@/primitives/badge";
 
 export type ConnectionState = "connected" | "disconnected" | "connecting";
 

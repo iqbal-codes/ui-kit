@@ -1,11 +1,6 @@
-export type BlockType = 'block' | 'smart';
+export type BlockType = "block" | "smart";
 
-export type BlockCategory =
-  | 'layout'
-  | 'data-display'
-  | 'data-entry'
-  | 'feedback'
-  | 'navigation';
+export type BlockCategory = "layout" | "data-display" | "data-entry" | "feedback" | "navigation";
 
 export interface BlockManifest {
   name: string;

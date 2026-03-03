@@ -44,7 +44,9 @@
   "scripts": {
     "build": "bunx tsup",
     "typecheck": "bunx tsc --noEmit",
-    "lint": "bunx eslint src/",
+    "lint": "bunx @biomejs/biome check --write",
+    "lint:check": "bunx @biomejs/biome check",
+    "format": "bunx @biomejs/biome format --write",
     "test": "bunx vitest",
     "dev": "bunx next dev",
     "storybook": "storybook dev -p 6006",
@@ -84,6 +86,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.5",
     "@storybook/addon-docs": "10.2.13",
     "@storybook/addon-links": "10.2.13",
     "@storybook/addon-themes": "10.2.13",

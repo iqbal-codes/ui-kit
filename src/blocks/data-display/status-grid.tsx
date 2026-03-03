@@ -1,4 +1,3 @@
-import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export interface StatusItem {
@@ -53,10 +52,7 @@ export function StatusGrid({
         const percentage = totalCount > 0 ? (item.count / totalCount) * 100 : 0;
 
         return (
-          <div
-            key={item.id}
-            className="flex items-center gap-3 p-3 rounded-lg border bg-card"
-          >
+          <div key={item.id} className="flex items-center gap-3 p-3 rounded-lg border bg-card">
             {showProgress && (
               <div className={cn("relative shrink-0", ringSizes[ringSize])}>
                 <svg className="h-full w-full -rotate-90" viewBox="0 0 36 36" aria-hidden="true">
@@ -80,7 +76,14 @@ export function StatusGrid({
                   />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className={cn("font-bold", ringSize === "sm" && "text-xs", ringSize === "md" && "text-sm", ringSize === "lg" && "text-base")}>
+                  <span
+                    className={cn(
+                      "font-bold",
+                      ringSize === "sm" && "text-xs",
+                      ringSize === "md" && "text-sm",
+                      ringSize === "lg" && "text-base"
+                    )}
+                  >
                     {Math.round(percentage)}%
                   </span>
                 </div>
@@ -88,9 +91,7 @@ export function StatusGrid({
             )}
             <div className="min-w-0">
               <p className="text-sm font-medium truncate">{item.label}</p>
-              <p className={cn("text-2xl font-bold", `text-${item.variant}`)}>
-                {item.count}
-              </p>
+              <p className={cn("text-2xl font-bold", `text-${item.variant}`)}>{item.count}</p>
             </div>
           </div>
         );

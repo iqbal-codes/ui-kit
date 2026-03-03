@@ -1,21 +1,21 @@
-import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import { RightDrawer } from './right-drawer'
-import { Button } from '@/primitives/button'
+import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
+import { Button } from "@/primitives/button";
+import { RightDrawer } from "./right-drawer";
 
 const meta: Meta<typeof RightDrawer> = {
-  title: 'Blocks/Layout/RightDrawer',
+  title: "Blocks/Layout/RightDrawer",
   component: RightDrawer,
-  parameters: { layout: 'padded' },
-  tags: ['autodocs'],
-}
+  parameters: { layout: "padded" },
+  tags: ["autodocs"],
+};
 
-export default meta
-type Story = StoryObj<typeof RightDrawer>
+export default meta;
+type Story = StoryObj<typeof RightDrawer>;
 
 export const Default: Story = {
   render: () => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
     return (
       <div>
         <Button onClick={() => setOpen(true)}>Open Drawer</Button>
@@ -31,17 +31,17 @@ export const Default: Story = {
           </div>
         </RightDrawer>
       </div>
-    )
+    );
   },
   args: {
-    title: 'Drawer Title',
-    description: 'This is a description.',
+    title: "Drawer Title",
+    description: "This is a description.",
   },
-}
+};
 
 export const Wide: Story = {
   args: {
-    title: 'Wide Drawer',
-    width: 'xl',
+    title: "Wide Drawer",
+    width: "xl",
   },
-}
+};
