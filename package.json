@@ -39,7 +39,11 @@
   ],
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "AI_CONTEXT.md",
+    "COMPONENT_REGISTRY.md",
+    "ui-kit-instructions.md",
+    ".mdc"
   ],
   "scripts": {
     "build": "bunx tsup",

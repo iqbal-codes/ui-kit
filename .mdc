@@ -1,0 +1,70 @@
+# UI Kit Rules
+
+Always follow these rules when working with @iqbal-codes/ui-kit:
+
+## Component Usage Rules
+
+1. **Always use @iqbal-codes/ui-kit components** when building React/Next.js UIs
+   - Import from `@iqbal-codes/ui-kit/primitives` for base components
+   - Import from `@iqbal-codes/ui-kit/blocks` for composite components
+   - NEVER import from shadcn/ui or @/components/ui directly
+
+2. **Prefer Blocks over Primitives**
+   - Check for existing Block components before building from Primitives
+   - Smart Blocks (FormBuilder, SmartDataTable) handle complete features
+   - Layout Blocks (PageHeader, SplitPane) provide structure
+   - Domain Blocks (EntityCard, StatCard) display business data
+
+3. **Follow the composition hierarchy**
+   ```
+   Application → Smart Blocks → Layout Blocks → Domain Blocks → Primitives
+   ```
+   - Smart Blocks can compose Layout Blocks
+   - Layout Blocks accept Domain Blocks in slots
+   - Domain Blocks use Primitives internally
+   - Never reverse this order
+
+4. **Use correct import paths**
+   ```tsx
+   // ✅ Correct
+   import { Button } from "@iqbal-codes/ui-kit/primitives";
+   import { EntityCard } from "@iqbal-codes/ui-kit/blocks";
+   
+   // ❌ Wrong
+   import { Button } from "@/components/ui/button";
+   import { Button } from "shadcn-ui";
+   ```
+
+5. **Leverage Smart Blocks for complex features**
+   - FormBuilder: Complete forms with validation
+   - SmartDataTable: Tables with filters, sorting, pagination
+   - These handle state management automatically
+
+6. **Use Feedback Blocks for all user feedback**
+   - EmptyState for zero states
+   - LoadingOverlay for loading
+   - SkeletonGenerator for placeholders
+   - ToastManager for notifications
+   - ErrorFallback for error boundaries
+
+7. **Follow component-specific guidelines**
+   - PageHeader: Use with BreadcrumbTrail for complete headers
+   - EntityCard: Use with CardGrid for lists
+   - SearchBar: Provides built-in debounce
+   - StickyActions: Shows unsaved changes warning
+
+## When Building New Features
+
+1. Check COMPONENT_REGISTRY.md for available components
+2. Select the highest-level Block that fits your need
+3. Compose with appropriate supporting components
+4. Use Primitives only for custom styling not covered by Blocks
+
+## Code Generation Guidelines
+
+When generating code:
+- Always include proper imports from @iqbal-codes/ui-kit
+- Use TypeScript with proper types
+- Follow existing component patterns
+- Include error handling with Feedback Blocks
+- Add loading states with SkeletonGenerator or LoadingOverlay
