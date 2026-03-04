@@ -1,7 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import {
+  BarChart3,
+  FileText,
+  HelpCircle,
+  LayoutDashboard,
+  Package,
+  Settings,
+  ShoppingCart,
+  Users,
+} from "lucide-react";
 import React from "react";
-import { Button } from "@/primitives/button";
-import { DashboardLayout } from "./dashboard-layout";
+import {
+  DashboardLayout,
+  type NavGroup,
+  type SidebarTeam,
+  type SidebarUser,
+} from "./dashboard-layout";
 
 const meta: Meta<typeof DashboardLayout> = {
   title: "Blocks/Layout/DashboardLayout",
@@ -13,27 +27,62 @@ const meta: Meta<typeof DashboardLayout> = {
 export default meta;
 type Story = StoryObj<typeof DashboardLayout>;
 
-const SidebarContent = () => (
-  <nav className="space-y-1 px-2">
-    <Button variant="ghost" className="w-full justify-start">
-      Dashboard
-    </Button>
-    <Button variant="ghost" className="w-full justify-start">
-      Projects
-    </Button>
-    <Button variant="ghost" className="w-full justify-start">
-      Tasks
-    </Button>
-    <Button variant="ghost" className="w-full justify-start">
-      Settings
-    </Button>
-  </nav>
-);
+// Sample navigation groups
+const mainNavGroups: NavGroup[] = [
+  {
+    id: "main",
+    title: "Main",
+    items: [
+      {
+        id: "dashboard",
+        title: "Dashboard",
+        url: "/dashboard",
+        icon: LayoutDashboard,
+        isActive: true,
+      },
+      { id: "analytics", title: "Analytics", url: "/analytics", icon: BarChart3 },
+      { id: "projects", title: "Projects", url: "/projects", icon: Package },
+    ],
+  },
+  {
+    id: "management",
+    title: "Management",
+    items: [
+      { id: "customers", title: "Customers", url: "/customers", icon: Users },
+      { id: "orders", title: "Orders", url: "/orders", icon: ShoppingCart, badge: 12 },
+      { id: "invoices", title: "Invoices", url: "/invoices", icon: FileText },
+    ],
+  },
+  {
+    id: "system",
+    title: "System",
+    items: [
+      { id: "settings", title: "Settings", url: "/settings", icon: Settings },
+      { id: "help", title: "Help & Support", url: "/help", icon: HelpCircle },
+    ],
+  },
+];
+
+// Sample user
+const sampleUser: SidebarUser = {
+  name: "John Doe",
+  email: "john@example.com",
+  avatar: "/avatars/user.jpg",
+  fallback: "JD",
+};
+
+// Sample teams
+const sampleTeams: SidebarTeam[] = [
+  { name: "Acme Corp", plan: "Enterprise", icon: LayoutDashboard },
+  { name: "Acme Inc", plan: "Startup", icon: Users },
+  { name: "Evil Corp", plan: "Free", icon: Settings },
+];
 
 export const Default: Story = {
   render: () => (
     <DashboardLayout
-      sidebar={<SidebarContent />}
+      navGroups={mainNavGroups}
+      user={sampleUser}
       header={<div className="text-sm font-medium">Page Title</div>}
     >
       <div className="space-y-4">
@@ -52,7 +101,8 @@ export const Default: Story = {
 export const Collapsed: Story = {
   render: () => (
     <DashboardLayout
-      sidebar={<SidebarContent />}
+      navGroups={mainNavGroups}
+      user={sampleUser}
       header={<div className="text-sm font-medium">Page Title</div>}
       defaultOpen={false}
     >
@@ -67,13 +117,14 @@ export const Collapsed: Story = {
 export const WithFooter: Story = {
   render: () => (
     <DashboardLayout
-      sidebar={<SidebarContent />}
+      navGroups={mainNavGroups}
+      user={sampleUser}
       header={<div className="text-sm font-medium">Page Title</div>}
       footer={<p className="text-sm text-muted-foreground">© 2024 Company</p>}
     >
       <div className="space-y-4">
         <h2 className="text-xl font-semibold">With Footer</h2>
-        <p className="text-muted-foreground">This layout has a footer.</p>
+        <p className="text-muted-foreground">This layout has a page footer.</p>
       </div>
     </DashboardLayout>
   ),
@@ -81,7 +132,7 @@ export const WithFooter: Story = {
 
 export const NoHeader: Story = {
   render: () => (
-    <DashboardLayout sidebar={<SidebarContent />}>
+    <DashboardLayout navGroups={mainNavGroups} user={sampleUser}>
       <div className="space-y-4">
         <h2 className="text-xl font-semibold">No Header</h2>
         <p className="text-muted-foreground">This layout has no header.</p>
@@ -90,10 +141,27 @@ export const NoHeader: Story = {
   ),
 };
 
-export const WithSidebarHeader: Story = {
+export const WithTeams: Story = {
   render: () => (
     <DashboardLayout
-      sidebar={<SidebarContent />}
+      navGroups={mainNavGroups}
+      user={sampleUser}
+      teams={sampleTeams}
+      header={<div className="text-sm font-medium">Page Title</div>}
+    >
+      <div className="space-y-4">
+        <h2 className="text-xl font-semibold">With Team Switcher</h2>
+        <p className="text-muted-foreground">Sidebar header shows team switcher.</p>
+      </div>
+    </DashboardLayout>
+  ),
+};
+
+export const WithCustomHeader: Story = {
+  render: () => (
+    <DashboardLayout
+      navGroups={mainNavGroups}
+      user={sampleUser}
       sidebarHeader={
         <div className="flex items-center gap-2 px-4 py-2">
           <div className="h-8 w-8 rounded-lg bg-primary" />
@@ -103,7 +171,7 @@ export const WithSidebarHeader: Story = {
       header={<div className="text-sm font-medium">Page Title</div>}
     >
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold">With Sidebar Header</h2>
+        <h2 className="text-xl font-semibold">Custom Sidebar Header</h2>
         <p className="text-muted-foreground">Logo in sidebar header.</p>
       </div>
     </DashboardLayout>
