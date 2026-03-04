@@ -15,18 +15,18 @@ type Story = StoryObj<typeof DashboardLayout>;
 
 const SidebarContent = () => (
   <nav className="space-y-1 px-2">
-    <a href="#" className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent">
+    <Button variant="ghost" className="w-full justify-start">
       Dashboard
-    </a>
-    <a href="#" className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent">
+    </Button>
+    <Button variant="ghost" className="w-full justify-start">
       Projects
-    </a>
-    <a href="#" className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent">
+    </Button>
+    <Button variant="ghost" className="w-full justify-start">
       Tasks
-    </a>
-    <a href="#" className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent">
+    </Button>
+    <Button variant="ghost" className="w-full justify-start">
       Settings
-    </a>
+    </Button>
   </nav>
 );
 
@@ -54,11 +54,26 @@ export const Collapsed: Story = {
     <DashboardLayout
       sidebar={<SidebarContent />}
       header={<div className="text-sm font-medium">Page Title</div>}
-      defaultSidebarOpen={false}
+      defaultOpen={false}
     >
       <div className="space-y-4">
         <h2 className="text-xl font-semibold">Collapsed Sidebar</h2>
         <p className="text-muted-foreground">Sidebar is collapsed by default.</p>
+      </div>
+    </DashboardLayout>
+  ),
+};
+
+export const WithFooter: Story = {
+  render: () => (
+    <DashboardLayout
+      sidebar={<SidebarContent />}
+      header={<div className="text-sm font-medium">Page Title</div>}
+      footer={<p className="text-sm text-muted-foreground">© 2024 Company</p>}
+    >
+      <div className="space-y-4">
+        <h2 className="text-xl font-semibold">With Footer</h2>
+        <p className="text-muted-foreground">This layout has a footer.</p>
       </div>
     </DashboardLayout>
   ),
@@ -70,6 +85,26 @@ export const NoHeader: Story = {
       <div className="space-y-4">
         <h2 className="text-xl font-semibold">No Header</h2>
         <p className="text-muted-foreground">This layout has no header.</p>
+      </div>
+    </DashboardLayout>
+  ),
+};
+
+export const WithSidebarHeader: Story = {
+  render: () => (
+    <DashboardLayout
+      sidebar={<SidebarContent />}
+      sidebarHeader={
+        <div className="flex items-center gap-2 px-4 py-2">
+          <div className="h-8 w-8 rounded-lg bg-primary" />
+          <span className="font-semibold">My App</span>
+        </div>
+      }
+      header={<div className="text-sm font-medium">Page Title</div>}
+    >
+      <div className="space-y-4">
+        <h2 className="text-xl font-semibold">With Sidebar Header</h2>
+        <p className="text-muted-foreground">Logo in sidebar header.</p>
       </div>
     </DashboardLayout>
   ),

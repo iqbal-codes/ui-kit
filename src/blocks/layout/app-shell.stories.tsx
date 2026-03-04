@@ -15,21 +15,21 @@ type Story = StoryObj<typeof AppShell>;
 
 const SidebarContent = () => (
   <nav className="space-y-1 px-2">
-    <a href="#" className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent">
+    <Button variant="ghost" className="w-full justify-start">
       Dashboard
-    </a>
-    <a href="#" className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent">
+    </Button>
+    <Button variant="ghost" className="w-full justify-start">
       Analytics
-    </a>
-    <a href="#" className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent">
+    </Button>
+    <Button variant="ghost" className="w-full justify-start">
       Customers
-    </a>
-    <a href="#" className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent">
+    </Button>
+    <Button variant="ghost" className="w-full justify-start">
       Products
-    </a>
-    <a href="#" className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent">
+    </Button>
+    <Button variant="ghost" className="w-full justify-start">
       Settings
-    </a>
+    </Button>
   </nav>
 );
 
@@ -72,7 +72,7 @@ export const CollapsedSidebar: Story = {
     <AppShell
       sidebar={<SidebarContent />}
       header={<div className="text-sm font-medium">Collapsed</div>}
-      defaultSidebarOpen={false}
+      defaultOpen={false}
     >
       <div className="space-y-4">
         <h1 className="text-2xl font-semibold">Sidebar Collapsed</h1>

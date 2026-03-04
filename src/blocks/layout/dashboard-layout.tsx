@@ -1,108 +1,147 @@
-import { Menu, X } from "lucide-react";
-import * as React from "react";
+"use client";
+
+import { PanelLeft } from "lucide-react";
+import type * as React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/primitives/button";
 import { Separator } from "@/primitives/separator";
-import { Sheet, SheetContent, SheetTrigger } from "@/primitives/sheet";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarInset,
+  SidebarProvider,
+  SidebarRail,
+  SidebarTrigger,
+  useSidebar,
+} from "@/primitives/sidebar";
 
 export interface DashboardLayoutProps {
   /** Sidebar navigation items */
   sidebar?: React.ReactNode;
+  /** Custom sidebar header content */
+  sidebarHeader?: React.ReactNode;
+  /** Custom sidebar footer content */
+  sidebarFooter?: React.ReactNode;
   /** Header content */
   header?: React.ReactNode;
   /** Main content area */
   children: React.ReactNode;
-  /** Sidebar width */
-  sidebarWidth?: number;
-  /** Whether sidebar is collapsible on desktop */
-  collapsible?: boolean;
-  /** Initial sidebar state (open/closed) */
-  defaultSidebarOpen?: boolean;
+  /** Footer content */
+  footer?: React.ReactNode;
+  /** Initial sidebar state */
+  defaultOpen?: boolean;
+  /** Sidebar variant */
+  variant?: "sidebar" | "floating" | "inset";
   /** Additional CSS classes */
   className?: string;
 }
 
-export function DashboardLayout({
-  sidebar,
-  header,
+/**
+ * Internal sidebar component that uses the useSidebar hook
+ */
+function DashboardSidebar({
   children,
-  sidebarWidth = 280,
-  collapsible = true,
-  defaultSidebarOpen = true,
-  className,
-}: DashboardLayoutProps) {
-  const [sidebarOpen, setSidebarOpen] = React.useState(defaultSidebarOpen);
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  header,
+  footer,
+  variant,
+}: {
+  children?: React.ReactNode;
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
+  variant?: "sidebar" | "floating" | "inset";
+}) {
+  return (
+    <Sidebar collapsible="icon" variant={variant} className="border-r">
+      {header && <SidebarHeader>{header}</SidebarHeader>}
+      <SidebarContent>{children}</SidebarContent>
+      {footer && <SidebarFooter>{footer}</SidebarFooter>}
+      <SidebarRail />
+    </Sidebar>
+  );
+}
+
+/**
+ * Internal header component with built-in SidebarTrigger
+ */
+function DashboardHeader({ children }: { children?: React.ReactNode }) {
+  const { isMobile } = useSidebar();
 
   return (
-    <div className={cn("flex min-h-screen bg-background", className)}>
-      {/* Desktop Sidebar */}
-      {collapsible && sidebar && (
-        <aside
-          className={cn(
-            "hidden lg:flex flex-col border-r bg-card transition-all duration-300",
-            sidebarOpen ? `w-[${sidebarWidth}px]` : "w-16"
-          )}
-          style={{ width: sidebarOpen ? sidebarWidth : 64 }}
-        >
-          <div className="flex h-16 items-center justify-center border-b px-4">
-            {sidebarOpen ? (
-              <span className="font-semibold text-lg">Logo</span>
-            ) : (
-              <span className="font-semibold text-lg">L</span>
-            )}
-          </div>
-          <div className="flex-1 overflow-y-auto py-4">{sidebar}</div>
-          <Separator />
-          <div className="p-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-full justify-center"
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-            >
-              {sidebarOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-            </Button>
-          </div>
-        </aside>
+    <header className="flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4 lg:px-6">
+      {isMobile && (
+        <>
+          {/* Mobile: Show SidebarTrigger which opens the mobile sheet */}
+          <SidebarTrigger className="-ml-1" />
+          <Separator orientation="vertical" className="mr-2 h-4" />
+        </>
       )}
+      <div className="flex flex-1 items-center justify-between gap-4">{children}</div>
+    </header>
+  );
+}
 
-      {/* Mobile Sidebar (Sheet) */}
-      {sidebar && (
-        <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="lg:hidden">
-              <Menu className="h-5 w-5" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-[280px] p-0">
-            <div className="flex h-16 items-center border-b px-6">
-              <span className="font-semibold text-lg">Logo</span>
-            </div>
-            <div className="flex-1 overflow-y-auto py-4">{sidebar}</div>
-          </SheetContent>
-        </Sheet>
-      )}
-
-      {/* Main Content Area */}
-      <div className="flex flex-1 flex-col min-w-0">
-        {/* Header */}
-        {header && (
-          <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background px-4 lg:px-6">
-            <div className="lg:hidden">
-              <Button variant="ghost" size="icon" onClick={() => setMobileOpen(true)}>
-                <Menu className="h-5 w-5" />
-              </Button>
-            </div>
-            <div className="flex-1">{header}</div>
-          </header>
+/**
+ * DashboardLayout - A complete admin panel layout with collapsible sidebar
+ *
+ * Features:
+ * - Collapsible sidebar (icon-only mode)
+ * - Automatic mobile sheet/drawer
+ * - Built-in SidebarTrigger button
+ * - Cookie-based state persistence
+ * - Keyboard shortcut (Cmd/Ctrl + B)
+ *
+ * @example
+ * <DashboardLayout
+ *   sidebar={<Nav />}
+ *   header={<SearchBar />}
+ *   sidebarHeader={<Logo />}
+ *   sidebarFooter={<UserMenu />}
+ * >
+ *   <PageContent />
+ * </DashboardLayout>
+ */
+export function DashboardLayout({
+  sidebar,
+  sidebarHeader,
+  sidebarFooter,
+  header,
+  children,
+  footer,
+  defaultOpen = true,
+  variant = "sidebar",
+  className,
+}: DashboardLayoutProps) {
+  return (
+    <SidebarProvider defaultOpen={defaultOpen}>
+      <div className={cn("flex min-h-screen w-full", className)}>
+        {/* Sidebar */}
+        {(sidebar || sidebarHeader || sidebarFooter) && (
+          <DashboardSidebar variant={variant} header={sidebarHeader} footer={sidebarFooter}>
+            {sidebar}
+          </DashboardSidebar>
         )}
 
-        {/* Page Content */}
-        <main className="flex-1 overflow-auto p-4 lg:p-6">{children}</main>
+        {/* Main Content Area */}
+        <SidebarInset>
+          {/* Header with built-in SidebarTrigger */}
+          {(header || footer) && <DashboardHeader>{header}</DashboardHeader>}
+
+          {/* Page Content */}
+          <main className="flex-1 flex flex-col p-4 lg:p-6 min-h-0">{children}</main>
+
+          {/* Footer (outside main for sticky behavior) */}
+          {footer && (
+            <footer className="border-t bg-background py-4 px-6 shrink-0">{footer}</footer>
+          )}
+        </SidebarInset>
       </div>
-    </div>
+    </SidebarProvider>
   );
 }
 
 export default DashboardLayout;
+
+// Re-export sidebar utilities for advanced usage
+export { useSidebar } from "@/primitives/sidebar";

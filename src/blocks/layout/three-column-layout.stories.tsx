@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
+import { Button } from "@/primitives/button";
 import { ThreeColumnLayout } from "./three-column-layout";
 
 const meta: Meta<typeof ThreeColumnLayout> = {
@@ -14,18 +15,18 @@ type Story = StoryObj<typeof ThreeColumnLayout>;
 
 const SidebarContent = () => (
   <nav className="space-y-1 px-2">
-    <a href="#" className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent">
+    <Button variant="ghost" className="w-full justify-start">
       Inbox
-    </a>
-    <a href="#" className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent">
+    </Button>
+    <Button variant="ghost" className="w-full justify-start">
       Sent
-    </a>
-    <a href="#" className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent">
+    </Button>
+    <Button variant="ghost" className="w-full justify-start">
       Drafts
-    </a>
-    <a href="#" className="block rounded-md px-3 py-2 text-sm font-medium hover:bg-accent">
+    </Button>
+    <Button variant="ghost" className="w-full justify-start">
       Trash
-    </a>
+    </Button>
   </nav>
 );
 

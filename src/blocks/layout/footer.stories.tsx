@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
+import { Button } from "@/primitives/button";
 import { Footer } from "./footer";
 
 const meta: Meta<typeof Footer> = {
@@ -37,15 +38,15 @@ export const WithLinks: Story = {
       <div className="flex w-full items-center justify-between">
         <p className="text-sm text-muted-foreground">© 2024 Company Name</p>
         <div className="flex gap-4">
-          <a href="#" className="text-sm text-muted-foreground hover:text-foreground">
+          <Button variant="link" size="sm">
             Privacy
-          </a>
-          <a href="#" className="text-sm text-muted-foreground hover:text-foreground">
+          </Button>
+          <Button variant="link" size="sm">
             Terms
-          </a>
-          <a href="#" className="text-sm text-muted-foreground hover:text-foreground">
+          </Button>
+          <Button variant="link" size="sm">
             Contact
-          </a>
+          </Button>
         </div>
       </div>
     </Footer>

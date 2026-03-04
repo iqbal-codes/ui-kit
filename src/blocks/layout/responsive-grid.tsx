@@ -1,4 +1,6 @@
-import * as React from "react";
+"use client";
+
+import type * as React from "react";
 import { cn } from "@/lib/utils";
 
 export interface ResponsiveGridProps {
@@ -28,6 +30,16 @@ const defaultColumns = {
   wide: 4,
 };
 
+/**
+ * ResponsiveGrid - A grid that automatically adjusts columns based on viewport
+ *
+ * @example
+ * <ResponsiveGrid columns={{ mobile: 1, tablet: 2, desktop: 3, wide: 4 }} gap={4}>
+ *   <Card />
+ *   <Card />
+ *   <Card />
+ * </ResponsiveGrid>
+ */
 export function ResponsiveGrid({
   children,
   columns = defaultColumns,
@@ -51,9 +63,7 @@ export function ResponsiveGrid({
       )}
       style={{ gap: `${gap * 0.25}rem` }}
     >
-      {React.Children.map(children, (child, index) => (
-        <React.Fragment key={index}>{child}</React.Fragment>
-      ))}
+      {children}
     </div>
   );
 }
