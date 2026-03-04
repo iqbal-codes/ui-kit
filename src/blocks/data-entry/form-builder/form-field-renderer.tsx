@@ -100,7 +100,7 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
     return null;
   }
 
-  if (props.render) {
+  if (props.render && type !== "custom") {
     return props.render(
       { ...props, disabled: shouldBeDisabled, value: currentValue, onChange: handleValueChange },
       { control, getValues, setValue, watchedValues }
@@ -194,7 +194,7 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
           {...commonProps}
           options={props.options}
           value={currentValue}
-          onChange={handleValueChange}
+          onValueChange={handleValueChange}
         />
       );
 
@@ -371,7 +371,7 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
         value: currentValue,
         onChange: handleValueChange,
         form: { control, getValues, setValue, watchedValues },
-        field: props as any,
+        field: props,
       });
 
     case "rich-text":
@@ -400,15 +400,7 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
       );
 
     default:
-      return (
-        <TextField
-          {...commonProps}
-          type="text"
-          placeholder={props.placeholder}
-          value={currentValue}
-          onChange={handleValueChange}
-        />
-      );
+      return null;
   }
 }
 

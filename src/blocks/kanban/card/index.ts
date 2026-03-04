@@ -28,18 +28,18 @@
  * </KanbanCard>
  */
 
+// Note: Card is an alias for KanbanCard, exported from kanban-card.tsx directly
 export { Card, KanbanCard } from "./kanban-card";
-export { Attachments, KanbanCardAttachments } from "./kanban-card-attachments";
-export { Avatar, KanbanCardAvatar } from "./kanban-card-avatar";
-export { Badge, KanbanCardBadge } from "./kanban-card-badge";
-export { Content, KanbanCardContent } from "./kanban-card-content";
-
-export { Description, KanbanCardDescription } from "./kanban-card-description";
-export { DueDate, KanbanCardDueDate } from "./kanban-card-due-date";
-export { Footer, KanbanCardFooter } from "./kanban-card-footer";
-export { Header, KanbanCardHeader } from "./kanban-card-header";
-export { KanbanCardLabel, Label } from "./kanban-card-label";
-export { KanbanCardLabels, Labels } from "./kanban-card-labels";
-
-export { KanbanCardSubtasks, Subtasks } from "./kanban-card-subtasks";
-export { KanbanCardTitle, Title } from "./kanban-card-title";
+// Compound component exports (with aliases for convenience, except Footer which conflicts with layout)
+export { KanbanCardAvatar as Avatar } from "./kanban-card-avatar";
+export { KanbanCardBadge as Badge } from "./kanban-card-badge";
+export { KanbanCardContent as Content } from "./kanban-card-content";
+export { KanbanCardDescription as Description } from "./kanban-card-description";
+export { KanbanCardDueDate as DueDate } from "./kanban-card-due-date";
+// Note: Footer alias removed - use KanbanCardFooter to avoid conflict with layout/Footer
+export { KanbanCardFooter } from "./kanban-card-footer";
+export { KanbanCardHeader as Header } from "./kanban-card-header";
+export { KanbanCardLabel as Label } from "./kanban-card-label";
+export { KanbanCardLabels as Labels } from "./kanban-card-labels";
+export { KanbanCardSubtasks as Subtasks } from "./kanban-card-subtasks";
+export { KanbanCardTitle as Title } from "./kanban-card-title";

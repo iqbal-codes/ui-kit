@@ -11,6 +11,7 @@ export {
   type FormSectionConfig,
 } from "./form-builder";
 export { FormSection, type FormSectionProps, type ValidationStatus } from "./form-section";
+export type { WizardNavigationState, WizardStepConfig } from "./form-wizard";
 export { FormWizard, type FormWizardProps } from "./form-wizard";
 export { SearchBar, type SearchBarProps } from "./search-bar";
 export { StickyActions, type StickyActionsProps } from "./sticky-actions";

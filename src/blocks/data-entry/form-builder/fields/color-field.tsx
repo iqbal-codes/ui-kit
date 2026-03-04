@@ -78,6 +78,12 @@ export function ColorField<T extends FieldValues>({
   const [open, setOpen] = React.useState(false);
   const isControlled = value !== undefined && onChange !== undefined;
 
+  // Convert color to display format
+  const formatColor = React.useCallback((val: string): string => {
+    if (!val) return "";
+    return val;
+  }, []);
+
   if (isControlled) {
     const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       onChange(e.target.value);
@@ -167,12 +173,6 @@ export function ColorField<T extends FieldValues>({
       </FormItem>
     );
   }
-
-  // Convert color to display format
-  const formatColor = React.useCallback((value: string): string => {
-    if (!value) return "";
-    return value;
-  }, []);
 
   return (
     <FormItem className={cn(className)}>

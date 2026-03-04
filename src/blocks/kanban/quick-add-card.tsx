@@ -9,7 +9,7 @@ import { Textarea } from "@/primitives/textarea";
 /**
  * Quick add card props
  */
-export interface QuickAddCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface QuickAddCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
   /** Whether form is open */
   isOpen?: boolean;
   /** Current card title value */

@@ -139,12 +139,12 @@ export function OTPField<T extends FieldValues>({
           // Sync with external value changes
           React.useEffect(() => {
             if (field.value !== undefined && field.value !== null) {
-              setValue(field.value.toString());
+              setOtpValue(field.value.toString());
             }
           }, [field.value]);
 
           const handleChange = (newValue: string) => {
-            setValue(newValue);
+            setOtpValue(newValue);
             field.onChange(newValue);
           };
 

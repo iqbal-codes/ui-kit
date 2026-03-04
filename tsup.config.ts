@@ -13,6 +13,8 @@ export default defineConfig({
   clean: true,
   splitting: false,
   treeshake: true,
+  dts: true,
+  tsconfig: "./tsconfig.build.json",
   external: ["react", "react-dom", "next", "tailwindcss"],
   esbuildOptions(options) {
     options.banner = {

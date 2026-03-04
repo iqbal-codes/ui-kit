@@ -4,5 +4,6 @@
 export * from "./data-display";
 export * from "./data-entry";
 export * from "./feedback";
+export * from "./kanban";
 export * from "./layout";
 export * from "./navigation";

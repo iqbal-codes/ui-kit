@@ -41,12 +41,11 @@ export { DraggableColumn } from "./draggable-column";
 export type { DraggableKanbanBoardProps } from "./draggable-kanban-board";
 // Draggable versions
 export { DraggableKanbanBoard } from "./draggable-kanban-board";
-export type { KanbanBoardProps } from "./kanban-board";
-// Board & Column
+// Board & Column (props are exported from types)
 export { KanbanBoard } from "./kanban-board";
 // Provider & State
 export { KanbanBoardProvider, useKanbanBoard } from "./kanban-board-provider";
-export type { KanbanColumnProps } from "./kanban-column";
+// Column (props are exported from types)
 export { KanbanColumn } from "./kanban-column";
 export type { QuickAddCardProps } from "./quick-add-card";
 // Quick Add

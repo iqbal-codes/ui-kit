@@ -1193,6 +1193,869 @@ interface ToastManagerProps {
  */
 declare function ToastManager({ position, theme, className, }: ToastManagerProps): React$1.JSX.Element;
 
+/**
+ * Board toolbar props
+ */
+interface BoardToolbarProps extends React$1.HTMLAttributes<HTMLDivElement> {
+    /** Current search query */
+    searchQuery?: string;
+    /** Called when search query changes */
+    onSearchChange?: (query: string) => void;
+    /** Active filters count */
+    filtersCount?: number;
+    /** Called when filters button is clicked */
+    onFiltersClick?: () => void;
+    /** Current sort direction */
+    sortDirection?: "asc" | "desc";
+    /** Called when sort is toggled */
+    onSortToggle?: () => void;
+    /** Show search input */
+    showSearch?: boolean;
+    /** Show filters button */
+    showFilters?: boolean;
+    /** Show sort button */
+    showSort?: boolean;
+    /** Placeholder text for search */
+    searchPlaceholder?: string;
+}
+/**
+ * BoardToolbar - Toolbar for kanban board with search and filters
+ *
+ * @example
+ * <BoardToolbar
+ *   searchQuery={search}
+ *   onSearchChange={setSearch}
+ *   filtersCount={2}
+ *   onFiltersClick={handleFilters}
+ * />
+ */
+declare const BoardToolbar: React$1.ForwardRefExoticComponent<BoardToolbarProps & React$1.RefAttributes<HTMLDivElement>>;
+
+/**
+ * Kanban Board Types
+ *
+ * Generic, agnostic types for any business use case.
+ * Extend these types with your domain-specific fields.
+ */
+/**
+ * User assignee information
+ */
+interface Assignee {
+    /** Unique user identifier */
+    id: string;
+    /** User display name */
+    name: string;
+    /** Avatar image URL (optional) */
+    avatarUrl?: string;
+}
+/**
+ * Tag/Label for categorization
+ */
+interface Tag {
+    /** Unique tag identifier */
+    id: string;
+    /** Tag display text */
+    label: string;
+    /**
+     * Color for the tag
+     * Can be:
+     * - Tailwind color name: "blue", "green", "red", etc.
+     * - Hex color: "#3B82F6"
+     * - CSS class: "bg-blue-500"
+     */
+    color: string;
+}
+/**
+ * Subtask/Checklist item
+ */
+interface Subtask {
+    /** Unique subtask identifier */
+    id: string;
+    /** Subtask title/description */
+    title: string;
+    /** Whether subtask is completed */
+    completed: boolean;
+}
+/**
+ * File attachment
+ */
+interface Attachment {
+    /** Unique attachment identifier */
+    id: string;
+    /** File display name */
+    name: string;
+    /** File URL for download/view */
+    url: string;
+    /** File MIME type (e.g., "image/png", "application/pdf") */
+    type: string;
+    /** File size in bytes (optional) */
+    size?: number;
+}
+/**
+ * Base card metadata that all kanban cards share
+ * Extend this interface with your domain-specific fields
+ */
+interface BaseCardMetadata {
+    /** Unique card identifier */
+    id: string;
+    /** Card title (required, displayed prominently) */
+    title: string;
+    /** Card description (optional, longer text) */
+    description?: string;
+    /** Assigned user (optional) */
+    assignee?: Assignee;
+    /** Due date in ISO 8601 format (optional) */
+    dueDate?: string;
+    /**
+     * Priority level
+     * Controls visual emphasis and badge color
+     */
+    priority?: "low" | "medium" | "high" | "urgent";
+    /** Tags/Labels for categorization (optional) */
+    tags?: Tag[];
+    /** Subtasks/checklist items (optional) */
+    subtasks?: Subtask[];
+    /** File attachments (optional) */
+    attachments?: Attachment[];
+    /** When card was created */
+    createdAt?: string;
+    /** When card was last updated */
+    updatedAt?: string;
+}
+/**
+ * Kanban column configuration
+ */
+interface KanbanColumn$1<T extends BaseCardMetadata = BaseCardMetadata> {
+    /** Unique column identifier */
+    id: string;
+    /** Column display title */
+    title: string;
+    /** Cards in this column */
+    cards: T[];
+    /**
+     * Accent color for column header
+     * Used for visual organization
+     */
+    color?: string;
+    /** Whether column is collapsed (optional) */
+    isCollapsed?: boolean;
+    /** Work-in-progress limit (optional) */
+    cardLimit?: number;
+    /** Whether column is disabled (optional) */
+    isDisabled?: boolean;
+}
+/**
+ * Feature flags for kanban board
+ * Enable/disable specific functionality
+ */
+interface KanbanFeatures {
+    /** Enable drag-and-drop card movement */
+    dragDrop?: boolean;
+    /** Enable creating new cards */
+    cardCreation?: boolean;
+    /** Enable editing existing cards */
+    cardEditing?: boolean;
+    /** Enable deleting cards */
+    cardDeletion?: boolean;
+    /** Enable collapsing columns */
+    columnCollapse?: boolean;
+    /** Enable subtasks feature */
+    subtasks?: boolean;
+    /** Enable attachments feature */
+    attachments?: boolean;
+    /** Enable due dates */
+    dueDates?: boolean;
+    /** Enable assignees */
+    assignees?: boolean;
+    /** Enable tags/labels */
+    tags?: boolean;
+    /** Enable priority badges */
+    priority?: boolean;
+    /** Enable search functionality */
+    search?: boolean;
+    /** Enable filtering */
+    filters?: boolean;
+    /** Enable column sorting */
+    columnSorting?: boolean;
+    /** Enable card sorting within columns */
+    cardSorting?: boolean;
+}
+/**
+ * Default feature configuration
+ */
+declare const defaultFeatures: KanbanFeatures;
+/**
+ * Props for the main KanbanBoard component
+ * @template T - Your custom card data type (must extend BaseCardMetadata)
+ */
+interface KanbanBoardProps<T extends BaseCardMetadata = BaseCardMetadata> {
+    /**
+     * Column definitions
+     * Define your workflow stages
+     */
+    columns: KanbanColumn$1<T>[];
+    /**
+     * All cards data
+     * Flat array - cards are assigned to columns via their position
+     */
+    cards?: T[];
+    /**
+     * Feature flags to enable/disable functionality
+     * @default defaultFeatures
+     */
+    features?: KanbanFeatures;
+    /**
+     * Called when card is moved to different column
+     * Implement optimistic updates here
+     */
+    onCardMove?: (cardId: string, fromColumnId: string, toColumnId: string, newIndex: number) => void | Promise<void>;
+    /**
+     * Called when card is reordered within same column
+     */
+    onCardReorder?: (cardId: string, fromIndex: number, toIndex: number, columnId: string) => void | Promise<void>;
+    /**
+     * Called when card is clicked
+     * Use for opening detail view
+     */
+    onCardClick?: (card: T) => void;
+    /**
+     * Custom CSS class for the board container
+     */
+    className?: string;
+    /**
+     * Loading state - shows skeletons
+     */
+    isLoading?: boolean;
+    /**
+     * Empty state message when no cards exist
+     */
+    emptyStateMessage?: string;
+}
+/**
+ * Props for KanbanCard component
+ * @template T - Your custom card data type
+ */
+interface KanbanCardProps<T extends BaseCardMetadata = BaseCardMetadata> extends React.HTMLAttributes<HTMLDivElement> {
+    /**
+     * Card data for default rendering
+     * If omitted, use compound components (children)
+     */
+    card?: T;
+    /**
+     * Children for custom composition
+     * Takes precedence over card prop
+     */
+    children?: React.ReactNode;
+    /**
+     * Whether card is currently being dragged
+     */
+    isDragging?: boolean;
+    /**
+     * Whether card is selected
+     */
+    isSelected?: boolean;
+    /**
+     * Called when card is clicked
+     */
+    onClick?: () => void;
+    /**
+     * Priority level (for styling when using compound mode)
+     */
+    priority?: "low" | "medium" | "high" | "urgent";
+}
+/**
+ * Props for KanbanCardHeader
+ */
+interface KanbanCardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Custom CSS class */
+    className?: string;
+}
+/**
+ * Props for KanbanCardContent
+ */
+interface KanbanCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Custom CSS class */
+    className?: string;
+}
+/**
+ * Props for KanbanCardFooter
+ */
+interface KanbanCardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Custom CSS class */
+    className?: string;
+}
+/**
+ * Props for KanbanCardTitle
+ */
+interface KanbanCardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+    /** Custom CSS class */
+    className?: string;
+}
+/**
+ * Props for KanbanCardDescription
+ */
+interface KanbanCardDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {
+    /** Custom CSS class */
+    className?: string;
+}
+/**
+ * Props for KanbanCardBadge (Priority badge)
+ */
+interface KanbanCardBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Priority level */
+    priority: "low" | "medium" | "high" | "urgent";
+    /** Custom CSS class */
+    className?: string;
+}
+/**
+ * Props for KanbanCardLabel (Tag/Label)
+ */
+interface KanbanCardLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
+    /**
+     * Label color
+     * Can be Tailwind color name or hex
+     */
+    color: string;
+    /** Custom CSS class */
+    className?: string;
+}
+/**
+ * Props for KanbanCardLabels (Container for multiple labels)
+ */
+interface KanbanCardLabelsProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Custom CSS class */
+    className?: string;
+}
+/**
+ * Props for KanbanCardAvatar
+ */
+interface KanbanCardAvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** User display name */
+    name: string;
+    /** Avatar image URL */
+    avatarUrl?: string;
+    /** Custom CSS class */
+    className?: string;
+}
+/**
+ * Props for KanbanCardDueDate
+ */
+interface KanbanCardDueDateProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Due date in ISO 8601 format */
+    date: string;
+    /** Custom CSS class */
+    className?: string;
+    /** Whether to show time (default: false) */
+    showTime?: boolean;
+    /** Whether date is overdue (auto-calculated if not provided) */
+    isOverdue?: boolean;
+}
+/**
+ * Props for KanbanCardSubtasks
+ */
+interface KanbanCardSubtasksProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Number of completed subtasks */
+    completed: number;
+    /** Total number of subtasks */
+    total: number;
+    /** Custom CSS class */
+    className?: string;
+}
+/**
+ * Props for KanbanCardAttachments
+ */
+interface KanbanCardAttachmentsProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Number of attachments */
+    count: number;
+    /** Custom CSS class */
+    className?: string;
+}
+/**
+ * Helper type to get card type from column
+ */
+type CardTypeFromColumn<T> = T extends KanbanColumn$1<infer U> ? U : never;
+/**
+ * Helper type for partial card updates
+ */
+type CardUpdate<T extends BaseCardMetadata> = Partial<Omit<T, "id">>;
+
+/**
+ * KanbanCard - Main container component for kanban cards
+ *
+ * Supports two usage patterns:
+ * 1. Default rendering: Pass `card` prop with data
+ * 2. Compound components: Use sub-components for custom layout
+ *
+ * @example
+ * // Pattern 1: Default rendering
+ * <KanbanCard card={cardData} />
+ *
+ * @example
+ * // Pattern 2: Compound components
+ * <KanbanCard>
+ *   <KanbanCard.Header>
+ *     <KanbanCard.Title>Title</KanbanCard.Title>
+ *   </KanbanCard.Header>
+ *   <KanbanCard.Content>Content</KanbanCard.Content>
+ * </KanbanCard>
+ */
+declare const KanbanCard: <T extends BaseCardMetadata>(props: KanbanCardProps<T> & {
+    ref?: React$1.ForwardedRef<HTMLDivElement>;
+}) => React$1.ReactElement;
+
+/**
+ * KanbanCardAvatar - Assignee avatar for kanban cards
+ *
+ * Displays user avatar with fallback to initials
+ *
+ * @example
+ * <KanbanCard.Avatar name="John Doe" avatarUrl="/avatars/john.jpg" />
+ *
+ * @example
+ * <KanbanCard.Footer>
+ *   <KanbanCard.Avatar name="Jane Smith" />
+ * </KanbanCard.Footer>
+ */
+declare const KanbanCardAvatar: React$1.ForwardRefExoticComponent<KanbanCardAvatarProps & React$1.RefAttributes<HTMLDivElement>>;
+
+/**
+ * KanbanCardBadge - Priority badge for kanban cards
+ *
+ * Displays priority level with color-coded styling
+ *
+ * @example
+ * <KanbanCard.Badge priority="high">High Priority</KanbanCard.Badge>
+ *
+ * @example
+ * <KanbanCard.Header>
+ *   <KanbanCard.Title>Title</KanbanCard.Title>
+ *   <KanbanCard.Badge priority="urgent">Urgent</KanbanCard.Badge>
+ * </KanbanCard.Header>
+ */
+declare const KanbanCardBadge: React$1.ForwardRefExoticComponent<KanbanCardBadgeProps & React$1.RefAttributes<HTMLDivElement>>;
+
+/**
+ * KanbanCardContent - Content area for kanban cards
+ *
+ * Contains description, tags, and other card details
+ *
+ * @example
+ * <KanbanCard.Content>
+ *   <KanbanCard.Description>Description text</KanbanCard.Description>
+ *   <KanbanCard.Labels>
+ *     <KanbanCard.Label color="blue">Bug</KanbanCard.Label>
+ *   </KanbanCard.Labels>
+ * </KanbanCard.Content>
+ */
+declare const KanbanCardContent: React$1.ForwardRefExoticComponent<KanbanCardContentProps & React$1.RefAttributes<HTMLDivElement>>;
+
+/**
+ * KanbanCardDescription - Description text for kanban cards
+ *
+ * Displays longer card description in muted text
+ *
+ * @example
+ * <KanbanCard.Content>
+ *   <KanbanCard.Description>
+ *     Users can't login with special characters in password
+ *   </KanbanCard.Description>
+ * </KanbanCard.Content>
+ */
+declare const KanbanCardDescription: React$1.ForwardRefExoticComponent<KanbanCardDescriptionProps & React$1.RefAttributes<HTMLParagraphElement>>;
+
+/**
+ * KanbanCardDueDate - Due date display for kanban cards
+ *
+ * Shows formatted date with calendar icon
+ * Highlights overdue dates in red
+ *
+ * @example
+ * <KanbanCard.DueDate date="2024-03-15" />
+ *
+ * @example
+ * <KanbanCard.Footer>
+ *   <KanbanCard.DueDate date="2024-03-15" showTime />
+ * </KanbanCard.Footer>
+ */
+declare const KanbanCardDueDate: React$1.ForwardRefExoticComponent<KanbanCardDueDateProps & React$1.RefAttributes<HTMLDivElement>>;
+
+/**
+ * KanbanCardFooter - Footer container for kanban cards
+ *
+ * Contains metadata like assignee, due date, subtasks, attachments
+ *
+ * @example
+ * <KanbanCard.Footer>
+ *   <KanbanCard.Avatar name="John Doe" />
+ *   <KanbanCard.DueDate date="2024-03-15" />
+ *   <KanbanCard.Subtasks completed={3} total={5} />
+ * </KanbanCard.Footer>
+ */
+declare const KanbanCardFooter: React$1.ForwardRefExoticComponent<KanbanCardFooterProps & React$1.RefAttributes<HTMLDivElement>>;
+
+/**
+ * KanbanCardHeader - Header container for kanban cards
+ *
+ * Contains title and badge/actions area
+ *
+ * @example
+ * <KanbanCard.Header>
+ *   <KanbanCard.Title>Task Title</KanbanCard.Title>
+ *   <KanbanCard.Badge priority="high">High</KanbanCard.Badge>
+ * </KanbanCard.Header>
+ */
+declare const KanbanCardHeader: React$1.ForwardRefExoticComponent<KanbanCardHeaderProps & React$1.RefAttributes<HTMLDivElement>>;
+
+/**
+ * KanbanCardLabel - Single tag/label for kanban cards
+ *
+ * Displays a colored label for categorization
+ *
+ * @example
+ * <KanbanCard.Label color="blue">Bug</KanbanCard.Label>
+ *
+ * @example
+ * <KanbanCard.Labels>
+ *   <KanbanCard.Label color="red">Urgent</KanbanCard.Label>
+ *   <KanbanCard.Label color="blue">Frontend</KanbanCard.Label>
+ * </KanbanCard.Labels>
+ */
+declare const KanbanCardLabel: React$1.ForwardRefExoticComponent<KanbanCardLabelProps & React$1.RefAttributes<HTMLSpanElement>>;
+
+/**
+ * KanbanCardLabels - Container for multiple labels/tags
+ *
+ * Displays labels in a horizontal row with wrapping
+ *
+ * @example
+ * <KanbanCard.Labels>
+ *   <KanbanCard.Label color="blue">Bug</KanbanCard.Label>
+ *   <KanbanCard.Label color="green">Frontend</KanbanCard.Label>
+ *   <KanbanCard.Label color="purple">v2.0</KanbanCard.Label>
+ * </KanbanCard.Labels>
+ */
+declare const KanbanCardLabels: React$1.ForwardRefExoticComponent<KanbanCardLabelsProps & React$1.RefAttributes<HTMLDivElement>>;
+
+/**
+ * KanbanCardSubtasks - Subtask progress indicator for kanban cards
+ *
+ * Shows progress bar and completed/total count
+ *
+ * @example
+ * <KanbanCard.Subtasks completed={3} total={5} />
+ *
+ * @example
+ * <KanbanCard.Footer>
+ *   <KanbanCard.Subtasks completed={8} total={10} />
+ * </KanbanCard.Footer>
+ */
+declare const KanbanCardSubtasks: React$1.ForwardRefExoticComponent<KanbanCardSubtasksProps & React$1.RefAttributes<HTMLDivElement>>;
+
+/**
+ * KanbanCardTitle - Title text for kanban cards
+ *
+ * Displays the card title prominently
+ *
+ * @example
+ * <KanbanCard.Header>
+ *   <KanbanCard.Title>Fix login bug</KanbanCard.Title>
+ * </KanbanCard.Header>
+ */
+declare const KanbanCardTitle: React$1.ForwardRefExoticComponent<KanbanCardTitleProps & React$1.RefAttributes<HTMLHeadingElement>>;
+
+/**
+ * Column header props
+ */
+interface ColumnHeaderProps extends React$1.HTMLAttributes<HTMLDivElement> {
+    /** Column title */
+    title: string;
+    /** Number of cards in column (optional) */
+    cardCount?: number;
+    /** Work-in-progress limit (optional) */
+    cardLimit?: number;
+    /** Whether column is collapsed */
+    isCollapsed?: boolean;
+    /** Accent color for visual organization */
+    color?: string;
+    /** Whether column is disabled */
+    isDisabled?: boolean;
+    /** Called when add card button is clicked */
+    onAddCard?: () => void;
+    /** Called when column options menu is opened */
+    onOptionsClick?: () => void;
+    /** Called when collapse toggle is clicked */
+    onCollapseToggle?: () => void;
+    /** Show collapse toggle button */
+    showCollapse?: boolean;
+    /** Show add card button */
+    showAdd?: boolean;
+    /** Show options menu */
+    showOptions?: boolean;
+}
+/**
+ * ColumnHeader - Header for kanban columns
+ *
+ * Displays column title, card count, and action buttons
+ *
+ * @example
+ * <ColumnHeader
+ *   title="In Progress"
+ *   cardCount={5}
+ *   cardLimit={10}
+ *   onAddCard={() => handleAdd()}
+ * />
+ */
+declare const ColumnHeader: React$1.ForwardRefExoticComponent<ColumnHeaderProps & React$1.RefAttributes<HTMLDivElement>>;
+
+/**
+ * Draggable card props
+ */
+interface DraggableCardProps<T extends BaseCardMetadata = BaseCardMetadata> {
+    /** Card data */
+    card: T;
+    /** Unique card identifier for dnd-kit */
+    id: string;
+    /** Whether card is currently being dragged */
+    isDragging?: boolean;
+    /** Called when card is clicked */
+    onClick?: () => void;
+    /** Custom card renderer */
+    renderCard?: (card: T) => React__default.ReactNode;
+}
+/**
+ * DraggableCard - Wrapper for kanban cards with drag-and-drop support
+ */
+declare function DraggableCard<T extends BaseCardMetadata>({ card, id, isDragging, onClick, renderCard, }: DraggableCardProps<T>): React__default.JSX.Element;
+
+/**
+ * Draggable column props
+ */
+interface DraggableColumnProps<T extends BaseCardMetadata = BaseCardMetadata> extends React__default.HTMLAttributes<HTMLDivElement> {
+    /** Column configuration data */
+    column: KanbanColumn$1<T>;
+    /** Unique column identifier for dnd-kit */
+    id: string;
+    /** Custom card renderer */
+    renderCard?: (card: T, column: KanbanColumn$1<T>) => React__default.ReactNode;
+    /** Called when add card button is clicked */
+    onAddCard?: () => void;
+    /** Called when card is clicked */
+    onCardClick?: (card: T) => void;
+    /** Called when card is moved */
+    onCardMove?: (cardId: string, toColumnId: string, newIndex: number) => void;
+    /** Whether column is being dragged */
+    isDragging?: boolean;
+    /** Show add card button */
+    showAdd?: boolean;
+    /** Maximum height of column content */
+    maxHeight?: string;
+}
+/**
+ * DraggableColumn - Column with drag-and-drop support
+ */
+declare function DraggableColumn<T extends BaseCardMetadata>({ column, id, renderCard, onAddCard, onCardClick, onCardMove, isDragging, showAdd, maxHeight, className, }: DraggableColumnProps<T>): React__default.JSX.Element;
+
+/**
+ * Draggable kanban board props
+ */
+interface DraggableKanbanBoardProps<T extends BaseCardMetadata = BaseCardMetadata> extends Omit<KanbanBoardProps<T>, "features"> {
+    /** Called when card is moved between columns */
+    onCardMove: (cardId: string, fromColumnId: string, toColumnId: string, newIndex: number) => void | Promise<void>;
+    /** Called when card is reordered within same column */
+    onCardReorder?: (cardId: string, fromIndex: number, toIndex: number, columnId: string) => void | Promise<void>;
+    /** Custom card renderer */
+    renderCard?: (card: T, column: KanbanColumn$1<T>) => React$1.ReactNode;
+}
+/**
+ * DraggableKanbanBoard - Kanban board with full drag-and-drop support
+ */
+declare function DraggableKanbanBoard<T extends BaseCardMetadata>({ columns: initialColumns, onCardMove, onCardReorder, renderCard, onCardClick, isLoading, emptyStateMessage, className, }: DraggableKanbanBoardProps<T>): React$1.JSX.Element;
+
+/**
+ * KanbanBoard - Main board container for kanban
+ *
+ * Displays columns horizontally with scrollable overflow
+ *
+ * @example
+ * <KanbanBoard
+ *   columns={columns}
+ *   renderCard={(card) => <KanbanCard card={card} />}
+ *   onCardMove={handleCardMove}
+ * />
+ */
+declare const KanbanBoard: React$1.ForwardRefExoticComponent<KanbanBoardProps<any> & React$1.RefAttributes<HTMLDivElement>>;
+
+/**
+ * Kanban board state
+ */
+interface KanbanBoardState<T extends BaseCardMetadata> {
+    /** All columns */
+    columns: KanbanColumn$1<T>[];
+    /** Board features */
+    features: KanbanFeatures;
+    /** Search query */
+    searchQuery: string;
+    /** Active filters */
+    filters: {
+        assignees?: string[];
+        priorities?: string[];
+        tags?: string[];
+    };
+    /** Loading state */
+    isLoading: boolean;
+    /** Error state */
+    error: string | null;
+}
+/**
+ * Kanban board actions
+ */
+interface KanbanBoardActions<T extends BaseCardMetadata> {
+    /** Set search query */
+    setSearchQuery: (query: string) => void;
+    /** Set filters */
+    setFilters: (filters: KanbanBoardState<T>["filters"]) => void;
+    /** Move card between columns */
+    moveCard: (cardId: string, fromColumnId: string, toColumnId: string, newIndex: number) => Promise<void>;
+    /** Reorder card within column */
+    reorderCard: (cardId: string, fromIndex: number, toIndex: number, columnId: string) => Promise<void>;
+    /** Reorder columns */
+    reorderColumns: (columnId: string, fromIndex: number, toIndex: number) => Promise<void>;
+    /** Add new card */
+    addCard: (columnId: string, card: T) => Promise<void>;
+    /** Update card */
+    updateCard: (cardId: string, updates: Partial<T>) => Promise<void>;
+    /** Delete card */
+    deleteCard: (cardId: string) => Promise<void>;
+    /** Set loading state */
+    setLoading: (loading: boolean) => void;
+    /** Set error */
+    setError: (error: string | null) => void;
+}
+type KanbanBoardContextValue<T extends BaseCardMetadata> = KanbanBoardState<T> & KanbanBoardActions<T>;
+/**
+ * Kanban board provider props
+ */
+interface KanbanBoardProviderProps<T extends BaseCardMetadata> {
+    /** Initial columns */
+    columns: KanbanColumn$1<T>[];
+    /** Board features */
+    features?: KanbanFeatures;
+    /** API callback for moving cards */
+    onMoveCard?: (cardId: string, fromColumnId: string, toColumnId: string, newIndex: number) => Promise<void>;
+    /** API callback for reordering cards */
+    onReorderCard?: (cardId: string, fromIndex: number, toIndex: number, columnId: string) => Promise<void>;
+    /** API callback for reordering columns */
+    onReorderColumns?: (columnId: string, fromIndex: number, toIndex: number) => Promise<void>;
+    /** API callback for adding cards */
+    onAddCard?: (columnId: string, card: T) => Promise<void>;
+    /** API callback for updating cards */
+    onUpdateCard?: (cardId: string, updates: Partial<T>) => Promise<void>;
+    /** API callback for deleting cards */
+    onDeleteCard?: (cardId: string) => Promise<void>;
+    /** Children */
+    children: React$1.ReactNode;
+}
+/**
+ * KanbanBoardProvider - Context provider for kanban board state
+ *
+ * Provides:
+ * - State management for columns, filters, search
+ * - Optimistic updates for drag-and-drop
+ * - API integration callbacks
+ * - Loading and error states
+ *
+ * @example
+ * <KanbanBoardProvider
+ *   columns={initialColumns}
+ *   onMoveCard={api.moveCard}
+ * >
+ *   <DraggableKanbanBoard />
+ * </KanbanBoardProvider>
+ */
+declare function KanbanBoardProvider<T extends BaseCardMetadata>({ columns: initialColumns, features, onMoveCard, onReorderCard, onReorderColumns, onAddCard, onUpdateCard, onDeleteCard, children, }: KanbanBoardProviderProps<T>): React$1.JSX.Element;
+/**
+ * Hook to use kanban board context
+ */
+declare function useKanbanBoard<T extends BaseCardMetadata>(): KanbanBoardContextValue<T>;
+
+/**
+ * KanbanColumn props
+ */
+interface KanbanColumnProps<T extends BaseCardMetadata = BaseCardMetadata> extends React$1.HTMLAttributes<HTMLDivElement> {
+    /** Column configuration data */
+    column: KanbanColumn$1<T>;
+    /** Custom card renderer */
+    renderCard?: (card: T, column: KanbanColumn$1<T>) => React$1.ReactNode;
+    /** Called when add card button is clicked */
+    onAddCard?: () => void;
+    /** Called when card is clicked */
+    onCardClick?: (card: T) => void;
+    /** Called when column options menu is opened */
+    onOptionsClick?: () => void;
+    /** Called when collapse toggle is clicked */
+    onCollapseToggle?: () => void;
+    /** Whether column is being dragged */
+    isDragging?: boolean;
+    /** Show collapse toggle */
+    showCollapse?: boolean;
+    /** Show add card button */
+    showAdd?: boolean;
+    /** Show options menu */
+    showOptions?: boolean;
+    /** Maximum height of column content (default: "calc(100vh - 200px)") */
+    maxHeight?: string;
+}
+/**
+ * KanbanColumn - Individual column in a kanban board
+ *
+ * Contains header and scrollable list of cards
+ *
+ * @example
+ * <KanbanColumn
+ *   column={columnData}
+ *   renderCard={(card) => <KanbanCard card={card} />}
+ *   onAddCard={() => handleAddCard()}
+ * />
+ */
+declare const KanbanColumn: React$1.ForwardRefExoticComponent<KanbanColumnProps<any> & React$1.RefAttributes<HTMLDivElement>>;
+
+/**
+ * Quick add card props
+ */
+interface QuickAddCardProps extends Omit<React$1.HTMLAttributes<HTMLDivElement>, "onChange"> {
+    /** Whether form is open */
+    isOpen?: boolean;
+    /** Current card title value */
+    value?: string;
+    /** Called when value changes */
+    onChange?: (value: string) => void;
+    /** Called when add is clicked */
+    onAdd?: (title: string) => void;
+    /** Called when cancel is clicked */
+    onCancel?: () => void;
+    /** Whether form is submitting */
+    isSubmitting?: boolean;
+    /** Placeholder text */
+    placeholder?: string;
+    /** Add button text */
+    addButtonText?: string;
+    /** Cancel button text */
+    cancelButtonText?: string;
+}
+/**
+ * QuickAddCard - Inline card creation form
+ *
+ * @example
+ * <QuickAddCard
+ *   isOpen={isAdding}
+ *   value={title}
+ *   onChange={setTitle}
+ *   onAdd={(title) => handleAdd(title)}
+ *   onCancel={() => setIsAdding(false)}
+ * />
+ */
+declare const QuickAddCard: React$1.ForwardRefExoticComponent<QuickAddCardProps & React$1.RefAttributes<HTMLDivElement>>;
+
 interface AppShellProps {
     /** Sidebar navigation items */
     sidebar?: React__default.ReactNode;
@@ -1729,4 +2592,4 @@ interface TabsPanelProps {
 }
 declare function TabsPanel({ items, defaultTab, value, onValueChange, variant, className, }: TabsPanelProps): React__default.JSX.Element;
 
-export { type ActiveFilter, ActivityTimeline, type ActivityTimelineProps, AppShell, type AppShellProps, AspectRatio, type AspectRatioProps, type BreadcrumbItemType, BreadcrumbTrail, type BreadcrumbTrailProps, CardGrid, type CardGridProps, Center, type CenterProps, type ColumnDef, type CommandItem, CommandPalette, type CommandPaletteProps, ConfirmationDialog, type ConfirmationDialogProps, type ConfirmationVariant, type ConnectionState, ConnectionStatus, type ConnectionStatusProps, Container, type ContainerProps, DashboardLayout, type DashboardLayoutProps, DataGrid, type DataGridColumn, type DataGridProps, type DataGridRow, DurationPicker, type DurationPickerProps, EmptyState, type EmptyStateAction, type EmptyStateProps, EntityCard, type EntityCardProps, ErrorFallback, type ErrorFallbackProps, type FieldConfig, type FieldOption, type FieldType, FilterBar, type FilterBarProps, FilterChip, type FilterChipProps, FilterChips, type FilterChipsProps, FilterDialog, type FilterDialogProps, type FilterField, type FilterState, Footer, type FooterProps, FormBuilder, type FormBuilderProps, FormSection, type FormSectionConfig, type FormSectionProps, FormWizard, type FormWizardProps, HStack, LoadingOverlay, type LoadingOverlayProps, MasonryBoard, type MasonryBoardProps, type MasonryItem, MetricCard, type MetricCardProps, type TrendDirection$1 as MetricTrendDirection, MobileNav, type MobileNavItem, type MobileNavProps, PageHeader, type PageHeaderProps, Pagination, type PaginationProps, type ProgressStep, ProgressTracker, type ProgressTrackerProps, ResponsiveGrid, type ResponsiveGridProps, RightDrawer, type RightDrawerProps, SearchBar, type SearchBarProps, SectionHeader, type SectionHeaderProps, SectionJumper, type SectionJumperProps, type SectionJumperSection, SkeletonGenerator, type SkeletonGeneratorProps, SmartDataTable, type SmartDataTableProps, SplitPane, type SplitPaneProps, Stack, type StackProps, StatCard, type StatCardProps, StatusGrid, type StatusGridProps, type StatusItem, StickyActions, type StickyActionsProps, StickyHeader, type StickyHeaderProps, type TabItem, TabsPanel, type TabsPanelProps, ThreeColumnLayout, type ThreeColumnLayoutProps, type TimelineItem, ToastManager, type ToastManagerProps, type TrendDirection, TwoColumnLayout, type TwoColumnLayoutProps, VStack, type ValidationStatus };
+export { type ActiveFilter, ActivityTimeline, type ActivityTimelineProps, AppShell, type AppShellProps, AspectRatio, type AspectRatioProps, type Assignee, type Attachment, KanbanCardAvatar as Avatar, KanbanCardBadge as Badge, type BaseCardMetadata, BoardToolbar, type BoardToolbarProps, type BreadcrumbItemType, BreadcrumbTrail, type BreadcrumbTrailProps, KanbanCard as Card, CardGrid, type CardGridProps, type CardTypeFromColumn, type CardUpdate, Center, type CenterProps, type ColumnDef, ColumnHeader, type ColumnHeaderProps, type CommandItem, CommandPalette, type CommandPaletteProps, ConfirmationDialog, type ConfirmationDialogProps, type ConfirmationVariant, type ConnectionState, ConnectionStatus, type ConnectionStatusProps, Container, type ContainerProps, KanbanCardContent as Content, DashboardLayout, type DashboardLayoutProps, DataGrid, type DataGridColumn, type DataGridProps, type DataGridRow, KanbanCardDescription as Description, DraggableCard, type DraggableCardProps, DraggableColumn, type DraggableColumnProps, DraggableKanbanBoard, type DraggableKanbanBoardProps, KanbanCardDueDate as DueDate, DurationPicker, type DurationPickerProps, EmptyState, type EmptyStateAction, type EmptyStateProps, EntityCard, type EntityCardProps, ErrorFallback, type ErrorFallbackProps, type FieldConfig, type FieldOption, type FieldType, FilterBar, type FilterBarProps, FilterChip, type FilterChipProps, FilterChips, type FilterChipsProps, FilterDialog, type FilterDialogProps, type FilterField, type FilterState, Footer, type FooterProps, FormBuilder, type FormBuilderProps, FormSection, type FormSectionConfig, type FormSectionProps, FormWizard, type FormWizardProps, HStack, KanbanCardHeader as Header, KanbanBoard, type KanbanBoardProps, KanbanBoardProvider, KanbanCard, type KanbanCardAttachmentsProps, type KanbanCardAvatarProps, type KanbanCardBadgeProps, type KanbanCardContentProps, type KanbanCardDescriptionProps, type KanbanCardDueDateProps, KanbanCardFooter, type KanbanCardFooterProps, type KanbanCardHeaderProps, type KanbanCardLabelProps, type KanbanCardLabelsProps, type KanbanCardProps, type KanbanCardSubtasksProps, type KanbanCardTitleProps, KanbanColumn, type KanbanFeatures, KanbanCardLabel as Label, KanbanCardLabels as Labels, LoadingOverlay, type LoadingOverlayProps, MasonryBoard, type MasonryBoardProps, type MasonryItem, MetricCard, type MetricCardProps, type TrendDirection$1 as MetricTrendDirection, MobileNav, type MobileNavItem, type MobileNavProps, PageHeader, type PageHeaderProps, Pagination, type PaginationProps, type ProgressStep, ProgressTracker, type ProgressTrackerProps, QuickAddCard, type QuickAddCardProps, ResponsiveGrid, type ResponsiveGridProps, RightDrawer, type RightDrawerProps, SearchBar, type SearchBarProps, SectionHeader, type SectionHeaderProps, SectionJumper, type SectionJumperProps, type SectionJumperSection, SkeletonGenerator, type SkeletonGeneratorProps, SmartDataTable, type SmartDataTableProps, SplitPane, type SplitPaneProps, Stack, type StackProps, StatCard, type StatCardProps, StatusGrid, type StatusGridProps, type StatusItem, StickyActions, type StickyActionsProps, StickyHeader, type StickyHeaderProps, type Subtask, KanbanCardSubtasks as Subtasks, type TabItem, TabsPanel, type TabsPanelProps, type Tag, ThreeColumnLayout, type ThreeColumnLayoutProps, type TimelineItem, KanbanCardTitle as Title, ToastManager, type ToastManagerProps, type TrendDirection, TwoColumnLayout, type TwoColumnLayoutProps, VStack, type ValidationStatus, type WizardNavigationState, type WizardStepConfig, defaultFeatures, useKanbanBoard };

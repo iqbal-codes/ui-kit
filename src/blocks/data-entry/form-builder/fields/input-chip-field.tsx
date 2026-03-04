@@ -127,7 +127,7 @@ export function InputChipField<T extends FieldValues>({
     <Controller
       name={name}
       control={control}
-      defaultValue={[] as string[]}
+      defaultValue={[] as unknown as T[keyof T]}
       render={({ field, fieldState: { error } }) => {
         const currentValue = Array.isArray(field.value) ? field.value : [];
         const isReadOnly = readOnly || disabled;

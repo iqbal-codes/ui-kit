@@ -1,10 +1,10 @@
-import * as React82 from 'react';
-import React82__default from 'react';
-import { CircleIcon, ClockIcon, MinusIcon, ArrowDownIcon, ArrowUpIcon, Search, X, Loader2Icon, ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon, CheckCircleIcon, AlertCircleIcon, HelpCircleIcon, InfoIcon, AlertTriangleIcon, Loader2, WifiOff, Wifi, PackageOpen, RefreshCwIcon, CheckIcon, GripVerticalIcon, ChevronRight, ChevronLeft, SearchIcon, MenuIcon, XIcon, ChevronDownIcon, MoreHorizontalIcon, OctagonXIcon, TriangleAlertIcon, CircleCheckIcon, ChevronUpIcon, PanelLeftIcon, ChevronUp, ChevronDown, Trash2, GripVertical, Plus, StarIcon, CalendarIcon, UploadCloud, File } from 'lucide-react';
+import * as React105 from 'react';
+import React105__default from 'react';
+import { SearchIcon, XIcon, FilterIcon, SortDescIcon, SortAscIcon, PaperclipIcon, CalendarIcon, ChevronDownIcon, PlusIcon, MoreHorizontalIcon, CircleIcon, ClockIcon, MinusIcon, ArrowDownIcon, ArrowUpIcon, Search, X, Loader2Icon, ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon, CheckCircleIcon, AlertCircleIcon, HelpCircleIcon, InfoIcon, AlertTriangleIcon, Loader2, WifiOff, Wifi, PackageOpen, RefreshCwIcon, CheckIcon, GripVerticalIcon, ChevronRight, ChevronLeft, MenuIcon, OctagonXIcon, TriangleAlertIcon, CircleCheckIcon, ChevronUpIcon, PanelLeftIcon, ChevronUp, ChevronDown, Trash2, GripVertical, Plus, StarIcon, UploadCloud, File } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { cva } from 'class-variance-authority';
-import { Slot, Progress as Progress$1, Dialog as Dialog$1, Label as Label$1, Popover as Popover$1, Select as Select$1, AlertDialog as AlertDialog$1, Separator as Separator$1, Tabs as Tabs$1, Tooltip as Tooltip$1, DropdownMenu as DropdownMenu$1, Collapsible as Collapsible$1, Avatar as Avatar$1, Slider as Slider$1, RadioGroup as RadioGroup$1, Switch as Switch$1, Checkbox as Checkbox$1 } from 'radix-ui';
+import { DropdownMenu as DropdownMenu$1, Slot, Avatar as Avatar$1, Progress as Progress$1, ScrollArea as ScrollArea$1, Dialog as Dialog$1, Label as Label$1, Popover as Popover$1, Select as Select$1, AlertDialog as AlertDialog$1, Separator as Separator$1, Tabs as Tabs$1, Tooltip as Tooltip$1, Collapsible as Collapsible$1, Slider as Slider$1, RadioGroup as RadioGroup$1, Switch as Switch$1, Checkbox as Checkbox$1 } from 'radix-ui';
 import { format } from 'date-fns';
 import { getDefaultClassNames, DayPicker } from 'react-day-picker';
 import { Combobox as Combobox$1 } from '@base-ui/react';
@@ -12,6 +12,9 @@ import { useForm, FormProvider, useFormContext, useWatch, Controller, useFieldAr
 import { OTPInput, OTPInputContext } from 'input-otp';
 import { useTheme } from 'next-themes';
 import { Toaster as Toaster$1 } from 'sonner';
+import { useSortable, SortableContext, verticalListSortingStrategy, horizontalListSortingStrategy } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { useSensors, useSensor, PointerSensor, DndContext, closestCenter, DragOverlay } from '@dnd-kit/core';
 
 function cn(...inputs) {
   return twMerge(clsx(inputs));
@@ -31,19 +34,19 @@ function ActivityTimeline({
   compact = false,
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement("div", { className: cn("relative", className) }, items.map((item, index) => /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement("div", { className: cn("relative", className) }, items.map((item, index) => /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       key: item.id,
       className: cn("relative flex gap-4", !compact && "pb-8", compact && "pb-4 last:pb-0")
     },
-    index !== items.length - 1 && /* @__PURE__ */ React82__default.createElement(
+    index !== items.length - 1 && /* @__PURE__ */ React105__default.createElement(
       "div",
       {
         className: cn("absolute left-[11px] top-6 h-full w-0.5 bg-muted", compact && "top-4")
       }
     ),
-    /* @__PURE__ */ React82__default.createElement(
+    /* @__PURE__ */ React105__default.createElement(
       "div",
       {
         className: cn(
@@ -51,9 +54,9 @@ function ActivityTimeline({
           variantStyles[item.variant || "default"]
         )
       },
-      item.icon ? /* @__PURE__ */ React82__default.createElement("span", { className: "h-3 w-3 text-white" }, item.icon) : /* @__PURE__ */ React82__default.createElement(CircleIcon, { className: "h-2 w-2 text-white" })
+      item.icon ? /* @__PURE__ */ React105__default.createElement("span", { className: "h-3 w-3 text-white" }, item.icon) : /* @__PURE__ */ React105__default.createElement(CircleIcon, { className: "h-2 w-2 text-white" })
     ),
-    /* @__PURE__ */ React82__default.createElement("div", { className: cn("flex-1 space-y-1", compact && "space-y-0.5") }, /* @__PURE__ */ React82__default.createElement("p", { className: cn("text-sm font-medium", compact && "text-xs") }, item.title), item.description && /* @__PURE__ */ React82__default.createElement("p", { className: cn("text-sm text-muted-foreground", compact && "text-xs") }, item.description), showTimestamp && item.timestamp && /* @__PURE__ */ React82__default.createElement(
+    /* @__PURE__ */ React105__default.createElement("div", { className: cn("flex-1 space-y-1", compact && "space-y-0.5") }, /* @__PURE__ */ React105__default.createElement("p", { className: cn("text-sm font-medium", compact && "text-xs") }, item.title), item.description && /* @__PURE__ */ React105__default.createElement("p", { className: cn("text-sm text-muted-foreground", compact && "text-xs") }, item.description), showTimestamp && item.timestamp && /* @__PURE__ */ React105__default.createElement(
       "p",
       {
         className: cn(
@@ -61,7 +64,7 @@ function ActivityTimeline({
           compact && "text-[10px]"
         )
       },
-      /* @__PURE__ */ React82__default.createElement(ClockIcon, { className: "h-3 w-3" }),
+      /* @__PURE__ */ React105__default.createElement(ClockIcon, { className: "h-3 w-3" }),
       item.timestamp
     ))
   )));
@@ -80,7 +83,7 @@ var columnSizes = {
   6: "grid-cols-6"
 };
 function CardGrid({ columns = 3, gap = "md", children, className }) {
-  return /* @__PURE__ */ React82__default.createElement("div", { className: cn("grid", columnSizes[columns], gapSizes[gap], className) }, children);
+  return /* @__PURE__ */ React105__default.createElement("div", { className: cn("grid", columnSizes[columns], gapSizes[gap], className) }, children);
 }
 function DataGrid({
   columns,
@@ -91,7 +94,7 @@ function DataGrid({
   onRowClick,
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement("div", { className: cn("w-full overflow-auto", className) }, /* @__PURE__ */ React82__default.createElement("table", { className: "w-full caption-bottom text-sm" }, showHeader && /* @__PURE__ */ React82__default.createElement("thead", { className: "border-b bg-muted/50" }, /* @__PURE__ */ React82__default.createElement("tr", null, columns.map((column) => /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement("div", { className: cn("w-full overflow-auto", className) }, /* @__PURE__ */ React105__default.createElement("table", { className: "w-full caption-bottom text-sm" }, showHeader && /* @__PURE__ */ React105__default.createElement("thead", { className: "border-b bg-muted/50" }, /* @__PURE__ */ React105__default.createElement("tr", null, columns.map((column) => /* @__PURE__ */ React105__default.createElement(
     "th",
     {
       key: column.id,
@@ -103,7 +106,7 @@ function DataGrid({
       style: { width: column.width }
     },
     column.label
-  )))), /* @__PURE__ */ React82__default.createElement("tbody", null, rows.map((row, rowIndex) => /* @__PURE__ */ React82__default.createElement(
+  )))), /* @__PURE__ */ React105__default.createElement("tbody", null, rows.map((row, rowIndex) => /* @__PURE__ */ React105__default.createElement(
     "tr",
     {
       key: row.id,
@@ -115,7 +118,7 @@ function DataGrid({
         onRowClick && "cursor-pointer"
       )
     },
-    columns.map((column) => /* @__PURE__ */ React82__default.createElement(
+    columns.map((column) => /* @__PURE__ */ React105__default.createElement(
       "td",
       {
         key: column.id,
@@ -127,7 +130,7 @@ function DataGrid({
       },
       row.cells[column.id]
     ))
-  )), rows.length === 0 && /* @__PURE__ */ React82__default.createElement("tr", null, /* @__PURE__ */ React82__default.createElement("td", { colSpan: columns.length, className: "p-8 text-center text-muted-foreground" }, "No data available")))));
+  )), rows.length === 0 && /* @__PURE__ */ React105__default.createElement("tr", null, /* @__PURE__ */ React105__default.createElement("td", { colSpan: columns.length, className: "p-8 text-center text-muted-foreground" }, "No data available")))));
 }
 var badgeVariants = cva(
   "inline-flex items-center justify-center rounded-full border border-transparent px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
@@ -154,7 +157,7 @@ function Badge({
   ...props
 }) {
   const Comp = asChild ? Slot.Root : "span";
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Comp,
     {
       "data-slot": "badge",
@@ -165,7 +168,7 @@ function Badge({
   );
 }
 function Card({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       "data-slot": "card",
@@ -178,7 +181,7 @@ function Card({ className, ...props }) {
   );
 }
 function CardHeader({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       "data-slot": "card-header",
@@ -191,7 +194,7 @@ function CardHeader({ className, ...props }) {
   );
 }
 function CardTitle({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       "data-slot": "card-title",
@@ -201,7 +204,7 @@ function CardTitle({ className, ...props }) {
   );
 }
 function CardDescription({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       "data-slot": "card-description",
@@ -211,21 +214,21 @@ function CardDescription({ className, ...props }) {
   );
 }
 function CardContent({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement("div", { "data-slot": "card-content", className: cn("px-6", className), ...props });
+  return /* @__PURE__ */ React105__default.createElement("div", { "data-slot": "card-content", className: cn("px-6", className), ...props });
 }
 function Progress({
   className,
   value,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Progress$1.Root,
     {
       "data-slot": "progress",
       className: cn("bg-primary/20 relative h-2 w-full overflow-hidden rounded-full", className),
       ...props
     },
-    /* @__PURE__ */ React82__default.createElement(
+    /* @__PURE__ */ React105__default.createElement(
       Progress$1.Indicator,
       {
         "data-slot": "progress-indicator",
@@ -249,19 +252,19 @@ function EntityCard({
   onClick,
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Card,
     {
       className: cn("transition-colors", onClick && "cursor-pointer hover:bg-muted/50", className),
       onClick
     },
-    /* @__PURE__ */ React82__default.createElement(CardHeader, { className: "space-y-3" }, /* @__PURE__ */ React82__default.createElement("div", { className: "flex items-start justify-between" }, /* @__PURE__ */ React82__default.createElement("div", { className: "flex items-start gap-3 min-w-0" }, avatar && /* @__PURE__ */ React82__default.createElement("div", { className: "shrink-0" }, avatar), /* @__PURE__ */ React82__default.createElement("div", { className: "min-w-0" }, /* @__PURE__ */ React82__default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React82__default.createElement(CardTitle, { className: "text-base truncate" }, title), status && /* @__PURE__ */ React82__default.createElement(Badge, { variant: status.variant || "secondary", className: "shrink-0 text-xs" }, status.label)), subtitle && /* @__PURE__ */ React82__default.createElement(CardDescription, { className: "text-sm" }, subtitle)))), description && /* @__PURE__ */ React82__default.createElement(CardDescription, { className: "text-sm line-clamp-2" }, description)),
-    (progress !== void 0 || metadata) && /* @__PURE__ */ React82__default.createElement(CardContent, { className: "space-y-3" }, progress !== void 0 && /* @__PURE__ */ React82__default.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React82__default.createElement("div", { className: "flex justify-between text-xs text-muted-foreground" }, /* @__PURE__ */ React82__default.createElement("span", null, "Progress"), /* @__PURE__ */ React82__default.createElement("span", null, progress, "%")), /* @__PURE__ */ React82__default.createElement(Progress, { value: progress, className: "h-2" })), metadata && metadata.length > 0 && /* @__PURE__ */ React82__default.createElement("div", { className: "grid grid-cols-2 gap-2 text-sm" }, metadata.map((item) => /* @__PURE__ */ React82__default.createElement("div", { key: item.label, className: "flex justify-between" }, /* @__PURE__ */ React82__default.createElement("span", { className: "text-muted-foreground" }, item.label), /* @__PURE__ */ React82__default.createElement("span", { className: "font-medium truncate" }, item.value))))),
-    actions && /* @__PURE__ */ React82__default.createElement(CardContent, { className: "pt-0" }, /* @__PURE__ */ React82__default.createElement("div", { className: "flex gap-2" }, actions))
+    /* @__PURE__ */ React105__default.createElement(CardHeader, { className: "space-y-3" }, /* @__PURE__ */ React105__default.createElement("div", { className: "flex items-start justify-between" }, /* @__PURE__ */ React105__default.createElement("div", { className: "flex items-start gap-3 min-w-0" }, avatar && /* @__PURE__ */ React105__default.createElement("div", { className: "shrink-0" }, avatar), /* @__PURE__ */ React105__default.createElement("div", { className: "min-w-0" }, /* @__PURE__ */ React105__default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React105__default.createElement(CardTitle, { className: "text-base truncate" }, title), status && /* @__PURE__ */ React105__default.createElement(Badge, { variant: status.variant || "secondary", className: "shrink-0 text-xs" }, status.label)), subtitle && /* @__PURE__ */ React105__default.createElement(CardDescription, { className: "text-sm" }, subtitle)))), description && /* @__PURE__ */ React105__default.createElement(CardDescription, { className: "text-sm line-clamp-2" }, description)),
+    (progress !== void 0 || metadata) && /* @__PURE__ */ React105__default.createElement(CardContent, { className: "space-y-3" }, progress !== void 0 && /* @__PURE__ */ React105__default.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React105__default.createElement("div", { className: "flex justify-between text-xs text-muted-foreground" }, /* @__PURE__ */ React105__default.createElement("span", null, "Progress"), /* @__PURE__ */ React105__default.createElement("span", null, progress, "%")), /* @__PURE__ */ React105__default.createElement(Progress, { value: progress, className: "h-2" })), metadata && metadata.length > 0 && /* @__PURE__ */ React105__default.createElement("div", { className: "grid grid-cols-2 gap-2 text-sm" }, metadata.map((item) => /* @__PURE__ */ React105__default.createElement("div", { key: item.label, className: "flex justify-between" }, /* @__PURE__ */ React105__default.createElement("span", { className: "text-muted-foreground" }, item.label), /* @__PURE__ */ React105__default.createElement("span", { className: "font-medium truncate" }, item.value))))),
+    actions && /* @__PURE__ */ React105__default.createElement(CardContent, { className: "pt-0" }, /* @__PURE__ */ React105__default.createElement("div", { className: "flex gap-2" }, actions))
   );
 }
 function MasonryBoard({ items, columns = 3, gap = 4, className }) {
-  const columnArrays = React82.useMemo(() => {
+  const columnArrays = React105.useMemo(() => {
     const cols = Array.from({ length: columns }, () => []);
     const heights = Array(columns).fill(0);
     items.forEach((item) => {
@@ -271,7 +274,7 @@ function MasonryBoard({ items, columns = 3, gap = 4, className }) {
     });
     return cols;
   }, [items, columns]);
-  return /* @__PURE__ */ React82.createElement("div", { className: cn("grid", `grid-cols-${columns}`, className), style: { gap: `${gap * 4}px` } }, columnArrays.map((column, colIndex) => /* @__PURE__ */ React82.createElement("div", { key: colIndex, className: "flex flex-col", style: { gap: `${gap * 4}px` } }, column.map((item) => /* @__PURE__ */ React82.createElement("div", { key: item.id }, item.content)))));
+  return /* @__PURE__ */ React105.createElement("div", { className: cn("grid", `grid-cols-${columns}`, className), style: { gap: `${gap * 4}px` } }, columnArrays.map((column, colIndex) => /* @__PURE__ */ React105.createElement("div", { key: colIndex, className: "flex flex-col", style: { gap: `${gap * 4}px` } }, column.map((item) => /* @__PURE__ */ React105.createElement("div", { key: item.id }, item.content)))));
 }
 var trendConfig = {
   up: {
@@ -302,21 +305,21 @@ function MetricCard({
   className
 }) {
   const trendData = trend ? trendConfig[trend] : null;
-  const changePercent = React82.useMemo(() => {
+  const changePercent = React105.useMemo(() => {
     if (!previousValue || !trend) return null;
     const current = typeof value === "number" ? value : parseFloat(String(value));
     const prev = typeof previousValue === "number" ? previousValue : parseFloat(String(previousValue));
     if (Number.isNaN(current) || Number.isNaN(prev) || prev === 0) return null;
     return ((current - prev) / prev * 100).toFixed(1);
   }, [value, previousValue, trend]);
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Card,
     {
       className: cn("transition-colors", onClick && "cursor-pointer hover:bg-muted/50", className),
       onClick
     },
-    /* @__PURE__ */ React82.createElement(CardHeader, { className: cn("pb-2", compact && "pb-1") }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React82.createElement(CardDescription, { className: cn("font-medium text-foreground", compact && "text-sm") }, label), trendData && /* @__PURE__ */ React82.createElement(Badge, { variant: "outline", className: cn("gap-1 text-xs", trendData.bg, trendData.color) }, trend === "up" && /* @__PURE__ */ React82.createElement(ArrowUpIcon, { className: "h-3 w-3" }), trend === "down" && /* @__PURE__ */ React82.createElement(ArrowDownIcon, { className: "h-3 w-3" }), trend === "neutral" && /* @__PURE__ */ React82.createElement(MinusIcon, { className: "h-3 w-3" }), trendValue || changePercent || "\u2014"))),
-    /* @__PURE__ */ React82.createElement(CardContent, null, /* @__PURE__ */ React82.createElement("div", { className: cn("font-bold", compact ? "text-xl" : "text-3xl") }, value), description && !compact && /* @__PURE__ */ React82.createElement(CardDescription, { className: "mt-1 text-xs" }, description))
+    /* @__PURE__ */ React105.createElement(CardHeader, { className: cn("pb-2", compact && "pb-1") }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React105.createElement(CardDescription, { className: cn("font-medium text-foreground", compact && "text-sm") }, label), trendData && /* @__PURE__ */ React105.createElement(Badge, { variant: "outline", className: cn("gap-1 text-xs", trendData.bg, trendData.color) }, trend === "up" && /* @__PURE__ */ React105.createElement(ArrowUpIcon, { className: "h-3 w-3" }), trend === "down" && /* @__PURE__ */ React105.createElement(ArrowDownIcon, { className: "h-3 w-3" }), trend === "neutral" && /* @__PURE__ */ React105.createElement(MinusIcon, { className: "h-3 w-3" }), trendValue || changePercent || "\u2014"))),
+    /* @__PURE__ */ React105.createElement(CardContent, null, /* @__PURE__ */ React105.createElement("div", { className: cn("font-bold", compact ? "text-xl" : "text-3xl") }, value), description && !compact && /* @__PURE__ */ React105.createElement(CardDescription, { className: "mt-1 text-xs" }, description))
   );
 }
 var buttonVariants = cva(
@@ -356,7 +359,7 @@ function Button({
   ...props
 }) {
   const Comp = asChild ? Slot.Root : "button";
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Comp,
     {
       "data-slot": "button",
@@ -370,7 +373,7 @@ function Button({
 
 // src/blocks/data-display/section-header.tsx
 function SectionHeader({ title, description, action, icon, className }) {
-  return /* @__PURE__ */ React82__default.createElement(Card, { className: cn("border-0 shadow-none bg-transparent", className) }, /* @__PURE__ */ React82__default.createElement(CardHeader, { className: "flex flex-row items-center justify-between space-y-0 px-0 pb-4" }, /* @__PURE__ */ React82__default.createElement("div", { className: "flex items-center gap-3" }, icon && /* @__PURE__ */ React82__default.createElement("div", { className: "flex items-center" }, icon), /* @__PURE__ */ React82__default.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React82__default.createElement(CardTitle, { className: "text-xl font-semibold tracking-tight" }, title), description && /* @__PURE__ */ React82__default.createElement(CardDescription, { className: "text-sm" }, description))), action && /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(Card, { className: cn("border-0 shadow-none bg-transparent", className) }, /* @__PURE__ */ React105__default.createElement(CardHeader, { className: "flex flex-row items-center justify-between space-y-0 px-0 pb-4" }, /* @__PURE__ */ React105__default.createElement("div", { className: "flex items-center gap-3" }, icon && /* @__PURE__ */ React105__default.createElement("div", { className: "flex items-center" }, icon), /* @__PURE__ */ React105__default.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React105__default.createElement(CardTitle, { className: "text-xl font-semibold tracking-tight" }, title), description && /* @__PURE__ */ React105__default.createElement(CardDescription, { className: "text-sm" }, description))), action && /* @__PURE__ */ React105__default.createElement(
     Button,
     {
       variant: action.variant || "default",
@@ -378,12 +381,12 @@ function SectionHeader({ title, description, action, icon, className }) {
       onClick: action.onClick,
       className: "shrink-0"
     },
-    action.icon && /* @__PURE__ */ React82__default.createElement("span", { className: "mr-2" }, action.icon),
+    action.icon && /* @__PURE__ */ React105__default.createElement("span", { className: "mr-2" }, action.icon),
     action.label
-  )), /* @__PURE__ */ React82__default.createElement(CardContent, { className: "px-0" }));
+  )), /* @__PURE__ */ React105__default.createElement(CardContent, { className: "px-0" }));
 }
 function Input({ className, type, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "input",
     {
       type,
@@ -399,7 +402,7 @@ function Input({ className, type, ...props }) {
   );
 }
 function Textarea({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "textarea",
     {
       "data-slot": "textarea",
@@ -414,7 +417,7 @@ function Textarea({ className, ...props }) {
 
 // src/primitives/input-group.tsx
 function InputGroup({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       "data-slot": "input-group",
@@ -458,7 +461,7 @@ function InputGroupAddon({
   align = "inline-start",
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       role: "group",
@@ -495,7 +498,7 @@ function InputGroupButton({
   size = "xs",
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Button,
     {
       type,
@@ -507,7 +510,7 @@ function InputGroupButton({
   );
 }
 function InputGroupInput({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Input,
     {
       "data-slot": "input-group-control",
@@ -530,9 +533,9 @@ function SearchBar({
   debounce = 300,
   className
 }) {
-  const [inputValue, setInputValue] = React82.useState(value || "");
-  const debounceRef = React82.useRef(null);
-  React82.useEffect(() => {
+  const [inputValue, setInputValue] = React105.useState(value || "");
+  const debounceRef = React105.useRef(null);
+  React105.useEffect(() => {
     if (value !== void 0) {
       setInputValue(value);
     }
@@ -555,7 +558,7 @@ function SearchBar({
     setInputValue("");
     onClear?.();
   };
-  return /* @__PURE__ */ React82.createElement(InputGroup, { className }, /* @__PURE__ */ React82.createElement(InputGroupAddon, { align: "inline-start" }, /* @__PURE__ */ React82.createElement(Search, { className: "h-4 w-4" })), /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(InputGroup, { className }, /* @__PURE__ */ React105.createElement(InputGroupAddon, { align: "inline-start" }, /* @__PURE__ */ React105.createElement(Search, { className: "h-4 w-4" })), /* @__PURE__ */ React105.createElement(
     InputGroupInput,
     {
       placeholder,
@@ -563,7 +566,7 @@ function SearchBar({
       onChange: handleChange,
       disabled: isLoading
     }
-  ), inputValue && !isLoading && /* @__PURE__ */ React82.createElement(InputGroupAddon, { align: "inline-end" }, /* @__PURE__ */ React82.createElement(
+  ), inputValue && !isLoading && /* @__PURE__ */ React105.createElement(InputGroupAddon, { align: "inline-end" }, /* @__PURE__ */ React105.createElement(
     Button,
     {
       variant: "ghost",
@@ -571,8 +574,8 @@ function SearchBar({
       onClick: handleClear,
       className: "h-auto p-0 hover:bg-transparent"
     },
-    /* @__PURE__ */ React82.createElement(X, { className: "h-4 w-4" })
-  )), isLoading && /* @__PURE__ */ React82.createElement(InputGroupAddon, { align: "inline-end" }, /* @__PURE__ */ React82.createElement(Loader2Icon, { className: "h-4 w-4 animate-spin" })));
+    /* @__PURE__ */ React105.createElement(X, { className: "h-4 w-4" })
+  )), isLoading && /* @__PURE__ */ React105.createElement(InputGroupAddon, { align: "inline-end" }, /* @__PURE__ */ React105.createElement(Loader2Icon, { className: "h-4 w-4 animate-spin" })));
 }
 
 // src/blocks/data-display/smart-data-table/filter-bar.tsx
@@ -586,7 +589,7 @@ function FilterBar({
   isLoading = false,
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement("div", { className: cn("flex items-center justify-between gap-3", className) }, /* @__PURE__ */ React82__default.createElement("div", { className: "flex-1 min-w-0" }, /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement("div", { className: cn("flex items-center justify-between gap-3", className) }, /* @__PURE__ */ React105__default.createElement("div", { className: "flex-1 min-w-0" }, /* @__PURE__ */ React105__default.createElement(
     SearchBar,
     {
       value: searchValue,
@@ -597,7 +600,7 @@ function FilterBar({
       debounce: 300,
       className: "w-full"
     }
-  )), /* @__PURE__ */ React82__default.createElement("div", { className: "flex items-center gap-2 shrink-0" }, /* @__PURE__ */ React82__default.createElement(Button, { type: "button", variant: "outline", onClick: onAddFilter }, "+ Add Filter"), hasFilters && /* @__PURE__ */ React82__default.createElement(
+  )), /* @__PURE__ */ React105__default.createElement("div", { className: "flex items-center gap-2 shrink-0" }, /* @__PURE__ */ React105__default.createElement(Button, { type: "button", variant: "outline", onClick: onAddFilter }, "+ Add Filter"), hasFilters && /* @__PURE__ */ React105__default.createElement(
     Button,
     {
       type: "button",
@@ -655,7 +658,7 @@ function Calendar({
   ...props
 }) {
   const defaultClassNames = getDefaultClassNames();
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     DayPicker,
     {
       showOutsideDays,
@@ -740,20 +743,20 @@ function Calendar({
       },
       components: {
         Root: ({ className: className2, rootRef, ...props2 }) => {
-          return /* @__PURE__ */ React82.createElement("div", { "data-slot": "calendar", ref: rootRef, className: cn(className2), ...props2 });
+          return /* @__PURE__ */ React105.createElement("div", { "data-slot": "calendar", ref: rootRef, className: cn(className2), ...props2 });
         },
         Chevron: ({ className: className2, orientation, ...props2 }) => {
           if (orientation === "left") {
-            return /* @__PURE__ */ React82.createElement(ChevronLeftIcon, { className: cn("size-4", className2), ...props2 });
+            return /* @__PURE__ */ React105.createElement(ChevronLeftIcon, { className: cn("size-4", className2), ...props2 });
           }
           if (orientation === "right") {
-            return /* @__PURE__ */ React82.createElement(ChevronRightIcon, { className: cn("size-4", className2), ...props2 });
+            return /* @__PURE__ */ React105.createElement(ChevronRightIcon, { className: cn("size-4", className2), ...props2 });
           }
-          return /* @__PURE__ */ React82.createElement(ChevronDownIcon, { className: cn("size-4", className2), ...props2 });
+          return /* @__PURE__ */ React105.createElement(ChevronDownIcon, { className: cn("size-4", className2), ...props2 });
         },
         DayButton: CalendarDayButton,
         WeekNumber: ({ children, ...props2 }) => {
-          return /* @__PURE__ */ React82.createElement("td", { ...props2 }, /* @__PURE__ */ React82.createElement("div", { className: "flex size-(--cell-size) items-center justify-center text-center" }, children));
+          return /* @__PURE__ */ React105.createElement("td", { ...props2 }, /* @__PURE__ */ React105.createElement("div", { className: "flex size-(--cell-size) items-center justify-center text-center" }, children));
         },
         ...components
       },
@@ -768,11 +771,11 @@ function CalendarDayButton({
   ...props
 }) {
   const defaultClassNames = getDefaultClassNames();
-  const ref = React82.useRef(null);
-  React82.useEffect(() => {
+  const ref = React105.useRef(null);
+  React105.useEffect(() => {
     if (modifiers.focused) ref.current?.focus();
   }, [modifiers.focused]);
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Button,
     {
       ref,
@@ -794,7 +797,7 @@ function CalendarDayButton({
 }
 var Combobox = Combobox$1.Root;
 function ComboboxTrigger({ className, children, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Combobox$1.Trigger,
     {
       "data-slot": "combobox-trigger",
@@ -802,7 +805,7 @@ function ComboboxTrigger({ className, children, ...props }) {
       ...props
     },
     children,
-    /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement(
       ChevronDownIcon,
       {
         "data-slot": "combobox-trigger-icon",
@@ -812,15 +815,15 @@ function ComboboxTrigger({ className, children, ...props }) {
   );
 }
 function ComboboxClear({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Combobox$1.Clear,
     {
       "data-slot": "combobox-clear",
-      render: /* @__PURE__ */ React82.createElement(InputGroupButton, { variant: "ghost", size: "icon-xs" }),
+      render: /* @__PURE__ */ React105.createElement(InputGroupButton, { variant: "ghost", size: "icon-xs" }),
       className: cn(className),
       ...props
     },
-    /* @__PURE__ */ React82.createElement(XIcon, { className: "pointer-events-none" })
+    /* @__PURE__ */ React105.createElement(XIcon, { className: "pointer-events-none" })
   );
 }
 function ComboboxInput({
@@ -831,7 +834,7 @@ function ComboboxInput({
   showClear = false,
   ...props
 }) {
-  return /* @__PURE__ */ React82.createElement(InputGroup, { className: cn("w-auto", className) }, /* @__PURE__ */ React82.createElement(Combobox$1.Input, { render: /* @__PURE__ */ React82.createElement(InputGroupInput, { disabled }), ...props }), /* @__PURE__ */ React82.createElement(InputGroupAddon, { align: "inline-end" }, showTrigger && /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(InputGroup, { className: cn("w-auto", className) }, /* @__PURE__ */ React105.createElement(Combobox$1.Input, { render: /* @__PURE__ */ React105.createElement(InputGroupInput, { disabled }), ...props }), /* @__PURE__ */ React105.createElement(InputGroupAddon, { align: "inline-end" }, showTrigger && /* @__PURE__ */ React105.createElement(
     InputGroupButton,
     {
       size: "icon-xs",
@@ -841,8 +844,8 @@ function ComboboxInput({
       className: "group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent",
       disabled
     },
-    /* @__PURE__ */ React82.createElement(ComboboxTrigger, null)
-  ), showClear && /* @__PURE__ */ React82.createElement(ComboboxClear, { disabled })), children);
+    /* @__PURE__ */ React105.createElement(ComboboxTrigger, null)
+  ), showClear && /* @__PURE__ */ React105.createElement(ComboboxClear, { disabled })), children);
 }
 function ComboboxContent({
   className,
@@ -853,7 +856,7 @@ function ComboboxContent({
   anchor,
   ...props
 }) {
-  return /* @__PURE__ */ React82.createElement(Combobox$1.Portal, null, /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(Combobox$1.Portal, null, /* @__PURE__ */ React105.createElement(
     Combobox$1.Positioner,
     {
       side,
@@ -863,7 +866,7 @@ function ComboboxContent({
       anchor,
       className: "isolate z-50"
     },
-    /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement(
       Combobox$1.Popup,
       {
         "data-slot": "combobox-content",
@@ -878,7 +881,7 @@ function ComboboxContent({
   ));
 }
 function ComboboxList({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Combobox$1.List,
     {
       "data-slot": "combobox-list",
@@ -891,7 +894,7 @@ function ComboboxList({ className, ...props }) {
   );
 }
 function ComboboxItem({ className, children, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Combobox$1.Item,
     {
       "data-slot": "combobox-item",
@@ -902,18 +905,18 @@ function ComboboxItem({ className, children, ...props }) {
       ...props
     },
     children,
-    /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement(
       Combobox$1.ItemIndicator,
       {
         "data-slot": "combobox-item-indicator",
-        render: /* @__PURE__ */ React82.createElement("span", { className: "pointer-events-none absolute right-2 flex size-4 items-center justify-center" })
+        render: /* @__PURE__ */ React105.createElement("span", { className: "pointer-events-none absolute right-2 flex size-4 items-center justify-center" })
       },
-      /* @__PURE__ */ React82.createElement(CheckIcon, { className: "pointer-events-none size-4 pointer-coarse:size-5" })
+      /* @__PURE__ */ React105.createElement(CheckIcon, { className: "pointer-events-none size-4 pointer-coarse:size-5" })
     )
   );
 }
 function ComboboxEmpty({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Combobox$1.Empty,
     {
       "data-slot": "combobox-empty",
@@ -926,16 +929,16 @@ function ComboboxEmpty({ className, ...props }) {
   );
 }
 function Dialog({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(Dialog$1.Root, { "data-slot": "dialog", ...props });
+  return /* @__PURE__ */ React105__default.createElement(Dialog$1.Root, { "data-slot": "dialog", ...props });
 }
 function DialogPortal({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(Dialog$1.Portal, { "data-slot": "dialog-portal", ...props });
+  return /* @__PURE__ */ React105__default.createElement(Dialog$1.Portal, { "data-slot": "dialog-portal", ...props });
 }
 function DialogOverlay({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Dialog$1.Overlay,
     {
       "data-slot": "dialog-overlay",
@@ -953,7 +956,7 @@ function DialogContent({
   showCloseButton = true,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(DialogPortal, { "data-slot": "dialog-portal" }, /* @__PURE__ */ React82__default.createElement(DialogOverlay, null), /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(DialogPortal, { "data-slot": "dialog-portal" }, /* @__PURE__ */ React105__default.createElement(DialogOverlay, null), /* @__PURE__ */ React105__default.createElement(
     Dialog$1.Content,
     {
       "data-slot": "dialog-content",
@@ -964,19 +967,19 @@ function DialogContent({
       ...props
     },
     children,
-    showCloseButton && /* @__PURE__ */ React82__default.createElement(
+    showCloseButton && /* @__PURE__ */ React105__default.createElement(
       Dialog$1.Close,
       {
         "data-slot": "dialog-close",
         className: "ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
       },
-      /* @__PURE__ */ React82__default.createElement(XIcon, null),
-      /* @__PURE__ */ React82__default.createElement("span", { className: "sr-only" }, "Close")
+      /* @__PURE__ */ React105__default.createElement(XIcon, null),
+      /* @__PURE__ */ React105__default.createElement("span", { className: "sr-only" }, "Close")
     )
   ));
 }
 function DialogHeader({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       "data-slot": "dialog-header",
@@ -986,7 +989,7 @@ function DialogHeader({ className, ...props }) {
   );
 }
 function DialogTitle({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Dialog$1.Title,
     {
       "data-slot": "dialog-title",
@@ -996,7 +999,7 @@ function DialogTitle({ className, ...props }) {
   );
 }
 function Label({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Label$1.Root,
     {
       "data-slot": "label",
@@ -1009,10 +1012,10 @@ function Label({ className, ...props }) {
   );
 }
 function Popover({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(Popover$1.Root, { "data-slot": "popover", ...props });
+  return /* @__PURE__ */ React105__default.createElement(Popover$1.Root, { "data-slot": "popover", ...props });
 }
 function PopoverTrigger({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(Popover$1.Trigger, { "data-slot": "popover-trigger", ...props });
+  return /* @__PURE__ */ React105__default.createElement(Popover$1.Trigger, { "data-slot": "popover-trigger", ...props });
 }
 function PopoverContent({
   className,
@@ -1020,7 +1023,7 @@ function PopoverContent({
   sideOffset = 4,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(Popover$1.Portal, null, /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(Popover$1.Portal, null, /* @__PURE__ */ React105__default.createElement(
     Popover$1.Content,
     {
       "data-slot": "popover-content",
@@ -1035,10 +1038,10 @@ function PopoverContent({
   ));
 }
 function Select({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(Select$1.Root, { "data-slot": "select", ...props });
+  return /* @__PURE__ */ React105__default.createElement(Select$1.Root, { "data-slot": "select", ...props });
 }
 function SelectValue({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(Select$1.Value, { "data-slot": "select-value", ...props });
+  return /* @__PURE__ */ React105__default.createElement(Select$1.Value, { "data-slot": "select-value", ...props });
 }
 function SelectTrigger({
   className,
@@ -1046,7 +1049,7 @@ function SelectTrigger({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Select$1.Trigger,
     {
       "data-slot": "select-trigger",
@@ -1058,7 +1061,7 @@ function SelectTrigger({
       ...props
     },
     children,
-    /* @__PURE__ */ React82__default.createElement(Select$1.Icon, { asChild: true }, /* @__PURE__ */ React82__default.createElement(ChevronDownIcon, { className: "size-4 opacity-50" }))
+    /* @__PURE__ */ React105__default.createElement(Select$1.Icon, { asChild: true }, /* @__PURE__ */ React105__default.createElement(ChevronDownIcon, { className: "size-4 opacity-50" }))
   );
 }
 function SelectContent({
@@ -1068,7 +1071,7 @@ function SelectContent({
   align = "center",
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(Select$1.Portal, null, /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(Select$1.Portal, null, /* @__PURE__ */ React105__default.createElement(
     Select$1.Content,
     {
       "data-slot": "select-content",
@@ -1081,8 +1084,8 @@ function SelectContent({
       align,
       ...props
     },
-    /* @__PURE__ */ React82__default.createElement(SelectScrollUpButton, null),
-    /* @__PURE__ */ React82__default.createElement(
+    /* @__PURE__ */ React105__default.createElement(SelectScrollUpButton, null),
+    /* @__PURE__ */ React105__default.createElement(
       Select$1.Viewport,
       {
         className: cn(
@@ -1092,7 +1095,7 @@ function SelectContent({
       },
       children
     ),
-    /* @__PURE__ */ React82__default.createElement(SelectScrollDownButton, null)
+    /* @__PURE__ */ React105__default.createElement(SelectScrollDownButton, null)
   ));
 }
 function SelectItem({
@@ -1100,7 +1103,7 @@ function SelectItem({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Select$1.Item,
     {
       "data-slot": "select-item",
@@ -1110,56 +1113,56 @@ function SelectItem({
       ),
       ...props
     },
-    /* @__PURE__ */ React82__default.createElement(
+    /* @__PURE__ */ React105__default.createElement(
       "span",
       {
         "data-slot": "select-item-indicator",
         className: "absolute right-2 flex size-3.5 items-center justify-center"
       },
-      /* @__PURE__ */ React82__default.createElement(Select$1.ItemIndicator, null, /* @__PURE__ */ React82__default.createElement(CheckIcon, { className: "size-4" }))
+      /* @__PURE__ */ React105__default.createElement(Select$1.ItemIndicator, null, /* @__PURE__ */ React105__default.createElement(CheckIcon, { className: "size-4" }))
     ),
-    /* @__PURE__ */ React82__default.createElement(Select$1.ItemText, null, children)
+    /* @__PURE__ */ React105__default.createElement(Select$1.ItemText, null, children)
   );
 }
 function SelectScrollUpButton({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Select$1.ScrollUpButton,
     {
       "data-slot": "select-scroll-up-button",
       className: cn("flex cursor-default items-center justify-center py-1", className),
       ...props
     },
-    /* @__PURE__ */ React82__default.createElement(ChevronUpIcon, { className: "size-4" })
+    /* @__PURE__ */ React105__default.createElement(ChevronUpIcon, { className: "size-4" })
   );
 }
 function SelectScrollDownButton({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Select$1.ScrollDownButton,
     {
       "data-slot": "select-scroll-down-button",
       className: cn("flex cursor-default items-center justify-center py-1", className),
       ...props
     },
-    /* @__PURE__ */ React82__default.createElement(ChevronDownIcon, { className: "size-4" })
+    /* @__PURE__ */ React105__default.createElement(ChevronDownIcon, { className: "size-4" })
   );
 }
 function Sheet({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(Dialog$1.Root, { "data-slot": "sheet", ...props });
+  return /* @__PURE__ */ React105__default.createElement(Dialog$1.Root, { "data-slot": "sheet", ...props });
 }
 function SheetPortal({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(Dialog$1.Portal, { "data-slot": "sheet-portal", ...props });
+  return /* @__PURE__ */ React105__default.createElement(Dialog$1.Portal, { "data-slot": "sheet-portal", ...props });
 }
 function SheetOverlay({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Dialog$1.Overlay,
     {
       "data-slot": "sheet-overlay",
@@ -1178,7 +1181,7 @@ function SheetContent({
   showCloseButton = true,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(SheetPortal, null, /* @__PURE__ */ React82__default.createElement(SheetOverlay, null), /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(SheetPortal, null, /* @__PURE__ */ React105__default.createElement(SheetOverlay, null), /* @__PURE__ */ React105__default.createElement(
     Dialog$1.Content,
     {
       "data-slot": "sheet-content",
@@ -1193,11 +1196,11 @@ function SheetContent({
       ...props
     },
     children,
-    showCloseButton && /* @__PURE__ */ React82__default.createElement(Dialog$1.Close, { className: "ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none" }, /* @__PURE__ */ React82__default.createElement(XIcon, { className: "size-4" }), /* @__PURE__ */ React82__default.createElement("span", { className: "sr-only" }, "Close"))
+    showCloseButton && /* @__PURE__ */ React105__default.createElement(Dialog$1.Close, { className: "ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none" }, /* @__PURE__ */ React105__default.createElement(XIcon, { className: "size-4" }), /* @__PURE__ */ React105__default.createElement("span", { className: "sr-only" }, "Close"))
   ));
 }
 function SheetHeader({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       "data-slot": "sheet-header",
@@ -1207,7 +1210,7 @@ function SheetHeader({ className, ...props }) {
   );
 }
 function SheetFooter({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       "data-slot": "sheet-footer",
@@ -1217,7 +1220,7 @@ function SheetFooter({ className, ...props }) {
   );
 }
 function SheetTitle({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Dialog$1.Title,
     {
       "data-slot": "sheet-title",
@@ -1230,7 +1233,7 @@ function SheetDescription({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Dialog$1.Description,
     {
       "data-slot": "sheet-description",
@@ -1251,8 +1254,8 @@ function FilterDialog({
   onClearAll,
   isMobile = false
 }) {
-  const [localValues, setLocalValues] = React82.useState(values);
-  React82.useEffect(() => {
+  const [localValues, setLocalValues] = React105.useState(values);
+  React105.useEffect(() => {
     if (open) {
       setLocalValues(values);
     }
@@ -1275,7 +1278,7 @@ function FilterDialog({
   const activeCount = Object.keys(localValues).filter(
     (key) => localValues[key] !== "" && localValues[key] !== null
   ).length;
-  const Content = /* @__PURE__ */ React82.createElement(React82.Fragment, null, /* @__PURE__ */ React82.createElement(DialogHeader, { className: "space-y-1" }, /* @__PURE__ */ React82.createElement(DialogTitle, null, "Filter Data")), /* @__PURE__ */ React82.createElement("div", { className: "space-y-4 py-4" }, fields.map((field) => /* @__PURE__ */ React82.createElement(
+  const Content = /* @__PURE__ */ React105.createElement(React105.Fragment, null, /* @__PURE__ */ React105.createElement(DialogHeader, { className: "space-y-1" }, /* @__PURE__ */ React105.createElement(DialogTitle, null, "Filter Data")), /* @__PURE__ */ React105.createElement("div", { className: "space-y-4 py-4" }, fields.map((field) => /* @__PURE__ */ React105.createElement(
     FilterFieldInput,
     {
       key: field.name,
@@ -1283,7 +1286,7 @@ function FilterDialog({
       value: localValues[field.name],
       onChange: (value) => handleFieldChange(field.name, value)
     }
-  ))), /* @__PURE__ */ React82.createElement(SheetFooter, { className: "gap-2 sm:justify-between" }, /* @__PURE__ */ React82.createElement(
+  ))), /* @__PURE__ */ React105.createElement(SheetFooter, { className: "gap-2 sm:justify-between" }, /* @__PURE__ */ React105.createElement(
     Button,
     {
       type: "button",
@@ -1292,9 +1295,9 @@ function FilterDialog({
       disabled: activeCount === 0
     },
     "Clear All"
-  ), /* @__PURE__ */ React82.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React82.createElement(Button, { type: "button", variant: "outline", onClick: () => onOpenChange(false) }, "Cancel"), /* @__PURE__ */ React82.createElement(Button, { type: "button", onClick: handleApply }, "Apply ", activeCount > 0 && `(${activeCount})`))));
+  ), /* @__PURE__ */ React105.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React105.createElement(Button, { type: "button", variant: "outline", onClick: () => onOpenChange(false) }, "Cancel"), /* @__PURE__ */ React105.createElement(Button, { type: "button", onClick: handleApply }, "Apply ", activeCount > 0 && `(${activeCount})`))));
   if (isMobile) {
-    return /* @__PURE__ */ React82.createElement(Sheet, { open, onOpenChange }, /* @__PURE__ */ React82.createElement(SheetContent, { className: "flex flex-col" }, /* @__PURE__ */ React82.createElement(SheetHeader, null, /* @__PURE__ */ React82.createElement(SheetTitle, null, "Filter Data")), /* @__PURE__ */ React82.createElement("div", { className: "flex-1 overflow-y-auto" }, /* @__PURE__ */ React82.createElement("div", { className: "space-y-4 py-4" }, fields.map((field) => /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(Sheet, { open, onOpenChange }, /* @__PURE__ */ React105.createElement(SheetContent, { className: "flex flex-col" }, /* @__PURE__ */ React105.createElement(SheetHeader, null, /* @__PURE__ */ React105.createElement(SheetTitle, null, "Filter Data")), /* @__PURE__ */ React105.createElement("div", { className: "flex-1 overflow-y-auto" }, /* @__PURE__ */ React105.createElement("div", { className: "space-y-4 py-4" }, fields.map((field) => /* @__PURE__ */ React105.createElement(
       FilterFieldInput,
       {
         key: field.name,
@@ -1302,7 +1305,7 @@ function FilterDialog({
         value: localValues[field.name],
         onChange: (value) => handleFieldChange(field.name, value)
       }
-    )))), /* @__PURE__ */ React82.createElement(SheetFooter, { className: "gap-2 sm:justify-between" }, /* @__PURE__ */ React82.createElement(
+    )))), /* @__PURE__ */ React105.createElement(SheetFooter, { className: "gap-2 sm:justify-between" }, /* @__PURE__ */ React105.createElement(
       Button,
       {
         type: "button",
@@ -1311,9 +1314,9 @@ function FilterDialog({
         disabled: activeCount === 0
       },
       "Clear All"
-    ), /* @__PURE__ */ React82.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React82.createElement(Button, { type: "button", variant: "outline", onClick: () => onOpenChange(false) }, "Cancel"), /* @__PURE__ */ React82.createElement(Button, { type: "button", onClick: handleApply }, "Apply ", activeCount > 0 && `(${activeCount})`)))));
+    ), /* @__PURE__ */ React105.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React105.createElement(Button, { type: "button", variant: "outline", onClick: () => onOpenChange(false) }, "Cancel"), /* @__PURE__ */ React105.createElement(Button, { type: "button", onClick: handleApply }, "Apply ", activeCount > 0 && `(${activeCount})`)))));
   }
-  return /* @__PURE__ */ React82.createElement(Dialog, { open, onOpenChange }, /* @__PURE__ */ React82.createElement(DialogContent, { className: "sm:max-w-md" }, Content));
+  return /* @__PURE__ */ React105.createElement(Dialog, { open, onOpenChange }, /* @__PURE__ */ React105.createElement(DialogContent, { className: "sm:max-w-md" }, Content));
 }
 function FilterFieldInput({
   field,
@@ -1322,7 +1325,7 @@ function FilterFieldInput({
 }) {
   switch (field.type) {
     case "text":
-      return /* @__PURE__ */ React82.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React82.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React105.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React105.createElement(
         Input,
         {
           id: field.name,
@@ -1332,18 +1335,18 @@ function FilterFieldInput({
         }
       ));
     case "select":
-      return /* @__PURE__ */ React82.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React82.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React82.createElement(Select, { value: value || "", onValueChange: onChange }, /* @__PURE__ */ React82.createElement(SelectTrigger, { id: field.name }, /* @__PURE__ */ React82.createElement(SelectValue, { placeholder: field.placeholder || "Select..." })), /* @__PURE__ */ React82.createElement(SelectContent, null, field.options?.map((option) => /* @__PURE__ */ React82.createElement(SelectItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label)))));
+      return /* @__PURE__ */ React105.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React105.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React105.createElement(Select, { value: value || "", onValueChange: onChange }, /* @__PURE__ */ React105.createElement(SelectTrigger, { id: field.name }, /* @__PURE__ */ React105.createElement(SelectValue, { placeholder: field.placeholder || "Select..." })), /* @__PURE__ */ React105.createElement(SelectContent, null, field.options?.map((option) => /* @__PURE__ */ React105.createElement(SelectItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label)))));
     case "combobox":
-      return /* @__PURE__ */ React82.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React82.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React82.createElement(Combobox, { value: value || "", onValueChange: onChange }, /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React105.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React105.createElement(Combobox, { value: value || "", onValueChange: onChange }, /* @__PURE__ */ React105.createElement(
         ComboboxInput,
         {
           placeholder: field.placeholder || "Select...",
           showClear: true,
           showTrigger: false
         }
-      ), /* @__PURE__ */ React82.createElement(ComboboxContent, null, /* @__PURE__ */ React82.createElement(ComboboxList, null, field.options?.map((option) => /* @__PURE__ */ React82.createElement(ComboboxItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label)), /* @__PURE__ */ React82.createElement(ComboboxEmpty, null, "No results found")))));
+      ), /* @__PURE__ */ React105.createElement(ComboboxContent, null, /* @__PURE__ */ React105.createElement(ComboboxList, null, field.options?.map((option) => /* @__PURE__ */ React105.createElement(ComboboxItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label)), /* @__PURE__ */ React105.createElement(ComboboxEmpty, null, "No results found")))));
     case "date":
-      return /* @__PURE__ */ React82.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React82.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React82.createElement(Popover, null, /* @__PURE__ */ React82.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React82.createElement(Button, { variant: "outline", className: "w-full justify-start text-left font-normal" }, value ? format(value, "PPP") : /* @__PURE__ */ React82.createElement("span", null, field.placeholder || "Pick a date"))), /* @__PURE__ */ React82.createElement(PopoverContent, { className: "w-auto p-0", align: "start" }, /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React105.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React105.createElement(Popover, null, /* @__PURE__ */ React105.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React105.createElement(Button, { variant: "outline", className: "w-full justify-start text-left font-normal" }, value ? format(value, "PPP") : /* @__PURE__ */ React105.createElement("span", null, field.placeholder || "Pick a date"))), /* @__PURE__ */ React105.createElement(PopoverContent, { className: "w-auto p-0", align: "start" }, /* @__PURE__ */ React105.createElement(
         Calendar,
         {
           mode: "single",
@@ -1353,7 +1356,7 @@ function FilterFieldInput({
         }
       ))));
     default:
-      return /* @__PURE__ */ React82.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React82.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React105.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React105.createElement(
         Input,
         {
           id: field.name,
@@ -1365,7 +1368,7 @@ function FilterFieldInput({
   }
 }
 function Pagination({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "nav",
     {
       "aria-label": "pagination",
@@ -1376,7 +1379,7 @@ function Pagination({ className, ...props }) {
   );
 }
 function PaginationContent({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "ul",
     {
       "data-slot": "pagination-content",
@@ -1386,10 +1389,10 @@ function PaginationContent({ className, ...props }) {
   );
 }
 function PaginationItem({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement("li", { "data-slot": "pagination-item", ...props });
+  return /* @__PURE__ */ React105__default.createElement("li", { "data-slot": "pagination-item", ...props });
 }
 function PaginationLink({ className, isActive, size = "icon", ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "a",
     {
       "aria-current": isActive ? "page" : void 0,
@@ -1407,7 +1410,7 @@ function PaginationLink({ className, isActive, size = "icon", ...props }) {
   );
 }
 function PaginationPrevious({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     PaginationLink,
     {
       "aria-label": "Go to previous page",
@@ -1415,12 +1418,12 @@ function PaginationPrevious({ className, ...props }) {
       className: cn("gap-1 px-2.5 sm:pl-2.5", className),
       ...props
     },
-    /* @__PURE__ */ React82__default.createElement(ChevronLeftIcon, null),
-    /* @__PURE__ */ React82__default.createElement("span", { className: "hidden sm:block" }, "Previous")
+    /* @__PURE__ */ React105__default.createElement(ChevronLeftIcon, null),
+    /* @__PURE__ */ React105__default.createElement("span", { className: "hidden sm:block" }, "Previous")
   );
 }
 function PaginationNext({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     PaginationLink,
     {
       "aria-label": "Go to next page",
@@ -1428,12 +1431,12 @@ function PaginationNext({ className, ...props }) {
       className: cn("gap-1 px-2.5 sm:pr-2.5", className),
       ...props
     },
-    /* @__PURE__ */ React82__default.createElement("span", { className: "hidden sm:block" }, "Next"),
-    /* @__PURE__ */ React82__default.createElement(ChevronRightIcon, null)
+    /* @__PURE__ */ React105__default.createElement("span", { className: "hidden sm:block" }, "Next"),
+    /* @__PURE__ */ React105__default.createElement(ChevronRightIcon, null)
   );
 }
 function PaginationEllipsis({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "span",
     {
       "aria-hidden": true,
@@ -1441,8 +1444,8 @@ function PaginationEllipsis({ className, ...props }) {
       className: cn("flex size-9 items-center justify-center", className),
       ...props
     },
-    /* @__PURE__ */ React82__default.createElement(MoreHorizontalIcon, { className: "size-4" }),
-    /* @__PURE__ */ React82__default.createElement("span", { className: "sr-only" }, "More pages")
+    /* @__PURE__ */ React105__default.createElement(MoreHorizontalIcon, { className: "size-4" }),
+    /* @__PURE__ */ React105__default.createElement("span", { className: "sr-only" }, "More pages")
   );
 }
 
@@ -1603,12 +1606,12 @@ function SmartDataTable({
   compactPagination = false,
   className
 }) {
-  const [isFilterDialogOpen, setIsFilterDialogOpen] = React82.useState(false);
-  const [localFilters, setLocalFilters] = React82.useState(filters || {});
-  const [internalPage, setInternalPage] = React82.useState(1);
-  const [internalPageSize, setInternalPageSize] = React82.useState(pageSize);
-  const [isMobile, setIsMobile] = React82.useState(false);
-  React82.useEffect(() => {
+  const [isFilterDialogOpen, setIsFilterDialogOpen] = React105.useState(false);
+  const [localFilters, setLocalFilters] = React105.useState(filters || {});
+  const [internalPage, setInternalPage] = React105.useState(1);
+  const [internalPageSize, setInternalPageSize] = React105.useState(pageSize);
+  const [isMobile, setIsMobile] = React105.useState(false);
+  React105.useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -1616,22 +1619,22 @@ function SmartDataTable({
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-  React82.useEffect(() => {
+  React105.useEffect(() => {
     if (filters) {
       setLocalFilters(filters);
     }
   }, [filters]);
-  React82.useEffect(() => {
+  React105.useEffect(() => {
     if (currentPage) {
       setInternalPage(currentPage);
     }
   }, [currentPage]);
-  React82.useEffect(() => {
+  React105.useEffect(() => {
     setInternalPageSize(pageSize);
   }, [pageSize]);
   const actualTotalItems = totalItems ?? data.length;
   const totalPages = Math.ceil(actualTotalItems / internalPageSize);
-  const paginatedData = React82.useMemo(() => {
+  const paginatedData = React105.useMemo(() => {
     if (!enablePagination || totalItems !== void 0) {
       return data;
     }
@@ -1639,7 +1642,7 @@ function SmartDataTable({
     const end = start + internalPageSize;
     return data.slice(start, end);
   }, [data, enablePagination, totalItems, internalPage, internalPageSize]);
-  const activeFilters = React82.useMemo(() => {
+  const activeFilters = React105.useMemo(() => {
     if (!localFilters) return [];
     return Object.entries(localFilters).filter(([_, value]) => value !== "" && value !== null && value !== void 0).map(([field, value]) => {
       const fieldConfig = filterFields.find((f) => f.name === field);
@@ -1679,7 +1682,7 @@ function SmartDataTable({
     setInternalPage(1);
     onPageSizeChange?.(newSize);
   };
-  return /* @__PURE__ */ React82.createElement("div", { className: cn("space-y-3", className) }, /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement("div", { className: cn("space-y-3", className) }, /* @__PURE__ */ React105.createElement(
     FilterBar,
     {
       searchValue: searchQuery,
@@ -1690,14 +1693,14 @@ function SmartDataTable({
       hasFilters: activeFilters.length > 0,
       isLoading
     }
-  ), activeFilters.length > 0 && /* @__PURE__ */ React82.createElement(
+  ), activeFilters.length > 0 && /* @__PURE__ */ React105.createElement(
     FilterChips,
     {
       filters: activeFilters,
       onRemoveFilter: handleRemoveFilter,
       onClearAll: handleClearAll
     }
-  ), paginatedData.length === 0 ? emptyState || /* @__PURE__ */ React82.createElement("div", { className: "py-12 text-center" }, /* @__PURE__ */ React82.createElement("p", { className: "text-muted-foreground" }, emptyMessage)) : /* @__PURE__ */ React82.createElement(
+  ), paginatedData.length === 0 ? emptyState || /* @__PURE__ */ React105.createElement("div", { className: "py-12 text-center" }, /* @__PURE__ */ React105.createElement("p", { className: "text-muted-foreground" }, emptyMessage)) : /* @__PURE__ */ React105.createElement(
     DataGrid,
     {
       columns: columns.map((col) => ({
@@ -1730,15 +1733,15 @@ function SmartDataTable({
         }
       }
     }
-  ), enablePagination && /* @__PURE__ */ React82.createElement("div", { className: "flex items-center justify-between gap-4 pt-4 border-t" }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-2 text-sm text-muted-foreground" }, /* @__PURE__ */ React82.createElement("span", null, "Show"), /* @__PURE__ */ React82.createElement(
+  ), enablePagination && /* @__PURE__ */ React105.createElement("div", { className: "flex items-center justify-between gap-4 pt-4 border-t" }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2 text-sm text-muted-foreground" }, /* @__PURE__ */ React105.createElement("span", null, "Show"), /* @__PURE__ */ React105.createElement(
     Select,
     {
       value: internalPageSize.toString(),
       onValueChange: (value) => handlePageSizeChange(Number(value))
     },
-    /* @__PURE__ */ React82.createElement(SelectTrigger, { className: "w-[70px]" }, /* @__PURE__ */ React82.createElement(SelectValue, null)),
-    /* @__PURE__ */ React82.createElement(SelectContent, null, pageSizeOptions.map((size) => /* @__PURE__ */ React82.createElement(SelectItem, { key: size, value: size.toString() }, size, " / page")))
-  ), /* @__PURE__ */ React82.createElement("span", null, actualTotalItems, " ", actualTotalItems === 1 ? "item" : "items")), /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement(SelectTrigger, { className: "w-[70px]" }, /* @__PURE__ */ React105.createElement(SelectValue, null)),
+    /* @__PURE__ */ React105.createElement(SelectContent, null, pageSizeOptions.map((size) => /* @__PURE__ */ React105.createElement(SelectItem, { key: size, value: size.toString() }, size, " / page")))
+  ), /* @__PURE__ */ React105.createElement("span", null, actualTotalItems, " ", actualTotalItems === 1 ? "item" : "items")), /* @__PURE__ */ React105.createElement(
     Pagination2,
     {
       page: internalPage,
@@ -1748,7 +1751,7 @@ function SmartDataTable({
       compact: compactPagination || isMobile,
       siblingCount: 1
     }
-  )), filterFields.length > 0 && /* @__PURE__ */ React82.createElement(
+  )), filterFields.length > 0 && /* @__PURE__ */ React105.createElement(
     FilterDialog,
     {
       open: isFilterDialogOpen,
@@ -1883,15 +1886,15 @@ function DurationPicker({
   presets = [15, 30, 60, 120, 240, 480, 720],
   className
 }) {
-  const [hours, setHours] = React82.useState(() => {
+  const [hours, setHours] = React105.useState(() => {
     if (!value) return 0;
     return Math.floor(value / 60);
   });
-  const [minutes, setMinutes] = React82.useState(() => {
+  const [minutes, setMinutes] = React105.useState(() => {
     if (!value) return 0;
     return value % 60;
   });
-  React82.useEffect(() => {
+  React105.useEffect(() => {
     if (value !== void 0) {
       setHours(Math.floor(value / 60));
       setMinutes(value % 60);
@@ -1917,7 +1920,7 @@ function DurationPicker({
     if (mins < 1440) return `${Math.floor(mins / 60)}h`;
     return `${Math.floor(mins / 1440)}d`;
   };
-  return /* @__PURE__ */ React82.createElement("div", { className: cn("space-y-3", className) }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React82.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React82.createElement("label", { className: "text-xs text-muted-foreground" }, "Hours"), /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement("div", { className: cn("space-y-3", className) }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React105.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React105.createElement("label", { className: "text-xs text-muted-foreground" }, "Hours"), /* @__PURE__ */ React105.createElement(
     Input,
     {
       type: "number",
@@ -1927,7 +1930,7 @@ function DurationPicker({
       onChange: handleHoursChange,
       className: "w-full"
     }
-  )), /* @__PURE__ */ React82.createElement("span", { className: "pt-6 text-muted-foreground" }, ":"), /* @__PURE__ */ React82.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React82.createElement("label", { className: "text-xs text-muted-foreground" }, "Minutes"), /* @__PURE__ */ React82.createElement(
+  )), /* @__PURE__ */ React105.createElement("span", { className: "pt-6 text-muted-foreground" }, ":"), /* @__PURE__ */ React105.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React105.createElement("label", { className: "text-xs text-muted-foreground" }, "Minutes"), /* @__PURE__ */ React105.createElement(
     Input,
     {
       type: "number",
@@ -1937,7 +1940,7 @@ function DurationPicker({
       onChange: handleMinutesChange,
       className: "w-full"
     }
-  ))), showPresets && /* @__PURE__ */ React82.createElement("div", { className: "flex flex-wrap gap-1" }, presets.map((preset) => /* @__PURE__ */ React82.createElement(
+  ))), showPresets && /* @__PURE__ */ React105.createElement("div", { className: "flex flex-wrap gap-1" }, presets.map((preset) => /* @__PURE__ */ React105.createElement(
     Button,
     {
       key: preset,
@@ -1984,10 +1987,10 @@ function FilterChip({
     )
   );
 }
-var FormFieldContext = React82.createContext({});
+var FormFieldContext = React105.createContext({});
 var useFormField = () => {
-  const fieldContext = React82.useContext(FormFieldContext);
-  const itemContext = React82.useContext(FormItemContext);
+  const fieldContext = React105.useContext(FormFieldContext);
+  const itemContext = React105.useContext(FormItemContext);
   const { getFieldState } = useFormContext();
   const formState = useFormState({ name: fieldContext.name });
   const fieldState = getFieldState(fieldContext.name, formState);
@@ -2004,14 +2007,14 @@ var useFormField = () => {
     ...fieldState
   };
 };
-var FormItemContext = React82.createContext({});
+var FormItemContext = React105.createContext({});
 function FormItem({ className, ...props }) {
-  const id = React82.useId();
-  return /* @__PURE__ */ React82.createElement(FormItemContext.Provider, { value: { id } }, /* @__PURE__ */ React82.createElement("div", { "data-slot": "form-item", className: cn("grid gap-2", className), ...props }));
+  const id = React105.useId();
+  return /* @__PURE__ */ React105.createElement(FormItemContext.Provider, { value: { id } }, /* @__PURE__ */ React105.createElement("div", { "data-slot": "form-item", className: cn("grid gap-2", className), ...props }));
 }
 function FormLabel({ className, ...props }) {
   const { error, formItemId } = useFormField();
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Label,
     {
       "data-slot": "form-label",
@@ -2024,7 +2027,7 @@ function FormLabel({ className, ...props }) {
 }
 function FormControl({ ...props }) {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Slot.Root,
     {
       "data-slot": "form-control",
@@ -2037,7 +2040,7 @@ function FormControl({ ...props }) {
 }
 function FormDescription({ className, ...props }) {
   const { formDescriptionId } = useFormField();
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "p",
     {
       "data-slot": "form-description",
@@ -2053,7 +2056,7 @@ function FormMessage({ className, ...props }) {
   if (!body) {
     return null;
   }
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "p",
     {
       "data-slot": "form-message",
@@ -2080,14 +2083,14 @@ function FieldRenderer(props) {
     control,
     ...watchFields ? { name: watchFields } : {}
   });
-  const currentValue = React82.useMemo(() => {
+  const currentValue = React105.useMemo(() => {
     try {
       return getValues(name);
     } catch {
       return void 0;
     }
   }, [getValues, name, ...watchFields || []]);
-  const shouldBeHidden = React82.useMemo(() => {
+  const shouldBeHidden = React105.useMemo(() => {
     if (isHidden) {
       return isHidden(watchedValues, currentValue);
     }
@@ -2096,7 +2099,7 @@ function FieldRenderer(props) {
     }
     return false;
   }, [isHidden, when, watchedValues, currentValue]);
-  const shouldBeDisabled = React82.useMemo(() => {
+  const shouldBeDisabled = React105.useMemo(() => {
     if (staticDisabled === true) {
       return true;
     }
@@ -2105,7 +2108,7 @@ function FieldRenderer(props) {
     }
     return false;
   }, [staticDisabled, isDisabled, watchedValues, currentValue]);
-  const handleValueChange = React82.useCallback(
+  const handleValueChange = React105.useCallback(
     (value) => {
       setValue(name, value);
       if (onChangeCallback) {
@@ -2138,7 +2141,7 @@ function FieldRenderer(props) {
     case "number":
     case "tel":
     case "url":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         TextField,
         {
           ...commonProps,
@@ -2150,7 +2153,7 @@ function FieldRenderer(props) {
         }
       );
     case "textarea":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         TextareaField,
         {
           ...commonProps,
@@ -2162,7 +2165,7 @@ function FieldRenderer(props) {
         }
       );
     case "select":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         SelectField,
         {
           ...commonProps,
@@ -2174,7 +2177,7 @@ function FieldRenderer(props) {
       );
     case "combobox":
     case "multi-select":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         ComboboxField,
         {
           ...commonProps,
@@ -2186,7 +2189,7 @@ function FieldRenderer(props) {
         }
       );
     case "checkbox":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         CheckboxField,
         {
           ...commonProps,
@@ -2195,7 +2198,7 @@ function FieldRenderer(props) {
         }
       );
     case "switch":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         SwitchField,
         {
           ...commonProps,
@@ -2204,7 +2207,7 @@ function FieldRenderer(props) {
         }
       );
     case "radio":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         RadioGroupField,
         {
           ...commonProps,
@@ -2215,7 +2218,7 @@ function FieldRenderer(props) {
       );
     case "date":
     case "datetime":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         DateField,
         {
           ...commonProps,
@@ -2225,7 +2228,7 @@ function FieldRenderer(props) {
         }
       );
     case "time":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         TextField,
         {
           ...commonProps,
@@ -2236,7 +2239,7 @@ function FieldRenderer(props) {
         }
       );
     case "file":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         FileUploadField,
         {
           ...commonProps,
@@ -2249,7 +2252,7 @@ function FieldRenderer(props) {
         }
       );
     case "currency":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         CurrencyField,
         {
           ...commonProps,
@@ -2266,7 +2269,7 @@ function FieldRenderer(props) {
         }
       );
     case "phone":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         PhoneField,
         {
           ...commonProps,
@@ -2280,7 +2283,7 @@ function FieldRenderer(props) {
         }
       );
     case "percentage":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         PercentageField,
         {
           ...commonProps,
@@ -2295,7 +2298,7 @@ function FieldRenderer(props) {
         }
       );
     case "otp":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         OTPField,
         {
           ...commonProps,
@@ -2308,7 +2311,7 @@ function FieldRenderer(props) {
         }
       );
     case "rating":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         RatingField,
         {
           ...commonProps,
@@ -2323,7 +2326,7 @@ function FieldRenderer(props) {
         }
       );
     case "color":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         ColorField,
         {
           ...commonProps,
@@ -2336,7 +2339,7 @@ function FieldRenderer(props) {
         }
       );
     case "slider":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         SliderField,
         {
           ...commonProps,
@@ -2353,7 +2356,7 @@ function FieldRenderer(props) {
         }
       );
     case "array":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         ArrayField,
         {
           ...commonProps,
@@ -2370,7 +2373,7 @@ function FieldRenderer(props) {
         }
       );
     case "chip":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         InputChipField,
         {
           ...commonProps,
@@ -2390,7 +2393,7 @@ function FieldRenderer(props) {
       });
     case "rich-text":
     case "code":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         TextareaField,
         {
           ...commonProps,
@@ -2403,7 +2406,7 @@ function FieldRenderer(props) {
     case "address":
     case "name":
     case "credit-card":
-      return /* @__PURE__ */ React82.createElement(
+      return /* @__PURE__ */ React105.createElement(
         TextField,
         {
           ...commonProps,
@@ -2438,7 +2441,7 @@ function ArrayField({
   defaultCollapsed = false
 }) {
   const { control, watch } = useFormContext();
-  const [openItems, setOpenItems] = React82.useState({});
+  const [openItems, setOpenItems] = React105.useState({});
   const {
     fields: arrayFields,
     append,
@@ -2448,7 +2451,7 @@ function ArrayField({
     control,
     name
   });
-  React82.useEffect(() => {
+  React105.useEffect(() => {
     const initialOpenState = {};
     arrayFields.forEach((_, index) => {
       initialOpenState[index] = !defaultCollapsed;
@@ -2523,10 +2526,10 @@ function ArrayField({
     }
     return `Item ${index + 1}`;
   };
-  return /* @__PURE__ */ React82.createElement(FormItem, { className: cn("space-y-4", className) }, label && /* @__PURE__ */ React82.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React82.createElement(FormLabel, null, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement("span", { className: "text-xs text-muted-foreground" }, arrayFields.length, " item(s)")), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement("div", { className: "space-y-3" }, arrayFields.map((field, index) => {
+  return /* @__PURE__ */ React105.createElement(FormItem, { className: cn("space-y-4", className) }, label && /* @__PURE__ */ React105.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React105.createElement(FormLabel, null, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement("span", { className: "text-xs text-muted-foreground" }, arrayFields.length, " item(s)")), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement("div", { className: "space-y-3" }, arrayFields.map((field, index) => {
     const isOpen = openItems[index] ?? true;
     const canDelete = canRemoveItems && !disabled;
-    return /* @__PURE__ */ React82.createElement(Card, { key: field.id, className: "relative" }, collapsibleItems ? /* @__PURE__ */ React82.createElement(CardHeader, { className: "py-3 px-4" }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-2" }, showReorder && /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-1" }, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(Card, { key: field.id, className: "relative" }, collapsibleItems ? /* @__PURE__ */ React105.createElement(CardHeader, { className: "py-3 px-4" }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2" }, showReorder && /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-1" }, /* @__PURE__ */ React105.createElement(
       Button,
       {
         type: "button",
@@ -2536,8 +2539,8 @@ function ArrayField({
         disabled: disabled || index === 0,
         onClick: () => handleMove(index, index - 1)
       },
-      /* @__PURE__ */ React82.createElement(ChevronUp, { className: "h-4 w-4" })
-    ), /* @__PURE__ */ React82.createElement(
+      /* @__PURE__ */ React105.createElement(ChevronUp, { className: "h-4 w-4" })
+    ), /* @__PURE__ */ React105.createElement(
       Button,
       {
         type: "button",
@@ -2547,8 +2550,8 @@ function ArrayField({
         disabled: disabled || index === arrayFields.length - 1,
         onClick: () => handleMove(index, index + 1)
       },
-      /* @__PURE__ */ React82.createElement(ChevronDown, { className: "h-4 w-4" })
-    )), /* @__PURE__ */ React82.createElement(
+      /* @__PURE__ */ React105.createElement(ChevronDown, { className: "h-4 w-4" })
+    )), /* @__PURE__ */ React105.createElement(
       Button,
       {
         type: "button",
@@ -2557,9 +2560,9 @@ function ArrayField({
         className: "h-8 flex-1 justify-start px-2 font-normal text-left",
         onClick: () => handleToggleItem(index)
       },
-      isOpen ? /* @__PURE__ */ React82.createElement(ChevronDown, { className: "h-4 w-4 mr-2" }) : /* @__PURE__ */ React82.createElement(ChevronRight, { className: "h-4 w-4 mr-2" }),
-      /* @__PURE__ */ React82.createElement("span", { className: "truncate" }, getItemTitle(index))
-    ), canDelete && /* @__PURE__ */ React82.createElement(
+      isOpen ? /* @__PURE__ */ React105.createElement(ChevronDown, { className: "h-4 w-4 mr-2" }) : /* @__PURE__ */ React105.createElement(ChevronRight, { className: "h-4 w-4 mr-2" }),
+      /* @__PURE__ */ React105.createElement("span", { className: "truncate" }, getItemTitle(index))
+    ), canDelete && /* @__PURE__ */ React105.createElement(
       Button,
       {
         type: "button",
@@ -2568,8 +2571,8 @@ function ArrayField({
         className: "h-8 w-8 p-0 text-destructive hover:text-destructive",
         onClick: () => handleRemove(index)
       },
-      /* @__PURE__ */ React82.createElement(Trash2, { className: "h-4 w-4" })
-    ))) : /* @__PURE__ */ React82.createElement("div", { className: "flex items-center justify-between p-4 pb-0" }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-2" }, showReorder && /* @__PURE__ */ React82.createElement("div", { className: "flex items-center text-muted-foreground" }, /* @__PURE__ */ React82.createElement(GripVertical, { className: "h-4 w-4" })), /* @__PURE__ */ React82.createElement("span", { className: "text-sm font-medium" }, getItemTitle(index))), canDelete && /* @__PURE__ */ React82.createElement(
+      /* @__PURE__ */ React105.createElement(Trash2, { className: "h-4 w-4" })
+    ))) : /* @__PURE__ */ React105.createElement("div", { className: "flex items-center justify-between p-4 pb-0" }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2" }, showReorder && /* @__PURE__ */ React105.createElement("div", { className: "flex items-center text-muted-foreground" }, /* @__PURE__ */ React105.createElement(GripVertical, { className: "h-4 w-4" })), /* @__PURE__ */ React105.createElement("span", { className: "text-sm font-medium" }, getItemTitle(index))), canDelete && /* @__PURE__ */ React105.createElement(
       Button,
       {
         type: "button",
@@ -2578,14 +2581,14 @@ function ArrayField({
         className: "h-8 w-8 p-0 text-destructive hover:text-destructive",
         onClick: () => handleRemove(index)
       },
-      /* @__PURE__ */ React82.createElement(Trash2, { className: "h-4 w-4" })
-    )), (isOpen || !collapsibleItems) && /* @__PURE__ */ React82.createElement(CardContent, { className: "p-4 pt-0 space-y-4" }, fields.map((fieldConfig) => /* @__PURE__ */ React82.createElement(
+      /* @__PURE__ */ React105.createElement(Trash2, { className: "h-4 w-4" })
+    )), (isOpen || !collapsibleItems) && /* @__PURE__ */ React105.createElement(CardContent, { className: "p-4 pt-0 space-y-4" }, fields.map((fieldConfig) => /* @__PURE__ */ React105.createElement(
       Controller,
       {
         key: `${field.id}-${fieldConfig.name}`,
         name: `${name}.${index}.${fieldConfig.name}`,
         control,
-        render: () => /* @__PURE__ */ React82.createElement(
+        render: () => /* @__PURE__ */ React105.createElement(
           FieldRenderer,
           {
             ...fieldConfig,
@@ -2594,7 +2597,7 @@ function ArrayField({
           }
         )
       }
-    )), !collapsibleItems && canDelete && /* @__PURE__ */ React82.createElement("div", { className: "flex justify-end pt-2 border-t" }, /* @__PURE__ */ React82.createElement(
+    )), !collapsibleItems && canDelete && /* @__PURE__ */ React105.createElement("div", { className: "flex justify-end pt-2 border-t" }, /* @__PURE__ */ React105.createElement(
       Button,
       {
         type: "button",
@@ -2603,10 +2606,10 @@ function ArrayField({
         className: "text-destructive",
         onClick: () => handleRemove(index)
       },
-      /* @__PURE__ */ React82.createElement(Trash2, { className: "h-4 w-4 mr-2" }),
+      /* @__PURE__ */ React105.createElement(Trash2, { className: "h-4 w-4 mr-2" }),
       "Remove"
     ))));
-  }), arrayFields.length === 0 && /* @__PURE__ */ React82.createElement("div", { className: "text-center py-8 text-muted-foreground border-2 border-dashed rounded-lg" }, "No items added yet"), canAdd && /* @__PURE__ */ React82.createElement(
+  }), arrayFields.length === 0 && /* @__PURE__ */ React105.createElement("div", { className: "text-center py-8 text-muted-foreground border-2 border-dashed rounded-lg" }, "No items added yet"), canAdd && /* @__PURE__ */ React105.createElement(
     Button,
     {
       type: "button",
@@ -2615,12 +2618,12 @@ function ArrayField({
       onClick: handleAdd,
       disabled
     },
-    /* @__PURE__ */ React82.createElement(Plus, { className: "h-4 w-4 mr-2" }),
+    /* @__PURE__ */ React105.createElement(Plus, { className: "h-4 w-4 mr-2" }),
     addItemLabel
-  ), !canAdd && maxItems !== Infinity && /* @__PURE__ */ React82.createElement("p", { className: "text-xs text-muted-foreground text-center" }, "Maximum ", maxItems, " item(s) reached")), /* @__PURE__ */ React82.createElement(FormMessage, null));
+  ), !canAdd && maxItems !== Infinity && /* @__PURE__ */ React105.createElement("p", { className: "text-xs text-muted-foreground text-center" }, "Maximum ", maxItems, " item(s) reached")), /* @__PURE__ */ React105.createElement(FormMessage, null));
 }
 function Checkbox({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Checkbox$1.Root,
     {
       "data-slot": "checkbox",
@@ -2630,13 +2633,13 @@ function Checkbox({ className, ...props }) {
       ),
       ...props
     },
-    /* @__PURE__ */ React82__default.createElement(
+    /* @__PURE__ */ React105__default.createElement(
       Checkbox$1.Indicator,
       {
         "data-slot": "checkbox-indicator",
         className: "grid place-content-center text-current transition-none"
       },
-      /* @__PURE__ */ React82__default.createElement(CheckIcon, { className: "size-3.5" })
+      /* @__PURE__ */ React105__default.createElement(CheckIcon, { className: "size-3.5" })
     )
   );
 }
@@ -2655,7 +2658,7 @@ function CheckboxField({
   const { control } = useFormContext();
   const isControlled = checked !== void 0 && onCheckedChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React105.createElement(
       Checkbox,
       {
         id: name,
@@ -2663,7 +2666,7 @@ function CheckboxField({
         onCheckedChange,
         disabled
       }
-    ), label && /* @__PURE__ */ React82.createElement(
+    ), label && /* @__PURE__ */ React105.createElement(
       Label,
       {
         htmlFor: name,
@@ -2674,14 +2677,14 @@ function CheckboxField({
         )
       },
       label
-    )), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null));
+    )), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React82.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React105.createElement(
         Checkbox,
         {
           id: name,
@@ -2690,7 +2693,7 @@ function CheckboxField({
           disabled,
           "aria-invalid": !!error
         }
-      ), label && /* @__PURE__ */ React82.createElement(
+      ), label && /* @__PURE__ */ React105.createElement(
         Label,
         {
           htmlFor: name,
@@ -2701,8 +2704,8 @@ function CheckboxField({
           )
         },
         label,
-        required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")
-      )), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null))
+        required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")
+      )), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null))
     }
   );
 }
@@ -2743,9 +2746,9 @@ function ColorField({
   onChange
 }) {
   const { control } = useFormContext();
-  const [open, setOpen] = React82.useState(false);
+  const [open, setOpen] = React105.useState(false);
   const isControlled = value !== void 0 && onChange !== void 0;
-  const formatColor = React82.useCallback((val) => {
+  const formatColor = React105.useCallback((val) => {
     if (!val) return "";
     return val;
   }, []);
@@ -2753,7 +2756,7 @@ function ColorField({
     const handleColorChange = (e) => {
       onChange(e.target.value);
     };
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement("div", { className: "flex flex-col gap-3" }, /* @__PURE__ */ React82.createElement("div", { className: "flex gap-2" }, showPreview && /* @__PURE__ */ React82.createElement(Popover, { open, onOpenChange: setOpen }, /* @__PURE__ */ React82.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement("div", { className: "flex flex-col gap-3" }, /* @__PURE__ */ React105.createElement("div", { className: "flex gap-2" }, showPreview && /* @__PURE__ */ React105.createElement(Popover, { open, onOpenChange: setOpen }, /* @__PURE__ */ React105.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React105.createElement(
       Button,
       {
         type: "button",
@@ -2765,7 +2768,7 @@ function ColorField({
         },
         "aria-label": "Select color"
       }
-    )), /* @__PURE__ */ React82.createElement(PopoverContent, { className: "w-auto p-3", align: "start" }, /* @__PURE__ */ React82.createElement("div", { className: "space-y-3" }, /* @__PURE__ */ React82.createElement("div", { className: "flex justify-center" }, /* @__PURE__ */ React82.createElement(
+    )), /* @__PURE__ */ React105.createElement(PopoverContent, { className: "w-auto p-3", align: "start" }, /* @__PURE__ */ React105.createElement("div", { className: "space-y-3" }, /* @__PURE__ */ React105.createElement("div", { className: "flex justify-center" }, /* @__PURE__ */ React105.createElement(
       Input,
       {
         type: "color",
@@ -2774,7 +2777,7 @@ function ColorField({
         className: "h-20 w-20 cursor-pointer border-0 p-0",
         disabled: disabled || readOnly
       }
-    )), presets && presets.length > 0 && /* @__PURE__ */ React82.createElement("div", { className: "grid grid-cols-5 gap-1.5" }, presets.map((preset) => /* @__PURE__ */ React82.createElement(
+    )), presets && presets.length > 0 && /* @__PURE__ */ React105.createElement("div", { className: "grid grid-cols-5 gap-1.5" }, presets.map((preset) => /* @__PURE__ */ React105.createElement(
       "button",
       {
         key: preset,
@@ -2790,7 +2793,7 @@ function ColorField({
         style: { backgroundColor: preset },
         "aria-label": `Select color ${preset}`
       }
-    )))))), /* @__PURE__ */ React82.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React82.createElement(
+    )))))), /* @__PURE__ */ React105.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React105.createElement(
       Input,
       {
         id: name,
@@ -2801,9 +2804,9 @@ function ColorField({
         disabled: disabled || readOnly,
         className: cn("font-mono", showPreview && "flex-1")
       }
-    ))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null))));
+    ))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null))));
   }
-  return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
@@ -2812,7 +2815,7 @@ function ColorField({
         const handleColorChange = (e) => {
           field.onChange(e.target.value);
         };
-        return /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement("div", { className: "flex flex-col gap-3" }, /* @__PURE__ */ React82.createElement("div", { className: "flex gap-2" }, showPreview && /* @__PURE__ */ React82.createElement(Popover, { open, onOpenChange: setOpen }, /* @__PURE__ */ React82.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React82.createElement(
+        return /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement("div", { className: "flex flex-col gap-3" }, /* @__PURE__ */ React105.createElement("div", { className: "flex gap-2" }, showPreview && /* @__PURE__ */ React105.createElement(Popover, { open, onOpenChange: setOpen }, /* @__PURE__ */ React105.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React105.createElement(
           Button,
           {
             type: "button",
@@ -2827,7 +2830,7 @@ function ColorField({
             },
             "aria-label": "Select color"
           }
-        )), /* @__PURE__ */ React82.createElement(PopoverContent, { className: "w-auto p-3", align: "start" }, /* @__PURE__ */ React82.createElement("div", { className: "space-y-3" }, /* @__PURE__ */ React82.createElement("div", { className: "flex justify-center" }, /* @__PURE__ */ React82.createElement(
+        )), /* @__PURE__ */ React105.createElement(PopoverContent, { className: "w-auto p-3", align: "start" }, /* @__PURE__ */ React105.createElement("div", { className: "space-y-3" }, /* @__PURE__ */ React105.createElement("div", { className: "flex justify-center" }, /* @__PURE__ */ React105.createElement(
           Input,
           {
             type: "color",
@@ -2836,7 +2839,7 @@ function ColorField({
             className: "h-20 w-20 cursor-pointer border-0 p-0",
             disabled: disabled || readOnly
           }
-        )), presets && presets.length > 0 && /* @__PURE__ */ React82.createElement("div", { className: "grid grid-cols-5 gap-1.5" }, presets.map((preset) => /* @__PURE__ */ React82.createElement(
+        )), presets && presets.length > 0 && /* @__PURE__ */ React105.createElement("div", { className: "grid grid-cols-5 gap-1.5" }, presets.map((preset) => /* @__PURE__ */ React105.createElement(
           "button",
           {
             key: preset,
@@ -2852,7 +2855,7 @@ function ColorField({
             style: { backgroundColor: preset },
             "aria-label": `Select color ${preset}`
           }
-        )))))), /* @__PURE__ */ React82.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React82.createElement(
+        )))))), /* @__PURE__ */ React105.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React105.createElement(
           Input,
           {
             ...field,
@@ -2865,7 +2868,7 @@ function ColorField({
             "aria-invalid": !!error,
             className: cn("font-mono", showPreview && "flex-1")
           }
-        ))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null)));
+        ))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null)));
       }
     }
   ));
@@ -2886,7 +2889,7 @@ function ComboboxField({
   const { control } = useFormContext();
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(Combobox, { value, onValueChange: onChange, disabled }, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(Combobox, { value, onValueChange: onChange, disabled }, /* @__PURE__ */ React105.createElement(
       ComboboxInput,
       {
         placeholder,
@@ -2894,14 +2897,14 @@ function ComboboxField({
         showClear: true,
         showTrigger: false
       }
-    ), /* @__PURE__ */ React82.createElement(ComboboxContent, null, /* @__PURE__ */ React82.createElement(ComboboxList, null, options.map((option) => /* @__PURE__ */ React82.createElement(ComboboxItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label)), /* @__PURE__ */ React82.createElement(ComboboxEmpty, null, "No results found"))))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null));
+    ), /* @__PURE__ */ React105.createElement(ComboboxContent, null, /* @__PURE__ */ React105.createElement(ComboboxList, null, options.map((option) => /* @__PURE__ */ React105.createElement(ComboboxItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label)), /* @__PURE__ */ React105.createElement(ComboboxEmpty, null, "No results found"))))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(Combobox, { value: field.value, onValueChange: field.onChange, disabled }, /* @__PURE__ */ React82.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(Combobox, { value: field.value, onValueChange: field.onChange, disabled }, /* @__PURE__ */ React105.createElement(
         ComboboxInput,
         {
           placeholder,
@@ -2909,7 +2912,7 @@ function ComboboxField({
           showClear: true,
           showTrigger: false
         }
-      ), /* @__PURE__ */ React82.createElement(ComboboxContent, null, /* @__PURE__ */ React82.createElement(ComboboxList, null, options.map((option) => /* @__PURE__ */ React82.createElement(
+      ), /* @__PURE__ */ React105.createElement(ComboboxContent, null, /* @__PURE__ */ React105.createElement(ComboboxList, null, options.map((option) => /* @__PURE__ */ React105.createElement(
         ComboboxItem,
         {
           key: option.value,
@@ -2917,7 +2920,7 @@ function ComboboxField({
           disabled: option.disabled
         },
         option.label
-      )), /* @__PURE__ */ React82.createElement(ComboboxEmpty, null, "No results found"))))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null))
+      )), /* @__PURE__ */ React105.createElement(ComboboxEmpty, null, "No results found"))))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null))
     }
   );
 }
@@ -2940,10 +2943,10 @@ function CurrencyField({
   onChange
 }) {
   const { control } = useFormContext();
-  const [displayValue, setDisplayValue] = React82.useState("");
+  const [displayValue, setDisplayValue] = React105.useState("");
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    React82.useEffect(() => {
+    React105.useEffect(() => {
       if (value !== void 0 && value !== null) {
         const numValue = typeof value === "number" ? value : parseFloat(value);
         if (!Number.isNaN(numValue)) {
@@ -2983,7 +2986,7 @@ function CurrencyField({
         }
       }
     };
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(InputGroup, null, currencyPosition === "prefix" && /* @__PURE__ */ React82.createElement(InputGroupAddon, { align: "inline-start" }, currencySymbol), /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(InputGroup, null, currencyPosition === "prefix" && /* @__PURE__ */ React105.createElement(InputGroupAddon, { align: "inline-start" }, currencySymbol), /* @__PURE__ */ React105.createElement(
       InputGroupInput,
       {
         id: name,
@@ -2996,9 +2999,9 @@ function CurrencyField({
         disabled,
         readOnly
       }
-    ), currencyPosition === "suffix" && /* @__PURE__ */ React82.createElement(InputGroupAddon, { align: "inline-end" }, currencySymbol))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null));
+    ), currencyPosition === "suffix" && /* @__PURE__ */ React105.createElement(InputGroupAddon, { align: "inline-end" }, currencySymbol))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null));
   }
-  const formatCurrency = React82.useCallback(
+  const formatCurrency = React105.useCallback(
     (value2) => {
       if (!value2) return "";
       const numericValue = value2.replace(/[^0-9.-]/g, "");
@@ -3011,16 +3014,16 @@ function CurrencyField({
     },
     [decimalPlaces]
   );
-  const parseValue = React82.useCallback((displayValue2) => {
+  const parseValue = React105.useCallback((displayValue2) => {
     return displayValue2.replace(/,/g, "");
   }, []);
-  return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
       control,
       render: ({ field, fieldState: { error } }) => {
-        React82.useEffect(() => {
+        React105.useEffect(() => {
           if (field.value !== void 0 && field.value !== null) {
             const numValue = typeof field.value === "number" ? field.value : parseFloat(field.value);
             if (!Number.isNaN(numValue)) {
@@ -3060,7 +3063,7 @@ function CurrencyField({
             }
           }
         };
-        return /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(InputGroup, { "data-invalid": !!error || void 0 }, currencyPosition === "prefix" && /* @__PURE__ */ React82.createElement(InputGroupAddon, { align: "inline-start" }, currencySymbol), /* @__PURE__ */ React82.createElement(
+        return /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(InputGroup, { "data-invalid": !!error || void 0 }, currencyPosition === "prefix" && /* @__PURE__ */ React105.createElement(InputGroupAddon, { align: "inline-start" }, currencySymbol), /* @__PURE__ */ React105.createElement(
           InputGroupInput,
           {
             id: name,
@@ -3074,10 +3077,10 @@ function CurrencyField({
             readOnly,
             "aria-invalid": !!error
           }
-        ), currencyPosition === "suffix" && /* @__PURE__ */ React82.createElement(InputGroupAddon, { align: "inline-end" }, currencySymbol)));
+        ), currencyPosition === "suffix" && /* @__PURE__ */ React105.createElement(InputGroupAddon, { align: "inline-end" }, currencySymbol)));
       }
     }
-  ), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null));
+  ), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null));
 }
 function DateField({
   name,
@@ -3095,7 +3098,7 @@ function DateField({
   const { control } = useFormContext();
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React82__default.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82__default.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82__default.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82__default.createElement(Popover, null, /* @__PURE__ */ React82__default.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React82__default.createElement(FormControl, null, /* @__PURE__ */ React82__default.createElement(
+    return /* @__PURE__ */ React105__default.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105__default.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105__default.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105__default.createElement(Popover, null, /* @__PURE__ */ React105__default.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React105__default.createElement(FormControl, null, /* @__PURE__ */ React105__default.createElement(
       Button,
       {
         variant: "outline",
@@ -3105,9 +3108,9 @@ function DateField({
         ),
         disabled
       },
-      /* @__PURE__ */ React82__default.createElement(CalendarIcon, { className: "mr-2 h-4 w-4" }),
-      value ? format(value, dateFormat) : /* @__PURE__ */ React82__default.createElement("span", null, placeholder)
-    ))), /* @__PURE__ */ React82__default.createElement(PopoverContent, { className: "w-auto p-0", align: "start" }, /* @__PURE__ */ React82__default.createElement(
+      /* @__PURE__ */ React105__default.createElement(CalendarIcon, { className: "mr-2 h-4 w-4" }),
+      value ? format(value, dateFormat) : /* @__PURE__ */ React105__default.createElement("span", null, placeholder)
+    ))), /* @__PURE__ */ React105__default.createElement(PopoverContent, { className: "w-auto p-0", align: "start" }, /* @__PURE__ */ React105__default.createElement(
       Calendar,
       {
         mode: "single",
@@ -3116,14 +3119,14 @@ function DateField({
         disabled,
         autoFocus: true
       }
-    ))), description && /* @__PURE__ */ React82__default.createElement(FormDescription, null, description), /* @__PURE__ */ React82__default.createElement(FormMessage, null));
+    ))), description && /* @__PURE__ */ React105__default.createElement(FormDescription, null, description), /* @__PURE__ */ React105__default.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React82__default.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82__default.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82__default.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82__default.createElement(Popover, null, /* @__PURE__ */ React82__default.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React82__default.createElement(FormControl, null, /* @__PURE__ */ React82__default.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React105__default.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105__default.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105__default.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105__default.createElement(Popover, null, /* @__PURE__ */ React105__default.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React105__default.createElement(FormControl, null, /* @__PURE__ */ React105__default.createElement(
         Button,
         {
           variant: "outline",
@@ -3134,9 +3137,9 @@ function DateField({
           ),
           disabled
         },
-        /* @__PURE__ */ React82__default.createElement(CalendarIcon, { className: "mr-2 h-4 w-4" }),
-        field.value ? format(field.value, dateFormat) : /* @__PURE__ */ React82__default.createElement("span", null, placeholder)
-      ))), /* @__PURE__ */ React82__default.createElement(PopoverContent, { className: "w-auto p-0", align: "start" }, /* @__PURE__ */ React82__default.createElement(
+        /* @__PURE__ */ React105__default.createElement(CalendarIcon, { className: "mr-2 h-4 w-4" }),
+        field.value ? format(field.value, dateFormat) : /* @__PURE__ */ React105__default.createElement("span", null, placeholder)
+      ))), /* @__PURE__ */ React105__default.createElement(PopoverContent, { className: "w-auto p-0", align: "start" }, /* @__PURE__ */ React105__default.createElement(
         Calendar,
         {
           mode: "single",
@@ -3145,7 +3148,7 @@ function DateField({
           disabled,
           autoFocus: true
         }
-      ))), description && /* @__PURE__ */ React82__default.createElement(FormDescription, null, description), /* @__PURE__ */ React82__default.createElement(FormMessage, null))
+      ))), description && /* @__PURE__ */ React105__default.createElement(FormDescription, null, description), /* @__PURE__ */ React105__default.createElement(FormMessage, null))
     }
   );
 }
@@ -3165,14 +3168,14 @@ function UploadDropzone({
   description,
   className
 }) {
-  const [isDragOver, setIsDragOver] = React82.useState(false);
-  const [files, setFiles] = React82.useState([]);
-  const inputRef = React82.useRef(null);
-  const handleDragOver = React82.useCallback((e) => {
+  const [isDragOver, setIsDragOver] = React105.useState(false);
+  const [files, setFiles] = React105.useState([]);
+  const inputRef = React105.useRef(null);
+  const handleDragOver = React105.useCallback((e) => {
     e.preventDefault();
     setIsDragOver(true);
   }, []);
-  const handleDragLeave = React82.useCallback((e) => {
+  const handleDragLeave = React105.useCallback((e) => {
     e.preventDefault();
     setIsDragOver(false);
   }, []);
@@ -3199,7 +3202,7 @@ function UploadDropzone({
     }
     return null;
   };
-  const handleFiles = React82.useCallback(
+  const handleFiles = React105.useCallback(
     async (newFiles) => {
       const validFiles = [];
       const errors = [];
@@ -3224,7 +3227,7 @@ function UploadDropzone({
     },
     [maxFiles, onFilesSelected, onFileSelected, validateFile]
   );
-  const handleDrop = React82.useCallback(
+  const handleDrop = React105.useCallback(
     async (e) => {
       e.preventDefault();
       setIsDragOver(false);
@@ -3234,7 +3237,7 @@ function UploadDropzone({
     },
     [disabled, handleFiles]
   );
-  const handleInputChange = React82.useCallback(
+  const handleInputChange = React105.useCallback(
     async (e) => {
       if (disabled) return;
       const selectedFiles = Array.from(e.target.files || []);
@@ -3245,7 +3248,7 @@ function UploadDropzone({
     },
     [disabled, handleFiles]
   );
-  const handleRemoveFile = React82.useCallback(
+  const handleRemoveFile = React105.useCallback(
     (file, index) => {
       setFiles((prev) => prev.filter((_, i) => i !== index));
       onFileRemove?.(file);
@@ -3259,7 +3262,7 @@ function UploadDropzone({
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return `${Math.round(bytes / k ** i * 100) / 100} ${sizes[i]}`;
   };
-  return /* @__PURE__ */ React82.createElement("div", { className: cn("w-full space-y-3", className) }, /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement("div", { className: cn("w-full space-y-3", className) }, /* @__PURE__ */ React105.createElement(
     "div",
     {
       onDragOver: handleDragOver,
@@ -3274,7 +3277,7 @@ function UploadDropzone({
         isUploading && "pointer-events-none"
       )
     },
-    /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement(
       "input",
       {
         ref: inputRef,
@@ -3286,23 +3289,23 @@ function UploadDropzone({
         disabled
       }
     ),
-    /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement(
       UploadCloud,
       {
         className: cn("mb-4 h-10 w-10", isDragOver ? "text-primary" : "text-muted-foreground")
       }
     ),
-    /* @__PURE__ */ React82.createElement("p", { className: "mb-1 text-sm font-medium" }, label),
-    description && /* @__PURE__ */ React82.createElement("p", { className: "text-center text-sm text-muted-foreground" }, description),
-    /* @__PURE__ */ React82.createElement("div", { className: "mt-2 flex flex-wrap justify-center gap-2 text-xs text-muted-foreground" }, accept && /* @__PURE__ */ React82.createElement("span", null, "Accepted:", " ", accept.split(",").map((t) => t.trim().toUpperCase()).join(", ")), maxSize && /* @__PURE__ */ React82.createElement("span", null, "Max size: ", formatFileSize(maxSize)), maxFiles > 1 && /* @__PURE__ */ React82.createElement("span", null, "Max files: ", maxFiles))
-  ), isUploading && uploadProgress !== void 0 && /* @__PURE__ */ React82.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React82.createElement(Progress, { value: uploadProgress, className: "h-2" }), /* @__PURE__ */ React82.createElement("p", { className: "text-right text-xs text-muted-foreground" }, uploadProgress, "%")), (files.length > 0 || uploadedFiles.length > 0) && /* @__PURE__ */ React82.createElement("div", { className: "space-y-2" }, files.map((file, index) => /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement("p", { className: "mb-1 text-sm font-medium" }, label),
+    description && /* @__PURE__ */ React105.createElement("p", { className: "text-center text-sm text-muted-foreground" }, description),
+    /* @__PURE__ */ React105.createElement("div", { className: "mt-2 flex flex-wrap justify-center gap-2 text-xs text-muted-foreground" }, accept && /* @__PURE__ */ React105.createElement("span", null, "Accepted:", " ", accept.split(",").map((t) => t.trim().toUpperCase()).join(", ")), maxSize && /* @__PURE__ */ React105.createElement("span", null, "Max size: ", formatFileSize(maxSize)), maxFiles > 1 && /* @__PURE__ */ React105.createElement("span", null, "Max files: ", maxFiles))
+  ), isUploading && uploadProgress !== void 0 && /* @__PURE__ */ React105.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React105.createElement(Progress, { value: uploadProgress, className: "h-2" }), /* @__PURE__ */ React105.createElement("p", { className: "text-right text-xs text-muted-foreground" }, uploadProgress, "%")), (files.length > 0 || uploadedFiles.length > 0) && /* @__PURE__ */ React105.createElement("div", { className: "space-y-2" }, files.map((file, index) => /* @__PURE__ */ React105.createElement(
     "div",
     {
       key: `${file.name}-${index}`,
       className: "flex items-center justify-between rounded-md border bg-muted/50 p-3"
     },
-    /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React82.createElement(File, { className: "h-5 w-5 text-muted-foreground" }), /* @__PURE__ */ React82.createElement("div", null, /* @__PURE__ */ React82.createElement("p", { className: "text-sm font-medium" }, file.name), /* @__PURE__ */ React82.createElement("p", { className: "text-xs text-muted-foreground" }, formatFileSize(file.size)))),
-    !isUploading && /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React105.createElement(File, { className: "h-5 w-5 text-muted-foreground" }), /* @__PURE__ */ React105.createElement("div", null, /* @__PURE__ */ React105.createElement("p", { className: "text-sm font-medium" }, file.name), /* @__PURE__ */ React105.createElement("p", { className: "text-xs text-muted-foreground" }, formatFileSize(file.size)))),
+    !isUploading && /* @__PURE__ */ React105.createElement(
       Button,
       {
         type: "button",
@@ -3311,16 +3314,16 @@ function UploadDropzone({
         onClick: () => handleRemoveFile(file, index),
         className: "h-8 w-8"
       },
-      /* @__PURE__ */ React82.createElement(X, { className: "h-4 w-4" })
+      /* @__PURE__ */ React105.createElement(X, { className: "h-4 w-4" })
     )
-  )), uploadedFiles.map((file, index) => /* @__PURE__ */ React82.createElement(
+  )), uploadedFiles.map((file, index) => /* @__PURE__ */ React105.createElement(
     "div",
     {
       key: `${file.name}-${index}`,
       className: "flex items-center justify-between rounded-md border bg-muted/50 p-3"
     },
-    /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React82.createElement(File, { className: "h-5 w-5 text-muted-foreground" }), /* @__PURE__ */ React82.createElement("div", null, /* @__PURE__ */ React82.createElement("p", { className: "text-sm font-medium" }, file.name), /* @__PURE__ */ React82.createElement("p", { className: "text-xs text-muted-foreground" }, formatFileSize(file.size)))),
-    onFileRemove && /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React105.createElement(File, { className: "h-5 w-5 text-muted-foreground" }), /* @__PURE__ */ React105.createElement("div", null, /* @__PURE__ */ React105.createElement("p", { className: "text-sm font-medium" }, file.name), /* @__PURE__ */ React105.createElement("p", { className: "text-xs text-muted-foreground" }, formatFileSize(file.size)))),
+    onFileRemove && /* @__PURE__ */ React105.createElement(
       Button,
       {
         type: "button",
@@ -3329,7 +3332,7 @@ function UploadDropzone({
         onClick: () => onFileRemove(file),
         className: "h-8 w-8"
       },
-      /* @__PURE__ */ React82.createElement(X, { className: "h-4 w-4" })
+      /* @__PURE__ */ React105.createElement(X, { className: "h-4 w-4" })
     )
   ))));
 }
@@ -3350,12 +3353,12 @@ function FileUploadField({
   onChange
 }) {
   const { control } = useFormContext();
-  const [isUploading, setIsUploading] = React82.useState(false);
-  const [uploadProgress, setUploadProgress] = React82.useState();
-  const [uploadedFiles, setUploadedFiles] = React82.useState([]);
+  const [isUploading, setIsUploading] = React105.useState(false);
+  const [uploadProgress, setUploadProgress] = React105.useState();
+  const [uploadedFiles, setUploadedFiles] = React105.useState([]);
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    const handleFilesSelected2 = React82.useCallback(
+    const handleFilesSelected2 = React105.useCallback(
       async (files) => {
         if (!onUpload) return;
         setIsUploading(true);
@@ -3388,10 +3391,10 @@ function FileUploadField({
       },
       [onUpload]
     );
-    const handleFileRemove2 = React82.useCallback((file) => {
+    const handleFileRemove2 = React105.useCallback((file) => {
       setUploadedFiles((prev) => prev.filter((f) => f.name !== file.name));
     }, []);
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, null, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, null, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(
       UploadDropzone,
       {
         accept,
@@ -3406,9 +3409,9 @@ function FileUploadField({
         label: value?.length ? "Add more files" : "Upload files",
         description
       }
-    )), /* @__PURE__ */ React82.createElement(FormMessage, null));
+    )), /* @__PURE__ */ React105.createElement(FormMessage, null));
   }
-  const handleFilesSelected = React82.useCallback(
+  const handleFilesSelected = React105.useCallback(
     async (files) => {
       if (!onUpload) return;
       setIsUploading(true);
@@ -3441,15 +3444,15 @@ function FileUploadField({
     },
     [onUpload]
   );
-  const handleFileRemove = React82.useCallback((file) => {
+  const handleFileRemove = React105.useCallback((file) => {
     setUploadedFiles((prev) => prev.filter((f) => f.name !== file.name));
   }, []);
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, null, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, null, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(
         UploadDropzone,
         {
           accept,
@@ -3467,7 +3470,7 @@ function FileUploadField({
           label: field.value?.length ? "Add more files" : "Upload files",
           description
         }
-      )), error && /* @__PURE__ */ React82.createElement(FormMessage, null, error.message))
+      )), error && /* @__PURE__ */ React105.createElement(FormMessage, null, error.message))
     }
   );
 }
@@ -3486,9 +3489,9 @@ function InputChipField({
   validateChip
 }) {
   const { control } = useFormContext();
-  const [inputValue, setInputValue] = React82.useState("");
-  const inputRef = React82.useRef(null);
-  const handleAddChip = React82.useCallback(
+  const [inputValue, setInputValue] = React105.useState("");
+  const inputRef = React105.useRef(null);
+  const handleAddChip = React105.useCallback(
     (value, currentValue) => {
       const transformed = transform(value);
       if (!transformed) return;
@@ -3509,7 +3512,7 @@ function InputChipField({
     },
     [allowDuplicates, maxChips, transform, validateChip]
   );
-  const handleKeyDown = React82.useCallback(
+  const handleKeyDown = React105.useCallback(
     (e, currentValue, onChange) => {
       if (e.key === "Enter" || e.key === ",") {
         e.preventDefault();
@@ -3526,7 +3529,7 @@ function InputChipField({
     },
     [inputValue, handleAddChip]
   );
-  const handleRemoveChip = React82.useCallback(
+  const handleRemoveChip = React105.useCallback(
     (index, currentValue, onChange) => {
       const newValue = [...currentValue];
       newValue.splice(index, 1);
@@ -3535,7 +3538,7 @@ function InputChipField({
     },
     []
   );
-  const handleBlur = React82.useCallback(
+  const handleBlur = React105.useCallback(
     (currentValue, onChange) => {
       if (inputValue.trim()) {
         const newValue = handleAddChip(inputValue, currentValue);
@@ -3547,7 +3550,7 @@ function InputChipField({
     },
     [inputValue, handleAddChip]
   );
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
@@ -3557,7 +3560,7 @@ function InputChipField({
         const currentValue = Array.isArray(field.value) ? field.value : [];
         const isReadOnly = readOnly || disabled;
         const canAdd = currentValue.length < maxChips;
-        return /* @__PURE__ */ React82.createElement(FormItem, { className: cn("space-y-2", className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(
+        return /* @__PURE__ */ React105.createElement(FormItem, { className: cn("space-y-2", className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(
           "div",
           {
             className: cn(
@@ -3568,14 +3571,14 @@ function InputChipField({
               className
             )
           },
-          currentValue.map((chip, index) => /* @__PURE__ */ React82.createElement(
+          currentValue.map((chip, index) => /* @__PURE__ */ React105.createElement(
             "div",
             {
               key: `${chip}-${index}`,
               className: "inline-flex items-center gap-1 bg-secondary text-secondary-foreground px-2 py-1 rounded-md text-sm"
             },
-            /* @__PURE__ */ React82.createElement("span", { className: "max-w-[200px] truncate" }, chip),
-            !isReadOnly && /* @__PURE__ */ React82.createElement(
+            /* @__PURE__ */ React105.createElement("span", { className: "max-w-[200px] truncate" }, chip),
+            !isReadOnly && /* @__PURE__ */ React105.createElement(
               Button,
               {
                 type: "button",
@@ -3584,10 +3587,10 @@ function InputChipField({
                 className: "h-4 w-4 p-0 hover:bg-transparent",
                 onClick: () => handleRemoveChip(index, currentValue, field.onChange)
               },
-              /* @__PURE__ */ React82.createElement(X, { className: "h-3 w-3" })
+              /* @__PURE__ */ React105.createElement(X, { className: "h-3 w-3" })
             )
           )),
-          canAdd && !isReadOnly && /* @__PURE__ */ React82.createElement(
+          canAdd && !isReadOnly && /* @__PURE__ */ React105.createElement(
             Input,
             {
               ref: inputRef,
@@ -3600,8 +3603,8 @@ function InputChipField({
               className: "flex-1 min-w-[120px] border-0 shadow-none focus-visible:ring-0 px-2 py-1 h-auto"
             }
           ),
-          currentValue.length === 0 && isReadOnly && /* @__PURE__ */ React82.createElement("span", { className: "text-muted-foreground text-sm" }, "No chips added")
-        )), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null));
+          currentValue.length === 0 && isReadOnly && /* @__PURE__ */ React105.createElement("span", { className: "text-muted-foreground text-sm" }, "No chips added")
+        )), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null));
       }
     }
   );
@@ -3611,7 +3614,7 @@ function InputOTP({
   containerClassName,
   ...props
 }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     OTPInput,
     {
       "data-slot": "input-otp",
@@ -3622,16 +3625,16 @@ function InputOTP({
   );
 }
 function InputOTPGroup({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement("div", { "data-slot": "input-otp-group", className: cn("flex items-center", className), ...props });
+  return /* @__PURE__ */ React105.createElement("div", { "data-slot": "input-otp-group", className: cn("flex items-center", className), ...props });
 }
 function InputOTPSlot({
   index,
   className,
   ...props
 }) {
-  const inputOTPContext = React82.useContext(OTPInputContext);
+  const inputOTPContext = React105.useContext(OTPInputContext);
   const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {};
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "div",
     {
       "data-slot": "input-otp-slot",
@@ -3643,11 +3646,11 @@ function InputOTPSlot({
       ...props
     },
     char,
-    hasFakeCaret && /* @__PURE__ */ React82.createElement("div", { className: "pointer-events-none absolute inset-0 flex items-center justify-center" }, /* @__PURE__ */ React82.createElement("div", { className: "animate-caret-blink bg-foreground h-4 w-px duration-1000" }))
+    hasFakeCaret && /* @__PURE__ */ React105.createElement("div", { className: "pointer-events-none absolute inset-0 flex items-center justify-center" }, /* @__PURE__ */ React105.createElement("div", { className: "animate-caret-blink bg-foreground h-4 w-px duration-1000" }))
   );
 }
 function InputOTPSeparator({ ...props }) {
-  return /* @__PURE__ */ React82.createElement("div", { "data-slot": "input-otp-separator", role: "separator", ...props }, /* @__PURE__ */ React82.createElement(MinusIcon, null));
+  return /* @__PURE__ */ React105.createElement("div", { "data-slot": "input-otp-separator", role: "separator", ...props }, /* @__PURE__ */ React105.createElement(MinusIcon, null));
 }
 
 // src/blocks/data-entry/form-builder/fields/otp-field.tsx
@@ -3669,10 +3672,10 @@ function OTPField({
   onChange
 }) {
   const { control } = useFormContext();
-  const [otpValue, setOtpValue] = React82.useState("");
+  const [otpValue, setOtpValue] = React105.useState("");
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    React82.useEffect(() => {
+    React105.useEffect(() => {
       if (value !== void 0 && value !== null) {
         setOtpValue(value.toString());
       } else {
@@ -3685,7 +3688,7 @@ function OTPField({
     };
     const firstGroupSize = showSeparator ? groupSize : otpLength;
     const secondGroupSize = showSeparator ? otpLength - groupSize : 0;
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement("div", { className: "flex flex-col items-start gap-2" }, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement("div", { className: "flex flex-col items-start gap-2" }, /* @__PURE__ */ React105.createElement(
       InputOTP,
       {
         maxLength: otpLength,
@@ -3697,9 +3700,9 @@ function OTPField({
         pattern: otpType === "numeric" ? "[0-9]*" : "[0-9a-zA-Z]*",
         inputMode: otpType === "numeric" ? "numeric" : "text"
       },
-      /* @__PURE__ */ React82.createElement(InputOTPGroup, null, Array.from({ length: firstGroupSize }).map((_, index) => /* @__PURE__ */ React82.createElement(InputOTPSlot, { key: index, index, className: cn("h-12 w-12 text-lg") }))),
-      showSeparator && secondGroupSize > 0 && /* @__PURE__ */ React82.createElement(InputOTPSeparator, null),
-      secondGroupSize > 0 && /* @__PURE__ */ React82.createElement(InputOTPGroup, null, Array.from({ length: secondGroupSize }).map((_, index) => /* @__PURE__ */ React82.createElement(
+      /* @__PURE__ */ React105.createElement(InputOTPGroup, null, Array.from({ length: firstGroupSize }).map((_, index) => /* @__PURE__ */ React105.createElement(InputOTPSlot, { key: index, index, className: cn("h-12 w-12 text-lg") }))),
+      showSeparator && secondGroupSize > 0 && /* @__PURE__ */ React105.createElement(InputOTPSeparator, null),
+      secondGroupSize > 0 && /* @__PURE__ */ React105.createElement(InputOTPGroup, null, Array.from({ length: secondGroupSize }).map((_, index) => /* @__PURE__ */ React105.createElement(
         InputOTPSlot,
         {
           key: index,
@@ -3707,15 +3710,15 @@ function OTPField({
           className: cn("h-12 w-12 text-lg")
         }
       )))
-    ), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null))));
+    ), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null))));
   }
-  return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
       control,
       render: ({ field, fieldState: { error } }) => {
-        React82.useEffect(() => {
+        React105.useEffect(() => {
           if (field.value !== void 0 && field.value !== null) {
             setOtpValue(field.value.toString());
           }
@@ -3726,7 +3729,7 @@ function OTPField({
         };
         const firstGroupSize = showSeparator ? groupSize : otpLength;
         const secondGroupSize = showSeparator ? otpLength - groupSize : 0;
-        return /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement("div", { className: "flex flex-col items-start gap-2" }, /* @__PURE__ */ React82.createElement(
+        return /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement("div", { className: "flex flex-col items-start gap-2" }, /* @__PURE__ */ React105.createElement(
           InputOTP,
           {
             maxLength: otpLength,
@@ -3740,7 +3743,7 @@ function OTPField({
             "aria-invalid": !!error,
             className: cn(error && "ring-destructive border-destructive")
           },
-          /* @__PURE__ */ React82.createElement(InputOTPGroup, null, Array.from({ length: firstGroupSize }).map((_, index) => /* @__PURE__ */ React82.createElement(
+          /* @__PURE__ */ React105.createElement(InputOTPGroup, null, Array.from({ length: firstGroupSize }).map((_, index) => /* @__PURE__ */ React105.createElement(
             InputOTPSlot,
             {
               key: index,
@@ -3751,8 +3754,8 @@ function OTPField({
               )
             }
           ))),
-          showSeparator && secondGroupSize > 0 && /* @__PURE__ */ React82.createElement(InputOTPSeparator, null),
-          secondGroupSize > 0 && /* @__PURE__ */ React82.createElement(InputOTPGroup, null, Array.from({ length: secondGroupSize }).map((_, index) => /* @__PURE__ */ React82.createElement(
+          showSeparator && secondGroupSize > 0 && /* @__PURE__ */ React105.createElement(InputOTPSeparator, null),
+          secondGroupSize > 0 && /* @__PURE__ */ React105.createElement(InputOTPGroup, null, Array.from({ length: secondGroupSize }).map((_, index) => /* @__PURE__ */ React105.createElement(
             InputOTPSlot,
             {
               key: index,
@@ -3763,7 +3766,7 @@ function OTPField({
               )
             }
           )))
-        ), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null)));
+        ), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null)));
       }
     }
   ));
@@ -3785,10 +3788,10 @@ function PercentageField({
   onChange
 }) {
   const { control } = useFormContext();
-  const [displayValue, setDisplayValue] = React82.useState("");
+  const [displayValue, setDisplayValue] = React105.useState("");
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    React82.useEffect(() => {
+    React105.useEffect(() => {
       if (value !== void 0 && value !== null) {
         const numValue = typeof value === "number" ? value : parseFloat(value);
         if (!Number.isNaN(numValue)) {
@@ -3827,7 +3830,7 @@ function PercentageField({
         }
       }
     };
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(InputGroup, null, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(InputGroup, null, /* @__PURE__ */ React105.createElement(
       InputGroupInput,
       {
         id: name,
@@ -3840,9 +3843,9 @@ function PercentageField({
         disabled,
         readOnly
       }
-    ), /* @__PURE__ */ React82.createElement(InputGroupAddon, { align: "inline-end" }, "%"))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description, " ", minValue !== 0 || maxValue !== 100 ? /* @__PURE__ */ React82.createElement("span", { className: "text-xs" }, "(", minValue, "% - ", maxValue, "%)") : null), /* @__PURE__ */ React82.createElement(FormMessage, null));
+    ), /* @__PURE__ */ React105.createElement(InputGroupAddon, { align: "inline-end" }, "%"))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description, " ", minValue !== 0 || maxValue !== 100 ? /* @__PURE__ */ React105.createElement("span", { className: "text-xs" }, "(", minValue, "% - ", maxValue, "%)") : null), /* @__PURE__ */ React105.createElement(FormMessage, null));
   }
-  const formatPercentage = React82.useCallback(
+  const formatPercentage = React105.useCallback(
     (value2) => {
       if (!value2) return "";
       const number = parseFloat(value2);
@@ -3851,13 +3854,13 @@ function PercentageField({
     },
     [decimalPlaces]
   );
-  return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
       control,
       render: ({ field, fieldState: { error } }) => {
-        React82.useEffect(() => {
+        React105.useEffect(() => {
           if (field.value !== void 0 && field.value !== null) {
             const numValue = typeof field.value === "number" ? field.value : parseFloat(field.value);
             if (!Number.isNaN(numValue)) {
@@ -3896,7 +3899,7 @@ function PercentageField({
             }
           }
         };
-        return /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(InputGroup, { "data-invalid": !!error || void 0 }, /* @__PURE__ */ React82.createElement(
+        return /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(InputGroup, { "data-invalid": !!error || void 0 }, /* @__PURE__ */ React105.createElement(
           InputGroupInput,
           {
             id: name,
@@ -3910,10 +3913,10 @@ function PercentageField({
             readOnly,
             "aria-invalid": !!error
           }
-        ), /* @__PURE__ */ React82.createElement(InputGroupAddon, { align: "inline-end" }, "%")));
+        ), /* @__PURE__ */ React105.createElement(InputGroupAddon, { align: "inline-end" }, "%")));
       }
     }
-  ), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description, " ", minValue !== 0 || maxValue !== 100 ? /* @__PURE__ */ React82.createElement("span", { className: "text-xs" }, "(", minValue, "% - ", maxValue, "%)") : null), /* @__PURE__ */ React82.createElement(FormMessage, null));
+  ), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description, " ", minValue !== 0 || maxValue !== 100 ? /* @__PURE__ */ React105.createElement("span", { className: "text-xs" }, "(", minValue, "% - ", maxValue, "%)") : null), /* @__PURE__ */ React105.createElement(FormMessage, null));
 }
 var COUNTRY_CODES = [
   { code: "US", label: "\u{1F1FA}\u{1F1F8} +1", dialCode: "+1" },
@@ -3983,11 +3986,11 @@ function PhoneField({
   onChange
 }) {
   const { control, setValue, watch } = useFormContext();
-  const [displayValue, setDisplayValue] = React82.useState("");
-  const [selectedCountry, setSelectedCountry] = React82.useState(defaultCountry);
+  const [displayValue, setDisplayValue] = React105.useState("");
+  const [selectedCountry, setSelectedCountry] = React105.useState(defaultCountry);
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    React82.useEffect(() => {
+    React105.useEffect(() => {
       if (value !== void 0 && value !== null) {
         const digits = value.toString().replace(/\D/g, "");
         setDisplayValue(formatPhoneNumber(digits));
@@ -4015,7 +4018,7 @@ function PhoneField({
       const fullNumber = dialCode + digits;
       onChange(fullNumber);
     };
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement("div", { className: "flex gap-2" }, showCountrySelect && /* @__PURE__ */ React82.createElement(Select, { value: selectedCountry, onValueChange: handleCountryChange }, /* @__PURE__ */ React82.createElement(SelectTrigger, { className: "w-[110px]" }, /* @__PURE__ */ React82.createElement(SelectValue, { placeholder: "Select" })), /* @__PURE__ */ React82.createElement(SelectContent, null, COUNTRY_CODES.map((country) => /* @__PURE__ */ React82.createElement(SelectItem, { key: country.code, value: country.code }, country.label)))), /* @__PURE__ */ React82.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(InputGroup, null, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement("div", { className: "flex gap-2" }, showCountrySelect && /* @__PURE__ */ React105.createElement(Select, { value: selectedCountry, onValueChange: handleCountryChange }, /* @__PURE__ */ React105.createElement(SelectTrigger, { className: "w-[110px]" }, /* @__PURE__ */ React105.createElement(SelectValue, { placeholder: "Select" })), /* @__PURE__ */ React105.createElement(SelectContent, null, COUNTRY_CODES.map((country) => /* @__PURE__ */ React105.createElement(SelectItem, { key: country.code, value: country.code }, country.label)))), /* @__PURE__ */ React105.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(InputGroup, null, /* @__PURE__ */ React105.createElement(
       InputGroupInput,
       {
         id: name,
@@ -4027,15 +4030,15 @@ function PhoneField({
         disabled,
         readOnly
       }
-    ))))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null));
+    ))))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null));
   }
   const countryValue = countryFieldName ? watch(countryFieldName) : null;
-  React82.useEffect(() => {
+  React105.useEffect(() => {
     if (countryValue && countryValue !== selectedCountry) {
       setSelectedCountry(countryValue);
     }
   }, [countryValue, selectedCountry]);
-  const formatPhoneNumber = React82.useCallback((value2) => {
+  const formatPhoneNumber = React105.useCallback((value2) => {
     const digits = value2.replace(/\D/g, "");
     if (!digits) return "";
     if (digits.length <= 3) {
@@ -4046,17 +4049,17 @@ function PhoneField({
       return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
     }
   }, []);
-  const getDialCode = React82.useCallback((countryCode) => {
+  const getDialCode = React105.useCallback((countryCode) => {
     const country = COUNTRY_CODES.find((c) => c.code === countryCode);
     return country?.dialCode || "+1";
   }, []);
-  return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
       control,
       render: ({ field, fieldState: { error } }) => {
-        React82.useEffect(() => {
+        React105.useEffect(() => {
           if (field.value !== void 0 && field.value !== null) {
             const digits = field.value.toString().replace(/\D/g, "");
             setDisplayValue(formatPhoneNumber(digits));
@@ -4084,7 +4087,7 @@ function PhoneField({
           const fullNumber = dialCode + digits;
           field.onChange(fullNumber);
         };
-        return /* @__PURE__ */ React82.createElement("div", { className: "flex gap-2" }, showCountrySelect && /* @__PURE__ */ React82.createElement(Select, { value: selectedCountry, onValueChange: handleCountryChange }, /* @__PURE__ */ React82.createElement(SelectTrigger, { className: "w-[110px]" }, /* @__PURE__ */ React82.createElement(SelectValue, { placeholder: "Select" })), /* @__PURE__ */ React82.createElement(SelectContent, null, COUNTRY_CODES.map((country) => /* @__PURE__ */ React82.createElement(SelectItem, { key: country.code, value: country.code }, country.label)))), /* @__PURE__ */ React82.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(InputGroup, { "data-invalid": !!error || void 0 }, /* @__PURE__ */ React82.createElement(
+        return /* @__PURE__ */ React105.createElement("div", { className: "flex gap-2" }, showCountrySelect && /* @__PURE__ */ React105.createElement(Select, { value: selectedCountry, onValueChange: handleCountryChange }, /* @__PURE__ */ React105.createElement(SelectTrigger, { className: "w-[110px]" }, /* @__PURE__ */ React105.createElement(SelectValue, { placeholder: "Select" })), /* @__PURE__ */ React105.createElement(SelectContent, null, COUNTRY_CODES.map((country) => /* @__PURE__ */ React105.createElement(SelectItem, { key: country.code, value: country.code }, country.label)))), /* @__PURE__ */ React105.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(InputGroup, { "data-invalid": !!error || void 0 }, /* @__PURE__ */ React105.createElement(
           InputGroupInput,
           {
             id: name,
@@ -4100,13 +4103,13 @@ function PhoneField({
         )))));
       }
     }
-  ), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null));
+  ), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null));
 }
 function RadioGroup({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     RadioGroup$1.Root,
     {
       "data-slot": "radio-group",
@@ -4119,7 +4122,7 @@ function RadioGroupItem({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     RadioGroup$1.Item,
     {
       "data-slot": "radio-group-item",
@@ -4129,13 +4132,13 @@ function RadioGroupItem({
       ),
       ...props
     },
-    /* @__PURE__ */ React82__default.createElement(
+    /* @__PURE__ */ React105__default.createElement(
       RadioGroup$1.Indicator,
       {
         "data-slot": "radio-group-indicator",
         className: "relative flex items-center justify-center"
       },
-      /* @__PURE__ */ React82__default.createElement(CircleIcon, { className: "fill-primary absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2" })
+      /* @__PURE__ */ React105__default.createElement(CircleIcon, { className: "fill-primary absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2" })
     )
   );
 }
@@ -4156,7 +4159,7 @@ function RadioGroupField({
   const { control } = useFormContext();
   const isControlled = value !== void 0 && onValueChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, null, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, null, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(
       RadioGroup,
       {
         onValueChange,
@@ -4165,13 +4168,13 @@ function RadioGroupField({
         orientation,
         className: cn(orientation === "horizontal" && "flex flex-wrap gap-4")
       },
-      options.map((option) => /* @__PURE__ */ React82.createElement(
+      options.map((option) => /* @__PURE__ */ React105.createElement(
         "div",
         {
           key: option.value,
           className: cn("flex items-start gap-2", orientation === "vertical" && "flex-col")
         },
-        /* @__PURE__ */ React82.createElement(
+        /* @__PURE__ */ React105.createElement(
           RadioGroupItem,
           {
             id: `${name}-${option.value}`,
@@ -4179,7 +4182,7 @@ function RadioGroupField({
             disabled: disabled || option.disabled
           }
         ),
-        /* @__PURE__ */ React82.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React82.createElement(
+        /* @__PURE__ */ React105.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React105.createElement(
           Label,
           {
             htmlFor: `${name}-${option.value}`,
@@ -4189,16 +4192,16 @@ function RadioGroupField({
             )
           },
           option.label
-        ), option.description && /* @__PURE__ */ React82.createElement("p", { className: "text-sm text-muted-foreground" }, option.description))
+        ), option.description && /* @__PURE__ */ React105.createElement("p", { className: "text-sm text-muted-foreground" }, option.description))
       ))
-    )), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null));
+    )), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, null, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, null, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(
         RadioGroup,
         {
           onValueChange: field.onChange,
@@ -4208,13 +4211,13 @@ function RadioGroupField({
           className: cn(orientation === "horizontal" && "flex flex-wrap gap-4"),
           "aria-invalid": !!error
         },
-        options.map((option) => /* @__PURE__ */ React82.createElement(
+        options.map((option) => /* @__PURE__ */ React105.createElement(
           "div",
           {
             key: option.value,
             className: cn("flex items-start gap-2", orientation === "vertical" && "flex-col")
           },
-          /* @__PURE__ */ React82.createElement(
+          /* @__PURE__ */ React105.createElement(
             RadioGroupItem,
             {
               id: `${name}-${option.value}`,
@@ -4222,7 +4225,7 @@ function RadioGroupField({
               disabled: disabled || option.disabled
             }
           ),
-          /* @__PURE__ */ React82.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React82.createElement(
+          /* @__PURE__ */ React105.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React105.createElement(
             Label,
             {
               htmlFor: `${name}-${option.value}`,
@@ -4232,9 +4235,9 @@ function RadioGroupField({
               )
             },
             option.label
-          ), option.description && /* @__PURE__ */ React82.createElement("p", { className: "text-sm text-muted-foreground" }, option.description))
+          ), option.description && /* @__PURE__ */ React105.createElement("p", { className: "text-sm text-muted-foreground" }, option.description))
         ))
-      )), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null))
+      )), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null))
     }
   );
 }
@@ -4256,14 +4259,14 @@ function RatingField({
   onChange
 }) {
   const { control } = useFormContext();
-  const [hoverValue, setHoverValue] = React82.useState(null);
+  const [hoverValue, setHoverValue] = React105.useState(null);
   const isControlled = value !== void 0 && onChange !== void 0;
   const sizeClasses2 = {
     sm: "h-4 w-4",
     md: "h-6 w-6",
     lg: "h-8 w-8"
   };
-  const IconComponent = icon === "star" ? StarIcon : icon === "heart" ? ({ className: className2 }) => /* @__PURE__ */ React82.createElement("svg", { className: className2, fill: "currentColor", viewBox: "0 0 24 24" }, /* @__PURE__ */ React82.createElement("path", { d: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" })) : ({ className: className2 }) => /* @__PURE__ */ React82.createElement("svg", { className: className2, fill: "currentColor", viewBox: "0 0 24 24" }, /* @__PURE__ */ React82.createElement("path", { d: "M1 21h4V9H1v12zm22 0h-6v-9h6v9zM10.69 3.86L9.28 2.45a1 1 0 00-1.41 0l-1.42 1.41L1 9.41V21h22V9.41l-5.44-5.55-1.41 1.41a6 6 0 01-8.46 0z" }));
+  const IconComponent = icon === "star" ? StarIcon : icon === "heart" ? ({ className: className2 }) => /* @__PURE__ */ React105.createElement("svg", { className: className2, fill: "currentColor", viewBox: "0 0 24 24" }, /* @__PURE__ */ React105.createElement("path", { d: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" })) : ({ className: className2 }) => /* @__PURE__ */ React105.createElement("svg", { className: className2, fill: "currentColor", viewBox: "0 0 24 24" }, /* @__PURE__ */ React105.createElement("path", { d: "M1 21h4V9H1v12zm22 0h-6v-9h6v9zM10.69 3.86L9.28 2.45a1 1 0 00-1.41 0l-1.42 1.41L1 9.41V21h22V9.41l-5.44-5.55-1.41 1.41a6 6 0 01-8.46 0z" }));
   if (isControlled) {
     const currentValue = value || 0;
     const handleKeyDown = (e, rating) => {
@@ -4274,7 +4277,7 @@ function RatingField({
         }
       }
     };
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, null, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement("div", { className: "flex flex-col gap-2" }, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, null, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement("div", { className: "flex flex-col gap-2" }, /* @__PURE__ */ React105.createElement(
       "div",
       {
         className: "flex items-center gap-1",
@@ -4284,7 +4287,7 @@ function RatingField({
       Array.from({ length: maxRating }).map((_, index) => {
         const rating = index + 1;
         const isFilled = hoverValue !== null ? rating <= hoverValue : rating <= currentValue;
-        return /* @__PURE__ */ React82.createElement(
+        return /* @__PURE__ */ React105.createElement(
           "button",
           {
             key: index,
@@ -4309,7 +4312,7 @@ function RatingField({
             "aria-label": `${rating} out of ${maxRating}`,
             tabIndex: disabled || readOnly ? -1 : 0
           },
-          /* @__PURE__ */ React82.createElement(
+          /* @__PURE__ */ React105.createElement(
             IconComponent,
             {
               className: cn(
@@ -4320,9 +4323,9 @@ function RatingField({
           )
         );
       })
-    ), (showNumbers || labels) && /* @__PURE__ */ React82.createElement("div", { className: "flex justify-between text-xs text-muted-foreground" }, Array.from({ length: maxRating }).map((_, index) => /* @__PURE__ */ React82.createElement("span", { key: index, className: "flex-1 text-center" }, labels?.[index] || (showNumbers ? index + 1 : "")))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null))));
+    ), (showNumbers || labels) && /* @__PURE__ */ React105.createElement("div", { className: "flex justify-between text-xs text-muted-foreground" }, Array.from({ length: maxRating }).map((_, index) => /* @__PURE__ */ React105.createElement("span", { key: index, className: "flex-1 text-center" }, labels?.[index] || (showNumbers ? index + 1 : "")))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null))));
   }
-  return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, null, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, null, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
@@ -4337,7 +4340,7 @@ function RatingField({
             }
           }
         };
-        return /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement("div", { className: "flex flex-col gap-2" }, /* @__PURE__ */ React82.createElement(
+        return /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement("div", { className: "flex flex-col gap-2" }, /* @__PURE__ */ React105.createElement(
           "div",
           {
             className: "flex items-center gap-1",
@@ -4347,7 +4350,7 @@ function RatingField({
           Array.from({ length: maxRating }).map((_, index) => {
             const rating = index + 1;
             const isFilled = hoverValue !== null ? rating <= hoverValue : rating <= currentValue;
-            return /* @__PURE__ */ React82.createElement(
+            return /* @__PURE__ */ React105.createElement(
               "button",
               {
                 key: index,
@@ -4372,7 +4375,7 @@ function RatingField({
                 "aria-label": `${rating} out of ${maxRating}`,
                 tabIndex: disabled || readOnly ? -1 : 0
               },
-              /* @__PURE__ */ React82.createElement(
+              /* @__PURE__ */ React105.createElement(
                 IconComponent,
                 {
                   className: cn(
@@ -4383,7 +4386,7 @@ function RatingField({
               )
             );
           })
-        ), (showNumbers || labels) && /* @__PURE__ */ React82.createElement("div", { className: "flex justify-between text-xs text-muted-foreground" }, Array.from({ length: maxRating }).map((_, index) => /* @__PURE__ */ React82.createElement("span", { key: index, className: "flex-1 text-center" }, labels?.[index] || (showNumbers ? index + 1 : "")))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null)));
+        ), (showNumbers || labels) && /* @__PURE__ */ React105.createElement("div", { className: "flex justify-between text-xs text-muted-foreground" }, Array.from({ length: maxRating }).map((_, index) => /* @__PURE__ */ React105.createElement("span", { key: index, className: "flex-1 text-center" }, labels?.[index] || (showNumbers ? index + 1 : "")))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null)));
       }
     }
   ));
@@ -4403,14 +4406,14 @@ function SelectField({
   const { control } = useFormContext();
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(Select, { onValueChange: onChange, value, disabled }, /* @__PURE__ */ React82.createElement(SelectTrigger, { id: name, className: "w-full" }, /* @__PURE__ */ React82.createElement(SelectValue, { placeholder })), /* @__PURE__ */ React82.createElement(SelectContent, null, options.map((option) => /* @__PURE__ */ React82.createElement(SelectItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label))))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null));
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(Select, { onValueChange: onChange, value, disabled }, /* @__PURE__ */ React105.createElement(SelectTrigger, { id: name, className: "w-full" }, /* @__PURE__ */ React105.createElement(SelectValue, { placeholder })), /* @__PURE__ */ React105.createElement(SelectContent, null, options.map((option) => /* @__PURE__ */ React105.createElement(SelectItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label))))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(Select, { onValueChange: field.onChange, value: field.value, disabled }, /* @__PURE__ */ React82.createElement(SelectTrigger, { id: name, className: "w-full" }, /* @__PURE__ */ React82.createElement(SelectValue, { placeholder })), /* @__PURE__ */ React82.createElement(SelectContent, null, options.map((option) => /* @__PURE__ */ React82.createElement(SelectItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label))))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null))
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(Select, { onValueChange: field.onChange, value: field.value, disabled }, /* @__PURE__ */ React105.createElement(SelectTrigger, { id: name, className: "w-full" }, /* @__PURE__ */ React105.createElement(SelectValue, { placeholder })), /* @__PURE__ */ React105.createElement(SelectContent, null, options.map((option) => /* @__PURE__ */ React105.createElement(SelectItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label))))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null))
     }
   );
 }
@@ -4422,11 +4425,11 @@ function Slider({
   max = 100,
   ...props
 }) {
-  const _values = React82.useMemo(
+  const _values = React105.useMemo(
     () => Array.isArray(value) ? value : Array.isArray(defaultValue) ? defaultValue : [min, max],
     [value, defaultValue, min, max]
   );
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Slider$1.Root,
     {
       "data-slot": "slider",
@@ -4440,7 +4443,7 @@ function Slider({
       ),
       ...props
     },
-    /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement(
       Slider$1.Track,
       {
         "data-slot": "slider-track",
@@ -4448,7 +4451,7 @@ function Slider({
           "bg-muted relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"
         )
       },
-      /* @__PURE__ */ React82.createElement(
+      /* @__PURE__ */ React105.createElement(
         Slider$1.Range,
         {
           "data-slot": "slider-range",
@@ -4458,7 +4461,7 @@ function Slider({
         }
       )
     ),
-    Array.from({ length: _values.length }, (_, index) => /* @__PURE__ */ React82.createElement(
+    Array.from({ length: _values.length }, (_, index) => /* @__PURE__ */ React105.createElement(
       Slider$1.Thumb,
       {
         "data-slot": "slider-thumb",
@@ -4490,10 +4493,10 @@ function SliderField({
   onChange
 }) {
   const { control } = useFormContext();
-  const [localValue, setLocalValue] = React82.useState(min);
+  const [localValue, setLocalValue] = React105.useState(min);
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    React82.useEffect(() => {
+    React105.useEffect(() => {
       const controlledValue = value !== void 0 ? Number(value) : min;
       setLocalValue(Math.min(Math.max(controlledValue, min), max));
     }, [value]);
@@ -4514,7 +4517,7 @@ function SliderField({
       }
     };
     const valueLabel = `${localValue}${suffix || ""}`;
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement("div", { className: cn("flex items-center gap-4", orientation === "vertical" && "flex-col") }, /* @__PURE__ */ React82.createElement("div", { className: cn("flex-1", orientation === "vertical" && "h-48 w-full") }, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement("div", { className: cn("flex items-center gap-4", orientation === "vertical" && "flex-col") }, /* @__PURE__ */ React105.createElement("div", { className: cn("flex-1", orientation === "vertical" && "h-48 w-full") }, /* @__PURE__ */ React105.createElement(
       Slider,
       {
         value: [localValue],
@@ -4528,7 +4531,7 @@ function SliderField({
         "aria-label": label,
         className: cn("rounded")
       }
-    )), showValue && /* @__PURE__ */ React82.createElement(
+    )), showValue && /* @__PURE__ */ React105.createElement(
       "div",
       {
         className: cn(
@@ -4536,7 +4539,7 @@ function SliderField({
           orientation === "vertical" && "w-full justify-between"
         )
       },
-      showInput ? /* @__PURE__ */ React82.createElement(
+      showInput ? /* @__PURE__ */ React105.createElement(
         Input,
         {
           type: "number",
@@ -4549,8 +4552,8 @@ function SliderField({
           className: "w-20",
           "aria-label": `${label} value`
         }
-      ) : /* @__PURE__ */ React82.createElement("span", { className: "text-sm font-medium tabular-nums min-w-[3rem] text-center" }, valueLabel)
-    ))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null), /* @__PURE__ */ React82.createElement(
+      ) : /* @__PURE__ */ React105.createElement("span", { className: "text-sm font-medium tabular-nums min-w-[3rem] text-center" }, valueLabel)
+    ))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null), /* @__PURE__ */ React105.createElement(
       "div",
       {
         className: cn(
@@ -4558,17 +4561,17 @@ function SliderField({
           orientation === "vertical" && "flex-row"
         )
       },
-      /* @__PURE__ */ React82.createElement("span", null, min, suffix),
-      /* @__PURE__ */ React82.createElement("span", null, max, suffix)
+      /* @__PURE__ */ React105.createElement("span", null, min, suffix),
+      /* @__PURE__ */ React105.createElement("span", null, max, suffix)
     ));
   }
-  return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
       control,
       render: ({ field, fieldState: { error } }) => {
-        React82.useEffect(() => {
+        React105.useEffect(() => {
           const value2 = field.value !== void 0 ? Number(field.value) : min;
           setLocalValue(Math.min(Math.max(value2, min), max));
         }, [field.value]);
@@ -4589,12 +4592,12 @@ function SliderField({
           }
         };
         const valueLabel = `${localValue}${suffix || ""}`;
-        return /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(
+        return /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(
           "div",
           {
             className: cn("flex items-center gap-4", orientation === "vertical" && "flex-col")
           },
-          /* @__PURE__ */ React82.createElement("div", { className: cn("flex-1", orientation === "vertical" && "h-48 w-full") }, /* @__PURE__ */ React82.createElement(
+          /* @__PURE__ */ React105.createElement("div", { className: cn("flex-1", orientation === "vertical" && "h-48 w-full") }, /* @__PURE__ */ React105.createElement(
             Slider,
             {
               value: [localValue],
@@ -4610,7 +4613,7 @@ function SliderField({
               className: cn(error && "ring-destructive rounded")
             }
           )),
-          showValue && /* @__PURE__ */ React82.createElement(
+          showValue && /* @__PURE__ */ React105.createElement(
             "div",
             {
               className: cn(
@@ -4618,7 +4621,7 @@ function SliderField({
                 orientation === "vertical" && "w-full justify-between"
               )
             },
-            showInput ? /* @__PURE__ */ React82.createElement(
+            showInput ? /* @__PURE__ */ React105.createElement(
               Input,
               {
                 type: "number",
@@ -4631,12 +4634,12 @@ function SliderField({
                 className: "w-20",
                 "aria-label": `${label} value`
               }
-            ) : /* @__PURE__ */ React82.createElement("span", { className: "text-sm font-medium tabular-nums min-w-[3rem] text-center" }, valueLabel)
+            ) : /* @__PURE__ */ React105.createElement("span", { className: "text-sm font-medium tabular-nums min-w-[3rem] text-center" }, valueLabel)
           )
         ));
       }
     }
-  ), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null), /* @__PURE__ */ React82.createElement(
+  ), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null), /* @__PURE__ */ React105.createElement(
     "div",
     {
       className: cn(
@@ -4644,8 +4647,8 @@ function SliderField({
         orientation === "vertical" && "flex-row"
       )
     },
-    /* @__PURE__ */ React82.createElement("span", null, min, suffix),
-    /* @__PURE__ */ React82.createElement("span", null, max, suffix)
+    /* @__PURE__ */ React105.createElement("span", null, min, suffix),
+    /* @__PURE__ */ React105.createElement("span", null, max, suffix)
   ));
 }
 function Switch({
@@ -4653,7 +4656,7 @@ function Switch({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Switch$1.Root,
     {
       "data-slot": "switch",
@@ -4664,7 +4667,7 @@ function Switch({
       ),
       ...props
     },
-    /* @__PURE__ */ React82__default.createElement(
+    /* @__PURE__ */ React105__default.createElement(
       Switch$1.Thumb,
       {
         "data-slot": "switch-thumb",
@@ -4690,7 +4693,7 @@ function SwitchField({
   const { control } = useFormContext();
   const isControlled = checked !== void 0 && onCheckedChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center justify-between gap-2" }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center justify-between gap-2" }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React105.createElement(
       Switch,
       {
         id: name,
@@ -4698,22 +4701,22 @@ function SwitchField({
         onCheckedChange,
         disabled
       }
-    ), label && /* @__PURE__ */ React82.createElement(
+    ), label && /* @__PURE__ */ React105.createElement(
       Label,
       {
         htmlFor: name,
         className: cn("font-medium", disabled && "cursor-not-allowed opacity-50")
       },
       label,
-      required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")
-    ))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null));
+      required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")
+    ))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center justify-between gap-2" }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React82.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center justify-between gap-2" }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React105.createElement(
         Switch,
         {
           id: name,
@@ -4722,7 +4725,7 @@ function SwitchField({
           disabled,
           "aria-invalid": !!error
         }
-      ), label && /* @__PURE__ */ React82.createElement(
+      ), label && /* @__PURE__ */ React105.createElement(
         Label,
         {
           htmlFor: name,
@@ -4733,8 +4736,8 @@ function SwitchField({
           )
         },
         label,
-        required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")
-      ))), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null))
+        required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")
+      ))), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null))
     }
   );
 }
@@ -4754,7 +4757,7 @@ function TextField({
   const { control } = useFormContext();
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(
       Input,
       {
         id: name,
@@ -4765,14 +4768,14 @@ function TextField({
         disabled,
         readOnly
       }
-    )), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null));
+    )), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(
         Input,
         {
           ...field,
@@ -4783,7 +4786,7 @@ function TextField({
           readOnly,
           "aria-invalid": !!error
         }
-      )), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null))
+      )), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null))
     }
   );
 }
@@ -4803,7 +4806,7 @@ function TextareaField({
   const { control } = useFormContext();
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(
       Textarea,
       {
         id: name,
@@ -4814,14 +4817,14 @@ function TextareaField({
         readOnly,
         rows
       }
-    )), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null));
+    )), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React82.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React82.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React82.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React82.createElement(FormControl, null, /* @__PURE__ */ React82.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React105.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React105.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React105.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React105.createElement(FormControl, null, /* @__PURE__ */ React105.createElement(
         Textarea,
         {
           ...field,
@@ -4832,7 +4835,7 @@ function TextareaField({
           rows,
           "aria-invalid": !!error
         }
-      )), description && /* @__PURE__ */ React82.createElement(FormDescription, null, description), /* @__PURE__ */ React82.createElement(FormMessage, null))
+      )), description && /* @__PURE__ */ React105.createElement(FormDescription, null, description), /* @__PURE__ */ React105.createElement(FormMessage, null))
     }
   );
 }
@@ -4858,7 +4861,7 @@ function FormSection({
   error,
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement("div", { className: cn("space-y-4", className) }, /* @__PURE__ */ React82__default.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React82__default.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React82__default.createElement("h3", { className: "text-base font-semibold" }, title), validationStatus === "valid" && /* @__PURE__ */ React82__default.createElement("div", { className: cn("flex items-center gap-1 text-xs", statusConfig.valid.color) }, /* @__PURE__ */ React82__default.createElement(CheckCircleIcon, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ React82__default.createElement("span", null, statusConfig.valid.label)), validationStatus === "invalid" && /* @__PURE__ */ React82__default.createElement("div", { className: cn("flex items-center gap-1 text-xs", statusConfig.invalid.color) }, /* @__PURE__ */ React82__default.createElement(AlertCircleIcon, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ React82__default.createElement("span", null, statusConfig.invalid.label)), validationStatus === "pending" && /* @__PURE__ */ React82__default.createElement("div", { className: cn("flex items-center gap-1 text-xs", statusConfig.pending.color) }, /* @__PURE__ */ React82__default.createElement(AlertCircleIcon, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ React82__default.createElement("span", null, statusConfig.pending.label))), /* @__PURE__ */ React82__default.createElement("div", { className: "flex items-center gap-2" }, actions)), description && /* @__PURE__ */ React82__default.createElement("p", { className: "text-sm text-muted-foreground" }, description), error && /* @__PURE__ */ React82__default.createElement("div", { className: "flex items-center gap-2 text-sm text-red-500" }, /* @__PURE__ */ React82__default.createElement(AlertCircleIcon, { className: "h-4 w-4" }), error), children);
+  return /* @__PURE__ */ React105__default.createElement("div", { className: cn("space-y-4", className) }, /* @__PURE__ */ React105__default.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React105__default.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React105__default.createElement("h3", { className: "text-base font-semibold" }, title), validationStatus === "valid" && /* @__PURE__ */ React105__default.createElement("div", { className: cn("flex items-center gap-1 text-xs", statusConfig.valid.color) }, /* @__PURE__ */ React105__default.createElement(CheckCircleIcon, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ React105__default.createElement("span", null, statusConfig.valid.label)), validationStatus === "invalid" && /* @__PURE__ */ React105__default.createElement("div", { className: cn("flex items-center gap-1 text-xs", statusConfig.invalid.color) }, /* @__PURE__ */ React105__default.createElement(AlertCircleIcon, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ React105__default.createElement("span", null, statusConfig.invalid.label)), validationStatus === "pending" && /* @__PURE__ */ React105__default.createElement("div", { className: cn("flex items-center gap-1 text-xs", statusConfig.pending.color) }, /* @__PURE__ */ React105__default.createElement(AlertCircleIcon, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ React105__default.createElement("span", null, statusConfig.pending.label))), /* @__PURE__ */ React105__default.createElement("div", { className: "flex items-center gap-2" }, actions)), description && /* @__PURE__ */ React105__default.createElement("p", { className: "text-sm text-muted-foreground" }, description), error && /* @__PURE__ */ React105__default.createElement("div", { className: "flex items-center gap-2 text-sm text-red-500" }, /* @__PURE__ */ React105__default.createElement(AlertCircleIcon, { className: "h-4 w-4" }), error), children);
 }
 
 // src/blocks/data-entry/form-builder/form-body.tsx
@@ -4912,7 +4915,7 @@ function StickyActions({
   position = "bottom",
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       className: cn(
@@ -4922,12 +4925,12 @@ function StickyActions({
         className
       )
     },
-    /* @__PURE__ */ React82__default.createElement("div", { className: "flex items-center gap-2" }, showDirtyWarning && isDirty && /* @__PURE__ */ React82__default.createElement("span", { className: "text-sm text-amber-600 dark:text-amber-400" }, "You have unsaved changes")),
-    /* @__PURE__ */ React82__default.createElement("div", { className: "flex items-center gap-2" }, children)
+    /* @__PURE__ */ React105__default.createElement("div", { className: "flex items-center gap-2" }, showDirtyWarning && isDirty && /* @__PURE__ */ React105__default.createElement("span", { className: "text-sm text-amber-600 dark:text-amber-400" }, "You have unsaved changes")),
+    /* @__PURE__ */ React105__default.createElement("div", { className: "flex items-center gap-2" }, children)
   );
 }
 function Spinner({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Loader2Icon,
     {
       role: "status",
@@ -4968,7 +4971,7 @@ function FormBuilder({
   });
   const { handleSubmit, watch, formState, reset } = form;
   const { isDirty, isValid } = formState;
-  React82.useEffect(() => {
+  React105.useEffect(() => {
     if (!onAutoSave || !isDirty) return;
     const timer = setTimeout(() => {
       const values = watch();
@@ -4976,7 +4979,7 @@ function FormBuilder({
     }, autoSaveDelay);
     return () => clearTimeout(timer);
   }, [onAutoSave, autoSaveDelay, isDirty, watch]);
-  const actionsContent = /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-2" }, showCancel && /* @__PURE__ */ React82.createElement(
+  const actionsContent = /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2" }, showCancel && /* @__PURE__ */ React105.createElement(
     Button,
     {
       type: "button",
@@ -4985,8 +4988,8 @@ function FormBuilder({
       disabled: isLoading
     },
     cancelLabel
-  ), submitButton || /* @__PURE__ */ React82.createElement(Button, { type: "submit", disabled: isLoading || !isValid }, isLoading && /* @__PURE__ */ React82.createElement(Spinner, { className: "mr-2 h-4 w-4" }), submitLabel));
-  return /* @__PURE__ */ React82.createElement(FormProvider, { ...form }, /* @__PURE__ */ React82.createElement("form", { onSubmit: handleSubmit(onSubmit), className: cn("w-full space-y-6", className), id }, header, successMessage && /* @__PURE__ */ React82.createElement("div", { className: "rounded-md bg-green-50 p-4 text-sm text-green-700 dark:bg-green-900/20 dark:text-green-400" }, successMessage), error && /* @__PURE__ */ React82.createElement("div", { className: "rounded-md bg-red-50 p-4 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-400" }, error), /* @__PURE__ */ React82.createElement(FormBody, { form, sections, renderField }), footer, stickyFooter && /* @__PURE__ */ React82.createElement(StickyActions, { showDirtyWarning, isDirty }, actionsContent), !stickyFooter && /* @__PURE__ */ React82.createElement("div", { className: "flex justify-end gap-2 pt-4 border-t" }, actionsContent)));
+  ), submitButton || /* @__PURE__ */ React105.createElement(Button, { type: "submit", disabled: isLoading || !isValid }, isLoading && /* @__PURE__ */ React105.createElement(Spinner, { className: "mr-2 h-4 w-4" }), submitLabel));
+  return /* @__PURE__ */ React105.createElement(FormProvider, { ...form }, /* @__PURE__ */ React105.createElement("form", { onSubmit: handleSubmit(onSubmit), className: cn("w-full space-y-6", className), id }, header, successMessage && /* @__PURE__ */ React105.createElement("div", { className: "rounded-md bg-green-50 p-4 text-sm text-green-700 dark:bg-green-900/20 dark:text-green-400" }, successMessage), error && /* @__PURE__ */ React105.createElement("div", { className: "rounded-md bg-red-50 p-4 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-400" }, error), /* @__PURE__ */ React105.createElement(FormBody, { form, sections, renderField }), footer, stickyFooter && /* @__PURE__ */ React105.createElement(StickyActions, { showDirtyWarning, isDirty }, actionsContent), !stickyFooter && /* @__PURE__ */ React105.createElement("div", { className: "flex justify-end gap-2 pt-4 border-t" }, actionsContent)));
 }
 function WizardStep({
   sections,
@@ -4994,19 +4997,19 @@ function WizardStep({
   renderField,
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement(FormBody, { form, sections, renderField, className });
+  return /* @__PURE__ */ React105__default.createElement(FormBody, { form, sections, renderField, className });
 }
 function AlertDialog({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(AlertDialog$1.Root, { "data-slot": "alert-dialog", ...props });
+  return /* @__PURE__ */ React105__default.createElement(AlertDialog$1.Root, { "data-slot": "alert-dialog", ...props });
 }
 function AlertDialogPortal({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(AlertDialog$1.Portal, { "data-slot": "alert-dialog-portal", ...props });
+  return /* @__PURE__ */ React105__default.createElement(AlertDialog$1.Portal, { "data-slot": "alert-dialog-portal", ...props });
 }
 function AlertDialogOverlay({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     AlertDialog$1.Overlay,
     {
       "data-slot": "alert-dialog-overlay",
@@ -5023,7 +5026,7 @@ function AlertDialogContent({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(AlertDialogPortal, null, /* @__PURE__ */ React82__default.createElement(AlertDialogOverlay, null), /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(AlertDialogPortal, null, /* @__PURE__ */ React105__default.createElement(AlertDialogOverlay, null), /* @__PURE__ */ React105__default.createElement(
     AlertDialog$1.Content,
     {
       "data-slot": "alert-dialog-content",
@@ -5037,7 +5040,7 @@ function AlertDialogContent({
   ));
 }
 function AlertDialogHeader({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       "data-slot": "alert-dialog-header",
@@ -5050,7 +5053,7 @@ function AlertDialogHeader({ className, ...props }) {
   );
 }
 function AlertDialogFooter({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       "data-slot": "alert-dialog-footer",
@@ -5066,7 +5069,7 @@ function AlertDialogTitle({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     AlertDialog$1.Title,
     {
       "data-slot": "alert-dialog-title",
@@ -5082,7 +5085,7 @@ function AlertDialogDescription({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     AlertDialog$1.Description,
     {
       "data-slot": "alert-dialog-description",
@@ -5097,7 +5100,7 @@ function AlertDialogAction({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(Button, { variant, size, asChild: true }, /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(Button, { variant, size, asChild: true }, /* @__PURE__ */ React105__default.createElement(
     AlertDialog$1.Action,
     {
       "data-slot": "alert-dialog-action",
@@ -5112,7 +5115,7 @@ function AlertDialogCancel({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(Button, { variant, size, asChild: true }, /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(Button, { variant, size, asChild: true }, /* @__PURE__ */ React105__default.createElement(
     AlertDialog$1.Cancel,
     {
       "data-slot": "alert-dialog-cancel",
@@ -5126,7 +5129,7 @@ function Avatar({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Avatar$1.Root,
     {
       "data-slot": "avatar",
@@ -5140,7 +5143,7 @@ function Avatar({
   );
 }
 function AvatarImage({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Avatar$1.Image,
     {
       "data-slot": "avatar-image",
@@ -5153,7 +5156,7 @@ function AvatarFallback({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Avatar$1.Fallback,
     {
       "data-slot": "avatar-fallback",
@@ -5166,10 +5169,10 @@ function AvatarFallback({
   );
 }
 function Breadcrumb({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement("nav", { "aria-label": "breadcrumb", "data-slot": "breadcrumb", ...props });
+  return /* @__PURE__ */ React105__default.createElement("nav", { "aria-label": "breadcrumb", "data-slot": "breadcrumb", ...props });
 }
 function BreadcrumbList({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "ol",
     {
       "data-slot": "breadcrumb-list",
@@ -5182,7 +5185,7 @@ function BreadcrumbList({ className, ...props }) {
   );
 }
 function BreadcrumbItem({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "li",
     {
       "data-slot": "breadcrumb-item",
@@ -5197,7 +5200,7 @@ function BreadcrumbLink({
   ...props
 }) {
   const Comp = asChild ? Slot.Root : "a";
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Comp,
     {
       "data-slot": "breadcrumb-link",
@@ -5207,7 +5210,7 @@ function BreadcrumbLink({
   );
 }
 function BreadcrumbPage({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "span",
     {
       "data-slot": "breadcrumb-page",
@@ -5220,7 +5223,7 @@ function BreadcrumbPage({ className, ...props }) {
   );
 }
 function BreadcrumbSeparator({ children, className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "li",
     {
       "data-slot": "breadcrumb-separator",
@@ -5229,7 +5232,7 @@ function BreadcrumbSeparator({ children, className, ...props }) {
       className: cn("[&>svg]:size-3.5", className),
       ...props
     },
-    children ?? /* @__PURE__ */ React82__default.createElement(ChevronRight, null)
+    children ?? /* @__PURE__ */ React105__default.createElement(ChevronRight, null)
   );
 }
 function Separator({
@@ -5238,7 +5241,7 @@ function Separator({
   decorative = true,
   ...props
 }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Separator$1.Root,
     {
       "data-slot": "separator",
@@ -5253,32 +5256,32 @@ function Separator({
   );
 }
 function Collapsible({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(Collapsible$1.Root, { "data-slot": "collapsible", ...props });
+  return /* @__PURE__ */ React105__default.createElement(Collapsible$1.Root, { "data-slot": "collapsible", ...props });
 }
 function CollapsibleTrigger({
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(Collapsible$1.CollapsibleTrigger, { "data-slot": "collapsible-trigger", ...props });
+  return /* @__PURE__ */ React105__default.createElement(Collapsible$1.CollapsibleTrigger, { "data-slot": "collapsible-trigger", ...props });
 }
 function CollapsibleContent({
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(Collapsible$1.CollapsibleContent, { "data-slot": "collapsible-content", ...props });
+  return /* @__PURE__ */ React105__default.createElement(Collapsible$1.CollapsibleContent, { "data-slot": "collapsible-content", ...props });
 }
 function DropdownMenu({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(DropdownMenu$1.Root, { "data-slot": "dropdown-menu", ...props });
+  return /* @__PURE__ */ React105__default.createElement(DropdownMenu$1.Root, { "data-slot": "dropdown-menu", ...props });
 }
 function DropdownMenuTrigger({
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(DropdownMenu$1.Trigger, { "data-slot": "dropdown-menu-trigger", ...props });
+  return /* @__PURE__ */ React105__default.createElement(DropdownMenu$1.Trigger, { "data-slot": "dropdown-menu-trigger", ...props });
 }
 function DropdownMenuContent({
   className,
   sideOffset = 4,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(DropdownMenu$1.Portal, null, /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(DropdownMenu$1.Portal, null, /* @__PURE__ */ React105__default.createElement(
     DropdownMenu$1.Content,
     {
       "data-slot": "dropdown-menu-content",
@@ -5292,7 +5295,7 @@ function DropdownMenuContent({
   ));
 }
 function DropdownMenuGroup({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(DropdownMenu$1.Group, { "data-slot": "dropdown-menu-group", ...props });
+  return /* @__PURE__ */ React105__default.createElement(DropdownMenu$1.Group, { "data-slot": "dropdown-menu-group", ...props });
 }
 function DropdownMenuItem({
   className,
@@ -5300,7 +5303,7 @@ function DropdownMenuItem({
   variant = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     DropdownMenu$1.Item,
     {
       "data-slot": "dropdown-menu-item",
@@ -5319,7 +5322,7 @@ function DropdownMenuLabel({
   inset,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     DropdownMenu$1.Label,
     {
       "data-slot": "dropdown-menu-label",
@@ -5333,7 +5336,7 @@ function DropdownMenuSeparator({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     DropdownMenu$1.Separator,
     {
       "data-slot": "dropdown-menu-separator",
@@ -5342,10 +5345,63 @@ function DropdownMenuSeparator({
     }
   );
 }
+function ScrollArea({
+  className,
+  children,
+  orientation = "vertical",
+  ...props
+}) {
+  return /* @__PURE__ */ React105__default.createElement(
+    ScrollArea$1.Root,
+    {
+      "data-slot": "scroll-area",
+      className: cn("relative", className),
+      ...props
+    },
+    /* @__PURE__ */ React105__default.createElement(
+      ScrollArea$1.Viewport,
+      {
+        "data-slot": "scroll-area-viewport",
+        className: "focus-visible:ring-ring/50 size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1"
+      },
+      children
+    ),
+    (orientation === "vertical" || orientation === "both") && /* @__PURE__ */ React105__default.createElement(ScrollBar, { orientation: "vertical" }),
+    (orientation === "horizontal" || orientation === "both") && /* @__PURE__ */ React105__default.createElement(ScrollBar, { orientation: "horizontal" }),
+    /* @__PURE__ */ React105__default.createElement(ScrollArea$1.Corner, null)
+  );
+}
+function ScrollBar({
+  className,
+  orientation = "vertical",
+  ...props
+}) {
+  return /* @__PURE__ */ React105__default.createElement(
+    ScrollArea$1.ScrollAreaScrollbar,
+    {
+      "data-slot": "scroll-area-scrollbar",
+      orientation,
+      className: cn(
+        "flex touch-none p-px transition-colors select-none",
+        orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent",
+        orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent",
+        className
+      ),
+      ...props
+    },
+    /* @__PURE__ */ React105__default.createElement(
+      ScrollArea$1.ScrollAreaThumb,
+      {
+        "data-slot": "scroll-area-thumb",
+        className: "bg-border relative flex-1 rounded-full"
+      }
+    )
+  );
+}
 var MOBILE_BREAKPOINT = 768;
 function useIsMobile() {
-  const [isMobile, setIsMobile] = React82.useState(void 0);
-  React82.useEffect(() => {
+  const [isMobile, setIsMobile] = React105.useState(void 0);
+  React105.useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
     const onChange = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
@@ -5357,7 +5413,7 @@ function useIsMobile() {
   return !!isMobile;
 }
 function Skeleton({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       "data-slot": "skeleton",
@@ -5370,7 +5426,7 @@ function TooltipProvider({
   delayDuration = 0,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Tooltip$1.Provider,
     {
       "data-slot": "tooltip-provider",
@@ -5380,10 +5436,10 @@ function TooltipProvider({
   );
 }
 function Tooltip({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(Tooltip$1.Root, { "data-slot": "tooltip", ...props });
+  return /* @__PURE__ */ React105__default.createElement(Tooltip$1.Root, { "data-slot": "tooltip", ...props });
 }
 function TooltipTrigger({ ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(Tooltip$1.Trigger, { "data-slot": "tooltip-trigger", ...props });
+  return /* @__PURE__ */ React105__default.createElement(Tooltip$1.Trigger, { "data-slot": "tooltip-trigger", ...props });
 }
 function TooltipContent({
   className,
@@ -5391,7 +5447,7 @@ function TooltipContent({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(Tooltip$1.Portal, null, /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(Tooltip$1.Portal, null, /* @__PURE__ */ React105__default.createElement(
     Tooltip$1.Content,
     {
       "data-slot": "tooltip-content",
@@ -5403,7 +5459,7 @@ function TooltipContent({
       ...props
     },
     children,
-    /* @__PURE__ */ React82__default.createElement(Tooltip$1.Arrow, { className: "bg-foreground fill-foreground z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" })
+    /* @__PURE__ */ React105__default.createElement(Tooltip$1.Arrow, { className: "bg-foreground fill-foreground z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" })
   ));
 }
 
@@ -5414,9 +5470,9 @@ var SIDEBAR_WIDTH = "16rem";
 var SIDEBAR_WIDTH_MOBILE = "18rem";
 var SIDEBAR_WIDTH_ICON = "3rem";
 var SIDEBAR_KEYBOARD_SHORTCUT = "b";
-var SidebarContext = React82.createContext(null);
+var SidebarContext = React105.createContext(null);
 function useSidebar() {
-  const context = React82.useContext(SidebarContext);
+  const context = React105.useContext(SidebarContext);
   if (!context) {
     throw new Error("useSidebar must be used within a SidebarProvider.");
   }
@@ -5432,10 +5488,10 @@ function SidebarProvider({
   ...props
 }) {
   const isMobile = useIsMobile();
-  const [openMobile, setOpenMobile] = React82.useState(false);
-  const [_open, _setOpen] = React82.useState(defaultOpen);
+  const [openMobile, setOpenMobile] = React105.useState(false);
+  const [_open, _setOpen] = React105.useState(defaultOpen);
   const open = openProp ?? _open;
-  const setOpen = React82.useCallback(
+  const setOpen = React105.useCallback(
     (value) => {
       const openState = typeof value === "function" ? value(open) : value;
       if (setOpenProp) {
@@ -5447,10 +5503,10 @@ function SidebarProvider({
     },
     [setOpenProp, open]
   );
-  const toggleSidebar = React82.useCallback(() => {
+  const toggleSidebar = React105.useCallback(() => {
     return isMobile ? setOpenMobile((open2) => !open2) : setOpen((open2) => !open2);
   }, [isMobile, setOpen]);
-  React82.useEffect(() => {
+  React105.useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
         event.preventDefault();
@@ -5461,7 +5517,7 @@ function SidebarProvider({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [toggleSidebar]);
   const state = open ? "expanded" : "collapsed";
-  const contextValue = React82.useMemo(
+  const contextValue = React105.useMemo(
     () => ({
       state,
       open,
@@ -5473,7 +5529,7 @@ function SidebarProvider({
     }),
     [state, open, setOpen, isMobile, openMobile, toggleSidebar]
   );
-  return /* @__PURE__ */ React82.createElement(SidebarContext.Provider, { value: contextValue }, /* @__PURE__ */ React82.createElement(TooltipProvider, { delayDuration: 0 }, /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(SidebarContext.Provider, { value: contextValue }, /* @__PURE__ */ React105.createElement(TooltipProvider, { delayDuration: 0 }, /* @__PURE__ */ React105.createElement(
     "div",
     {
       "data-slot": "sidebar-wrapper",
@@ -5501,7 +5557,7 @@ function Sidebar({
 }) {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
   if (collapsible === "none") {
-    return /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(
       "div",
       {
         "data-slot": "sidebar",
@@ -5515,7 +5571,7 @@ function Sidebar({
     );
   }
   if (isMobile) {
-    return /* @__PURE__ */ React82.createElement(Sheet, { open: openMobile, onOpenChange: setOpenMobile, ...props }, /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(Sheet, { open: openMobile, onOpenChange: setOpenMobile, ...props }, /* @__PURE__ */ React105.createElement(
       SheetContent,
       {
         "data-sidebar": "sidebar",
@@ -5527,11 +5583,11 @@ function Sidebar({
         },
         side
       },
-      /* @__PURE__ */ React82.createElement(SheetHeader, { className: "sr-only" }, /* @__PURE__ */ React82.createElement(SheetTitle, null, "Sidebar"), /* @__PURE__ */ React82.createElement(SheetDescription, null, "Displays the mobile sidebar.")),
-      /* @__PURE__ */ React82.createElement("div", { className: "flex h-full w-full flex-col" }, children)
+      /* @__PURE__ */ React105.createElement(SheetHeader, { className: "sr-only" }, /* @__PURE__ */ React105.createElement(SheetTitle, null, "Sidebar"), /* @__PURE__ */ React105.createElement(SheetDescription, null, "Displays the mobile sidebar.")),
+      /* @__PURE__ */ React105.createElement("div", { className: "flex h-full w-full flex-col" }, children)
     ));
   }
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "div",
     {
       className: "group peer text-sidebar-foreground hidden md:block",
@@ -5541,7 +5597,7 @@ function Sidebar({
       "data-side": side,
       "data-slot": "sidebar"
     },
-    /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement(
       "div",
       {
         "data-slot": "sidebar-gap",
@@ -5553,7 +5609,7 @@ function Sidebar({
         )
       }
     ),
-    /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement(
       "div",
       {
         "data-slot": "sidebar-container",
@@ -5566,7 +5622,7 @@ function Sidebar({
         ),
         ...props
       },
-      /* @__PURE__ */ React82.createElement(
+      /* @__PURE__ */ React105.createElement(
         "div",
         {
           "data-sidebar": "sidebar",
@@ -5580,7 +5636,7 @@ function Sidebar({
 }
 function SidebarTrigger({ className, onClick, ...props }) {
   const { toggleSidebar } = useSidebar();
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Button,
     {
       "data-sidebar": "trigger",
@@ -5594,13 +5650,13 @@ function SidebarTrigger({ className, onClick, ...props }) {
       },
       ...props
     },
-    /* @__PURE__ */ React82.createElement(PanelLeftIcon, null),
-    /* @__PURE__ */ React82.createElement("span", { className: "sr-only" }, "Toggle Sidebar")
+    /* @__PURE__ */ React105.createElement(PanelLeftIcon, null),
+    /* @__PURE__ */ React105.createElement("span", { className: "sr-only" }, "Toggle Sidebar")
   );
 }
 function SidebarRail({ className, ...props }) {
   const { toggleSidebar } = useSidebar();
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "button",
     {
       "data-sidebar": "rail",
@@ -5623,7 +5679,7 @@ function SidebarRail({ className, ...props }) {
   );
 }
 function SidebarInset({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "main",
     {
       "data-slot": "sidebar-inset",
@@ -5637,7 +5693,7 @@ function SidebarInset({ className, ...props }) {
   );
 }
 function SidebarHeader({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "div",
     {
       "data-slot": "sidebar-header",
@@ -5648,7 +5704,7 @@ function SidebarHeader({ className, ...props }) {
   );
 }
 function SidebarFooter({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "div",
     {
       "data-slot": "sidebar-footer",
@@ -5659,7 +5715,7 @@ function SidebarFooter({ className, ...props }) {
   );
 }
 function SidebarContent({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "div",
     {
       "data-slot": "sidebar-content",
@@ -5673,7 +5729,7 @@ function SidebarContent({ className, ...props }) {
   );
 }
 function SidebarGroup({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "div",
     {
       "data-slot": "sidebar-group",
@@ -5689,7 +5745,7 @@ function SidebarGroupLabel({
   ...props
 }) {
   const Comp = asChild ? Slot.Root : "div";
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Comp,
     {
       "data-slot": "sidebar-group-label",
@@ -5704,7 +5760,7 @@ function SidebarGroupLabel({
   );
 }
 function SidebarMenu({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "ul",
     {
       "data-slot": "sidebar-menu",
@@ -5715,7 +5771,7 @@ function SidebarMenu({ className, ...props }) {
   );
 }
 function SidebarMenuItem({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "li",
     {
       "data-slot": "sidebar-menu-item",
@@ -5756,7 +5812,7 @@ function SidebarMenuButton({
 }) {
   const Comp = asChild ? Slot.Root : "button";
   const { isMobile, state } = useSidebar();
-  const button = /* @__PURE__ */ React82.createElement(
+  const button = /* @__PURE__ */ React105.createElement(
     Comp,
     {
       "data-slot": "sidebar-menu-button",
@@ -5775,7 +5831,7 @@ function SidebarMenuButton({
       children: tooltip
     };
   }
-  return /* @__PURE__ */ React82.createElement(Tooltip, null, /* @__PURE__ */ React82.createElement(TooltipTrigger, { asChild: true }, button), /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(Tooltip, null, /* @__PURE__ */ React105.createElement(TooltipTrigger, { asChild: true }, button), /* @__PURE__ */ React105.createElement(
     TooltipContent,
     {
       side: "right",
@@ -5786,7 +5842,7 @@ function SidebarMenuButton({
   ));
 }
 function SidebarMenuBadge({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "div",
     {
       "data-slot": "sidebar-menu-badge",
@@ -5805,7 +5861,7 @@ function SidebarMenuBadge({ className, ...props }) {
   );
 }
 function SidebarMenuSub({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "ul",
     {
       "data-slot": "sidebar-menu-sub",
@@ -5820,7 +5876,7 @@ function SidebarMenuSub({ className, ...props }) {
   );
 }
 function SidebarMenuSubItem({ className, ...props }) {
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "li",
     {
       "data-slot": "sidebar-menu-sub-item",
@@ -5838,7 +5894,7 @@ function SidebarMenuSubButton({
   ...props
 }) {
   const Comp = asChild ? Slot.Root : "a";
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     Comp,
     {
       "data-slot": "sidebar-menu-sub-button",
@@ -5859,17 +5915,17 @@ function SidebarMenuSubButton({
 }
 var Toaster = ({ ...props }) => {
   const { theme = "system" } = useTheme();
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Toaster$1,
     {
       theme,
       className: "toaster group",
       icons: {
-        success: /* @__PURE__ */ React82__default.createElement(CircleCheckIcon, { className: "size-4" }),
-        info: /* @__PURE__ */ React82__default.createElement(InfoIcon, { className: "size-4" }),
-        warning: /* @__PURE__ */ React82__default.createElement(TriangleAlertIcon, { className: "size-4" }),
-        error: /* @__PURE__ */ React82__default.createElement(OctagonXIcon, { className: "size-4" }),
-        loading: /* @__PURE__ */ React82__default.createElement(Loader2Icon, { className: "size-4 animate-spin" })
+        success: /* @__PURE__ */ React105__default.createElement(CircleCheckIcon, { className: "size-4" }),
+        info: /* @__PURE__ */ React105__default.createElement(InfoIcon, { className: "size-4" }),
+        warning: /* @__PURE__ */ React105__default.createElement(TriangleAlertIcon, { className: "size-4" }),
+        error: /* @__PURE__ */ React105__default.createElement(OctagonXIcon, { className: "size-4" }),
+        loading: /* @__PURE__ */ React105__default.createElement(Loader2Icon, { className: "size-4 animate-spin" })
       },
       style: {
         "--normal-bg": "var(--popover)",
@@ -5886,7 +5942,7 @@ function Tabs({
   orientation = "horizontal",
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Tabs$1.Root,
     {
       "data-slot": "tabs",
@@ -5916,7 +5972,7 @@ function TabsList({
   variant = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Tabs$1.List,
     {
       "data-slot": "tabs-list",
@@ -5927,7 +5983,7 @@ function TabsList({
   );
 }
 function TabsTrigger({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Tabs$1.Trigger,
     {
       "data-slot": "tabs-trigger",
@@ -5943,7 +5999,7 @@ function TabsTrigger({ className, ...props }) {
   );
 }
 function TabsContent({ className, ...props }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Tabs$1.Content,
     {
       "data-slot": "tabs-content",
@@ -5967,7 +6023,7 @@ function StepIndicator({
   isClickable,
   onClick
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Button,
     {
       type: "button",
@@ -5990,7 +6046,7 @@ function StepIndicator({
       "aria-current": status === "current" ? "step" : void 0,
       "aria-disabled": !isClickable
     },
-    status === "completed" ? /* @__PURE__ */ React82__default.createElement(CheckIcon, { className: "h-5 w-5" }) : showIcon && step.icon ? step.icon : /* @__PURE__ */ React82__default.createElement("span", null, index + 1)
+    status === "completed" ? /* @__PURE__ */ React105__default.createElement(CheckIcon, { className: "h-5 w-5" }) : showIcon && step.icon ? step.icon : /* @__PURE__ */ React105__default.createElement("span", null, index + 1)
   );
 }
 function WizardStepper({
@@ -6002,13 +6058,13 @@ function WizardStepper({
   onStepClick,
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "nav",
     {
       "aria-label": "Progress",
       className: cn("relative w-full flex justify-between items-center", className)
     },
-    /* @__PURE__ */ React82__default.createElement(
+    /* @__PURE__ */ React105__default.createElement(
       Progress,
       {
         className: "absolute w-full h-0.5",
@@ -6018,7 +6074,7 @@ function WizardStepper({
     steps.map((step, index) => {
       const status = getStepStatus(index, currentStep, completedSteps);
       const isClickable = allowNavigation && (status === "completed" || status === "current");
-      return /* @__PURE__ */ React82__default.createElement(
+      return /* @__PURE__ */ React105__default.createElement(
         StepIndicator,
         {
           key: step.id,
@@ -6069,16 +6125,16 @@ function FormWizard({
   });
   const { handleSubmit, watch, formState, reset, trigger } = form;
   const { isDirty, isValid } = formState;
-  const [currentStep, setCurrentStep] = React82.useState(0);
-  const [completedSteps, setCompletedSteps] = React82.useState([]);
-  const visibleSteps = React82.useMemo(() => {
+  const [currentStep, setCurrentStep] = React105.useState(0);
+  const [completedSteps, setCompletedSteps] = React105.useState([]);
+  const visibleSteps = React105.useMemo(() => {
     return steps.filter((step) => {
       if (!step.when) return true;
       const values = watch();
       return step.when(values);
     });
   }, [steps, watch]);
-  React82.useEffect(() => {
+  React105.useEffect(() => {
     if (!onAutoSave || !isDirty) return;
     const timer = setTimeout(() => {
       const values = watch();
@@ -6086,7 +6142,7 @@ function FormWizard({
     }, autoSaveDelay);
     return () => clearTimeout(timer);
   }, [onAutoSave, autoSaveDelay, isDirty, watch]);
-  React82.useEffect(() => {
+  React105.useEffect(() => {
     if (onStepChange) {
       const step = visibleSteps[currentStep];
       if (step) {
@@ -6094,7 +6150,7 @@ function FormWizard({
       }
     }
   }, [currentStep, visibleSteps, onStepChange]);
-  const navigationState = React82.useMemo(() => {
+  const navigationState = React105.useMemo(() => {
     const totalSteps = visibleSteps.length;
     const isFirst = currentStep === 0;
     const isLast = currentStep === totalSteps - 1;
@@ -6156,8 +6212,8 @@ function FormWizard({
     }
   };
   const currentStepConfig = visibleSteps[currentStep];
-  const actionsContent = /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-2" }, showCancel && /* @__PURE__ */ React82.createElement(Button, { type: "button", variant: "outline", onClick: handleCancel, disabled: isLoading }, cancelLabel), !navigationState.isLast && /* @__PURE__ */ React82.createElement(Button, { type: "button", onClick: handleNext, disabled: isLoading, className: "min-w-[100px]" }, "Next"), navigationState.isLast && (submitButton || /* @__PURE__ */ React82.createElement(Button, { type: "submit", disabled: isLoading || !isValid }, isLoading && /* @__PURE__ */ React82.createElement(Spinner, { className: "mr-2 h-4 w-4" }), submitLabel)), !navigationState.isFirst && !navigationState.isLast && /* @__PURE__ */ React82.createElement(Button, { type: "button", variant: "outline", onClick: handleBack, disabled: isLoading }, "Back"));
-  return /* @__PURE__ */ React82.createElement(FormProvider, { ...form }, /* @__PURE__ */ React82.createElement(
+  const actionsContent = /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2" }, showCancel && /* @__PURE__ */ React105.createElement(Button, { type: "button", variant: "outline", onClick: handleCancel, disabled: isLoading }, cancelLabel), !navigationState.isLast && /* @__PURE__ */ React105.createElement(Button, { type: "button", onClick: handleNext, disabled: isLoading, className: "min-w-[100px]" }, "Next"), navigationState.isLast && (submitButton || /* @__PURE__ */ React105.createElement(Button, { type: "submit", disabled: isLoading || !isValid }, isLoading && /* @__PURE__ */ React105.createElement(Spinner, { className: "mr-2 h-4 w-4" }), submitLabel)), !navigationState.isFirst && !navigationState.isLast && /* @__PURE__ */ React105.createElement(Button, { type: "button", variant: "outline", onClick: handleBack, disabled: isLoading }, "Back"));
+  return /* @__PURE__ */ React105.createElement(FormProvider, { ...form }, /* @__PURE__ */ React105.createElement(
     "form",
     {
       onSubmit: handleSubmit((data) => handleFinalSubmit(data)),
@@ -6165,9 +6221,9 @@ function FormWizard({
       id
     },
     header,
-    successMessage && /* @__PURE__ */ React82.createElement("div", { className: "rounded-md bg-green-50 p-4 text-sm text-green-700 dark:bg-green-900/20 dark:text-green-400" }, successMessage),
-    error && /* @__PURE__ */ React82.createElement("div", { className: "rounded-md bg-red-50 p-4 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-400" }, error),
-    /* @__PURE__ */ React82.createElement(
+    successMessage && /* @__PURE__ */ React105.createElement("div", { className: "rounded-md bg-green-50 p-4 text-sm text-green-700 dark:bg-green-900/20 dark:text-green-400" }, successMessage),
+    error && /* @__PURE__ */ React105.createElement("div", { className: "rounded-md bg-red-50 p-4 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-400" }, error),
+    /* @__PURE__ */ React105.createElement(
       WizardStepper,
       {
         steps: visibleSteps,
@@ -6180,11 +6236,11 @@ function FormWizard({
         onStepClick: handleStepClick
       }
     ),
-    currentStepConfig && (currentStepConfig.render ? /* @__PURE__ */ React82.createElement("div", { className: "space-y-6" }, currentStepConfig.render({
+    currentStepConfig && (currentStepConfig.render ? /* @__PURE__ */ React105.createElement("div", { className: "space-y-6" }, currentStepConfig.render({
       form,
       values: watch(),
       navigation: navigationState
-    })) : /* @__PURE__ */ React82.createElement(
+    })) : /* @__PURE__ */ React105.createElement(
       WizardStep,
       {
         sections: currentStepConfig.sections || [],
@@ -6193,8 +6249,8 @@ function FormWizard({
       }
     )),
     footer,
-    stickyFooter && /* @__PURE__ */ React82.createElement(StickyActions, { showDirtyWarning, isDirty }, actionsContent),
-    !stickyFooter && /* @__PURE__ */ React82.createElement("div", { className: "flex justify-between gap-2 border-t pt-4" }, /* @__PURE__ */ React82.createElement("div", null), actionsContent)
+    stickyFooter && /* @__PURE__ */ React105.createElement(StickyActions, { showDirtyWarning, isDirty }, actionsContent),
+    !stickyFooter && /* @__PURE__ */ React105.createElement("div", { className: "flex justify-between gap-2 border-t pt-4" }, /* @__PURE__ */ React105.createElement("div", null), actionsContent)
   ));
 }
 var variantConfig = {
@@ -6299,7 +6355,7 @@ function EmptyState({
   className
 }) {
   if (compact) {
-    return /* @__PURE__ */ React82__default.createElement("div", { className: cn("flex flex-col items-center justify-center p-6 text-center", className) }, /* @__PURE__ */ React82__default.createElement(Icon, { className: "h-8 w-8 text-muted-foreground/60", strokeWidth: 1.5 }), /* @__PURE__ */ React82__default.createElement("h3", { className: "mt-3 text-sm font-medium" }, title), description && /* @__PURE__ */ React82__default.createElement("p", { className: "mt-1 text-xs text-muted-foreground" }, description), action && /* @__PURE__ */ React82__default.createElement(
+    return /* @__PURE__ */ React105__default.createElement("div", { className: cn("flex flex-col items-center justify-center p-6 text-center", className) }, /* @__PURE__ */ React105__default.createElement(Icon, { className: "h-8 w-8 text-muted-foreground/60", strokeWidth: 1.5 }), /* @__PURE__ */ React105__default.createElement("h3", { className: "mt-3 text-sm font-medium" }, title), description && /* @__PURE__ */ React105__default.createElement("p", { className: "mt-1 text-xs text-muted-foreground" }, description), action && /* @__PURE__ */ React105__default.createElement(
       Button,
       {
         size: "sm",
@@ -6307,11 +6363,11 @@ function EmptyState({
         className: "mt-3",
         onClick: action.onClick
       },
-      action.icon && /* @__PURE__ */ React82__default.createElement("span", { className: "mr-2" }, action.icon),
+      action.icon && /* @__PURE__ */ React105__default.createElement("span", { className: "mr-2" }, action.icon),
       action.label
     ));
   }
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       className: cn(
@@ -6319,16 +6375,16 @@ function EmptyState({
         className
       )
     },
-    /* @__PURE__ */ React82__default.createElement("div", { className: "rounded-full bg-muted p-3" }, /* @__PURE__ */ React82__default.createElement(Icon, { className: "h-8 w-8 text-muted-foreground", strokeWidth: 1.5 })),
-    /* @__PURE__ */ React82__default.createElement("h3", { className: "mt-4 text-lg font-semibold" }, title),
-    description && /* @__PURE__ */ React82__default.createElement("p", { className: "mt-2 max-w-sm text-sm text-muted-foreground" }, description),
-    (action || secondaryAction) && /* @__PURE__ */ React82__default.createElement("div", { className: "mt-6 flex items-center gap-3" }, action && /* @__PURE__ */ React82__default.createElement(Button, { variant: action.variant || "default", onClick: action.onClick }, action.icon && /* @__PURE__ */ React82__default.createElement("span", { className: "mr-2" }, action.icon), action.label), secondaryAction && /* @__PURE__ */ React82__default.createElement(
+    /* @__PURE__ */ React105__default.createElement("div", { className: "rounded-full bg-muted p-3" }, /* @__PURE__ */ React105__default.createElement(Icon, { className: "h-8 w-8 text-muted-foreground", strokeWidth: 1.5 })),
+    /* @__PURE__ */ React105__default.createElement("h3", { className: "mt-4 text-lg font-semibold" }, title),
+    description && /* @__PURE__ */ React105__default.createElement("p", { className: "mt-2 max-w-sm text-sm text-muted-foreground" }, description),
+    (action || secondaryAction) && /* @__PURE__ */ React105__default.createElement("div", { className: "mt-6 flex items-center gap-3" }, action && /* @__PURE__ */ React105__default.createElement(Button, { variant: action.variant || "default", onClick: action.onClick }, action.icon && /* @__PURE__ */ React105__default.createElement("span", { className: "mr-2" }, action.icon), action.label), secondaryAction && /* @__PURE__ */ React105__default.createElement(
       Button,
       {
         variant: secondaryAction.variant || "outline",
         onClick: secondaryAction.onClick
       },
-      secondaryAction.icon && /* @__PURE__ */ React82__default.createElement("span", { className: "mr-2" }, secondaryAction.icon),
+      secondaryAction.icon && /* @__PURE__ */ React105__default.createElement("span", { className: "mr-2" }, secondaryAction.icon),
       secondaryAction.label
     ))
   );
@@ -6342,7 +6398,7 @@ function ErrorFallback({
   showDetails = false,
   className
 }) {
-  const [copied, setCopied] = React82.useState(false);
+  const [copied, setCopied] = React105.useState(false);
   const handleCopyError = () => {
     if (error) {
       navigator.clipboard.writeText(error.message);
@@ -6350,7 +6406,7 @@ function ErrorFallback({
       setTimeout(() => setCopied(false), 2e3);
     }
   };
-  return /* @__PURE__ */ React82.createElement(Card, { className: cn3("border-destructive/50", className) }, /* @__PURE__ */ React82.createElement(CardHeader, { className: "space-y-3" }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React82.createElement("div", { className: "flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10" }, /* @__PURE__ */ React82.createElement(AlertTriangleIcon, { className: "h-5 w-5 text-destructive" })), /* @__PURE__ */ React82.createElement("div", null, /* @__PURE__ */ React82.createElement(CardTitle, { className: "text-lg" }, title), errorId && /* @__PURE__ */ React82.createElement(CardDescription, { className: "text-xs font-mono" }, "Error ID: ", errorId)))), /* @__PURE__ */ React82.createElement(CardContent, { className: "space-y-4" }, /* @__PURE__ */ React82.createElement("p", { className: "text-sm text-muted-foreground" }, description), showDetails && error && /* @__PURE__ */ React82.createElement("div", { className: "rounded-md bg-muted p-3" }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center justify-between mb-2" }, /* @__PURE__ */ React82.createElement("span", { className: "text-xs font-medium" }, "Error Details"), /* @__PURE__ */ React82.createElement(Button, { variant: "ghost", size: "sm", onClick: handleCopyError, className: "h-6 text-xs" }, copied ? "Copied!" : "Copy")), /* @__PURE__ */ React82.createElement("pre", { className: "text-xs text-destructive overflow-auto max-h-32" }, error.message)), resetError && /* @__PURE__ */ React82.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React82.createElement(Button, { onClick: resetError, variant: "default" }, /* @__PURE__ */ React82.createElement(RefreshCwIcon, { className: "mr-2 h-4 w-4" }), "Try Again"), /* @__PURE__ */ React82.createElement(Button, { onClick: () => window.location.reload(), variant: "outline" }, "Reload Page"))));
+  return /* @__PURE__ */ React105.createElement(Card, { className: cn3("border-destructive/50", className) }, /* @__PURE__ */ React105.createElement(CardHeader, { className: "space-y-3" }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React105.createElement("div", { className: "flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10" }, /* @__PURE__ */ React105.createElement(AlertTriangleIcon, { className: "h-5 w-5 text-destructive" })), /* @__PURE__ */ React105.createElement("div", null, /* @__PURE__ */ React105.createElement(CardTitle, { className: "text-lg" }, title), errorId && /* @__PURE__ */ React105.createElement(CardDescription, { className: "text-xs font-mono" }, "Error ID: ", errorId)))), /* @__PURE__ */ React105.createElement(CardContent, { className: "space-y-4" }, /* @__PURE__ */ React105.createElement("p", { className: "text-sm text-muted-foreground" }, description), showDetails && error && /* @__PURE__ */ React105.createElement("div", { className: "rounded-md bg-muted p-3" }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center justify-between mb-2" }, /* @__PURE__ */ React105.createElement("span", { className: "text-xs font-medium" }, "Error Details"), /* @__PURE__ */ React105.createElement(Button, { variant: "ghost", size: "sm", onClick: handleCopyError, className: "h-6 text-xs" }, copied ? "Copied!" : "Copy")), /* @__PURE__ */ React105.createElement("pre", { className: "text-xs text-destructive overflow-auto max-h-32" }, error.message)), resetError && /* @__PURE__ */ React105.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React105.createElement(Button, { onClick: resetError, variant: "default" }, /* @__PURE__ */ React105.createElement(RefreshCwIcon, { className: "mr-2 h-4 w-4" }), "Try Again"), /* @__PURE__ */ React105.createElement(Button, { onClick: () => window.location.reload(), variant: "outline" }, "Reload Page"))));
 }
 function cn3(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -6363,7 +6419,7 @@ function LoadingOverlay({
   className,
   children
 }) {
-  return /* @__PURE__ */ React82__default.createElement("div", { className: cn("relative", className) }, children && /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement("div", { className: cn("relative", className) }, children && /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       className: cn(
@@ -6372,7 +6428,7 @@ function LoadingOverlay({
       )
     },
     children
-  ), isLoading && /* @__PURE__ */ React82__default.createElement(
+  ), isLoading && /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       className: cn(
@@ -6380,9 +6436,9 @@ function LoadingOverlay({
         fullScreen ? "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm" : "absolute inset-0 bg-background/60 backdrop-blur-sm"
       )
     },
-    /* @__PURE__ */ React82__default.createElement(Spinner, { className: "size-8" }),
-    message && /* @__PURE__ */ React82__default.createElement("p", { className: "text-sm font-medium text-foreground" }, message),
-    description && /* @__PURE__ */ React82__default.createElement("p", { className: "text-sm text-muted-foreground" }, description)
+    /* @__PURE__ */ React105__default.createElement(Spinner, { className: "size-8" }),
+    message && /* @__PURE__ */ React105__default.createElement("p", { className: "text-sm font-medium text-foreground" }, message),
+    description && /* @__PURE__ */ React105__default.createElement("p", { className: "text-sm text-muted-foreground" }, description)
   ));
 }
 function ProgressTracker({
@@ -6394,11 +6450,11 @@ function ProgressTracker({
   className
 }) {
   const isHorizontal = orientation === "horizontal";
-  return /* @__PURE__ */ React82.createElement("div", { className: cn("flex", isHorizontal ? "flex-row items-center" : "flex-col", className) }, steps.map((step, index) => {
+  return /* @__PURE__ */ React105.createElement("div", { className: cn("flex", isHorizontal ? "flex-row items-center" : "flex-col", className) }, steps.map((step, index) => {
     const isCompleted = index < currentStep;
     const isCurrent = index === currentStep;
     const isClickable = clickable && step.onClick;
-    return /* @__PURE__ */ React82.createElement(React82.Fragment, { key: step.id }, index > 0 && /* @__PURE__ */ React82.createElement(
+    return /* @__PURE__ */ React105.createElement(React105.Fragment, { key: step.id }, index > 0 && /* @__PURE__ */ React105.createElement(
       "div",
       {
         className: cn(
@@ -6406,7 +6462,7 @@ function ProgressTracker({
           isHorizontal ? "h-0.5 mx-2 bg-muted" : "w-0.5 my-2 ml-[11px] bg-muted"
         )
       },
-      /* @__PURE__ */ React82.createElement(
+      /* @__PURE__ */ React105.createElement(
         "div",
         {
           className: cn(
@@ -6416,7 +6472,7 @@ function ProgressTracker({
           )
         }
       )
-    ), /* @__PURE__ */ React82.createElement("div", { className: cn("flex items-center gap-3", !isHorizontal && "min-h-[60px]") }, /* @__PURE__ */ React82.createElement(
+    ), /* @__PURE__ */ React105.createElement("div", { className: cn("flex items-center gap-3", !isHorizontal && "min-h-[60px]") }, /* @__PURE__ */ React105.createElement(
       "div",
       {
         ...isClickable ? {
@@ -6433,8 +6489,8 @@ function ProgressTracker({
           isClickable && "cursor-pointer hover:border-primary"
         )
       },
-      isCompleted ? /* @__PURE__ */ React82.createElement(CheckIcon, { className: "h-3 w-3" }) : isCurrent ? /* @__PURE__ */ React82.createElement(ChevronRightIcon, { className: "h-3 w-3" }) : /* @__PURE__ */ React82.createElement(CircleIcon, { className: "h-2 w-2" })
-    ), (showDescriptions || isCurrent) && /* @__PURE__ */ React82.createElement("div", { className: cn("flex flex-col", isHorizontal && "min-w-0") }, /* @__PURE__ */ React82.createElement(
+      isCompleted ? /* @__PURE__ */ React105.createElement(CheckIcon, { className: "h-3 w-3" }) : isCurrent ? /* @__PURE__ */ React105.createElement(ChevronRightIcon, { className: "h-3 w-3" }) : /* @__PURE__ */ React105.createElement(CircleIcon, { className: "h-2 w-2" })
+    ), (showDescriptions || isCurrent) && /* @__PURE__ */ React105.createElement("div", { className: cn("flex flex-col", isHorizontal && "min-w-0") }, /* @__PURE__ */ React105.createElement(
       "span",
       {
         className: cn(
@@ -6444,7 +6500,7 @@ function ProgressTracker({
         )
       },
       step.title
-    ), showDescriptions && step.description && /* @__PURE__ */ React82.createElement("span", { className: "text-xs text-muted-foreground" }, step.description))));
+    ), showDescriptions && step.description && /* @__PURE__ */ React105.createElement("span", { className: "text-xs text-muted-foreground" }, step.description))));
   }));
 }
 
@@ -6474,9 +6530,1139 @@ function ToastManager({
 }) {
   return /* @__PURE__ */ React.createElement(Toaster, { position, theme, className: cn(className) });
 }
+var BoardToolbar = React105.forwardRef(
+  function BoardToolbarBase({
+    searchQuery,
+    onSearchChange,
+    filtersCount,
+    onFiltersClick,
+    sortDirection,
+    onSortToggle,
+    showSearch = true,
+    showFilters = true,
+    showSort = true,
+    searchPlaceholder = "Search cards...",
+    className,
+    ...props
+  }, ref) {
+    const hasActiveFilters = filtersCount && filtersCount > 0;
+    const hasActiveSearch = searchQuery && searchQuery.length > 0;
+    return /* @__PURE__ */ React105.createElement(
+      "div",
+      {
+        ref,
+        className: cn("flex items-center gap-2 p-3 border-b bg-card", className),
+        ...props
+      },
+      showSearch && /* @__PURE__ */ React105.createElement("div", { className: "relative flex-1 max-w-sm" }, /* @__PURE__ */ React105.createElement(SearchIcon, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }), /* @__PURE__ */ React105.createElement(
+        Input,
+        {
+          type: "text",
+          placeholder: searchPlaceholder,
+          value: searchQuery,
+          onChange: (e) => onSearchChange?.(e.target.value),
+          className: "pl-9 pr-8"
+        }
+      ), hasActiveSearch && /* @__PURE__ */ React105.createElement(
+        "button",
+        {
+          onClick: () => onSearchChange?.(""),
+          className: "absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground",
+          type: "button"
+        },
+        /* @__PURE__ */ React105.createElement(XIcon, { className: "h-4 w-4" })
+      )),
+      showFilters && /* @__PURE__ */ React105.createElement(DropdownMenu, null, /* @__PURE__ */ React105.createElement(DropdownMenuTrigger, { asChild: true }, /* @__PURE__ */ React105.createElement(Button, { variant: "outline", size: "sm", className: "gap-2" }, /* @__PURE__ */ React105.createElement(FilterIcon, { className: "h-4 w-4" }), "Filters", hasActiveFilters && /* @__PURE__ */ React105.createElement(Badge, { variant: "secondary", className: "h-5 px-1" }, filtersCount))), /* @__PURE__ */ React105.createElement(DropdownMenuContent, { align: "end", className: "w-56" }, /* @__PURE__ */ React105.createElement(DropdownMenuLabel, null, "Filter by"), /* @__PURE__ */ React105.createElement(DropdownMenuSeparator, null), /* @__PURE__ */ React105.createElement(DropdownMenuGroup, null, /* @__PURE__ */ React105.createElement(DropdownMenuItem, null, "Assignee"), /* @__PURE__ */ React105.createElement(DropdownMenuItem, null, "Priority"), /* @__PURE__ */ React105.createElement(DropdownMenuItem, null, "Due date"), /* @__PURE__ */ React105.createElement(DropdownMenuItem, null, "Labels")))),
+      showSort && /* @__PURE__ */ React105.createElement(Button, { variant: "outline", size: "sm", className: "gap-2", onClick: onSortToggle }, sortDirection === "desc" ? /* @__PURE__ */ React105.createElement(SortDescIcon, { className: "h-4 w-4" }) : /* @__PURE__ */ React105.createElement(SortAscIcon, { className: "h-4 w-4" }), "Sort")
+    );
+  }
+);
+var KanbanCardAttachments = React105.forwardRef(
+  ({ count, className, ...props }, ref) => {
+    if (count === 0) return null;
+    return /* @__PURE__ */ React105.createElement(
+      "div",
+      {
+        ref,
+        className: cn("flex items-center gap-1.5 text-xs text-muted-foreground", className),
+        ...props,
+        title: `${count} attachment${count !== 1 ? "s" : ""}`
+      },
+      /* @__PURE__ */ React105.createElement(PaperclipIcon, { className: "h-3.5 w-3.5 shrink-0" }),
+      /* @__PURE__ */ React105.createElement("span", { className: "font-medium" }, count)
+    );
+  }
+);
+KanbanCardAttachments.displayName = "KanbanCardAttachments";
+function getInitials(name) {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) {
+    return parts[0].slice(0, 2).toUpperCase();
+  }
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+var KanbanCardAvatar = React105.forwardRef(
+  ({ name, avatarUrl, className, ...props }, ref) => /* @__PURE__ */ React105.createElement(Avatar, { ref, className: cn("h-6 w-6 ring-2 ring-card", className), ...props }, avatarUrl && /* @__PURE__ */ React105.createElement(AvatarImage, { src: avatarUrl, alt: name }), /* @__PURE__ */ React105.createElement(AvatarFallback, { className: "text-[10px] font-medium bg-muted" }, getInitials(name)))
+);
+KanbanCardAvatar.displayName = "KanbanCardAvatar";
+var KanbanCardBadge = React105.forwardRef(
+  ({ priority, className, children, ...props }, ref) => /* @__PURE__ */ React105.createElement(
+    "div",
+    {
+      ref,
+      className: cn(
+        "inline-flex items-center rounded-md px-2 py-1 text-xs font-medium",
+        "shrink-0",
+        priority === "urgent" && "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
+        priority === "high" && "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+        priority === "medium" && "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400",
+        priority === "low" && "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+        className
+      ),
+      ...props
+    },
+    children
+  )
+);
+KanbanCardBadge.displayName = "KanbanCardBadge";
+var KanbanCardContent = React105.forwardRef(
+  ({ className, ...props }, ref) => /* @__PURE__ */ React105.createElement("div", { ref, className: cn("flex flex-col gap-2", className), ...props })
+);
+KanbanCardContent.displayName = "KanbanCardContent";
+var KanbanCardDescription = React105.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ React105.createElement(
+  "p",
+  {
+    ref,
+    className: cn("text-sm text-muted-foreground leading-relaxed", "line-clamp-3", className),
+    ...props
+  }
+));
+KanbanCardDescription.displayName = "KanbanCardDescription";
+function formatRelativeDate(date) {
+  const now = /* @__PURE__ */ new Date();
+  const diffTime = date.getTime() - now.getTime();
+  const diffDays = Math.ceil(diffTime / (1e3 * 60 * 60 * 24));
+  if (diffDays === 0) return "today";
+  if (diffDays === 1) return "tomorrow";
+  if (diffDays === -1) return "yesterday";
+  if (diffDays > 1) return `in ${diffDays} days`;
+  if (diffDays < -1) return `${Math.abs(diffDays)} days ago`;
+  return date.toLocaleDateString();
+}
+function isOverdue(date) {
+  const dueDate = new Date(date);
+  const now = /* @__PURE__ */ new Date();
+  dueDate.setHours(0, 0, 0, 0);
+  now.setHours(0, 0, 0, 0);
+  return dueDate < now;
+}
+var KanbanCardDueDate = React105.forwardRef(
+  ({ date, showTime, isOverdue: overdueProp, className, ...props }, ref) => {
+    const dueDate = new Date(date);
+    const isOver = overdueProp ?? isOverdue(date);
+    const formattedDate = showTime ? dueDate.toLocaleString() : dueDate.toLocaleDateString();
+    const relativeDate = formatRelativeDate(dueDate);
+    return /* @__PURE__ */ React105.createElement(
+      "div",
+      {
+        ref,
+        className: cn(
+          "flex items-center gap-1.5 text-xs",
+          isOver ? "text-red-600 dark:text-red-400 font-medium" : "text-muted-foreground",
+          className
+        ),
+        ...props,
+        title: formattedDate
+      },
+      /* @__PURE__ */ React105.createElement(CalendarIcon, { className: "h-3.5 w-3.5 shrink-0" }),
+      /* @__PURE__ */ React105.createElement("span", null, relativeDate)
+    );
+  }
+);
+KanbanCardDueDate.displayName = "KanbanCardDueDate";
+var KanbanCardFooter = React105.forwardRef(
+  ({ className, ...props }, ref) => /* @__PURE__ */ React105.createElement("div", { ref, className: cn("flex items-center gap-2 flex-wrap", className), ...props })
+);
+KanbanCardFooter.displayName = "KanbanCardFooter";
+var KanbanCardHeader = React105.forwardRef(
+  ({ className, ...props }, ref) => /* @__PURE__ */ React105.createElement("div", { ref, className: cn("flex items-start justify-between gap-2", className), ...props })
+);
+KanbanCardHeader.displayName = "KanbanCardHeader";
+function getColorClasses(color) {
+  const colorMap = {
+    // Red
+    red: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
+    // Orange
+    orange: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400",
+    // Yellow/Amber
+    yellow: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400",
+    amber: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
+    // Green
+    green: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
+    // Blue
+    blue: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400",
+    // Indigo
+    indigo: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400",
+    // Purple
+    purple: "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400",
+    // Pink
+    pink: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-400",
+    // Gray/Slate
+    gray: "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400",
+    slate: "bg-slate-100 text-slate-800 dark:bg-slate-900/30 dark:text-slate-400",
+    // Cyan
+    cyan: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-400",
+    // Teal
+    teal: "bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-400"
+  };
+  return colorMap[color] || colorMap.gray;
+}
+var KanbanCardLabel = React105.forwardRef(
+  ({ color, className, children, ...props }, ref) => {
+    const isHexColor = /^#[0-9A-Fa-f]{6}$/.test(color);
+    return /* @__PURE__ */ React105.createElement(
+      "span",
+      {
+        ref,
+        className: cn(
+          "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
+          "shrink-0",
+          isHexColor ? className : getColorClasses(color),
+          className
+        ),
+        style: isHexColor ? { backgroundColor: color, color: "#fff" } : void 0,
+        ...props
+      },
+      children
+    );
+  }
+);
+KanbanCardLabel.displayName = "KanbanCardLabel";
+var KanbanCardLabels = React105.forwardRef(
+  ({ className, ...props }, ref) => /* @__PURE__ */ React105.createElement("div", { ref, className: cn("flex flex-wrap gap-1.5", className), ...props })
+);
+KanbanCardLabels.displayName = "KanbanCardLabels";
+var KanbanCardSubtasks = React105.forwardRef(
+  ({ completed, total, className, ...props }, ref) => {
+    const percentage = total > 0 ? completed / total * 100 : 0;
+    const isComplete = completed === total && total > 0;
+    return /* @__PURE__ */ React105.createElement("div", { ref, className: cn("flex items-center gap-2", className), ...props }, /* @__PURE__ */ React105.createElement("div", { className: "flex-1 min-w-[80px]" }, /* @__PURE__ */ React105.createElement(
+      Progress,
+      {
+        value: percentage,
+        className: cn("h-1.5", isComplete && "bg-green-100 dark:bg-green-900/30")
+      }
+    )), /* @__PURE__ */ React105.createElement(
+      "span",
+      {
+        className: cn(
+          "text-xs font-medium shrink-0",
+          isComplete ? "text-green-600 dark:text-green-400" : "text-muted-foreground"
+        )
+      },
+      completed,
+      "/",
+      total
+    ));
+  }
+);
+KanbanCardSubtasks.displayName = "KanbanCardSubtasks";
+var KanbanCardTitle = React105.forwardRef(
+  ({ className, ...props }, ref) => /* @__PURE__ */ React105.createElement(
+    "h3",
+    {
+      ref,
+      className: cn("font-semibold text-foreground text-ellipsis", "line-clamp-2", className),
+      ...props
+    }
+  )
+);
+KanbanCardTitle.displayName = "KanbanCardTitle";
+
+// src/blocks/kanban/card/kanban-card.tsx
+function DefaultCard({
+  card,
+  onClick,
+  isDragging,
+  isSelected
+}) {
+  if (!card) return null;
+  const hasSubtasks = card.subtasks && card.subtasks.length > 0;
+  const hasAttachments = card.attachments && card.attachments.length > 0;
+  const hasDueDate = !!card.dueDate;
+  const hasAssignee = !!card.assignee;
+  const hasTags = card.tags && card.tags.length > 0;
+  const completedSubtasks = card.subtasks?.filter((s) => s.completed).length || 0;
+  const totalSubtasks = card.subtasks?.length || 0;
+  return /* @__PURE__ */ React105.createElement(
+    "div",
+    {
+      "data-dragging": isDragging ? "true" : void 0,
+      "data-selected": isSelected ? "true" : void 0,
+      "data-priority": card.priority,
+      className: cn(
+        "group relative flex flex-col gap-3 rounded-lg border bg-card p-4 shadow-sm",
+        "transition-all duration-200",
+        "hover:shadow-md",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        "data-[dragging=true]:opacity-50 data-[dragging=true]:shadow-lg",
+        "data-[selected=true]:ring-2 data-[selected=true]:ring-ring data-[selected=true]:ring-offset-2",
+        "data-[priority=urgent]:border-l-4 data-[priority=urgent]:border-l-red-500",
+        "data-[priority=high]:border-l-4 data-[priority=high]:border-l-orange-500",
+        "data-[priority=medium]:border-l-4 data-[priority=medium]:border-l-yellow-500",
+        "data-[priority=low]:border-l-4 data-[priority=low]:border-l-blue-500",
+        onClick && "cursor-pointer"
+      ),
+      onClick,
+      role: onClick ? "button" : "article",
+      tabIndex: onClick ? 0 : void 0,
+      onKeyDown: (e) => {
+        if (onClick && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          onClick();
+        }
+      }
+    },
+    /* @__PURE__ */ React105.createElement(KanbanCardHeader, null, /* @__PURE__ */ React105.createElement(KanbanCardTitle, null, card.title, "askdlf lqkwr jelkqjwre oqiwjfoqw jwa askdfj qwoirejqi"), card.priority && /* @__PURE__ */ React105.createElement(KanbanCardBadge, { priority: card.priority }, card.priority.charAt(0).toUpperCase() + card.priority.slice(1))),
+    /* @__PURE__ */ React105.createElement(KanbanCardContent, null, card.description && /* @__PURE__ */ React105.createElement(KanbanCardDescription, null, card.description), hasTags && card.tags && /* @__PURE__ */ React105.createElement(KanbanCardLabels, null, card.tags.map((tag) => /* @__PURE__ */ React105.createElement(KanbanCardLabel, { key: tag.id, color: tag.color }, tag.label)))),
+    (hasAssignee || hasDueDate || hasSubtasks || hasAttachments) && /* @__PURE__ */ React105.createElement(KanbanCardFooter, null, hasAssignee && card.assignee && /* @__PURE__ */ React105.createElement(KanbanCardAvatar, { name: card.assignee.name, avatarUrl: card.assignee.avatarUrl }), hasDueDate && card.dueDate && /* @__PURE__ */ React105.createElement(KanbanCardDueDate, { date: card.dueDate }), hasSubtasks && /* @__PURE__ */ React105.createElement(KanbanCardSubtasks, { completed: completedSubtasks, total: totalSubtasks }), hasAttachments && card.attachments && /* @__PURE__ */ React105.createElement(KanbanCardAttachments, { count: card.attachments.length }))
+  );
+}
+var KanbanCard = React105.forwardRef(function KanbanCardBase({
+  card,
+  children,
+  isDragging,
+  isSelected,
+  onClick,
+  priority,
+  className,
+  ...props
+}, ref) {
+  if (children) {
+    return /* @__PURE__ */ React105.createElement(
+      "div",
+      {
+        ref,
+        "data-dragging": isDragging ? "true" : void 0,
+        "data-selected": isSelected ? "true" : void 0,
+        "data-priority": priority,
+        className: cn(
+          "group relative flex flex-col gap-3 rounded-lg border bg-card p-4 shadow-sm",
+          "transition-all duration-200",
+          "hover:shadow-md",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          "data-[dragging=true]:opacity-50 data-[dragging=true]:shadow-lg",
+          "data-[selected=true]:ring-2 data-[selected=true]:ring-ring data-[selected=true]:ring-offset-2",
+          "data-[priority=urgent]:border-l-4 data-[priority=urgent]:border-l-red-500",
+          "data-[priority=high]:border-l-4 data-[priority=high]:border-l-orange-500",
+          "data-[priority=medium]:border-l-4 data-[priority=medium]:border-l-yellow-500",
+          "data-[priority=low]:border-l-4 data-[priority=low]:border-l-blue-500",
+          className
+        ),
+        onClick,
+        role: onClick ? "button" : "article",
+        tabIndex: onClick ? 0 : void 0,
+        onKeyDown: (e) => {
+          if (onClick && (e.key === "Enter" || e.key === " ")) {
+            e.preventDefault();
+            onClick();
+          }
+        },
+        ...props
+      },
+      children
+    );
+  }
+  if (card) {
+    return /* @__PURE__ */ React105.createElement(DefaultCard, { card, isDragging, isSelected, onClick });
+  }
+  return null;
+});
+KanbanCard.Header = KanbanCardHeader;
+KanbanCard.Content = KanbanCardContent;
+KanbanCard.Footer = KanbanCardFooter;
+KanbanCard.Title = KanbanCardTitle;
+KanbanCard.Description = KanbanCardDescription;
+KanbanCard.Badge = KanbanCardBadge;
+KanbanCard.Label = KanbanCardLabel;
+KanbanCard.Labels = KanbanCardLabels;
+KanbanCard.Avatar = KanbanCardAvatar;
+KanbanCard.DueDate = KanbanCardDueDate;
+KanbanCard.Subtasks = KanbanCardSubtasks;
+KanbanCard.Attachments = KanbanCardAttachments;
+var ColumnHeader = React105.forwardRef(
+  ({
+    title,
+    cardCount,
+    cardLimit,
+    isCollapsed,
+    color,
+    isDisabled,
+    onAddCard,
+    onOptionsClick,
+    onCollapseToggle,
+    showCollapse = false,
+    showAdd = true,
+    showOptions = true,
+    className,
+    ...props
+  }, ref) => {
+    const isOverLimit = cardLimit && cardCount && cardCount > cardLimit;
+    return /* @__PURE__ */ React105.createElement(
+      "div",
+      {
+        ref,
+        className: cn(
+          "flex items-center justify-between gap-2 p-3 border-b",
+          "bg-card sticky top-0 z-10",
+          color && `border-l-4 border-l-${color}-500`,
+          isDisabled && "opacity-50 pointer-events-none",
+          className
+        ),
+        ...props
+      },
+      /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2 flex-1 min-w-0" }, showCollapse && /* @__PURE__ */ React105.createElement(
+        Button,
+        {
+          variant: "ghost",
+          size: "icon",
+          className: "h-6 w-6 shrink-0",
+          onClick: onCollapseToggle,
+          title: isCollapsed ? "Expand column" : "Collapse column"
+        },
+        /* @__PURE__ */ React105.createElement(
+          ChevronDownIcon,
+          {
+            className: cn("h-4 w-4 transition-transform", isCollapsed && "-rotate-90")
+          }
+        )
+      ), /* @__PURE__ */ React105.createElement("div", { className: "flex-1 min-w-0" }, /* @__PURE__ */ React105.createElement("h3", { className: "font-semibold text-sm truncate" }, title), cardCount !== void 0 && /* @__PURE__ */ React105.createElement(
+        "p",
+        {
+          className: cn(
+            "text-xs",
+            isOverLimit ? "text-red-600 dark:text-red-400 font-medium" : "text-muted-foreground"
+          )
+        },
+        cardCount,
+        " ",
+        cardCount === 1 ? "card" : "cards",
+        cardLimit && ` / ${cardLimit}`
+      ))),
+      /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-1 shrink-0" }, showAdd && /* @__PURE__ */ React105.createElement(
+        Button,
+        {
+          variant: "ghost",
+          size: "icon",
+          className: "h-8 w-8",
+          onClick: onAddCard,
+          title: "Add card"
+        },
+        /* @__PURE__ */ React105.createElement(PlusIcon, { className: "h-4 w-4" })
+      ), showOptions && /* @__PURE__ */ React105.createElement(DropdownMenu, null, /* @__PURE__ */ React105.createElement(DropdownMenuTrigger, { asChild: true }, /* @__PURE__ */ React105.createElement(
+        Button,
+        {
+          variant: "ghost",
+          size: "icon",
+          className: "h-8 w-8",
+          onClick: onOptionsClick,
+          title: "Column options"
+        },
+        /* @__PURE__ */ React105.createElement(MoreHorizontalIcon, { className: "h-4 w-4" })
+      )), /* @__PURE__ */ React105.createElement(DropdownMenuContent, { align: "end" }, showCollapse && /* @__PURE__ */ React105.createElement(DropdownMenuItem, { onClick: onCollapseToggle }, isCollapsed ? "Expand column" : "Collapse column"), /* @__PURE__ */ React105.createElement(DropdownMenuSeparator, null), /* @__PURE__ */ React105.createElement(DropdownMenuItem, null, "Rename column"), /* @__PURE__ */ React105.createElement(DropdownMenuItem, null, "Sort cards"), /* @__PURE__ */ React105.createElement(DropdownMenuSeparator, null), /* @__PURE__ */ React105.createElement(DropdownMenuItem, { className: "text-red-600" }, "Delete column"))))
+    );
+  }
+);
+ColumnHeader.displayName = "ColumnHeader";
+function DraggableCard({
+  card,
+  id,
+  isDragging,
+  onClick,
+  renderCard
+}) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging: isSortableDragging
+  } = useSortable({
+    id
+  });
+  const isDraggingState = isDragging || isSortableDragging;
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDraggingState ? 0 : 1,
+    // Hide original when dragging
+    touchAction: "none",
+    cursor: isDraggingState ? "grabbing" : "grab",
+    position: "relative"
+  };
+  return /* @__PURE__ */ React105__default.createElement("div", { ref: setNodeRef, style, className: "group", ...attributes, ...listeners }, renderCard ? renderCard(card) : /* @__PURE__ */ React105__default.createElement(KanbanCard, { card, onClick, isDragging: isDraggingState }));
+}
+function DraggableColumn({
+  column,
+  id,
+  renderCard,
+  onAddCard,
+  onCardClick,
+  onCardMove,
+  isDragging,
+  showAdd = true,
+  maxHeight = "calc(100vh - 200px)",
+  className
+}) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging: isSortableDragging
+  } = useSortable({
+    id
+  });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging || isSortableDragging ? 0.5 : 1,
+    touchAction: "none"
+  };
+  const isCollapsed = column.isCollapsed ?? false;
+  const isOverLimit = column.cardLimit && column.cards.length > column.cardLimit;
+  return /* @__PURE__ */ React105__default.createElement(
+    "div",
+    {
+      ref: setNodeRef,
+      style,
+      "data-dragging": isDragging || isSortableDragging ? "true" : void 0,
+      "data-collapsed": isCollapsed ? "true" : void 0,
+      className: cn(
+        "flex flex-col w-80 shrink-0 rounded-lg border bg-card/50",
+        "transition-all duration-200",
+        "data-[dragging=true]:opacity-50",
+        "data-[collapsed=true]:w-12",
+        isOverLimit && "border-red-500 border-2",
+        className
+      )
+    },
+    /* @__PURE__ */ React105__default.createElement(
+      "div",
+      {
+        ...attributes,
+        ...listeners,
+        className: "cursor-grab active:cursor-grabbing select-none",
+        style: { touchAction: "none" }
+      },
+      /* @__PURE__ */ React105__default.createElement(
+        ColumnHeader,
+        {
+          title: column.title,
+          cardCount: column.cards.length,
+          cardLimit: column.cardLimit,
+          color: column.color,
+          isCollapsed,
+          isDisabled: column.isDisabled,
+          onAddCard,
+          showAdd: showAdd && !isCollapsed,
+          showOptions: false
+        }
+      )
+    ),
+    !isCollapsed && /* @__PURE__ */ React105__default.createElement(ScrollArea, { className: "flex-1", style: { maxHeight } }, /* @__PURE__ */ React105__default.createElement("div", { className: "p-2 space-y-2" }, /* @__PURE__ */ React105__default.createElement(
+      SortableContext,
+      {
+        items: column.cards.map((c) => c.id),
+        strategy: verticalListSortingStrategy
+      },
+      column.cards.map((card, index) => /* @__PURE__ */ React105__default.createElement(
+        DraggableCard,
+        {
+          key: card.id || index,
+          id: `${id}-card-${card.id}`,
+          card,
+          isDragging: false,
+          onClick: () => onCardClick?.(card),
+          renderCard: renderCard ? (c) => renderCard(c, column) : void 0
+        }
+      ))
+    ), showAdd && /* @__PURE__ */ React105__default.createElement(
+      "button",
+      {
+        type: "button",
+        onClick: onAddCard,
+        className: "w-full p-2 text-left text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors flex items-center gap-2"
+      },
+      /* @__PURE__ */ React105__default.createElement("span", { className: "text-lg leading-none" }, "+"),
+      "Add card"
+    )))
+  );
+}
+function DraggableKanbanBoard({
+  columns: initialColumns,
+  onCardMove,
+  onCardReorder,
+  renderCard,
+  onCardClick,
+  isLoading,
+  emptyStateMessage = "No cards yet",
+  className
+}) {
+  const [columns, setColumns] = React105.useState(initialColumns);
+  const [activeId, setActiveId] = React105.useState(null);
+  const [activeCard, setActiveCard] = React105.useState(null);
+  React105.useEffect(() => {
+    setColumns(initialColumns);
+  }, [initialColumns]);
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5
+      }
+    })
+  );
+  const findCard = React105.useCallback(
+    (cardId) => {
+      for (const column of columns) {
+        const card = column.cards.find((c) => c.id === cardId);
+        if (card) return { card, column };
+      }
+      return null;
+    },
+    [columns]
+  );
+  React105.useMemo(() => {
+    return columns.flatMap((col) => col.cards.map((c) => `${col.id}-card-${c.id}`));
+  }, [columns]);
+  const handleDragStart = React105.useCallback(
+    (event) => {
+      const { active } = event;
+      setActiveId(active.id);
+      if (active.id.includes("-card-")) {
+        const cardId = active.id.replace(/.*-card-/, "");
+        const result = findCard(cardId);
+        if (result) {
+          setActiveCard(result.card);
+        }
+      }
+    },
+    [findCard]
+  );
+  const handleDragEnd = React105.useCallback(
+    (event) => {
+      const { active, over } = event;
+      setActiveId(null);
+      setActiveCard(null);
+      if (!over || active.id === over.id) return;
+      if (active.id.includes("-card-") && over.id.includes("-card-")) {
+        const activeCardId = active.id.replace(/.*-card-/, "");
+        const overCardId = over.id.replace(/.*-card-/, "");
+        const activeResult = findCard(activeCardId);
+        const overResult = findCard(overCardId);
+        if (!activeResult || !overResult) return;
+        const { card: activeCard2, column: activeColumn } = activeResult;
+        const { card: overCard, column: overColumn } = overResult;
+        if (activeColumn.id === overColumn.id) {
+          const oldIndex = activeColumn.cards.findIndex((c) => c.id === activeCard2.id);
+          const newIndex = overColumn.cards.findIndex((c) => c.id === overCard.id);
+          if (oldIndex !== newIndex) {
+            setColumns((prev) => {
+              return prev.map((col) => {
+                if (col.id === activeColumn.id) {
+                  const newCards = [...col.cards];
+                  newCards.splice(oldIndex, 1);
+                  newCards.splice(newIndex, 0, activeCard2);
+                  return { ...col, cards: newCards };
+                }
+                return col;
+              });
+            });
+            onCardReorder?.(activeCard2.id, oldIndex, newIndex, activeColumn.id);
+          }
+        } else {
+          setColumns((prev) => {
+            return prev.map((col) => {
+              if (col.id === activeColumn.id) {
+                return { ...col, cards: col.cards.filter((c) => c.id !== activeCard2.id) };
+              }
+              if (col.id === overColumn.id) {
+                const newIndex = col.cards.findIndex((c) => c.id === overCard.id);
+                const newCards = [...col.cards];
+                newCards.splice(newIndex, 0, activeCard2);
+                return { ...col, cards: newCards };
+              }
+              return col;
+            });
+          });
+          onCardMove?.(activeCard2.id, activeColumn.id, overColumn.id, 0);
+        }
+      } else if (active.id.includes("-card-") && !over.id.includes("-card-")) {
+        const activeCardId = active.id.replace(/.*-card-/, "");
+        const result = findCard(activeCardId);
+        if (!result) return;
+        const { card, column: fromColumn } = result;
+        const toColumn = columns.find((c) => c.id === over.id);
+        if (toColumn && fromColumn.id !== toColumn.id) {
+          setColumns((prev) => {
+            return prev.map((col) => {
+              if (col.id === fromColumn.id) {
+                return { ...col, cards: col.cards.filter((c) => c.id !== card.id) };
+              }
+              if (col.id === toColumn.id) {
+                return { ...col, cards: [...col.cards, card] };
+              }
+              return col;
+            });
+          });
+          onCardMove?.(card.id, fromColumn.id, toColumn.id, toColumn.cards.length);
+        }
+      }
+    },
+    [columns, findCard, onCardMove, onCardReorder]
+  );
+  if (isLoading) {
+    return /* @__PURE__ */ React105.createElement("div", { className: cn("flex items-center justify-center h-64", className) }, /* @__PURE__ */ React105.createElement("div", { className: "text-center text-muted-foreground" }, /* @__PURE__ */ React105.createElement("div", { className: "animate-pulse text-2xl" }, "Loading board...")));
+  }
+  const hasNoCards = columns.every((col) => col.cards.length === 0);
+  return /* @__PURE__ */ React105.createElement(
+    DndContext,
+    {
+      sensors,
+      collisionDetection: closestCenter,
+      onDragStart: handleDragStart,
+      onDragEnd: handleDragEnd
+    },
+    /* @__PURE__ */ React105.createElement("div", { className: cn("flex h-full w-full", className) }, /* @__PURE__ */ React105.createElement(ScrollArea, { className: "flex-1", orientation: "horizontal" }, /* @__PURE__ */ React105.createElement("div", { className: "flex h-full gap-4 p-4 min-w-max" }, /* @__PURE__ */ React105.createElement(
+      SortableContext,
+      {
+        items: columns.map((c) => c.id),
+        strategy: horizontalListSortingStrategy
+      },
+      columns.map((column) => /* @__PURE__ */ React105.createElement(
+        SortableContext,
+        {
+          key: column.id,
+          items: column.cards.map((c) => `${column.id}-card-${c.id}`),
+          strategy: verticalListSortingStrategy
+        },
+        /* @__PURE__ */ React105.createElement(
+          DraggableColumn,
+          {
+            id: column.id,
+            column,
+            renderCard,
+            onCardClick,
+            showAdd: true
+          }
+        )
+      ))
+    ), hasNoCards && /* @__PURE__ */ React105.createElement("div", { className: "flex items-center justify-center min-h-[200px] px-8 py-12 border-2 border-dashed rounded-lg bg-muted/50" }, /* @__PURE__ */ React105.createElement("div", { className: "text-center text-muted-foreground" }, /* @__PURE__ */ React105.createElement("p", { className: "text-lg font-medium" }, emptyStateMessage), /* @__PURE__ */ React105.createElement("p", { className: "text-sm mt-1" }, 'Click "Add card" to create your first card')))))),
+    /* @__PURE__ */ React105.createElement(DragOverlay, null, activeCard && /* @__PURE__ */ React105.createElement("div", { className: "rotate-2 shadow-2xl" }, renderCard ? renderCard(activeCard, {}) : /* @__PURE__ */ React105.createElement(KanbanCard, { card: activeCard, isDragging: true })))
+  );
+}
+var KanbanColumn = React105.forwardRef(
+  function KanbanColumnBase({
+    column,
+    renderCard,
+    onAddCard,
+    onCardClick,
+    onOptionsClick,
+    onCollapseToggle,
+    isDragging,
+    showCollapse = false,
+    showAdd = true,
+    showOptions = true,
+    maxHeight = "calc(100vh - 200px)",
+    className,
+    ...props
+  }, ref) {
+    const isCollapsed = column.isCollapsed ?? false;
+    const isOverLimit = column.cardLimit && column.cards.length > column.cardLimit;
+    return /* @__PURE__ */ React105.createElement(
+      "div",
+      {
+        ref,
+        "data-dragging": isDragging ? "true" : void 0,
+        "data-collapsed": isCollapsed ? "true" : void 0,
+        className: cn(
+          "flex flex-col w-80 shrink-0 rounded-lg border bg-card/50",
+          "transition-all duration-200",
+          "data-[dragging=true]:opacity-50",
+          "data-[collapsed=true]:w-12",
+          isOverLimit && "border-red-500 border-2",
+          className
+        ),
+        ...props
+      },
+      /* @__PURE__ */ React105.createElement(
+        ColumnHeader,
+        {
+          title: column.title,
+          cardCount: column.cards.length,
+          cardLimit: column.cardLimit,
+          color: column.color,
+          isCollapsed,
+          isDisabled: column.isDisabled,
+          onAddCard,
+          onOptionsClick,
+          onCollapseToggle,
+          showCollapse,
+          showAdd: showAdd && !isCollapsed,
+          showOptions: showOptions && !isCollapsed
+        }
+      ),
+      !isCollapsed && /* @__PURE__ */ React105.createElement(ScrollArea, { className: "flex-1", style: { maxHeight } }, /* @__PURE__ */ React105.createElement("div", { className: "p-2 space-y-2" }, column.cards.map((card, index) => /* @__PURE__ */ React105.createElement("div", { key: card.id || index }, renderCard ? renderCard(card, column) : /* @__PURE__ */ React105.createElement("div", { className: "p-4 text-center text-sm text-muted-foreground border border-dashed rounded" }, "Provide renderCard prop"))), showAdd && /* @__PURE__ */ React105.createElement(
+        "button",
+        {
+          type: "button",
+          onClick: onAddCard,
+          className: "w-full p-2 text-left text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors flex items-center gap-2"
+        },
+        /* @__PURE__ */ React105.createElement("span", { className: "text-lg leading-none" }, "+"),
+        "Add card"
+      )))
+    );
+  }
+);
+
+// src/blocks/kanban/kanban-board.tsx
+var KanbanBoard = React105.forwardRef(
+  function KanbanBoardBase({
+    columns,
+    cards,
+    features,
+    onCardMove,
+    onCardReorder,
+    onCardClick,
+    isLoading,
+    emptyStateMessage = "No cards yet",
+    className,
+    ...props
+  }, ref) {
+    features?.dragDrop ?? true;
+    const enableCardCreation = features?.cardCreation ?? true;
+    const enableColumnCollapse = features?.columnCollapse ?? false;
+    const hasNoCards = columns.every((col) => col.cards.length === 0);
+    if (isLoading) {
+      return /* @__PURE__ */ React105.createElement("div", { className: cn("flex items-center justify-center h-64", className) }, /* @__PURE__ */ React105.createElement("div", { className: "text-center text-muted-foreground" }, /* @__PURE__ */ React105.createElement("div", { className: "animate-pulse text-2xl" }, "Loading board...")));
+    }
+    return /* @__PURE__ */ React105.createElement("div", { ref, className: cn("flex h-full w-full", className), ...props }, /* @__PURE__ */ React105.createElement(ScrollArea, { className: "flex-1", orientation: "horizontal" }, /* @__PURE__ */ React105.createElement("div", { className: "flex h-full gap-4 p-4 min-w-max" }, columns.map((column) => /* @__PURE__ */ React105.createElement(
+      KanbanColumn,
+      {
+        key: column.id,
+        column,
+        onAddCard: enableCardCreation && !column.isDisabled ? () => console.log("Add card to", column.id) : void 0,
+        onCardClick,
+        onOptionsClick: () => console.log("Column options", column.id),
+        onCollapseToggle: enableColumnCollapse ? () => console.log("Toggle collapse", column.id) : void 0,
+        showCollapse: enableColumnCollapse,
+        showAdd: enableCardCreation && !column.isDisabled,
+        showOptions: !column.isDisabled
+      }
+    )), hasNoCards && /* @__PURE__ */ React105.createElement("div", { className: "flex items-center justify-center min-h-[200px] px-8 py-12 border-2 border-dashed rounded-lg bg-muted/50" }, /* @__PURE__ */ React105.createElement("div", { className: "text-center text-muted-foreground" }, /* @__PURE__ */ React105.createElement("p", { className: "text-lg font-medium" }, emptyStateMessage), /* @__PURE__ */ React105.createElement("p", { className: "text-sm mt-1" }, 'Click "Add card" to create your first card'))))));
+  }
+);
+var KanbanBoardContext = React105.createContext(void 0);
+function KanbanBoardProvider({
+  columns: initialColumns,
+  features = {},
+  onMoveCard,
+  onReorderCard,
+  onReorderColumns,
+  onAddCard,
+  onUpdateCard,
+  onDeleteCard,
+  children
+}) {
+  const [state, setState] = React105.useState({
+    columns: initialColumns,
+    features: {
+      dragDrop: true,
+      cardCreation: true,
+      cardEditing: true,
+      cardDeletion: true,
+      columnCollapse: false,
+      subtasks: true,
+      attachments: true,
+      dueDates: true,
+      assignees: true,
+      tags: true,
+      priority: true,
+      search: true,
+      filters: true,
+      columnSorting: false,
+      cardSorting: true,
+      ...features
+    },
+    searchQuery: "",
+    filters: {},
+    isLoading: false,
+    error: null
+  });
+  const optimisticUpdate = React105.useCallback(
+    async (updateFn, apiCall, rollbackFn) => {
+      updateFn();
+      try {
+        await apiCall();
+      } catch (error) {
+        rollbackFn();
+        setState((prev) => ({
+          ...prev,
+          error: error instanceof Error ? error.message : "Operation failed"
+        }));
+      }
+    },
+    []
+  );
+  const value = React105.useMemo(
+    () => ({
+      ...state,
+      setSearchQuery: (query) => setState((prev) => ({ ...prev, searchQuery: query })),
+      setFilters: (filters) => setState((prev) => ({ ...prev, filters })),
+      moveCard: async (cardId, fromColumnId, toColumnId, newIndex) => {
+        const previousColumns = state.columns;
+        await optimisticUpdate(
+          // Update
+          () => {
+            setState((prev) => {
+              const newColumns = prev.columns.map((col) => {
+                if (col.id === fromColumnId) {
+                  return {
+                    ...col,
+                    cards: col.cards.filter((c) => c.id !== cardId)
+                  };
+                }
+                if (col.id === toColumnId) {
+                  const card = previousColumns.find((c) => c.id === fromColumnId)?.cards.find((c) => c.id === cardId);
+                  if (!card) return col;
+                  const newCards = [...col.cards];
+                  newCards.splice(newIndex, 0, card);
+                  return { ...col, cards: newCards };
+                }
+                return col;
+              });
+              return { ...prev, columns: newColumns };
+            });
+          },
+          // API
+          async () => {
+            await onMoveCard?.(cardId, fromColumnId, toColumnId, newIndex);
+          },
+          // Rollback
+          () => {
+            setState((prev) => ({ ...prev, columns: previousColumns }));
+          }
+        );
+      },
+      reorderCard: async (cardId, fromIndex, toIndex, columnId) => {
+        const previousColumns = state.columns;
+        await optimisticUpdate(
+          () => {
+            setState((prev) => ({
+              ...prev,
+              columns: prev.columns.map((col) => {
+                if (col.id === columnId) {
+                  const newCards = [...col.cards];
+                  const [removed] = newCards.splice(fromIndex, 1);
+                  newCards.splice(toIndex, 0, removed);
+                  return { ...col, cards: newCards };
+                }
+                return col;
+              })
+            }));
+          },
+          async () => {
+            await onReorderCard?.(cardId, fromIndex, toIndex, columnId);
+          },
+          () => {
+            setState((prev) => ({ ...prev, columns: previousColumns }));
+          }
+        );
+      },
+      reorderColumns: async (columnId, fromIndex, toIndex) => {
+        const previousColumns = state.columns;
+        await optimisticUpdate(
+          () => {
+            setState((prev) => {
+              const newColumns = [...prev.columns];
+              const [removed] = newColumns.splice(fromIndex, 1);
+              newColumns.splice(toIndex, 0, removed);
+              return { ...prev, columns: newColumns };
+            });
+          },
+          async () => {
+            await onReorderColumns?.(columnId, fromIndex, toIndex);
+          },
+          () => {
+            setState((prev) => ({ ...prev, columns: previousColumns }));
+          }
+        );
+      },
+      addCard: async (columnId, card) => {
+        await optimisticUpdate(
+          () => {
+            setState((prev) => ({
+              ...prev,
+              columns: prev.columns.map(
+                (col) => col.id === columnId ? { ...col, cards: [...col.cards, card] } : col
+              )
+            }));
+          },
+          async () => {
+            await onAddCard?.(columnId, card);
+          },
+          () => {
+            setState((prev) => ({
+              ...prev,
+              columns: prev.columns.map(
+                (col) => col.id === columnId ? { ...col, cards: col.cards.filter((c) => c.id !== card.id) } : col
+              )
+            }));
+          }
+        );
+      },
+      updateCard: async (cardId, updates) => {
+        await optimisticUpdate(
+          () => {
+            setState((prev) => ({
+              ...prev,
+              columns: prev.columns.map((col) => ({
+                ...col,
+                cards: col.cards.map((c) => c.id === cardId ? { ...c, ...updates } : c)
+              }))
+            }));
+          },
+          async () => {
+            await onUpdateCard?.(cardId, updates);
+          },
+          () => {
+            setState((prev) => ({
+              ...prev,
+              columns: prev.columns.map((col) => ({
+                ...col,
+                cards: col.cards.map(
+                  (c) => c.id === cardId ? { ...c, ...updates } : c
+                )
+              }))
+            }));
+          }
+        );
+      },
+      deleteCard: async (cardId) => {
+        await optimisticUpdate(
+          () => {
+            setState((prev) => ({
+              ...prev,
+              columns: prev.columns.map((col) => ({
+                ...col,
+                cards: col.cards.filter((c) => c.id !== cardId)
+              }))
+            }));
+          },
+          async () => {
+            await onDeleteCard?.(cardId);
+          },
+          () => {
+            console.error("Delete rollback not implemented");
+          }
+        );
+      },
+      setLoading: (loading) => setState((prev) => ({ ...prev, isLoading: loading })),
+      setError: (error) => setState((prev) => ({ ...prev, error }))
+    }),
+    [
+      state,
+      optimisticUpdate,
+      onMoveCard,
+      onReorderCard,
+      onReorderColumns,
+      onAddCard,
+      onUpdateCard,
+      onDeleteCard
+    ]
+  );
+  return /* @__PURE__ */ React105.createElement(KanbanBoardContext.Provider, { value }, children);
+}
+function useKanbanBoard() {
+  const context = React105.useContext(KanbanBoardContext);
+  if (context === void 0) {
+    throw new Error("useKanbanBoard must be used within a KanbanBoardProvider");
+  }
+  return context;
+}
+var QuickAddCard = React105.forwardRef(
+  function QuickAddCardBase({
+    isOpen = false,
+    value = "",
+    onChange,
+    onAdd,
+    onCancel,
+    isSubmitting = false,
+    placeholder = "Enter card title...",
+    addButtonText = "Add card",
+    cancelButtonText = "Cancel",
+    className,
+    ...props
+  }, ref) {
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      if (value.trim()) {
+        onAdd?.(value.trim());
+      }
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        onCancel?.();
+      }
+    };
+    if (!isOpen) return null;
+    return /* @__PURE__ */ React105.createElement("div", { ref, className: cn("p-2", className), ...props }, /* @__PURE__ */ React105.createElement("form", { onSubmit: handleSubmit, onKeyDown: handleKeyDown }, /* @__PURE__ */ React105.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React105.createElement(
+      Textarea,
+      {
+        value,
+        onChange: (e) => onChange?.(e.target.value),
+        placeholder,
+        className: "min-h-[80px] resize-none",
+        autoFocus: true
+      }
+    ), /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React105.createElement(
+      Button,
+      {
+        type: "submit",
+        size: "sm",
+        disabled: !value.trim() || isSubmitting,
+        className: "gap-1"
+      },
+      /* @__PURE__ */ React105.createElement(PlusIcon, { className: "h-4 w-4" }),
+      addButtonText
+    ), /* @__PURE__ */ React105.createElement(Button, { type: "button", variant: "ghost", size: "sm", onClick: onCancel, className: "gap-1" }, /* @__PURE__ */ React105.createElement(XIcon, { className: "h-4 w-4" }), cancelButtonText)))));
+  }
+);
+
+// src/blocks/kanban/types.ts
+var defaultFeatures = {
+  dragDrop: true,
+  cardCreation: true,
+  cardEditing: true,
+  cardDeletion: true,
+  columnCollapse: false,
+  subtasks: true,
+  attachments: true,
+  dueDates: true,
+  assignees: true,
+  tags: true,
+  priority: true,
+  search: true,
+  filters: true,
+  columnSorting: false,
+  cardSorting: true
+};
 function AppShellHeader({ children }) {
   const { isMobile } = useSidebar();
-  return /* @__PURE__ */ React82__default.createElement("header", { className: "flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4 lg:px-6" }, isMobile && /* @__PURE__ */ React82__default.createElement(React82__default.Fragment, null, /* @__PURE__ */ React82__default.createElement(SidebarTrigger, { className: "-ml-1" }), /* @__PURE__ */ React82__default.createElement(Separator, { orientation: "vertical", className: "mr-2 h-4" })), /* @__PURE__ */ React82__default.createElement("div", { className: "flex flex-1 items-center justify-between gap-4" }, children));
+  return /* @__PURE__ */ React105__default.createElement("header", { className: "flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4 lg:px-6" }, isMobile && /* @__PURE__ */ React105__default.createElement(React105__default.Fragment, null, /* @__PURE__ */ React105__default.createElement(SidebarTrigger, { className: "-ml-1" }), /* @__PURE__ */ React105__default.createElement(Separator, { orientation: "vertical", className: "mr-2 h-4" })), /* @__PURE__ */ React105__default.createElement("div", { className: "flex flex-1 items-center justify-between gap-4" }, children));
 }
 function AppShell({
   sidebar,
@@ -6489,7 +7675,7 @@ function AppShell({
   variant = "sidebar",
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement(SidebarProvider, { defaultOpen }, /* @__PURE__ */ React82__default.createElement("div", { className: cn("flex min-h-screen w-full", className) }, (sidebar || sidebarHeader || sidebarFooter) && /* @__PURE__ */ React82__default.createElement(Sidebar, { variant, className: "border-r" }, sidebarHeader && /* @__PURE__ */ React82__default.createElement(SidebarHeader, null, sidebarHeader), /* @__PURE__ */ React82__default.createElement(SidebarContent, null, sidebar), sidebarFooter && /* @__PURE__ */ React82__default.createElement(SidebarFooter, null, sidebarFooter), /* @__PURE__ */ React82__default.createElement(SidebarRail, null)), /* @__PURE__ */ React82__default.createElement(SidebarInset, null, (header || footer) && /* @__PURE__ */ React82__default.createElement(AppShellHeader, null, header), /* @__PURE__ */ React82__default.createElement("main", { className: "flex-1 flex flex-col p-4 lg:p-6 min-h-0" }, children), footer && /* @__PURE__ */ React82__default.createElement("footer", { className: "border-t bg-background py-4 px-6 shrink-0" }, footer))));
+  return /* @__PURE__ */ React105__default.createElement(SidebarProvider, { defaultOpen }, /* @__PURE__ */ React105__default.createElement("div", { className: cn("flex min-h-screen w-full", className) }, (sidebar || sidebarHeader || sidebarFooter) && /* @__PURE__ */ React105__default.createElement(Sidebar, { variant, className: "border-r" }, sidebarHeader && /* @__PURE__ */ React105__default.createElement(SidebarHeader, null, sidebarHeader), /* @__PURE__ */ React105__default.createElement(SidebarContent, null, sidebar), sidebarFooter && /* @__PURE__ */ React105__default.createElement(SidebarFooter, null, sidebarFooter), /* @__PURE__ */ React105__default.createElement(SidebarRail, null)), /* @__PURE__ */ React105__default.createElement(SidebarInset, null, (header || footer) && /* @__PURE__ */ React105__default.createElement(AppShellHeader, null, header), /* @__PURE__ */ React105__default.createElement("main", { className: "flex-1 flex flex-col p-4 lg:p-6 min-h-0" }, children), footer && /* @__PURE__ */ React105__default.createElement("footer", { className: "border-t bg-background py-4 px-6 shrink-0" }, footer))));
 }
 var ratioValues = {
   square: 1,
@@ -6505,13 +7691,13 @@ var ratioValues = {
 };
 function AspectRatio({ children, ratio = "video", className }) {
   const ratioValue = typeof ratio === "number" ? ratio : ratioValues[ratio] || 16 / 9;
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       className: cn("relative w-full overflow-hidden", className),
       style: { paddingBottom: `${1 / ratioValue * 100}%` }
     },
-    children && /* @__PURE__ */ React82__default.createElement("div", { className: "absolute inset-0 flex items-center justify-center" }, children)
+    children && /* @__PURE__ */ React105__default.createElement("div", { className: "absolute inset-0 flex items-center justify-center" }, children)
   );
 }
 function Center({
@@ -6521,7 +7707,7 @@ function Center({
   fullHeight = false,
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       className: cn(
@@ -6557,7 +7743,7 @@ function Container({
   center = false,
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       className: cn(
@@ -6577,21 +7763,21 @@ function TeamSwitcher({
   onTeamChange
 }) {
   const { isMobile } = useSidebar();
-  const [active, setActive] = React82.useState(activeTeam || teams?.[0]);
+  const [active, setActive] = React105.useState(activeTeam || teams?.[0]);
   if (!teams || teams.length === 0) return null;
   const handleTeamChange = (team) => {
     setActive(team);
     onTeamChange?.(team);
   };
-  return /* @__PURE__ */ React82.createElement(SidebarMenu, null, /* @__PURE__ */ React82.createElement(SidebarMenuItem, null, /* @__PURE__ */ React82.createElement(DropdownMenu, null, /* @__PURE__ */ React82.createElement(DropdownMenuTrigger, { asChild: true }, /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(SidebarMenu, null, /* @__PURE__ */ React105.createElement(SidebarMenuItem, null, /* @__PURE__ */ React105.createElement(DropdownMenu, null, /* @__PURE__ */ React105.createElement(DropdownMenuTrigger, { asChild: true }, /* @__PURE__ */ React105.createElement(
     SidebarMenuButton,
     {
       size: "lg",
       className: "data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
     },
-    /* @__PURE__ */ React82.createElement("div", { className: "flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" }, active?.icon && /* @__PURE__ */ React82.createElement(active.icon, { className: "size-4" })),
-    /* @__PURE__ */ React82.createElement("div", { className: "grid flex-1 text-left text-sm leading-tight" }, /* @__PURE__ */ React82.createElement("span", { className: "truncate font-medium" }, active?.name), /* @__PURE__ */ React82.createElement("span", { className: "truncate text-xs" }, active?.plan))
-  )), /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement("div", { className: "flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" }, active?.icon && /* @__PURE__ */ React105.createElement(active.icon, { className: "size-4" })),
+    /* @__PURE__ */ React105.createElement("div", { className: "grid flex-1 text-left text-sm leading-tight" }, /* @__PURE__ */ React105.createElement("span", { className: "truncate font-medium" }, active?.name), /* @__PURE__ */ React105.createElement("span", { className: "truncate text-xs" }, active?.plan))
+  )), /* @__PURE__ */ React105.createElement(
     DropdownMenuContent,
     {
       className: "w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg",
@@ -6599,15 +7785,15 @@ function TeamSwitcher({
       side: isMobile ? "bottom" : "right",
       sideOffset: 4
     },
-    /* @__PURE__ */ React82.createElement(DropdownMenuLabel, { className: "text-xs text-muted-foreground" }, "Teams"),
-    teams.map((team) => /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement(DropdownMenuLabel, { className: "text-xs text-muted-foreground" }, "Teams"),
+    teams.map((team) => /* @__PURE__ */ React105.createElement(
       DropdownMenuItem,
       {
         key: team.name,
         onClick: () => handleTeamChange(team),
         className: "gap-2 p-2"
       },
-      /* @__PURE__ */ React82.createElement("div", { className: "flex size-6 items-center justify-center rounded-md border" }, team.icon && /* @__PURE__ */ React82.createElement(team.icon, { className: "size-3.5 shrink-0" })),
+      /* @__PURE__ */ React105.createElement("div", { className: "flex size-6 items-center justify-center rounded-md border" }, team.icon && /* @__PURE__ */ React105.createElement(team.icon, { className: "size-3.5 shrink-0" })),
       team.name
     ))
   ))));
@@ -6615,9 +7801,9 @@ function TeamSwitcher({
 function NavItemComponent({ item, isActive }) {
   const hasSubItems = item.items && item.items.length > 0;
   if (hasSubItems) {
-    return /* @__PURE__ */ React82.createElement(Collapsible, { defaultOpen: item.isActive, className: "group/collapsible" }, /* @__PURE__ */ React82.createElement(CollapsibleTrigger, { asChild: true }, /* @__PURE__ */ React82.createElement(SidebarMenuButton, { tooltip: item.title }, item.icon && /* @__PURE__ */ React82.createElement(item.icon, null), /* @__PURE__ */ React82.createElement("span", null, item.title), item.badge !== void 0 && /* @__PURE__ */ React82.createElement(SidebarMenuBadge, null, item.badge))), /* @__PURE__ */ React82.createElement(CollapsibleContent, null, /* @__PURE__ */ React82.createElement(SidebarMenuSub, null, item.items?.map((subItem) => /* @__PURE__ */ React82.createElement(SidebarMenuSubItem, { key: subItem.id }, /* @__PURE__ */ React82.createElement(SidebarMenuSubButton, { asChild: true }, /* @__PURE__ */ React82.createElement("a", { href: subItem.url, className: cn(subItem.disabled && "opacity-50") }, /* @__PURE__ */ React82.createElement("span", null, subItem.title))))))));
+    return /* @__PURE__ */ React105.createElement(Collapsible, { defaultOpen: item.isActive, className: "group/collapsible" }, /* @__PURE__ */ React105.createElement(CollapsibleTrigger, { asChild: true }, /* @__PURE__ */ React105.createElement(SidebarMenuButton, { tooltip: item.title }, item.icon && /* @__PURE__ */ React105.createElement(item.icon, null), /* @__PURE__ */ React105.createElement("span", null, item.title), item.badge !== void 0 && /* @__PURE__ */ React105.createElement(SidebarMenuBadge, null, item.badge))), /* @__PURE__ */ React105.createElement(CollapsibleContent, null, /* @__PURE__ */ React105.createElement(SidebarMenuSub, null, item.items?.map((subItem) => /* @__PURE__ */ React105.createElement(SidebarMenuSubItem, { key: subItem.id }, /* @__PURE__ */ React105.createElement(SidebarMenuSubButton, { asChild: true }, /* @__PURE__ */ React105.createElement("a", { href: subItem.url, className: cn(subItem.disabled && "opacity-50") }, /* @__PURE__ */ React105.createElement("span", null, subItem.title))))))));
   }
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     SidebarMenuButton,
     {
       asChild: true,
@@ -6625,24 +7811,24 @@ function NavItemComponent({ item, isActive }) {
       tooltip: item.title,
       className: cn(item.disabled && "opacity-50")
     },
-    /* @__PURE__ */ React82.createElement("a", { href: item.url }, item.icon && /* @__PURE__ */ React82.createElement(item.icon, null), /* @__PURE__ */ React82.createElement("span", null, item.title), item.badge !== void 0 && /* @__PURE__ */ React82.createElement(SidebarMenuBadge, null, item.badge))
+    /* @__PURE__ */ React105.createElement("a", { href: item.url }, item.icon && /* @__PURE__ */ React105.createElement(item.icon, null), /* @__PURE__ */ React105.createElement("span", null, item.title), item.badge !== void 0 && /* @__PURE__ */ React105.createElement(SidebarMenuBadge, null, item.badge))
   );
 }
 function NavGroupComponent({ group, activeUrl }) {
-  return /* @__PURE__ */ React82.createElement(SidebarGroup, null, /* @__PURE__ */ React82.createElement(SidebarGroupLabel, null, group.title), /* @__PURE__ */ React82.createElement(SidebarMenu, null, group.items.map((item) => /* @__PURE__ */ React82.createElement(SidebarMenuItem, { key: item.id }, /* @__PURE__ */ React82.createElement(NavItemComponent, { item, isActive: item.url === activeUrl || item.isActive })))));
+  return /* @__PURE__ */ React105.createElement(SidebarGroup, null, /* @__PURE__ */ React105.createElement(SidebarGroupLabel, null, group.title), /* @__PURE__ */ React105.createElement(SidebarMenu, null, group.items.map((item) => /* @__PURE__ */ React105.createElement(SidebarMenuItem, { key: item.id }, /* @__PURE__ */ React105.createElement(NavItemComponent, { item, isActive: item.url === activeUrl || item.isActive })))));
 }
 function NavUser({ user }) {
   const { isMobile } = useSidebar();
   if (!user) return null;
-  return /* @__PURE__ */ React82.createElement(SidebarMenu, null, /* @__PURE__ */ React82.createElement(SidebarMenuItem, null, /* @__PURE__ */ React82.createElement(DropdownMenu, null, /* @__PURE__ */ React82.createElement(DropdownMenuTrigger, { asChild: true }, /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(SidebarMenu, null, /* @__PURE__ */ React105.createElement(SidebarMenuItem, null, /* @__PURE__ */ React105.createElement(DropdownMenu, null, /* @__PURE__ */ React105.createElement(DropdownMenuTrigger, { asChild: true }, /* @__PURE__ */ React105.createElement(
     SidebarMenuButton,
     {
       size: "lg",
       className: "data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
     },
-    /* @__PURE__ */ React82.createElement(Avatar, { className: "h-8 w-8 rounded-lg" }, /* @__PURE__ */ React82.createElement(AvatarImage, { src: user.avatar, alt: user.name }), /* @__PURE__ */ React82.createElement(AvatarFallback, { className: "rounded-lg" }, user.fallback || user.name.charAt(0).toUpperCase())),
-    /* @__PURE__ */ React82.createElement("div", { className: "grid flex-1 text-left text-sm leading-tight" }, /* @__PURE__ */ React82.createElement("span", { className: "truncate font-medium" }, user.name), /* @__PURE__ */ React82.createElement("span", { className: "truncate text-xs" }, user.email))
-  )), /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement(Avatar, { className: "h-8 w-8 rounded-lg" }, /* @__PURE__ */ React105.createElement(AvatarImage, { src: user.avatar, alt: user.name }), /* @__PURE__ */ React105.createElement(AvatarFallback, { className: "rounded-lg" }, user.fallback || user.name.charAt(0).toUpperCase())),
+    /* @__PURE__ */ React105.createElement("div", { className: "grid flex-1 text-left text-sm leading-tight" }, /* @__PURE__ */ React105.createElement("span", { className: "truncate font-medium" }, user.name), /* @__PURE__ */ React105.createElement("span", { className: "truncate text-xs" }, user.email))
+  )), /* @__PURE__ */ React105.createElement(
     DropdownMenuContent,
     {
       className: "w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg",
@@ -6650,11 +7836,11 @@ function NavUser({ user }) {
       align: "end",
       sideOffset: 4
     },
-    /* @__PURE__ */ React82.createElement(DropdownMenuLabel, { className: "p-0 font-normal" }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-2 px-1 py-1.5 text-left text-sm" }, /* @__PURE__ */ React82.createElement(Avatar, { className: "h-8 w-8 rounded-lg" }, /* @__PURE__ */ React82.createElement(AvatarImage, { src: user.avatar, alt: user.name }), /* @__PURE__ */ React82.createElement(AvatarFallback, { className: "rounded-lg" }, user.fallback || user.name.charAt(0).toUpperCase())), /* @__PURE__ */ React82.createElement("div", { className: "grid flex-1 text-left text-sm leading-tight" }, /* @__PURE__ */ React82.createElement("span", { className: "truncate font-medium" }, user.name), /* @__PURE__ */ React82.createElement("span", { className: "truncate text-xs" }, user.email)))),
-    /* @__PURE__ */ React82.createElement(DropdownMenuSeparator, null),
-    /* @__PURE__ */ React82.createElement(DropdownMenuGroup, null, /* @__PURE__ */ React82.createElement(DropdownMenuItem, null, "Account"), /* @__PURE__ */ React82.createElement(DropdownMenuItem, null, "Settings")),
-    /* @__PURE__ */ React82.createElement(DropdownMenuSeparator, null),
-    /* @__PURE__ */ React82.createElement(DropdownMenuItem, null, "Log out")
+    /* @__PURE__ */ React105.createElement(DropdownMenuLabel, { className: "p-0 font-normal" }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2 px-1 py-1.5 text-left text-sm" }, /* @__PURE__ */ React105.createElement(Avatar, { className: "h-8 w-8 rounded-lg" }, /* @__PURE__ */ React105.createElement(AvatarImage, { src: user.avatar, alt: user.name }), /* @__PURE__ */ React105.createElement(AvatarFallback, { className: "rounded-lg" }, user.fallback || user.name.charAt(0).toUpperCase())), /* @__PURE__ */ React105.createElement("div", { className: "grid flex-1 text-left text-sm leading-tight" }, /* @__PURE__ */ React105.createElement("span", { className: "truncate font-medium" }, user.name), /* @__PURE__ */ React105.createElement("span", { className: "truncate text-xs" }, user.email)))),
+    /* @__PURE__ */ React105.createElement(DropdownMenuSeparator, null),
+    /* @__PURE__ */ React105.createElement(DropdownMenuGroup, null, /* @__PURE__ */ React105.createElement(DropdownMenuItem, null, "Account"), /* @__PURE__ */ React105.createElement(DropdownMenuItem, null, "Settings")),
+    /* @__PURE__ */ React105.createElement(DropdownMenuSeparator, null),
+    /* @__PURE__ */ React105.createElement(DropdownMenuItem, null, "Log out")
   ))));
 }
 function DefaultSidebarHeader({
@@ -6662,14 +7848,14 @@ function DefaultSidebarHeader({
   activeTeam,
   onTeamChange
 }) {
-  return /* @__PURE__ */ React82.createElement(SidebarHeader, null, /* @__PURE__ */ React82.createElement(TeamSwitcher, { teams, activeTeam, onTeamChange }));
+  return /* @__PURE__ */ React105.createElement(SidebarHeader, null, /* @__PURE__ */ React105.createElement(TeamSwitcher, { teams, activeTeam, onTeamChange }));
 }
 function DefaultSidebarFooter({ user }) {
-  return /* @__PURE__ */ React82.createElement(SidebarFooter, null, /* @__PURE__ */ React82.createElement(NavUser, { user }));
+  return /* @__PURE__ */ React105.createElement(SidebarFooter, null, /* @__PURE__ */ React105.createElement(NavUser, { user }));
 }
 function DashboardHeader({ children }) {
   const { isMobile } = useSidebar();
-  return /* @__PURE__ */ React82.createElement("header", { className: "flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4 lg:px-6" }, isMobile && /* @__PURE__ */ React82.createElement(React82.Fragment, null, /* @__PURE__ */ React82.createElement(SidebarTrigger, { className: "-ml-1" }), /* @__PURE__ */ React82.createElement(Separator, { orientation: "vertical", className: "mr-2 h-4" })), /* @__PURE__ */ React82.createElement("div", { className: "flex flex-1 items-center justify-between gap-4" }, children));
+  return /* @__PURE__ */ React105.createElement("header", { className: "flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4 lg:px-6" }, isMobile && /* @__PURE__ */ React105.createElement(React105.Fragment, null, /* @__PURE__ */ React105.createElement(SidebarTrigger, { className: "-ml-1" }), /* @__PURE__ */ React105.createElement(Separator, { orientation: "vertical", className: "mr-2 h-4" })), /* @__PURE__ */ React105.createElement("div", { className: "flex flex-1 items-center justify-between gap-4" }, children));
 }
 function DashboardLayout({
   navGroups,
@@ -6687,14 +7873,14 @@ function DashboardLayout({
   variant = "sidebar",
   className
 }) {
-  return /* @__PURE__ */ React82.createElement(SidebarProvider, { defaultOpen }, /* @__PURE__ */ React82.createElement("div", { className: cn("flex min-h-screen w-full", className) }, /* @__PURE__ */ React82.createElement(Sidebar, { collapsible: "icon", variant, className: "border-r" }, sidebarHeader ? /* @__PURE__ */ React82.createElement(SidebarHeader, null, sidebarHeader) : /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(SidebarProvider, { defaultOpen }, /* @__PURE__ */ React105.createElement("div", { className: cn("flex min-h-screen w-full", className) }, /* @__PURE__ */ React105.createElement(Sidebar, { collapsible: "icon", variant, className: "border-r" }, sidebarHeader ? /* @__PURE__ */ React105.createElement(SidebarHeader, null, sidebarHeader) : /* @__PURE__ */ React105.createElement(
     DefaultSidebarHeader,
     {
       teams,
       activeTeam,
       onTeamChange
     }
-  ), /* @__PURE__ */ React82.createElement(SidebarContent, null, navGroups?.map((group) => /* @__PURE__ */ React82.createElement(NavGroupComponent, { key: group.id, group, activeUrl }))), sidebarFooter ? /* @__PURE__ */ React82.createElement(SidebarFooter, null, sidebarFooter) : /* @__PURE__ */ React82.createElement(DefaultSidebarFooter, { user }), /* @__PURE__ */ React82.createElement(SidebarRail, null)), /* @__PURE__ */ React82.createElement(SidebarInset, null, (header || footer) && /* @__PURE__ */ React82.createElement(DashboardHeader, null, header), /* @__PURE__ */ React82.createElement("main", { className: "flex-1 flex flex-col p-4 lg:p-6 min-h-0" }, children), footer && /* @__PURE__ */ React82.createElement("footer", { className: "border-t bg-background py-4 px-6 shrink-0" }, footer))));
+  ), /* @__PURE__ */ React105.createElement(SidebarContent, null, navGroups?.map((group) => /* @__PURE__ */ React105.createElement(NavGroupComponent, { key: group.id, group, activeUrl }))), sidebarFooter ? /* @__PURE__ */ React105.createElement(SidebarFooter, null, sidebarFooter) : /* @__PURE__ */ React105.createElement(DefaultSidebarFooter, { user }), /* @__PURE__ */ React105.createElement(SidebarRail, null)), /* @__PURE__ */ React105.createElement(SidebarInset, null, (header || footer) && /* @__PURE__ */ React105.createElement(DashboardHeader, null, header), /* @__PURE__ */ React105.createElement("main", { className: "flex-1 flex flex-col p-4 lg:p-6 min-h-0" }, children), footer && /* @__PURE__ */ React105.createElement("footer", { className: "border-t bg-background py-4 px-6 shrink-0" }, footer))));
 }
 var variantClasses = {
   default: "",
@@ -6702,7 +7888,7 @@ var variantClasses = {
   fixed: "fixed bottom-0 left-0 right-0"
 };
 function Footer({ children, variant = "default", center = false, className }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "footer",
     {
       className: cn(
@@ -6723,10 +7909,10 @@ function PageHeader({
   children,
   className
 }) {
-  return /* @__PURE__ */ React82.createElement("div", { className: cn("space-y-4", className) }, breadcrumbs && breadcrumbs.length > 0 && /* @__PURE__ */ React82.createElement(Breadcrumb, null, /* @__PURE__ */ React82.createElement(BreadcrumbList, null, breadcrumbs.map((crumb, index) => {
+  return /* @__PURE__ */ React105.createElement("div", { className: cn("space-y-4", className) }, breadcrumbs && breadcrumbs.length > 0 && /* @__PURE__ */ React105.createElement(Breadcrumb, null, /* @__PURE__ */ React105.createElement(BreadcrumbList, null, breadcrumbs.map((crumb, index) => {
     const isLast = index === breadcrumbs.length - 1;
-    return /* @__PURE__ */ React82.createElement(React82.Fragment, { key: `${crumb.label}-${index}` }, /* @__PURE__ */ React82.createElement(BreadcrumbItem, null, isLast ? /* @__PURE__ */ React82.createElement(BreadcrumbPage, null, crumb.label) : crumb.href ? /* @__PURE__ */ React82.createElement(BreadcrumbLink, { href: crumb.href }, crumb.label) : /* @__PURE__ */ React82.createElement("span", null, crumb.label)), !isLast && /* @__PURE__ */ React82.createElement(BreadcrumbSeparator, null));
-  }))), /* @__PURE__ */ React82.createElement("div", { className: "flex items-start justify-between gap-4" }, /* @__PURE__ */ React82.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React82.createElement("h1", { className: "text-2xl font-semibold tracking-tight" }, title), subtitle && /* @__PURE__ */ React82.createElement("p", { className: "text-sm text-muted-foreground" }, subtitle)), actions && /* @__PURE__ */ React82.createElement("div", { className: "flex items-center gap-2" }, actions)), children && /* @__PURE__ */ React82.createElement("div", { className: "pt-2" }, children), /* @__PURE__ */ React82.createElement(Separator, null));
+    return /* @__PURE__ */ React105.createElement(React105.Fragment, { key: `${crumb.label}-${index}` }, /* @__PURE__ */ React105.createElement(BreadcrumbItem, null, isLast ? /* @__PURE__ */ React105.createElement(BreadcrumbPage, null, crumb.label) : crumb.href ? /* @__PURE__ */ React105.createElement(BreadcrumbLink, { href: crumb.href }, crumb.label) : /* @__PURE__ */ React105.createElement("span", null, crumb.label)), !isLast && /* @__PURE__ */ React105.createElement(BreadcrumbSeparator, null));
+  }))), /* @__PURE__ */ React105.createElement("div", { className: "flex items-start justify-between gap-4" }, /* @__PURE__ */ React105.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React105.createElement("h1", { className: "text-2xl font-semibold tracking-tight" }, title), subtitle && /* @__PURE__ */ React105.createElement("p", { className: "text-sm text-muted-foreground" }, subtitle)), actions && /* @__PURE__ */ React105.createElement("div", { className: "flex items-center gap-2" }, actions)), children && /* @__PURE__ */ React105.createElement("div", { className: "pt-2" }, children), /* @__PURE__ */ React105.createElement(Separator, null));
 }
 var defaultColumns = {
   mobile: 1,
@@ -6744,7 +7930,7 @@ function ResponsiveGrid({
   const tablet = columns.tablet ?? 2;
   const desktop = columns.desktop ?? 3;
   const wide = columns.wide ?? 4;
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       className: cn(
@@ -6776,7 +7962,7 @@ function RightDrawer({
   showClose = true,
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement(Sheet, { open, onOpenChange }, /* @__PURE__ */ React82__default.createElement(SheetContent, { className: cn(widthClasses[width], "overflow-y-auto", className) }, (title || showClose) && /* @__PURE__ */ React82__default.createElement(SheetHeader, { className: "mb-4" }, title && /* @__PURE__ */ React82__default.createElement(SheetTitle, null, title), description && /* @__PURE__ */ React82__default.createElement(SheetDescription, null, description)), children));
+  return /* @__PURE__ */ React105__default.createElement(Sheet, { open, onOpenChange }, /* @__PURE__ */ React105__default.createElement(SheetContent, { className: cn(widthClasses[width], "overflow-y-auto", className) }, (title || showClose) && /* @__PURE__ */ React105__default.createElement(SheetHeader, { className: "mb-4" }, title && /* @__PURE__ */ React105__default.createElement(SheetTitle, null, title), description && /* @__PURE__ */ React105__default.createElement(SheetDescription, null, description)), children));
 }
 function SplitPane({
   primary,
@@ -6787,15 +7973,15 @@ function SplitPane({
   orientation = "horizontal",
   className
 }) {
-  const [ratio, setRatio] = React82.useState(initialRatio);
-  const containerRef = React82.useRef(null);
-  const isDragging = React82.useRef(false);
+  const [ratio, setRatio] = React105.useState(initialRatio);
+  const containerRef = React105.useRef(null);
+  const isDragging = React105.useRef(false);
   const handleMouseDown = () => {
     isDragging.current = true;
     document.body.style.cursor = orientation === "horizontal" ? "col-resize" : "row-resize";
     document.body.style.userSelect = "none";
   };
-  React82.useEffect(() => {
+  React105.useEffect(() => {
     const handleMouseMove = (e) => {
       if (!isDragging.current || !containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
@@ -6824,14 +8010,14 @@ function SplitPane({
     };
   }, [orientation, minPrimaryWidth, minSecondaryWidth]);
   const isHorizontal = orientation === "horizontal";
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "div",
     {
       ref: containerRef,
       className: cn("flex", isHorizontal ? "flex-row" : "flex-col", className)
     },
-    /* @__PURE__ */ React82.createElement("div", { className: "overflow-auto", style: { [isHorizontal ? "width" : "height"]: `${ratio}%` } }, primary),
-    /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement("div", { className: "overflow-auto", style: { [isHorizontal ? "width" : "height"]: `${ratio}%` } }, primary),
+    /* @__PURE__ */ React105.createElement(
       "div",
       {
         onMouseDown: handleMouseDown,
@@ -6840,9 +8026,9 @@ function SplitPane({
           isHorizontal ? "w-1 cursor-col-resize" : "h-1 cursor-row-resize"
         )
       },
-      /* @__PURE__ */ React82.createElement(GripVerticalIcon, { className: cn("text-muted-foreground", !isHorizontal && "rotate-90") })
+      /* @__PURE__ */ React105.createElement(GripVerticalIcon, { className: cn("text-muted-foreground", !isHorizontal && "rotate-90") })
     ),
-    /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement(
       "div",
       {
         className: "overflow-auto",
@@ -6877,7 +8063,7 @@ function Stack({
   fullWidth = false,
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       className: cn(
@@ -6895,10 +8081,10 @@ function Stack({
   );
 }
 function HStack(props) {
-  return /* @__PURE__ */ React82__default.createElement(Stack, { ...props, direction: "horizontal" });
+  return /* @__PURE__ */ React105__default.createElement(Stack, { ...props, direction: "horizontal" });
 }
 function VStack(props) {
-  return /* @__PURE__ */ React82__default.createElement(Stack, { ...props, direction: "vertical" });
+  return /* @__PURE__ */ React105__default.createElement(Stack, { ...props, direction: "vertical" });
 }
 function StickyHeader({
   children,
@@ -6906,8 +8092,8 @@ function StickyHeader({
   showBorder = true,
   className
 }) {
-  const [isScrolled, setIsScrolled] = React82.useState(false);
-  React82.useEffect(() => {
+  const [isScrolled, setIsScrolled] = React105.useState(false);
+  React105.useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > offset);
     };
@@ -6915,7 +8101,7 @@ function StickyHeader({
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [offset]);
-  return /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(
     "div",
     {
       className: cn(
@@ -6939,9 +8125,9 @@ function ThreeColumnLayout({
   defaultAsideCollapsed = false,
   className
 }) {
-  const [sidebarCollapsed, setSidebarCollapsed] = React82.useState(defaultSidebarCollapsed);
-  const [asideCollapsed, setAsideCollapsed] = React82.useState(defaultAsideCollapsed);
-  return /* @__PURE__ */ React82.createElement("div", { className: cn("flex min-h-screen bg-background", className) }, /* @__PURE__ */ React82.createElement(
+  const [sidebarCollapsed, setSidebarCollapsed] = React105.useState(defaultSidebarCollapsed);
+  const [asideCollapsed, setAsideCollapsed] = React105.useState(defaultAsideCollapsed);
+  return /* @__PURE__ */ React105.createElement("div", { className: cn("flex min-h-screen bg-background", className) }, /* @__PURE__ */ React105.createElement(
     "aside",
     {
       className: cn(
@@ -6950,9 +8136,9 @@ function ThreeColumnLayout({
       ),
       style: { width: sidebarCollapsed ? 64 : sidebarWidth }
     },
-    /* @__PURE__ */ React82.createElement("div", { className: "flex h-16 items-center justify-between border-b px-4" }, !sidebarCollapsed && /* @__PURE__ */ React82.createElement("span", { className: "font-semibold" }, "Nav"), sidebarCollapsible && sidebarCollapsed && /* @__PURE__ */ React82.createElement(Button, { variant: "ghost", size: "sm", onClick: () => setSidebarCollapsed(false) }, /* @__PURE__ */ React82.createElement(ChevronRight, { className: "h-4 w-4" }))),
-    /* @__PURE__ */ React82.createElement("div", { className: "flex-1 overflow-y-auto py-4" }, sidebar),
-    sidebarCollapsible && !sidebarCollapsed && /* @__PURE__ */ React82.createElement("div", { className: "border-t p-2" }, /* @__PURE__ */ React82.createElement(
+    /* @__PURE__ */ React105.createElement("div", { className: "flex h-16 items-center justify-between border-b px-4" }, !sidebarCollapsed && /* @__PURE__ */ React105.createElement("span", { className: "font-semibold" }, "Nav"), sidebarCollapsible && sidebarCollapsed && /* @__PURE__ */ React105.createElement(Button, { variant: "ghost", size: "sm", onClick: () => setSidebarCollapsed(false) }, /* @__PURE__ */ React105.createElement(ChevronRight, { className: "h-4 w-4" }))),
+    /* @__PURE__ */ React105.createElement("div", { className: "flex-1 overflow-y-auto py-4" }, sidebar),
+    sidebarCollapsible && !sidebarCollapsed && /* @__PURE__ */ React105.createElement("div", { className: "border-t p-2" }, /* @__PURE__ */ React105.createElement(
       Button,
       {
         variant: "ghost",
@@ -6960,9 +8146,9 @@ function ThreeColumnLayout({
         className: "w-full",
         onClick: () => setSidebarCollapsed(true)
       },
-      /* @__PURE__ */ React82.createElement(ChevronLeft, { className: "h-4 w-4" })
+      /* @__PURE__ */ React105.createElement(ChevronLeft, { className: "h-4 w-4" })
     ))
-  ), /* @__PURE__ */ React82.createElement("main", { className: "flex-1 min-w-0 overflow-auto" }, /* @__PURE__ */ React82.createElement("div", { className: "min-h-screen p-6" }, children)), aside && /* @__PURE__ */ React82.createElement(
+  ), /* @__PURE__ */ React105.createElement("main", { className: "flex-1 min-w-0 overflow-auto" }, /* @__PURE__ */ React105.createElement("div", { className: "min-h-screen p-6" }, children)), aside && /* @__PURE__ */ React105.createElement(
     "aside",
     {
       className: cn(
@@ -6971,8 +8157,8 @@ function ThreeColumnLayout({
       ),
       style: { width: asideCollapsed ? 0 : asideWidth }
     },
-    /* @__PURE__ */ React82.createElement("div", { className: "flex h-16 items-center justify-between border-b px-4" }, /* @__PURE__ */ React82.createElement("span", { className: "font-semibold" }, "Details"), asideCollapsible && /* @__PURE__ */ React82.createElement(Button, { variant: "ghost", size: "sm", onClick: () => setAsideCollapsed(true) }, /* @__PURE__ */ React82.createElement(ChevronRight, { className: "h-4 w-4" }))),
-    /* @__PURE__ */ React82.createElement("div", { className: "flex-1 overflow-y-auto py-4" }, aside)
+    /* @__PURE__ */ React105.createElement("div", { className: "flex h-16 items-center justify-between border-b px-4" }, /* @__PURE__ */ React105.createElement("span", { className: "font-semibold" }, "Details"), asideCollapsible && /* @__PURE__ */ React105.createElement(Button, { variant: "ghost", size: "sm", onClick: () => setAsideCollapsed(true) }, /* @__PURE__ */ React105.createElement(ChevronRight, { className: "h-4 w-4" }))),
+    /* @__PURE__ */ React105.createElement("div", { className: "flex-1 overflow-y-auto py-4" }, aside)
   ));
 }
 function TwoColumnLayout({
@@ -6984,8 +8170,8 @@ function TwoColumnLayout({
   sidebarPosition = "left",
   className
 }) {
-  const [collapsed, setCollapsed] = React82.useState(defaultCollapsed);
-  return /* @__PURE__ */ React82.createElement("div", { className: cn("flex min-h-screen bg-background", className) }, /* @__PURE__ */ React82.createElement(
+  const [collapsed, setCollapsed] = React105.useState(defaultCollapsed);
+  return /* @__PURE__ */ React105.createElement("div", { className: cn("flex min-h-screen bg-background", className) }, /* @__PURE__ */ React105.createElement(
     "aside",
     {
       className: cn(
@@ -6994,9 +8180,9 @@ function TwoColumnLayout({
       ),
       style: { width: collapsed ? 64 : sidebarWidth }
     },
-    /* @__PURE__ */ React82.createElement("div", { className: "flex h-16 items-center justify-between border-b px-4" }, !collapsed && /* @__PURE__ */ React82.createElement("span", { className: "font-semibold" }, "Sidebar"), collapsible && /* @__PURE__ */ React82.createElement(Button, { variant: "ghost", size: "sm", onClick: () => setCollapsed(!collapsed) }, collapsed ? /* @__PURE__ */ React82.createElement(ChevronRight, { className: "h-4 w-4" }) : /* @__PURE__ */ React82.createElement(ChevronLeft, { className: "h-4 w-4" }))),
-    /* @__PURE__ */ React82.createElement("div", { className: "flex-1 overflow-y-auto py-4" }, sidebar)
-  ), /* @__PURE__ */ React82.createElement("div", { className: cn("flex-1 min-w-0", sidebarPosition === "right" && "order-first") }, /* @__PURE__ */ React82.createElement("main", { className: "min-h-screen p-6" }, children)));
+    /* @__PURE__ */ React105.createElement("div", { className: "flex h-16 items-center justify-between border-b px-4" }, !collapsed && /* @__PURE__ */ React105.createElement("span", { className: "font-semibold" }, "Sidebar"), collapsible && /* @__PURE__ */ React105.createElement(Button, { variant: "ghost", size: "sm", onClick: () => setCollapsed(!collapsed) }, collapsed ? /* @__PURE__ */ React105.createElement(ChevronRight, { className: "h-4 w-4" }) : /* @__PURE__ */ React105.createElement(ChevronLeft, { className: "h-4 w-4" }))),
+    /* @__PURE__ */ React105.createElement("div", { className: "flex-1 overflow-y-auto py-4" }, sidebar)
+  ), /* @__PURE__ */ React105.createElement("div", { className: cn("flex-1 min-w-0", sidebarPosition === "right" && "order-first") }, /* @__PURE__ */ React105.createElement("main", { className: "min-h-screen p-6" }, children)));
 }
 function BreadcrumbTrail({
   items,
@@ -7019,7 +8205,7 @@ function BreadcrumbTrail({
     ];
   };
   const displayItems = getDisplayItems();
-  return /* @__PURE__ */ React82.createElement(Breadcrumb, { className }, /* @__PURE__ */ React82.createElement(BreadcrumbList, null, displayItems.map((item, index) => /* @__PURE__ */ React82.createElement(React82.Fragment, { key: item.key }, /* @__PURE__ */ React82.createElement(BreadcrumbItem, null, item.isActive || index === displayItems.length - 1 ? /* @__PURE__ */ React82.createElement(BreadcrumbPage, null, item.label) : item.href ? /* @__PURE__ */ React82.createElement(BreadcrumbLink, { href: item.href }, item.label) : /* @__PURE__ */ React82.createElement("span", { className: "text-muted-foreground" }, item.label)), index < displayItems.length - 1 && /* @__PURE__ */ React82.createElement(BreadcrumbSeparator, null)))));
+  return /* @__PURE__ */ React105.createElement(Breadcrumb, { className }, /* @__PURE__ */ React105.createElement(BreadcrumbList, null, displayItems.map((item, index) => /* @__PURE__ */ React105.createElement(React105.Fragment, { key: item.key }, /* @__PURE__ */ React105.createElement(BreadcrumbItem, null, item.isActive || index === displayItems.length - 1 ? /* @__PURE__ */ React105.createElement(BreadcrumbPage, null, item.label) : item.href ? /* @__PURE__ */ React105.createElement(BreadcrumbLink, { href: item.href }, item.label) : /* @__PURE__ */ React105.createElement("span", { className: "text-muted-foreground" }, item.label)), index < displayItems.length - 1 && /* @__PURE__ */ React105.createElement(BreadcrumbSeparator, null)))));
 }
 function CommandPalette({
   open,
@@ -7028,11 +8214,11 @@ function CommandPalette({
   placeholder = "Type a command or search...",
   className
 }) {
-  const [query, setQuery] = React82.useState("");
+  const [query, setQuery] = React105.useState("");
   const filteredItems = items.filter(
     (item) => item.label.toLowerCase().includes(query.toLowerCase())
   );
-  return /* @__PURE__ */ React82.createElement(Dialog, { open, onOpenChange }, /* @__PURE__ */ React82.createElement(DialogContent, { className: "max-w-[600px] p-0 overflow-hidden" }, /* @__PURE__ */ React82.createElement("div", { className: "flex items-center border-b px-3", "cmdk-input-wrapper": "" }, /* @__PURE__ */ React82.createElement(SearchIcon, { className: "mr-2 h-4 w-4 shrink-0 opacity-50" }), /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React105.createElement(Dialog, { open, onOpenChange }, /* @__PURE__ */ React105.createElement(DialogContent, { className: "max-w-[600px] p-0 overflow-hidden" }, /* @__PURE__ */ React105.createElement("div", { className: "flex items-center border-b px-3", "cmdk-input-wrapper": "" }, /* @__PURE__ */ React105.createElement(SearchIcon, { className: "mr-2 h-4 w-4 shrink-0 opacity-50" }), /* @__PURE__ */ React105.createElement(
     "input",
     {
       "cmdk-input": "",
@@ -7041,7 +8227,7 @@ function CommandPalette({
       value: query,
       onChange: (e) => setQuery(e.target.value)
     }
-  )), /* @__PURE__ */ React82.createElement("div", { className: "max-h-[300px] overflow-y-auto p-2" }, filteredItems.length === 0 ? /* @__PURE__ */ React82.createElement("p", { className: "p-4 text-center text-sm text-muted-foreground" }, "No results found.") : /* @__PURE__ */ React82.createElement("div", { className: "space-y-1" }, filteredItems.map((item) => /* @__PURE__ */ React82.createElement(
+  )), /* @__PURE__ */ React105.createElement("div", { className: "max-h-[300px] overflow-y-auto p-2" }, filteredItems.length === 0 ? /* @__PURE__ */ React105.createElement("p", { className: "p-4 text-center text-sm text-muted-foreground" }, "No results found.") : /* @__PURE__ */ React105.createElement("div", { className: "space-y-1" }, filteredItems.map((item) => /* @__PURE__ */ React105.createElement(
     "button",
     {
       type: "button",
@@ -7053,7 +8239,7 @@ function CommandPalette({
       }
     },
     item.icon,
-    /* @__PURE__ */ React82.createElement("span", { className: "ml-2" }, item.label)
+    /* @__PURE__ */ React105.createElement("span", { className: "ml-2" }, item.label)
   ))))));
 }
 function MobileNav({
@@ -7064,7 +8250,7 @@ function MobileNav({
   onMenu,
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     "div",
     {
       className: cn(
@@ -7072,25 +8258,25 @@ function MobileNav({
         className
       )
     },
-    /* @__PURE__ */ React82__default.createElement("div", { className: "flex items-center justify-around" }, onMenu && /* @__PURE__ */ React82__default.createElement(
+    /* @__PURE__ */ React105__default.createElement("div", { className: "flex items-center justify-around" }, onMenu && /* @__PURE__ */ React105__default.createElement(
       "button",
       {
         onClick: onMenu,
         className: "flex flex-col items-center gap-1 p-2 text-muted-foreground"
       },
-      /* @__PURE__ */ React82__default.createElement(MenuIcon, { className: "h-5 w-5" }),
-      /* @__PURE__ */ React82__default.createElement("span", { className: "text-xs" }, "Menu")
-    ), showSearch && /* @__PURE__ */ React82__default.createElement(
+      /* @__PURE__ */ React105__default.createElement(MenuIcon, { className: "h-5 w-5" }),
+      /* @__PURE__ */ React105__default.createElement("span", { className: "text-xs" }, "Menu")
+    ), showSearch && /* @__PURE__ */ React105__default.createElement(
       "button",
       {
         onClick: onSearch,
         className: "flex flex-col items-center gap-1 p-2 text-muted-foreground"
       },
-      /* @__PURE__ */ React82__default.createElement(SearchIcon, { className: "h-5 w-5" }),
-      /* @__PURE__ */ React82__default.createElement("span", { className: "text-xs" }, "Search")
+      /* @__PURE__ */ React105__default.createElement(SearchIcon, { className: "h-5 w-5" }),
+      /* @__PURE__ */ React105__default.createElement("span", { className: "text-xs" }, "Search")
     ), items.map((item) => {
       const isActive = activeItem === item.id;
-      return /* @__PURE__ */ React82__default.createElement(
+      return /* @__PURE__ */ React105__default.createElement(
         "button",
         {
           key: item.id,
@@ -7100,7 +8286,7 @@ function MobileNav({
             isActive ? "text-primary" : "text-muted-foreground"
           )
         },
-        /* @__PURE__ */ React82__default.createElement("div", { className: "relative" }, item.icon, item.badge !== void 0 && item.badge > 0 && /* @__PURE__ */ React82__default.createElement(
+        /* @__PURE__ */ React105__default.createElement("div", { className: "relative" }, item.icon, item.badge !== void 0 && item.badge > 0 && /* @__PURE__ */ React105__default.createElement(
           Badge,
           {
             variant: "destructive",
@@ -7108,7 +8294,7 @@ function MobileNav({
           },
           item.badge > 9 ? "9+" : item.badge
         )),
-        /* @__PURE__ */ React82__default.createElement("span", { className: "text-xs" }, item.label)
+        /* @__PURE__ */ React105__default.createElement("span", { className: "text-xs" }, item.label)
       );
     }))
   );
@@ -7120,9 +8306,9 @@ function SectionJumper({
   showIcons = true,
   className
 }) {
-  return /* @__PURE__ */ React82__default.createElement("div", { className: cn("flex flex-wrap gap-1", className) }, sections.map((section) => {
+  return /* @__PURE__ */ React105__default.createElement("div", { className: cn("flex flex-wrap gap-1", className) }, sections.map((section) => {
     const isActive = activeSection === section.id;
-    return /* @__PURE__ */ React82__default.createElement(
+    return /* @__PURE__ */ React105__default.createElement(
       Button,
       {
         key: section.id,
@@ -7133,7 +8319,7 @@ function SectionJumper({
       },
       showIcons && section.icon,
       section.label,
-      /* @__PURE__ */ React82__default.createElement(ChevronRightIcon, { className: "h-3 w-3" })
+      /* @__PURE__ */ React105__default.createElement(ChevronRightIcon, { className: "h-3 w-3" })
     );
   }));
 }
@@ -7147,7 +8333,7 @@ function TabsPanel({
 }) {
   const defaultValue = defaultTab || items[0]?.id;
   const variantClass = variant === "pills" ? "bg-muted p-1" : variant === "outline" ? "border-b" : "";
-  return /* @__PURE__ */ React82__default.createElement(
+  return /* @__PURE__ */ React105__default.createElement(
     Tabs,
     {
       defaultValue,
@@ -7155,11 +8341,11 @@ function TabsPanel({
       onValueChange,
       className
     },
-    /* @__PURE__ */ React82__default.createElement(TabsList, { className: cn(variantClass) }, items.map((item) => /* @__PURE__ */ React82__default.createElement(TabsTrigger, { key: item.id, value: item.id, disabled: item.disabled }, item.label))),
-    items.map((item) => /* @__PURE__ */ React82__default.createElement(TabsContent, { key: item.id, value: item.id }, item.content))
+    /* @__PURE__ */ React105__default.createElement(TabsList, { className: cn(variantClass) }, items.map((item) => /* @__PURE__ */ React105__default.createElement(TabsTrigger, { key: item.id, value: item.id, disabled: item.disabled }, item.label))),
+    items.map((item) => /* @__PURE__ */ React105__default.createElement(TabsContent, { key: item.id, value: item.id }, item.content))
   );
 }
 
-export { ActivityTimeline, AppShell, AspectRatio, BreadcrumbTrail, CardGrid, Center, CommandPalette, ConfirmationDialog, ConnectionStatus, Container, DashboardLayout, DataGrid, DurationPicker, EmptyState, EntityCard, ErrorFallback, FilterBar, FilterChip, FilterChips, FilterDialog, Footer, FormBuilder, FormSection, FormWizard, HStack, LoadingOverlay, MasonryBoard, MetricCard, MobileNav, PageHeader, Pagination2 as Pagination, ProgressTracker, ResponsiveGrid, RightDrawer, SearchBar, SectionHeader, SectionJumper, SkeletonGenerator, SmartDataTable, SplitPane, Stack, StatCard, StatusGrid, StickyActions, StickyHeader, TabsPanel, ThreeColumnLayout, ToastManager, TwoColumnLayout, VStack };
+export { ActivityTimeline, AppShell, AspectRatio, KanbanCardAvatar as Avatar, KanbanCardBadge as Badge, BoardToolbar, BreadcrumbTrail, KanbanCard as Card, CardGrid, Center, ColumnHeader, CommandPalette, ConfirmationDialog, ConnectionStatus, Container, KanbanCardContent as Content, DashboardLayout, DataGrid, KanbanCardDescription as Description, DraggableCard, DraggableColumn, DraggableKanbanBoard, KanbanCardDueDate as DueDate, DurationPicker, EmptyState, EntityCard, ErrorFallback, FilterBar, FilterChip, FilterChips, FilterDialog, Footer, FormBuilder, FormSection, FormWizard, HStack, KanbanCardHeader as Header, KanbanBoard, KanbanBoardProvider, KanbanCard, KanbanCardFooter, KanbanColumn, KanbanCardLabel as Label, KanbanCardLabels as Labels, LoadingOverlay, MasonryBoard, MetricCard, MobileNav, PageHeader, Pagination2 as Pagination, ProgressTracker, QuickAddCard, ResponsiveGrid, RightDrawer, SearchBar, SectionHeader, SectionJumper, SkeletonGenerator, SmartDataTable, SplitPane, Stack, StatCard, StatusGrid, StickyActions, StickyHeader, KanbanCardSubtasks as Subtasks, TabsPanel, ThreeColumnLayout, KanbanCardTitle as Title, ToastManager, TwoColumnLayout, VStack, defaultFeatures, useKanbanBoard };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

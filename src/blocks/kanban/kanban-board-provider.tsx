@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import type { BaseCardMetadata, KanbanColumn, KanbanFeatures } from "../types";
+import type { BaseCardMetadata, KanbanColumn, KanbanFeatures } from "./types";
 
 /**
  * Kanban board state

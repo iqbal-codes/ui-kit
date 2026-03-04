@@ -3,8 +3,8 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/primitives/scroll-area";
-import type { KanbanBoardProps } from "../types";
 import { KanbanColumn } from "./kanban-column";
+import type { KanbanBoardProps } from "./types";
 
 /**
  * KanbanBoard - Main board container for kanban

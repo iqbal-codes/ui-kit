@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import type React from "react";
 import type { FieldValues, UseFormReturn } from "react-hook-form";
 import { FormSection, type ValidationStatus } from "@/blocks/data-entry/form-section";
 import { cn } from "@/lib/utils";
@@ -85,12 +85,7 @@ export function FormBody<T extends FieldValues>({
                   {renderField ? (
                     renderField(fieldConfig, form)
                   ) : (
-                    <FieldRenderer
-                      {...fieldConfig}
-                      render={
-                        fieldConfig.render ? () => fieldConfig.render?.(form, form) : undefined
-                      }
-                    />
+                    <FieldRenderer {...fieldConfig} />
                   )}
                 </div>
               ))}
