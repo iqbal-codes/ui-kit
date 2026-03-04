@@ -1,6 +1,4 @@
 .worktrees/
 node_modules/
-dist/
-dist-web/
 
 .next/
