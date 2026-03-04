@@ -2,9 +2,9 @@ import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { ChevronDownIcon, ChevronRight, MoreHorizontal, ChevronLeftIcon, ChevronRightIcon, ArrowLeft, ArrowRight, CheckIcon, XIcon, SearchIcon, CircleIcon, MinusIcon, MoreHorizontalIcon, GripVerticalIcon, ChevronUpIcon, PanelLeftIcon, Loader2Icon, OctagonXIcon, TriangleAlertIcon, InfoIcon, CircleCheckIcon } from 'lucide-react';
 import { Direction, Accordion as Accordion$1, Slot, AlertDialog as AlertDialog$1, AspectRatio as AspectRatio$1, Avatar as Avatar$1, Separator as Separator$1, Checkbox as Checkbox$1, Collapsible as Collapsible$1, Dialog as Dialog$1, ContextMenu as ContextMenu$1, DropdownMenu as DropdownMenu$1, Label as Label$1, HoverCard as HoverCard$1, Menubar as Menubar$1, NavigationMenu as NavigationMenu$1, Popover as Popover$1, Progress as Progress$1, RadioGroup as RadioGroup$1, ScrollArea as ScrollArea$1, Select as Select$1, Tooltip, Slider as Slider$1, Switch as Switch$1, Tabs as Tabs$1, Toggle as Toggle$1, ToggleGroup as ToggleGroup$1 } from 'radix-ui';
+import * as React44 from 'react';
+import React44__default, { useMemo } from 'react';
 import { cva } from 'class-variance-authority';
-import * as React9 from 'react';
-import { useMemo } from 'react';
 import { getDefaultClassNames, DayPicker } from 'react-day-picker';
 import useEmblaCarousel from 'embla-carousel-react';
 import * as RechartsPrimitive from 'recharts';
@@ -21,13 +21,13 @@ function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 function Accordion({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Accordion$1.Root, { "data-slot": "accordion", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Accordion$1.Root, { "data-slot": "accordion", ...props });
 }
 function AccordionItem({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Accordion$1.Item,
     {
       "data-slot": "accordion-item",
@@ -41,7 +41,7 @@ function AccordionTrigger({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(Accordion$1.Header, { className: "flex" }, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(Accordion$1.Header, { className: "flex" }, /* @__PURE__ */ React44__default.createElement(
     Accordion$1.Trigger,
     {
       "data-slot": "accordion-trigger",
@@ -52,7 +52,7 @@ function AccordionTrigger({
       ...props
     },
     children,
-    /* @__PURE__ */ React.createElement(ChevronDownIcon, { className: "text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" })
+    /* @__PURE__ */ React44__default.createElement(ChevronDownIcon, { className: "text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" })
   ));
 }
 function AccordionContent({
@@ -60,14 +60,14 @@ function AccordionContent({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Accordion$1.Content,
     {
       "data-slot": "accordion-content",
       className: "data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm",
       ...props
     },
-    /* @__PURE__ */ React.createElement("div", { className: cn("pt-0 pb-4", className) }, children)
+    /* @__PURE__ */ React44__default.createElement("div", { className: cn("pt-0 pb-4", className) }, children)
   );
 }
 var alertVariants = cva(
@@ -89,7 +89,7 @@ function Alert({
   variant,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "alert",
@@ -100,7 +100,7 @@ function Alert({
   );
 }
 function AlertTitle({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "alert-title",
@@ -110,7 +110,7 @@ function AlertTitle({ className, ...props }) {
   );
 }
 function AlertDescription({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "alert-description",
@@ -123,13 +123,13 @@ function AlertDescription({ className, ...props }) {
   );
 }
 var buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline: "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+        destructive: "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40",
+        outline: "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline"
@@ -137,7 +137,7 @@ var buttonVariants = cva(
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
         xs: "h-6 gap-1 rounded-md px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
+        sm: "h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
         icon: "size-9",
         "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
@@ -159,7 +159,7 @@ function Button({
   ...props
 }) {
   const Comp = asChild ? Slot.Root : "button";
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Comp,
     {
       "data-slot": "button",
@@ -173,21 +173,21 @@ function Button({
 
 // src/primitives/alert-dialog.tsx
 function AlertDialog({ ...props }) {
-  return /* @__PURE__ */ React.createElement(AlertDialog$1.Root, { "data-slot": "alert-dialog", ...props });
+  return /* @__PURE__ */ React44__default.createElement(AlertDialog$1.Root, { "data-slot": "alert-dialog", ...props });
 }
 function AlertDialogTrigger({
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(AlertDialog$1.Trigger, { "data-slot": "alert-dialog-trigger", ...props });
+  return /* @__PURE__ */ React44__default.createElement(AlertDialog$1.Trigger, { "data-slot": "alert-dialog-trigger", ...props });
 }
 function AlertDialogPortal({ ...props }) {
-  return /* @__PURE__ */ React.createElement(AlertDialog$1.Portal, { "data-slot": "alert-dialog-portal", ...props });
+  return /* @__PURE__ */ React44__default.createElement(AlertDialog$1.Portal, { "data-slot": "alert-dialog-portal", ...props });
 }
 function AlertDialogOverlay({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     AlertDialog$1.Overlay,
     {
       "data-slot": "alert-dialog-overlay",
@@ -204,7 +204,7 @@ function AlertDialogContent({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(AlertDialogPortal, null, /* @__PURE__ */ React.createElement(AlertDialogOverlay, null), /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(AlertDialogPortal, null, /* @__PURE__ */ React44__default.createElement(AlertDialogOverlay, null), /* @__PURE__ */ React44__default.createElement(
     AlertDialog$1.Content,
     {
       "data-slot": "alert-dialog-content",
@@ -218,7 +218,7 @@ function AlertDialogContent({
   ));
 }
 function AlertDialogHeader({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "alert-dialog-header",
@@ -231,7 +231,7 @@ function AlertDialogHeader({ className, ...props }) {
   );
 }
 function AlertDialogFooter({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "alert-dialog-footer",
@@ -247,7 +247,7 @@ function AlertDialogTitle({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     AlertDialog$1.Title,
     {
       "data-slot": "alert-dialog-title",
@@ -263,7 +263,7 @@ function AlertDialogDescription({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     AlertDialog$1.Description,
     {
       "data-slot": "alert-dialog-description",
@@ -273,7 +273,7 @@ function AlertDialogDescription({
   );
 }
 function AlertDialogMedia({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "alert-dialog-media",
@@ -291,7 +291,7 @@ function AlertDialogAction({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(Button, { variant, size, asChild: true }, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(Button, { variant, size, asChild: true }, /* @__PURE__ */ React44__default.createElement(
     AlertDialog$1.Action,
     {
       "data-slot": "alert-dialog-action",
@@ -306,7 +306,7 @@ function AlertDialogCancel({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(Button, { variant, size, asChild: true }, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(Button, { variant, size, asChild: true }, /* @__PURE__ */ React44__default.createElement(
     AlertDialog$1.Cancel,
     {
       "data-slot": "alert-dialog-cancel",
@@ -323,7 +323,7 @@ function Avatar({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Avatar$1.Root,
     {
       "data-slot": "avatar",
@@ -337,7 +337,7 @@ function Avatar({
   );
 }
 function AvatarImage({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Avatar$1.Image,
     {
       "data-slot": "avatar-image",
@@ -350,7 +350,7 @@ function AvatarFallback({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Avatar$1.Fallback,
     {
       "data-slot": "avatar-fallback",
@@ -363,7 +363,7 @@ function AvatarFallback({
   );
 }
 function AvatarBadge({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "span",
     {
       "data-slot": "avatar-badge",
@@ -379,7 +379,7 @@ function AvatarBadge({ className, ...props }) {
   );
 }
 function AvatarGroup({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "avatar-group",
@@ -392,7 +392,7 @@ function AvatarGroup({ className, ...props }) {
   );
 }
 function AvatarGroupCount({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "avatar-group-count",
@@ -429,7 +429,7 @@ function Badge({
   ...props
 }) {
   const Comp = asChild ? Slot.Root : "span";
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Comp,
     {
       "data-slot": "badge",
@@ -440,10 +440,10 @@ function Badge({
   );
 }
 function Breadcrumb({ ...props }) {
-  return /* @__PURE__ */ React.createElement("nav", { "aria-label": "breadcrumb", "data-slot": "breadcrumb", ...props });
+  return /* @__PURE__ */ React44__default.createElement("nav", { "aria-label": "breadcrumb", "data-slot": "breadcrumb", ...props });
 }
 function BreadcrumbList({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "ol",
     {
       "data-slot": "breadcrumb-list",
@@ -456,7 +456,7 @@ function BreadcrumbList({ className, ...props }) {
   );
 }
 function BreadcrumbItem({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "li",
     {
       "data-slot": "breadcrumb-item",
@@ -471,7 +471,7 @@ function BreadcrumbLink({
   ...props
 }) {
   const Comp = asChild ? Slot.Root : "a";
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Comp,
     {
       "data-slot": "breadcrumb-link",
@@ -481,7 +481,7 @@ function BreadcrumbLink({
   );
 }
 function BreadcrumbPage({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "span",
     {
       "data-slot": "breadcrumb-page",
@@ -494,7 +494,7 @@ function BreadcrumbPage({ className, ...props }) {
   );
 }
 function BreadcrumbSeparator({ children, className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "li",
     {
       "data-slot": "breadcrumb-separator",
@@ -503,11 +503,11 @@ function BreadcrumbSeparator({ children, className, ...props }) {
       className: cn("[&>svg]:size-3.5", className),
       ...props
     },
-    children ?? /* @__PURE__ */ React.createElement(ChevronRight, null)
+    children ?? /* @__PURE__ */ React44__default.createElement(ChevronRight, null)
   );
 }
 function BreadcrumbEllipsis({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "span",
     {
       "data-slot": "breadcrumb-ellipsis",
@@ -516,8 +516,8 @@ function BreadcrumbEllipsis({ className, ...props }) {
       className: cn("flex size-9 items-center justify-center", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement(MoreHorizontal, { className: "size-4" }),
-    /* @__PURE__ */ React.createElement("span", { className: "sr-only" }, "More")
+    /* @__PURE__ */ React44__default.createElement(MoreHorizontal, { className: "size-4" }),
+    /* @__PURE__ */ React44__default.createElement("span", { className: "sr-only" }, "More")
   );
 }
 function Separator({
@@ -526,14 +526,14 @@ function Separator({
   decorative = true,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Separator$1.Root,
     {
       "data-slot": "separator",
       decorative,
       orientation,
       className: cn(
-        "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        "shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
         className
       ),
       ...props
@@ -618,7 +618,7 @@ function Calendar({
   ...props
 }) {
   const defaultClassNames = getDefaultClassNames();
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     DayPicker,
     {
       showOutsideDays,
@@ -703,20 +703,20 @@ function Calendar({
       },
       components: {
         Root: ({ className: className2, rootRef, ...props2 }) => {
-          return /* @__PURE__ */ React9.createElement("div", { "data-slot": "calendar", ref: rootRef, className: cn(className2), ...props2 });
+          return /* @__PURE__ */ React44.createElement("div", { "data-slot": "calendar", ref: rootRef, className: cn(className2), ...props2 });
         },
         Chevron: ({ className: className2, orientation, ...props2 }) => {
           if (orientation === "left") {
-            return /* @__PURE__ */ React9.createElement(ChevronLeftIcon, { className: cn("size-4", className2), ...props2 });
+            return /* @__PURE__ */ React44.createElement(ChevronLeftIcon, { className: cn("size-4", className2), ...props2 });
           }
           if (orientation === "right") {
-            return /* @__PURE__ */ React9.createElement(ChevronRightIcon, { className: cn("size-4", className2), ...props2 });
+            return /* @__PURE__ */ React44.createElement(ChevronRightIcon, { className: cn("size-4", className2), ...props2 });
           }
-          return /* @__PURE__ */ React9.createElement(ChevronDownIcon, { className: cn("size-4", className2), ...props2 });
+          return /* @__PURE__ */ React44.createElement(ChevronDownIcon, { className: cn("size-4", className2), ...props2 });
         },
         DayButton: CalendarDayButton,
         WeekNumber: ({ children, ...props2 }) => {
-          return /* @__PURE__ */ React9.createElement("td", { ...props2 }, /* @__PURE__ */ React9.createElement("div", { className: "flex size-(--cell-size) items-center justify-center text-center" }, children));
+          return /* @__PURE__ */ React44.createElement("td", { ...props2 }, /* @__PURE__ */ React44.createElement("div", { className: "flex size-(--cell-size) items-center justify-center text-center" }, children));
         },
         ...components
       },
@@ -731,11 +731,11 @@ function CalendarDayButton({
   ...props
 }) {
   const defaultClassNames = getDefaultClassNames();
-  const ref = React9.useRef(null);
-  React9.useEffect(() => {
+  const ref = React44.useRef(null);
+  React44.useEffect(() => {
     if (modifiers.focused) ref.current?.focus();
   }, [modifiers.focused]);
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Button,
     {
       ref,
@@ -755,10 +755,8 @@ function CalendarDayButton({
     }
   );
 }
-
-// src/primitives/card.tsx
 function Card({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "card",
@@ -771,7 +769,7 @@ function Card({ className, ...props }) {
   );
 }
 function CardHeader({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "card-header",
@@ -784,7 +782,7 @@ function CardHeader({ className, ...props }) {
   );
 }
 function CardTitle({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "card-title",
@@ -794,7 +792,7 @@ function CardTitle({ className, ...props }) {
   );
 }
 function CardDescription({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "card-description",
@@ -804,7 +802,7 @@ function CardDescription({ className, ...props }) {
   );
 }
 function CardAction({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "card-action",
@@ -814,10 +812,10 @@ function CardAction({ className, ...props }) {
   );
 }
 function CardContent({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement("div", { "data-slot": "card-content", className: cn("px-6", className), ...props });
+  return /* @__PURE__ */ React44__default.createElement("div", { "data-slot": "card-content", className: cn("px-6", className), ...props });
 }
 function CardFooter({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "card-footer",
@@ -826,9 +824,9 @@ function CardFooter({ className, ...props }) {
     }
   );
 }
-var CarouselContext = React9.createContext(null);
+var CarouselContext = React44.createContext(null);
 function useCarousel() {
-  const context = React9.useContext(CarouselContext);
+  const context = React44.useContext(CarouselContext);
   if (!context) {
     throw new Error("useCarousel must be used within a <Carousel />");
   }
@@ -850,20 +848,20 @@ function Carousel({
     },
     plugins
   );
-  const [canScrollPrev, setCanScrollPrev] = React9.useState(false);
-  const [canScrollNext, setCanScrollNext] = React9.useState(false);
-  const onSelect = React9.useCallback((api2) => {
+  const [canScrollPrev, setCanScrollPrev] = React44.useState(false);
+  const [canScrollNext, setCanScrollNext] = React44.useState(false);
+  const onSelect = React44.useCallback((api2) => {
     if (!api2) return;
     setCanScrollPrev(api2.canScrollPrev());
     setCanScrollNext(api2.canScrollNext());
   }, []);
-  const scrollPrev = React9.useCallback(() => {
+  const scrollPrev = React44.useCallback(() => {
     api?.scrollPrev();
   }, [api]);
-  const scrollNext = React9.useCallback(() => {
+  const scrollNext = React44.useCallback(() => {
     api?.scrollNext();
   }, [api]);
-  const handleKeyDown = React9.useCallback(
+  const handleKeyDown = React44.useCallback(
     (event) => {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
@@ -875,11 +873,11 @@ function Carousel({
     },
     [scrollPrev, scrollNext]
   );
-  React9.useEffect(() => {
+  React44.useEffect(() => {
     if (!api || !setApi) return;
     setApi(api);
   }, [api, setApi]);
-  React9.useEffect(() => {
+  React44.useEffect(() => {
     if (!api) return;
     onSelect(api);
     api.on("reInit", onSelect);
@@ -888,7 +886,7 @@ function Carousel({
       api?.off("select", onSelect);
     };
   }, [api, onSelect]);
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     CarouselContext.Provider,
     {
       value: {
@@ -902,7 +900,7 @@ function Carousel({
         canScrollNext
       }
     },
-    /* @__PURE__ */ React9.createElement(
+    /* @__PURE__ */ React44.createElement(
       "div",
       {
         onKeyDownCapture: handleKeyDown,
@@ -918,7 +916,7 @@ function Carousel({
 }
 function CarouselContent({ className, ...props }) {
   const { carouselRef, orientation } = useCarousel();
-  return /* @__PURE__ */ React9.createElement("div", { ref: carouselRef, className: "overflow-hidden", "data-slot": "carousel-content" }, /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement("div", { ref: carouselRef, className: "overflow-hidden", "data-slot": "carousel-content" }, /* @__PURE__ */ React44.createElement(
     "div",
     {
       className: cn("flex", orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col", className),
@@ -928,7 +926,7 @@ function CarouselContent({ className, ...props }) {
 }
 function CarouselItem({ className, ...props }) {
   const { orientation } = useCarousel();
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "div",
     {
       role: "group",
@@ -950,7 +948,7 @@ function CarouselPrevious({
   ...props
 }) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Button,
     {
       "data-slot": "carousel-previous",
@@ -965,8 +963,8 @@ function CarouselPrevious({
       onClick: scrollPrev,
       ...props
     },
-    /* @__PURE__ */ React9.createElement(ArrowLeft, null),
-    /* @__PURE__ */ React9.createElement("span", { className: "sr-only" }, "Previous slide")
+    /* @__PURE__ */ React44.createElement(ArrowLeft, null),
+    /* @__PURE__ */ React44.createElement("span", { className: "sr-only" }, "Previous slide")
   );
 }
 function CarouselNext({
@@ -976,7 +974,7 @@ function CarouselNext({
   ...props
 }) {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Button,
     {
       "data-slot": "carousel-next",
@@ -991,14 +989,14 @@ function CarouselNext({
       onClick: scrollNext,
       ...props
     },
-    /* @__PURE__ */ React9.createElement(ArrowRight, null),
-    /* @__PURE__ */ React9.createElement("span", { className: "sr-only" }, "Next slide")
+    /* @__PURE__ */ React44.createElement(ArrowRight, null),
+    /* @__PURE__ */ React44.createElement("span", { className: "sr-only" }, "Next slide")
   );
 }
 var THEMES = { light: "", dark: ".dark" };
-var ChartContext = React9.createContext(null);
+var ChartContext = React44.createContext(null);
 function useChart() {
-  const context = React9.useContext(ChartContext);
+  const context = React44.useContext(ChartContext);
   if (!context) {
     throw new Error("useChart must be used within a <ChartContainer />");
   }
@@ -1011,9 +1009,9 @@ function ChartContainer({
   config,
   ...props
 }) {
-  const uniqueId = React9.useId();
+  const uniqueId = React44.useId();
   const chartId = `chart-${id || uniqueId.replace(/:/g, "")}`;
-  return /* @__PURE__ */ React9.createElement(ChartContext.Provider, { value: { config } }, /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(ChartContext.Provider, { value: { config } }, /* @__PURE__ */ React44.createElement(
     "div",
     {
       "data-slot": "chart",
@@ -1024,8 +1022,8 @@ function ChartContainer({
       ),
       ...props
     },
-    /* @__PURE__ */ React9.createElement(ChartStyle, { id: chartId, config }),
-    /* @__PURE__ */ React9.createElement(RechartsPrimitive.ResponsiveContainer, null, children)
+    /* @__PURE__ */ React44.createElement(ChartStyle, { id: chartId, config }),
+    /* @__PURE__ */ React44.createElement(RechartsPrimitive.ResponsiveContainer, null, children)
   ));
 }
 var ChartStyle = ({ id, config }) => {
@@ -1033,7 +1031,7 @@ var ChartStyle = ({ id, config }) => {
   if (!colorConfig.length) {
     return null;
   }
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "style",
     {
       dangerouslySetInnerHTML: {
@@ -1068,7 +1066,7 @@ function ChartTooltipContent({
   labelKey
 }) {
   const { config } = useChart();
-  const tooltipLabel = React9.useMemo(() => {
+  const tooltipLabel = React44.useMemo(() => {
     if (hideLabel || !payload?.length) {
       return null;
     }
@@ -1077,18 +1075,18 @@ function ChartTooltipContent({
     const itemConfig = getPayloadConfigFromPayload(config, item, key);
     const value = !labelKey && typeof label === "string" ? config[label]?.label || label : itemConfig?.label;
     if (labelFormatter) {
-      return /* @__PURE__ */ React9.createElement("div", { className: cn("font-medium", labelClassName) }, labelFormatter(value, payload));
+      return /* @__PURE__ */ React44.createElement("div", { className: cn("font-medium", labelClassName) }, labelFormatter(value, payload));
     }
     if (!value) {
       return null;
     }
-    return /* @__PURE__ */ React9.createElement("div", { className: cn("font-medium", labelClassName) }, value);
+    return /* @__PURE__ */ React44.createElement("div", { className: cn("font-medium", labelClassName) }, value);
   }, [label, labelFormatter, payload, hideLabel, labelClassName, config, labelKey]);
   if (!active || !payload?.length) {
     return null;
   }
   const nestLabel = payload.length === 1 && indicator !== "dot";
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "div",
     {
       className: cn(
@@ -1097,11 +1095,11 @@ function ChartTooltipContent({
       )
     },
     !nestLabel ? tooltipLabel : null,
-    /* @__PURE__ */ React9.createElement("div", { className: "grid gap-1.5" }, payload.filter((item) => item.type !== "none").map((item, index) => {
+    /* @__PURE__ */ React44.createElement("div", { className: "grid gap-1.5" }, payload.filter((item) => item.type !== "none").map((item, index) => {
       const key = `${nameKey || item.name || item.dataKey || "value"}`;
       const itemConfig = getPayloadConfigFromPayload(config, item, key);
       const indicatorColor = color || item.payload.fill || item.color;
-      return /* @__PURE__ */ React9.createElement(
+      return /* @__PURE__ */ React44.createElement(
         "div",
         {
           key: item.dataKey,
@@ -1110,7 +1108,7 @@ function ChartTooltipContent({
             indicator === "dot" && "items-center"
           )
         },
-        formatter && item?.value !== void 0 && item.name ? formatter(item.value, item.name, item, index, item.payload) : /* @__PURE__ */ React9.createElement(React9.Fragment, null, itemConfig?.icon ? /* @__PURE__ */ React9.createElement(itemConfig.icon, null) : !hideIndicator && /* @__PURE__ */ React9.createElement(
+        formatter && item?.value !== void 0 && item.name ? formatter(item.value, item.name, item, index, item.payload) : /* @__PURE__ */ React44.createElement(React44.Fragment, null, itemConfig?.icon ? /* @__PURE__ */ React44.createElement(itemConfig.icon, null) : !hideIndicator && /* @__PURE__ */ React44.createElement(
           "div",
           {
             className: cn(
@@ -1127,7 +1125,7 @@ function ChartTooltipContent({
               "--color-border": indicatorColor
             }
           }
-        ), /* @__PURE__ */ React9.createElement(
+        ), /* @__PURE__ */ React44.createElement(
           "div",
           {
             className: cn(
@@ -1135,8 +1133,8 @@ function ChartTooltipContent({
               nestLabel ? "items-end" : "items-center"
             )
           },
-          /* @__PURE__ */ React9.createElement("div", { className: "grid gap-1.5" }, nestLabel ? tooltipLabel : null, /* @__PURE__ */ React9.createElement("span", { className: "text-muted-foreground" }, itemConfig?.label || item.name)),
-          item.value && /* @__PURE__ */ React9.createElement("span", { className: "text-foreground font-mono font-medium tabular-nums" }, item.value.toLocaleString())
+          /* @__PURE__ */ React44.createElement("div", { className: "grid gap-1.5" }, nestLabel ? tooltipLabel : null, /* @__PURE__ */ React44.createElement("span", { className: "text-muted-foreground" }, itemConfig?.label || item.name)),
+          item.value && /* @__PURE__ */ React44.createElement("span", { className: "text-foreground font-mono font-medium tabular-nums" }, item.value.toLocaleString())
         ))
       );
     }))
@@ -1154,7 +1152,7 @@ function ChartLegendContent({
   if (!payload?.length) {
     return null;
   }
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "div",
     {
       className: cn(
@@ -1166,7 +1164,7 @@ function ChartLegendContent({
     payload.filter((item) => item.type !== "none").map((item) => {
       const key = `${nameKey || item.dataKey || "value"}`;
       const itemConfig = getPayloadConfigFromPayload(config, item, key);
-      return /* @__PURE__ */ React9.createElement(
+      return /* @__PURE__ */ React44.createElement(
         "div",
         {
           key: item.value,
@@ -1174,7 +1172,7 @@ function ChartLegendContent({
             "[&>svg]:text-muted-foreground flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3"
           )
         },
-        itemConfig?.icon && !hideIcon ? /* @__PURE__ */ React9.createElement(itemConfig.icon, null) : /* @__PURE__ */ React9.createElement(
+        itemConfig?.icon && !hideIcon ? /* @__PURE__ */ React44.createElement(itemConfig.icon, null) : /* @__PURE__ */ React44.createElement(
           "div",
           {
             className: "h-2 w-2 shrink-0 rounded-[2px]",
@@ -1202,7 +1200,7 @@ function getPayloadConfigFromPayload(config, payload, key) {
   return configLabelKey in config ? config[configLabelKey] : config[key];
 }
 function Checkbox({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Checkbox$1.Root,
     {
       "data-slot": "checkbox",
@@ -1212,33 +1210,31 @@ function Checkbox({ className, ...props }) {
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React44__default.createElement(
       Checkbox$1.Indicator,
       {
         "data-slot": "checkbox-indicator",
         className: "grid place-content-center text-current transition-none"
       },
-      /* @__PURE__ */ React.createElement(CheckIcon, { className: "size-3.5" })
+      /* @__PURE__ */ React44__default.createElement(CheckIcon, { className: "size-3.5" })
     )
   );
 }
 function Collapsible({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Collapsible$1.Root, { "data-slot": "collapsible", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Collapsible$1.Root, { "data-slot": "collapsible", ...props });
 }
 function CollapsibleTrigger({
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(Collapsible$1.CollapsibleTrigger, { "data-slot": "collapsible-trigger", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Collapsible$1.CollapsibleTrigger, { "data-slot": "collapsible-trigger", ...props });
 }
 function CollapsibleContent({
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(Collapsible$1.CollapsibleContent, { "data-slot": "collapsible-content", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Collapsible$1.CollapsibleContent, { "data-slot": "collapsible-content", ...props });
 }
-
-// src/primitives/input.tsx
 function Input({ className, type, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "input",
     {
       type,
@@ -1253,10 +1249,8 @@ function Input({ className, type, ...props }) {
     }
   );
 }
-
-// src/primitives/textarea.tsx
 function Textarea({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "textarea",
     {
       "data-slot": "textarea",
@@ -1271,7 +1265,7 @@ function Textarea({ className, ...props }) {
 
 // src/primitives/input-group.tsx
 function InputGroup({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "input-group",
@@ -1315,7 +1309,7 @@ function InputGroupAddon({
   align = "inline-start",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       role: "group",
@@ -1352,7 +1346,7 @@ function InputGroupButton({
   size = "xs",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Button,
     {
       type,
@@ -1364,7 +1358,7 @@ function InputGroupButton({
   );
 }
 function InputGroupText({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "span",
     {
       className: cn(
@@ -1376,7 +1370,7 @@ function InputGroupText({ className, ...props }) {
   );
 }
 function InputGroupInput({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Input,
     {
       "data-slot": "input-group-control",
@@ -1389,7 +1383,7 @@ function InputGroupInput({ className, ...props }) {
   );
 }
 function InputGroupTextarea({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Textarea,
     {
       "data-slot": "input-group-control",
@@ -1405,10 +1399,10 @@ function InputGroupTextarea({ className, ...props }) {
 // src/primitives/combobox.tsx
 var Combobox = Combobox$1.Root;
 function ComboboxValue({ ...props }) {
-  return /* @__PURE__ */ React9.createElement(Combobox$1.Value, { "data-slot": "combobox-value", ...props });
+  return /* @__PURE__ */ React44.createElement(Combobox$1.Value, { "data-slot": "combobox-value", ...props });
 }
 function ComboboxTrigger({ className, children, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Combobox$1.Trigger,
     {
       "data-slot": "combobox-trigger",
@@ -1416,7 +1410,7 @@ function ComboboxTrigger({ className, children, ...props }) {
       ...props
     },
     children,
-    /* @__PURE__ */ React9.createElement(
+    /* @__PURE__ */ React44.createElement(
       ChevronDownIcon,
       {
         "data-slot": "combobox-trigger-icon",
@@ -1426,15 +1420,15 @@ function ComboboxTrigger({ className, children, ...props }) {
   );
 }
 function ComboboxClear({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Combobox$1.Clear,
     {
       "data-slot": "combobox-clear",
-      render: /* @__PURE__ */ React9.createElement(InputGroupButton, { variant: "ghost", size: "icon-xs" }),
+      render: /* @__PURE__ */ React44.createElement(InputGroupButton, { variant: "ghost", size: "icon-xs" }),
       className: cn(className),
       ...props
     },
-    /* @__PURE__ */ React9.createElement(XIcon, { className: "pointer-events-none" })
+    /* @__PURE__ */ React44.createElement(XIcon, { className: "pointer-events-none" })
   );
 }
 function ComboboxInput({
@@ -1445,7 +1439,7 @@ function ComboboxInput({
   showClear = false,
   ...props
 }) {
-  return /* @__PURE__ */ React9.createElement(InputGroup, { className: cn("w-auto", className) }, /* @__PURE__ */ React9.createElement(Combobox$1.Input, { render: /* @__PURE__ */ React9.createElement(InputGroupInput, { disabled }), ...props }), /* @__PURE__ */ React9.createElement(InputGroupAddon, { align: "inline-end" }, showTrigger && /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(InputGroup, { className: cn("w-auto", className) }, /* @__PURE__ */ React44.createElement(Combobox$1.Input, { render: /* @__PURE__ */ React44.createElement(InputGroupInput, { disabled }), ...props }), /* @__PURE__ */ React44.createElement(InputGroupAddon, { align: "inline-end" }, showTrigger && /* @__PURE__ */ React44.createElement(
     InputGroupButton,
     {
       size: "icon-xs",
@@ -1455,8 +1449,8 @@ function ComboboxInput({
       className: "group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent",
       disabled
     },
-    /* @__PURE__ */ React9.createElement(ComboboxTrigger, null)
-  ), showClear && /* @__PURE__ */ React9.createElement(ComboboxClear, { disabled })), children);
+    /* @__PURE__ */ React44.createElement(ComboboxTrigger, null)
+  ), showClear && /* @__PURE__ */ React44.createElement(ComboboxClear, { disabled })), children);
 }
 function ComboboxContent({
   className,
@@ -1467,7 +1461,7 @@ function ComboboxContent({
   anchor,
   ...props
 }) {
-  return /* @__PURE__ */ React9.createElement(Combobox$1.Portal, null, /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(Combobox$1.Portal, null, /* @__PURE__ */ React44.createElement(
     Combobox$1.Positioner,
     {
       side,
@@ -1477,7 +1471,7 @@ function ComboboxContent({
       anchor,
       className: "isolate z-50"
     },
-    /* @__PURE__ */ React9.createElement(
+    /* @__PURE__ */ React44.createElement(
       Combobox$1.Popup,
       {
         "data-slot": "combobox-content",
@@ -1492,7 +1486,7 @@ function ComboboxContent({
   ));
 }
 function ComboboxList({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Combobox$1.List,
     {
       "data-slot": "combobox-list",
@@ -1505,7 +1499,7 @@ function ComboboxList({ className, ...props }) {
   );
 }
 function ComboboxItem({ className, children, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Combobox$1.Item,
     {
       "data-slot": "combobox-item",
@@ -1516,21 +1510,21 @@ function ComboboxItem({ className, children, ...props }) {
       ...props
     },
     children,
-    /* @__PURE__ */ React9.createElement(
+    /* @__PURE__ */ React44.createElement(
       Combobox$1.ItemIndicator,
       {
         "data-slot": "combobox-item-indicator",
-        render: /* @__PURE__ */ React9.createElement("span", { className: "pointer-events-none absolute right-2 flex size-4 items-center justify-center" })
+        render: /* @__PURE__ */ React44.createElement("span", { className: "pointer-events-none absolute right-2 flex size-4 items-center justify-center" })
       },
-      /* @__PURE__ */ React9.createElement(CheckIcon, { className: "pointer-events-none size-4 pointer-coarse:size-5" })
+      /* @__PURE__ */ React44.createElement(CheckIcon, { className: "pointer-events-none size-4 pointer-coarse:size-5" })
     )
   );
 }
 function ComboboxGroup({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(Combobox$1.Group, { "data-slot": "combobox-group", className: cn(className), ...props });
+  return /* @__PURE__ */ React44.createElement(Combobox$1.Group, { "data-slot": "combobox-group", className: cn(className), ...props });
 }
 function ComboboxLabel({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Combobox$1.GroupLabel,
     {
       "data-slot": "combobox-label",
@@ -1543,10 +1537,10 @@ function ComboboxLabel({ className, ...props }) {
   );
 }
 function ComboboxCollection({ ...props }) {
-  return /* @__PURE__ */ React9.createElement(Combobox$1.Collection, { "data-slot": "combobox-collection", ...props });
+  return /* @__PURE__ */ React44.createElement(Combobox$1.Collection, { "data-slot": "combobox-collection", ...props });
 }
 function ComboboxEmpty({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Combobox$1.Empty,
     {
       "data-slot": "combobox-empty",
@@ -1559,7 +1553,7 @@ function ComboboxEmpty({ className, ...props }) {
   );
 }
 function ComboboxSeparator({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Combobox$1.Separator,
     {
       "data-slot": "combobox-separator",
@@ -1572,7 +1566,7 @@ function ComboboxChips({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Combobox$1.Chips,
     {
       "data-slot": "combobox-chips",
@@ -1590,7 +1584,7 @@ function ComboboxChip({
   showRemove = true,
   ...props
 }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Combobox$1.Chip,
     {
       "data-slot": "combobox-chip",
@@ -1601,19 +1595,19 @@ function ComboboxChip({
       ...props
     },
     children,
-    showRemove && /* @__PURE__ */ React9.createElement(
+    showRemove && /* @__PURE__ */ React44.createElement(
       Combobox$1.ChipRemove,
       {
-        render: /* @__PURE__ */ React9.createElement(Button, { variant: "ghost", size: "icon-xs" }),
+        render: /* @__PURE__ */ React44.createElement(Button, { variant: "ghost", size: "icon-xs" }),
         className: "-ml-1 opacity-50 hover:opacity-100",
         "data-slot": "combobox-chip-remove"
       },
-      /* @__PURE__ */ React9.createElement(XIcon, { className: "pointer-events-none" })
+      /* @__PURE__ */ React44.createElement(XIcon, { className: "pointer-events-none" })
     )
   );
 }
 function ComboboxChipsInput({ className, children, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Combobox$1.Input,
     {
       "data-slot": "combobox-chip-input",
@@ -1623,25 +1617,25 @@ function ComboboxChipsInput({ className, children, ...props }) {
   );
 }
 function useComboboxAnchor() {
-  return React9.useRef(null);
+  return React44.useRef(null);
 }
 function Dialog({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Dialog$1.Root, { "data-slot": "dialog", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Dialog$1.Root, { "data-slot": "dialog", ...props });
 }
 function DialogTrigger({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Dialog$1.Trigger, { "data-slot": "dialog-trigger", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Dialog$1.Trigger, { "data-slot": "dialog-trigger", ...props });
 }
 function DialogPortal({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Dialog$1.Portal, { "data-slot": "dialog-portal", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Dialog$1.Portal, { "data-slot": "dialog-portal", ...props });
 }
 function DialogClose({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Dialog$1.Close, { "data-slot": "dialog-close", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Dialog$1.Close, { "data-slot": "dialog-close", ...props });
 }
 function DialogOverlay({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Dialog$1.Overlay,
     {
       "data-slot": "dialog-overlay",
@@ -1659,7 +1653,7 @@ function DialogContent({
   showCloseButton = true,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(DialogPortal, { "data-slot": "dialog-portal" }, /* @__PURE__ */ React.createElement(DialogOverlay, null), /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(DialogPortal, { "data-slot": "dialog-portal" }, /* @__PURE__ */ React44__default.createElement(DialogOverlay, null), /* @__PURE__ */ React44__default.createElement(
     Dialog$1.Content,
     {
       "data-slot": "dialog-content",
@@ -1670,19 +1664,19 @@ function DialogContent({
       ...props
     },
     children,
-    showCloseButton && /* @__PURE__ */ React.createElement(
+    showCloseButton && /* @__PURE__ */ React44__default.createElement(
       Dialog$1.Close,
       {
         "data-slot": "dialog-close",
         className: "ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
       },
-      /* @__PURE__ */ React.createElement(XIcon, null),
-      /* @__PURE__ */ React.createElement("span", { className: "sr-only" }, "Close")
+      /* @__PURE__ */ React44__default.createElement(XIcon, null),
+      /* @__PURE__ */ React44__default.createElement("span", { className: "sr-only" }, "Close")
     )
   ));
 }
 function DialogHeader({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "dialog-header",
@@ -1697,7 +1691,7 @@ function DialogFooter({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "dialog-footer",
@@ -1705,11 +1699,11 @@ function DialogFooter({
       ...props
     },
     children,
-    showCloseButton && /* @__PURE__ */ React.createElement(Dialog$1.Close, { asChild: true }, /* @__PURE__ */ React.createElement(Button, { variant: "outline" }, "Close"))
+    showCloseButton && /* @__PURE__ */ React44__default.createElement(Dialog$1.Close, { asChild: true }, /* @__PURE__ */ React44__default.createElement(Button, { variant: "outline" }, "Close"))
   );
 }
 function DialogTitle({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Dialog$1.Title,
     {
       "data-slot": "dialog-title",
@@ -1722,7 +1716,7 @@ function DialogDescription({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Dialog$1.Description,
     {
       "data-slot": "dialog-description",
@@ -1734,7 +1728,7 @@ function DialogDescription({
 
 // src/primitives/command.tsx
 function Command({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Command$1,
     {
       "data-slot": "command",
@@ -1754,20 +1748,20 @@ function CommandDialog({
   showCloseButton = true,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(Dialog, { ...props }, /* @__PURE__ */ React.createElement(DialogHeader, { className: "sr-only" }, /* @__PURE__ */ React.createElement(DialogTitle, null, title), /* @__PURE__ */ React.createElement(DialogDescription, null, description)), /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(Dialog, { ...props }, /* @__PURE__ */ React44__default.createElement(DialogHeader, { className: "sr-only" }, /* @__PURE__ */ React44__default.createElement(DialogTitle, null, title), /* @__PURE__ */ React44__default.createElement(DialogDescription, null, description)), /* @__PURE__ */ React44__default.createElement(
     DialogContent,
     {
       className: cn("overflow-hidden p-0", className),
       showCloseButton
     },
-    /* @__PURE__ */ React.createElement(Command, { className: "[&_[cmdk-group-heading]]:text-muted-foreground **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5" }, children)
+    /* @__PURE__ */ React44__default.createElement(Command, { className: "[&_[cmdk-group-heading]]:text-muted-foreground **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5" }, children)
   ));
 }
 function CommandInput({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement("div", { "data-slot": "command-input-wrapper", className: "flex h-9 items-center gap-2 border-b px-3" }, /* @__PURE__ */ React.createElement(SearchIcon, { className: "size-4 shrink-0 opacity-50" }), /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement("div", { "data-slot": "command-input-wrapper", className: "flex h-9 items-center gap-2 border-b px-3" }, /* @__PURE__ */ React44__default.createElement(SearchIcon, { className: "size-4 shrink-0 opacity-50" }), /* @__PURE__ */ React44__default.createElement(
     Command$1.Input,
     {
       "data-slot": "command-input",
@@ -1780,7 +1774,7 @@ function CommandInput({
   ));
 }
 function CommandList({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Command$1.List,
     {
       "data-slot": "command-list",
@@ -1790,7 +1784,7 @@ function CommandList({ className, ...props }) {
   );
 }
 function CommandEmpty({ ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Command$1.Empty,
     {
       "data-slot": "command-empty",
@@ -1803,7 +1797,7 @@ function CommandGroup({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Command$1.Group,
     {
       "data-slot": "command-group",
@@ -1819,7 +1813,7 @@ function CommandSeparator({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Command$1.Separator,
     {
       "data-slot": "command-separator",
@@ -1829,7 +1823,7 @@ function CommandSeparator({
   );
 }
 function CommandItem({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Command$1.Item,
     {
       "data-slot": "command-item",
@@ -1842,7 +1836,7 @@ function CommandItem({ className, ...props }) {
   );
 }
 function CommandShortcut({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "span",
     {
       "data-slot": "command-shortcut",
@@ -1852,26 +1846,26 @@ function CommandShortcut({ className, ...props }) {
   );
 }
 function ContextMenu({ ...props }) {
-  return /* @__PURE__ */ React.createElement(ContextMenu$1.Root, { "data-slot": "context-menu", ...props });
+  return /* @__PURE__ */ React44__default.createElement(ContextMenu$1.Root, { "data-slot": "context-menu", ...props });
 }
 function ContextMenuTrigger({
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(ContextMenu$1.Trigger, { "data-slot": "context-menu-trigger", ...props });
+  return /* @__PURE__ */ React44__default.createElement(ContextMenu$1.Trigger, { "data-slot": "context-menu-trigger", ...props });
 }
 function ContextMenuGroup({ ...props }) {
-  return /* @__PURE__ */ React.createElement(ContextMenu$1.Group, { "data-slot": "context-menu-group", ...props });
+  return /* @__PURE__ */ React44__default.createElement(ContextMenu$1.Group, { "data-slot": "context-menu-group", ...props });
 }
 function ContextMenuPortal({ ...props }) {
-  return /* @__PURE__ */ React.createElement(ContextMenu$1.Portal, { "data-slot": "context-menu-portal", ...props });
+  return /* @__PURE__ */ React44__default.createElement(ContextMenu$1.Portal, { "data-slot": "context-menu-portal", ...props });
 }
 function ContextMenuSub({ ...props }) {
-  return /* @__PURE__ */ React.createElement(ContextMenu$1.Sub, { "data-slot": "context-menu-sub", ...props });
+  return /* @__PURE__ */ React44__default.createElement(ContextMenu$1.Sub, { "data-slot": "context-menu-sub", ...props });
 }
 function ContextMenuRadioGroup({
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(ContextMenu$1.RadioGroup, { "data-slot": "context-menu-radio-group", ...props });
+  return /* @__PURE__ */ React44__default.createElement(ContextMenu$1.RadioGroup, { "data-slot": "context-menu-radio-group", ...props });
 }
 function ContextMenuSubTrigger({
   className,
@@ -1879,7 +1873,7 @@ function ContextMenuSubTrigger({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     ContextMenu$1.SubTrigger,
     {
       "data-slot": "context-menu-sub-trigger",
@@ -1891,14 +1885,14 @@ function ContextMenuSubTrigger({
       ...props
     },
     children,
-    /* @__PURE__ */ React.createElement(ChevronRightIcon, { className: "ml-auto" })
+    /* @__PURE__ */ React44__default.createElement(ChevronRightIcon, { className: "ml-auto" })
   );
 }
 function ContextMenuSubContent({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     ContextMenu$1.SubContent,
     {
       "data-slot": "context-menu-sub-content",
@@ -1914,7 +1908,7 @@ function ContextMenuContent({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(ContextMenu$1.Portal, null, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(ContextMenu$1.Portal, null, /* @__PURE__ */ React44__default.createElement(
     ContextMenu$1.Content,
     {
       "data-slot": "context-menu-content",
@@ -1932,7 +1926,7 @@ function ContextMenuItem({
   variant = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     ContextMenu$1.Item,
     {
       "data-slot": "context-menu-item",
@@ -1952,7 +1946,7 @@ function ContextMenuCheckboxItem({
   checked,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     ContextMenu$1.CheckboxItem,
     {
       "data-slot": "context-menu-checkbox-item",
@@ -1963,7 +1957,7 @@ function ContextMenuCheckboxItem({
       checked,
       ...props
     },
-    /* @__PURE__ */ React.createElement("span", { className: "pointer-events-none absolute left-2 flex size-3.5 items-center justify-center" }, /* @__PURE__ */ React.createElement(ContextMenu$1.ItemIndicator, null, /* @__PURE__ */ React.createElement(CheckIcon, { className: "size-4" }))),
+    /* @__PURE__ */ React44__default.createElement("span", { className: "pointer-events-none absolute left-2 flex size-3.5 items-center justify-center" }, /* @__PURE__ */ React44__default.createElement(ContextMenu$1.ItemIndicator, null, /* @__PURE__ */ React44__default.createElement(CheckIcon, { className: "size-4" }))),
     children
   );
 }
@@ -1972,7 +1966,7 @@ function ContextMenuRadioItem({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     ContextMenu$1.RadioItem,
     {
       "data-slot": "context-menu-radio-item",
@@ -1982,7 +1976,7 @@ function ContextMenuRadioItem({
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement("span", { className: "pointer-events-none absolute left-2 flex size-3.5 items-center justify-center" }, /* @__PURE__ */ React.createElement(ContextMenu$1.ItemIndicator, null, /* @__PURE__ */ React.createElement(CircleIcon, { className: "size-2 fill-current" }))),
+    /* @__PURE__ */ React44__default.createElement("span", { className: "pointer-events-none absolute left-2 flex size-3.5 items-center justify-center" }, /* @__PURE__ */ React44__default.createElement(ContextMenu$1.ItemIndicator, null, /* @__PURE__ */ React44__default.createElement(CircleIcon, { className: "size-2 fill-current" }))),
     children
   );
 }
@@ -1991,7 +1985,7 @@ function ContextMenuLabel({
   inset,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     ContextMenu$1.Label,
     {
       "data-slot": "context-menu-label",
@@ -2005,7 +1999,7 @@ function ContextMenuSeparator({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     ContextMenu$1.Separator,
     {
       "data-slot": "context-menu-separator",
@@ -2015,7 +2009,7 @@ function ContextMenuSeparator({
   );
 }
 function ContextMenuShortcut({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "span",
     {
       "data-slot": "context-menu-shortcut",
@@ -2029,26 +2023,26 @@ function DirectionProvider({
   direction,
   children
 }) {
-  return /* @__PURE__ */ React.createElement(Direction.DirectionProvider, { dir: direction ?? dir }, children);
+  return /* @__PURE__ */ React44__default.createElement(Direction.DirectionProvider, { dir: direction ?? dir }, children);
 }
 var useDirection = Direction.useDirection;
 function Drawer({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Drawer$1.Root, { "data-slot": "drawer", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Drawer$1.Root, { "data-slot": "drawer", ...props });
 }
 function DrawerTrigger({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Drawer$1.Trigger, { "data-slot": "drawer-trigger", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Drawer$1.Trigger, { "data-slot": "drawer-trigger", ...props });
 }
 function DrawerPortal({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Drawer$1.Portal, { "data-slot": "drawer-portal", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Drawer$1.Portal, { "data-slot": "drawer-portal", ...props });
 }
 function DrawerClose({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Drawer$1.Close, { "data-slot": "drawer-close", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Drawer$1.Close, { "data-slot": "drawer-close", ...props });
 }
 function DrawerOverlay({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Drawer$1.Overlay,
     {
       "data-slot": "drawer-overlay",
@@ -2065,7 +2059,7 @@ function DrawerContent({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(DrawerPortal, { "data-slot": "drawer-portal" }, /* @__PURE__ */ React.createElement(DrawerOverlay, null), /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(DrawerPortal, { "data-slot": "drawer-portal" }, /* @__PURE__ */ React44__default.createElement(DrawerOverlay, null), /* @__PURE__ */ React44__default.createElement(
     Drawer$1.Content,
     {
       "data-slot": "drawer-content",
@@ -2079,12 +2073,12 @@ function DrawerContent({
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement("div", { className: "bg-muted mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block" }),
+    /* @__PURE__ */ React44__default.createElement("div", { className: "bg-muted mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block" }),
     children
   ));
 }
 function DrawerHeader({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "drawer-header",
@@ -2097,7 +2091,7 @@ function DrawerHeader({ className, ...props }) {
   );
 }
 function DrawerFooter({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "drawer-footer",
@@ -2107,7 +2101,7 @@ function DrawerFooter({ className, ...props }) {
   );
 }
 function DrawerTitle({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Drawer$1.Title,
     {
       "data-slot": "drawer-title",
@@ -2120,7 +2114,7 @@ function DrawerDescription({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Drawer$1.Description,
     {
       "data-slot": "drawer-description",
@@ -2130,24 +2124,24 @@ function DrawerDescription({
   );
 }
 function DropdownMenu({ ...props }) {
-  return /* @__PURE__ */ React.createElement(DropdownMenu$1.Root, { "data-slot": "dropdown-menu", ...props });
+  return /* @__PURE__ */ React44__default.createElement(DropdownMenu$1.Root, { "data-slot": "dropdown-menu", ...props });
 }
 function DropdownMenuPortal({
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(DropdownMenu$1.Portal, { "data-slot": "dropdown-menu-portal", ...props });
+  return /* @__PURE__ */ React44__default.createElement(DropdownMenu$1.Portal, { "data-slot": "dropdown-menu-portal", ...props });
 }
 function DropdownMenuTrigger({
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(DropdownMenu$1.Trigger, { "data-slot": "dropdown-menu-trigger", ...props });
+  return /* @__PURE__ */ React44__default.createElement(DropdownMenu$1.Trigger, { "data-slot": "dropdown-menu-trigger", ...props });
 }
 function DropdownMenuContent({
   className,
   sideOffset = 4,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(DropdownMenu$1.Portal, null, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(DropdownMenu$1.Portal, null, /* @__PURE__ */ React44__default.createElement(
     DropdownMenu$1.Content,
     {
       "data-slot": "dropdown-menu-content",
@@ -2161,7 +2155,7 @@ function DropdownMenuContent({
   ));
 }
 function DropdownMenuGroup({ ...props }) {
-  return /* @__PURE__ */ React.createElement(DropdownMenu$1.Group, { "data-slot": "dropdown-menu-group", ...props });
+  return /* @__PURE__ */ React44__default.createElement(DropdownMenu$1.Group, { "data-slot": "dropdown-menu-group", ...props });
 }
 function DropdownMenuItem({
   className,
@@ -2169,7 +2163,7 @@ function DropdownMenuItem({
   variant = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     DropdownMenu$1.Item,
     {
       "data-slot": "dropdown-menu-item",
@@ -2189,7 +2183,7 @@ function DropdownMenuCheckboxItem({
   checked,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     DropdownMenu$1.CheckboxItem,
     {
       "data-slot": "dropdown-menu-checkbox-item",
@@ -2200,21 +2194,21 @@ function DropdownMenuCheckboxItem({
       checked,
       ...props
     },
-    /* @__PURE__ */ React.createElement("span", { className: "pointer-events-none absolute left-2 flex size-3.5 items-center justify-center" }, /* @__PURE__ */ React.createElement(DropdownMenu$1.ItemIndicator, null, /* @__PURE__ */ React.createElement(CheckIcon, { className: "size-4" }))),
+    /* @__PURE__ */ React44__default.createElement("span", { className: "pointer-events-none absolute left-2 flex size-3.5 items-center justify-center" }, /* @__PURE__ */ React44__default.createElement(DropdownMenu$1.ItemIndicator, null, /* @__PURE__ */ React44__default.createElement(CheckIcon, { className: "size-4" }))),
     children
   );
 }
 function DropdownMenuRadioGroup({
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(DropdownMenu$1.RadioGroup, { "data-slot": "dropdown-menu-radio-group", ...props });
+  return /* @__PURE__ */ React44__default.createElement(DropdownMenu$1.RadioGroup, { "data-slot": "dropdown-menu-radio-group", ...props });
 }
 function DropdownMenuRadioItem({
   className,
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     DropdownMenu$1.RadioItem,
     {
       "data-slot": "dropdown-menu-radio-item",
@@ -2224,7 +2218,7 @@ function DropdownMenuRadioItem({
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement("span", { className: "pointer-events-none absolute left-2 flex size-3.5 items-center justify-center" }, /* @__PURE__ */ React.createElement(DropdownMenu$1.ItemIndicator, null, /* @__PURE__ */ React.createElement(CircleIcon, { className: "size-2 fill-current" }))),
+    /* @__PURE__ */ React44__default.createElement("span", { className: "pointer-events-none absolute left-2 flex size-3.5 items-center justify-center" }, /* @__PURE__ */ React44__default.createElement(DropdownMenu$1.ItemIndicator, null, /* @__PURE__ */ React44__default.createElement(CircleIcon, { className: "size-2 fill-current" }))),
     children
   );
 }
@@ -2233,7 +2227,7 @@ function DropdownMenuLabel({
   inset,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     DropdownMenu$1.Label,
     {
       "data-slot": "dropdown-menu-label",
@@ -2247,7 +2241,7 @@ function DropdownMenuSeparator({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     DropdownMenu$1.Separator,
     {
       "data-slot": "dropdown-menu-separator",
@@ -2257,7 +2251,7 @@ function DropdownMenuSeparator({
   );
 }
 function DropdownMenuShortcut({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "span",
     {
       "data-slot": "dropdown-menu-shortcut",
@@ -2267,7 +2261,7 @@ function DropdownMenuShortcut({ className, ...props }) {
   );
 }
 function DropdownMenuSub({ ...props }) {
-  return /* @__PURE__ */ React.createElement(DropdownMenu$1.Sub, { "data-slot": "dropdown-menu-sub", ...props });
+  return /* @__PURE__ */ React44__default.createElement(DropdownMenu$1.Sub, { "data-slot": "dropdown-menu-sub", ...props });
 }
 function DropdownMenuSubTrigger({
   className,
@@ -2275,7 +2269,7 @@ function DropdownMenuSubTrigger({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     DropdownMenu$1.SubTrigger,
     {
       "data-slot": "dropdown-menu-sub-trigger",
@@ -2287,14 +2281,14 @@ function DropdownMenuSubTrigger({
       ...props
     },
     children,
-    /* @__PURE__ */ React.createElement(ChevronRightIcon, { className: "ml-auto size-4" })
+    /* @__PURE__ */ React44__default.createElement(ChevronRightIcon, { className: "ml-auto size-4" })
   );
 }
 function DropdownMenuSubContent({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     DropdownMenu$1.SubContent,
     {
       "data-slot": "dropdown-menu-sub-content",
@@ -2395,7 +2389,7 @@ function EmptyContent({ className, ...props }) {
   );
 }
 function Label({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Label$1.Root,
     {
       "data-slot": "label",
@@ -2606,15 +2600,15 @@ function FieldError({
   );
 }
 var Form = FormProvider;
-var FormFieldContext = React9.createContext({});
+var FormFieldContext = React44.createContext({});
 var FormField = ({
   ...props
 }) => {
-  return /* @__PURE__ */ React9.createElement(FormFieldContext.Provider, { value: { name: props.name } }, /* @__PURE__ */ React9.createElement(Controller, { ...props }));
+  return /* @__PURE__ */ React44.createElement(FormFieldContext.Provider, { value: { name: props.name } }, /* @__PURE__ */ React44.createElement(Controller, { ...props }));
 };
 var useFormField = () => {
-  const fieldContext = React9.useContext(FormFieldContext);
-  const itemContext = React9.useContext(FormItemContext);
+  const fieldContext = React44.useContext(FormFieldContext);
+  const itemContext = React44.useContext(FormItemContext);
   const { getFieldState } = useFormContext();
   const formState = useFormState({ name: fieldContext.name });
   const fieldState = getFieldState(fieldContext.name, formState);
@@ -2631,14 +2625,14 @@ var useFormField = () => {
     ...fieldState
   };
 };
-var FormItemContext = React9.createContext({});
+var FormItemContext = React44.createContext({});
 function FormItem({ className, ...props }) {
-  const id = React9.useId();
-  return /* @__PURE__ */ React9.createElement(FormItemContext.Provider, { value: { id } }, /* @__PURE__ */ React9.createElement("div", { "data-slot": "form-item", className: cn("grid gap-2", className), ...props }));
+  const id = React44.useId();
+  return /* @__PURE__ */ React44.createElement(FormItemContext.Provider, { value: { id } }, /* @__PURE__ */ React44.createElement("div", { "data-slot": "form-item", className: cn("grid gap-2", className), ...props }));
 }
 function FormLabel({ className, ...props }) {
   const { error, formItemId } = useFormField();
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Label,
     {
       "data-slot": "form-label",
@@ -2651,7 +2645,7 @@ function FormLabel({ className, ...props }) {
 }
 function FormControl({ ...props }) {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Slot.Root,
     {
       "data-slot": "form-control",
@@ -2664,7 +2658,7 @@ function FormControl({ ...props }) {
 }
 function FormDescription({ className, ...props }) {
   const { formDescriptionId } = useFormField();
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "p",
     {
       "data-slot": "form-description",
@@ -2680,7 +2674,7 @@ function FormMessage({ className, ...props }) {
   if (!body) {
     return null;
   }
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "p",
     {
       "data-slot": "form-message",
@@ -2692,10 +2686,10 @@ function FormMessage({ className, ...props }) {
   );
 }
 function HoverCard({ ...props }) {
-  return /* @__PURE__ */ React.createElement(HoverCard$1.Root, { "data-slot": "hover-card", ...props });
+  return /* @__PURE__ */ React44__default.createElement(HoverCard$1.Root, { "data-slot": "hover-card", ...props });
 }
 function HoverCardTrigger({ ...props }) {
-  return /* @__PURE__ */ React.createElement(HoverCard$1.Trigger, { "data-slot": "hover-card-trigger", ...props });
+  return /* @__PURE__ */ React44__default.createElement(HoverCard$1.Trigger, { "data-slot": "hover-card-trigger", ...props });
 }
 function HoverCardContent({
   className,
@@ -2703,7 +2697,7 @@ function HoverCardContent({
   sideOffset = 4,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(HoverCard$1.Portal, { "data-slot": "hover-card-portal" }, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(HoverCard$1.Portal, { "data-slot": "hover-card-portal" }, /* @__PURE__ */ React44__default.createElement(
     HoverCard$1.Content,
     {
       "data-slot": "hover-card-content",
@@ -2722,7 +2716,7 @@ function InputOTP({
   containerClassName,
   ...props
 }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     OTPInput,
     {
       "data-slot": "input-otp",
@@ -2733,16 +2727,16 @@ function InputOTP({
   );
 }
 function InputOTPGroup({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement("div", { "data-slot": "input-otp-group", className: cn("flex items-center", className), ...props });
+  return /* @__PURE__ */ React44.createElement("div", { "data-slot": "input-otp-group", className: cn("flex items-center", className), ...props });
 }
 function InputOTPSlot({
   index,
   className,
   ...props
 }) {
-  const inputOTPContext = React9.useContext(OTPInputContext);
+  const inputOTPContext = React44.useContext(OTPInputContext);
   const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {};
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "div",
     {
       "data-slot": "input-otp-slot",
@@ -2754,14 +2748,14 @@ function InputOTPSlot({
       ...props
     },
     char,
-    hasFakeCaret && /* @__PURE__ */ React9.createElement("div", { className: "pointer-events-none absolute inset-0 flex items-center justify-center" }, /* @__PURE__ */ React9.createElement("div", { className: "animate-caret-blink bg-foreground h-4 w-px duration-1000" }))
+    hasFakeCaret && /* @__PURE__ */ React44.createElement("div", { className: "pointer-events-none absolute inset-0 flex items-center justify-center" }, /* @__PURE__ */ React44.createElement("div", { className: "animate-caret-blink bg-foreground h-4 w-px duration-1000" }))
   );
 }
 function InputOTPSeparator({ ...props }) {
-  return /* @__PURE__ */ React9.createElement("div", { "data-slot": "input-otp-separator", role: "separator", ...props }, /* @__PURE__ */ React9.createElement(MinusIcon, null));
+  return /* @__PURE__ */ React44.createElement("div", { "data-slot": "input-otp-separator", role: "separator", ...props }, /* @__PURE__ */ React44.createElement(MinusIcon, null));
 }
 function ItemGroup({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       role: "list",
@@ -2772,7 +2766,7 @@ function ItemGroup({ className, ...props }) {
   );
 }
 function ItemSeparator({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Separator,
     {
       "data-slot": "item-separator",
@@ -2810,7 +2804,7 @@ function Item({
   ...props
 }) {
   const Comp = asChild ? Slot.Root : "div";
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Comp,
     {
       "data-slot": "item",
@@ -2841,7 +2835,7 @@ function ItemMedia({
   variant = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "item-media",
@@ -2852,7 +2846,7 @@ function ItemMedia({
   );
 }
 function ItemContent({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "item-content",
@@ -2862,7 +2856,7 @@ function ItemContent({ className, ...props }) {
   );
 }
 function ItemTitle({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "item-title",
@@ -2872,7 +2866,7 @@ function ItemTitle({ className, ...props }) {
   );
 }
 function ItemDescription({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "p",
     {
       "data-slot": "item-description",
@@ -2886,10 +2880,10 @@ function ItemDescription({ className, ...props }) {
   );
 }
 function ItemActions({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement("div", { "data-slot": "item-actions", className: cn("flex items-center gap-2", className), ...props });
+  return /* @__PURE__ */ React44__default.createElement("div", { "data-slot": "item-actions", className: cn("flex items-center gap-2", className), ...props });
 }
 function ItemHeader({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "item-header",
@@ -2899,7 +2893,7 @@ function ItemHeader({ className, ...props }) {
   );
 }
 function ItemFooter({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "item-footer",
@@ -2936,7 +2930,7 @@ function KbdGroup({ className, ...props }) {
   );
 }
 function Menubar({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Menubar$1.Root,
     {
       "data-slot": "menubar",
@@ -2949,22 +2943,22 @@ function Menubar({ className, ...props }) {
   );
 }
 function MenubarMenu({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Menubar$1.Menu, { "data-slot": "menubar-menu", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Menubar$1.Menu, { "data-slot": "menubar-menu", ...props });
 }
 function MenubarGroup({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Menubar$1.Group, { "data-slot": "menubar-group", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Menubar$1.Group, { "data-slot": "menubar-group", ...props });
 }
 function MenubarPortal({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Menubar$1.Portal, { "data-slot": "menubar-portal", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Menubar$1.Portal, { "data-slot": "menubar-portal", ...props });
 }
 function MenubarRadioGroup({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Menubar$1.RadioGroup, { "data-slot": "menubar-radio-group", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Menubar$1.RadioGroup, { "data-slot": "menubar-radio-group", ...props });
 }
 function MenubarTrigger({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Menubar$1.Trigger,
     {
       "data-slot": "menubar-trigger",
@@ -2983,7 +2977,7 @@ function MenubarContent({
   sideOffset = 8,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(MenubarPortal, null, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(MenubarPortal, null, /* @__PURE__ */ React44__default.createElement(
     Menubar$1.Content,
     {
       "data-slot": "menubar-content",
@@ -3004,7 +2998,7 @@ function MenubarItem({
   variant = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Menubar$1.Item,
     {
       "data-slot": "menubar-item",
@@ -3024,7 +3018,7 @@ function MenubarCheckboxItem({
   checked,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Menubar$1.CheckboxItem,
     {
       "data-slot": "menubar-checkbox-item",
@@ -3035,7 +3029,7 @@ function MenubarCheckboxItem({
       checked,
       ...props
     },
-    /* @__PURE__ */ React.createElement("span", { className: "pointer-events-none absolute left-2 flex size-3.5 items-center justify-center" }, /* @__PURE__ */ React.createElement(Menubar$1.ItemIndicator, null, /* @__PURE__ */ React.createElement(CheckIcon, { className: "size-4" }))),
+    /* @__PURE__ */ React44__default.createElement("span", { className: "pointer-events-none absolute left-2 flex size-3.5 items-center justify-center" }, /* @__PURE__ */ React44__default.createElement(Menubar$1.ItemIndicator, null, /* @__PURE__ */ React44__default.createElement(CheckIcon, { className: "size-4" }))),
     children
   );
 }
@@ -3044,7 +3038,7 @@ function MenubarRadioItem({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Menubar$1.RadioItem,
     {
       "data-slot": "menubar-radio-item",
@@ -3054,7 +3048,7 @@ function MenubarRadioItem({
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement("span", { className: "pointer-events-none absolute left-2 flex size-3.5 items-center justify-center" }, /* @__PURE__ */ React.createElement(Menubar$1.ItemIndicator, null, /* @__PURE__ */ React.createElement(CircleIcon, { className: "size-2 fill-current" }))),
+    /* @__PURE__ */ React44__default.createElement("span", { className: "pointer-events-none absolute left-2 flex size-3.5 items-center justify-center" }, /* @__PURE__ */ React44__default.createElement(Menubar$1.ItemIndicator, null, /* @__PURE__ */ React44__default.createElement(CircleIcon, { className: "size-2 fill-current" }))),
     children
   );
 }
@@ -3063,7 +3057,7 @@ function MenubarLabel({
   inset,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Menubar$1.Label,
     {
       "data-slot": "menubar-label",
@@ -3077,7 +3071,7 @@ function MenubarSeparator({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Menubar$1.Separator,
     {
       "data-slot": "menubar-separator",
@@ -3087,7 +3081,7 @@ function MenubarSeparator({
   );
 }
 function MenubarShortcut({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "span",
     {
       "data-slot": "menubar-shortcut",
@@ -3097,7 +3091,7 @@ function MenubarShortcut({ className, ...props }) {
   );
 }
 function MenubarSub({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Menubar$1.Sub, { "data-slot": "menubar-sub", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Menubar$1.Sub, { "data-slot": "menubar-sub", ...props });
 }
 function MenubarSubTrigger({
   className,
@@ -3105,7 +3099,7 @@ function MenubarSubTrigger({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Menubar$1.SubTrigger,
     {
       "data-slot": "menubar-sub-trigger",
@@ -3117,14 +3111,14 @@ function MenubarSubTrigger({
       ...props
     },
     children,
-    /* @__PURE__ */ React.createElement(ChevronRightIcon, { className: "ml-auto h-4 w-4" })
+    /* @__PURE__ */ React44__default.createElement(ChevronRightIcon, { className: "ml-auto h-4 w-4" })
   );
 }
 function MenubarSubContent({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Menubar$1.SubContent,
     {
       "data-slot": "menubar-sub-content",
@@ -3141,13 +3135,13 @@ function NativeSelect({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       className: "group/native-select relative w-fit has-[select:disabled]:opacity-50",
       "data-slot": "native-select-wrapper"
     },
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React44__default.createElement(
       "select",
       {
         "data-slot": "native-select",
@@ -3161,7 +3155,7 @@ function NativeSelect({
         ...props
       }
     ),
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React44__default.createElement(
       ChevronDownIcon,
       {
         className: "text-muted-foreground pointer-events-none absolute top-1/2 right-3.5 size-4 -translate-y-1/2 opacity-50 select-none",
@@ -3172,10 +3166,10 @@ function NativeSelect({
   );
 }
 function NativeSelectOption({ ...props }) {
-  return /* @__PURE__ */ React.createElement("option", { "data-slot": "native-select-option", ...props });
+  return /* @__PURE__ */ React44__default.createElement("option", { "data-slot": "native-select-option", ...props });
 }
 function NativeSelectOptGroup({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement("optgroup", { "data-slot": "native-select-optgroup", className: cn(className), ...props });
+  return /* @__PURE__ */ React44__default.createElement("optgroup", { "data-slot": "native-select-optgroup", className: cn(className), ...props });
 }
 function NavigationMenu({
   className,
@@ -3183,7 +3177,7 @@ function NavigationMenu({
   viewport = true,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     NavigationMenu$1.Root,
     {
       "data-slot": "navigation-menu",
@@ -3195,14 +3189,14 @@ function NavigationMenu({
       ...props
     },
     children,
-    viewport && /* @__PURE__ */ React.createElement(NavigationMenuViewport, null)
+    viewport && /* @__PURE__ */ React44__default.createElement(NavigationMenuViewport, null)
   );
 }
 function NavigationMenuList({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     NavigationMenu$1.List,
     {
       "data-slot": "navigation-menu-list",
@@ -3215,7 +3209,7 @@ function NavigationMenuItem({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     NavigationMenu$1.Item,
     {
       "data-slot": "navigation-menu-item",
@@ -3232,7 +3226,7 @@ function NavigationMenuTrigger({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     NavigationMenu$1.Trigger,
     {
       "data-slot": "navigation-menu-trigger",
@@ -3241,7 +3235,7 @@ function NavigationMenuTrigger({
     },
     children,
     " ",
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React44__default.createElement(
       ChevronDownIcon,
       {
         className: "relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180",
@@ -3254,7 +3248,7 @@ function NavigationMenuContent({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     NavigationMenu$1.Content,
     {
       "data-slot": "navigation-menu-content",
@@ -3271,7 +3265,7 @@ function NavigationMenuViewport({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement("div", { className: cn("absolute top-full left-0 isolate z-50 flex justify-center") }, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement("div", { className: cn("absolute top-full left-0 isolate z-50 flex justify-center") }, /* @__PURE__ */ React44__default.createElement(
     NavigationMenu$1.Viewport,
     {
       "data-slot": "navigation-menu-viewport",
@@ -3287,7 +3281,7 @@ function NavigationMenuLink({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     NavigationMenu$1.Link,
     {
       "data-slot": "navigation-menu-link",
@@ -3303,7 +3297,7 @@ function NavigationMenuIndicator({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     NavigationMenu$1.Indicator,
     {
       "data-slot": "navigation-menu-indicator",
@@ -3313,11 +3307,11 @@ function NavigationMenuIndicator({
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement("div", { className: "bg-border relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm shadow-md" })
+    /* @__PURE__ */ React44__default.createElement("div", { className: "bg-border relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm shadow-md" })
   );
 }
 function Pagination({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "nav",
     {
       "aria-label": "pagination",
@@ -3328,7 +3322,7 @@ function Pagination({ className, ...props }) {
   );
 }
 function PaginationContent({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "ul",
     {
       "data-slot": "pagination-content",
@@ -3338,10 +3332,10 @@ function PaginationContent({ className, ...props }) {
   );
 }
 function PaginationItem({ ...props }) {
-  return /* @__PURE__ */ React.createElement("li", { "data-slot": "pagination-item", ...props });
+  return /* @__PURE__ */ React44__default.createElement("li", { "data-slot": "pagination-item", ...props });
 }
 function PaginationLink({ className, isActive, size = "icon", ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "a",
     {
       "aria-current": isActive ? "page" : void 0,
@@ -3359,7 +3353,7 @@ function PaginationLink({ className, isActive, size = "icon", ...props }) {
   );
 }
 function PaginationPrevious({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     PaginationLink,
     {
       "aria-label": "Go to previous page",
@@ -3367,12 +3361,12 @@ function PaginationPrevious({ className, ...props }) {
       className: cn("gap-1 px-2.5 sm:pl-2.5", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement(ChevronLeftIcon, null),
-    /* @__PURE__ */ React.createElement("span", { className: "hidden sm:block" }, "Previous")
+    /* @__PURE__ */ React44__default.createElement(ChevronLeftIcon, null),
+    /* @__PURE__ */ React44__default.createElement("span", { className: "hidden sm:block" }, "Previous")
   );
 }
 function PaginationNext({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     PaginationLink,
     {
       "aria-label": "Go to next page",
@@ -3380,12 +3374,12 @@ function PaginationNext({ className, ...props }) {
       className: cn("gap-1 px-2.5 sm:pr-2.5", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement("span", { className: "hidden sm:block" }, "Next"),
-    /* @__PURE__ */ React.createElement(ChevronRightIcon, null)
+    /* @__PURE__ */ React44__default.createElement("span", { className: "hidden sm:block" }, "Next"),
+    /* @__PURE__ */ React44__default.createElement(ChevronRightIcon, null)
   );
 }
 function PaginationEllipsis({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "span",
     {
       "aria-hidden": true,
@@ -3393,15 +3387,15 @@ function PaginationEllipsis({ className, ...props }) {
       className: cn("flex size-9 items-center justify-center", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement(MoreHorizontalIcon, { className: "size-4" }),
-    /* @__PURE__ */ React.createElement("span", { className: "sr-only" }, "More pages")
+    /* @__PURE__ */ React44__default.createElement(MoreHorizontalIcon, { className: "size-4" }),
+    /* @__PURE__ */ React44__default.createElement("span", { className: "sr-only" }, "More pages")
   );
 }
 function Popover({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Popover$1.Root, { "data-slot": "popover", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Popover$1.Root, { "data-slot": "popover", ...props });
 }
 function PopoverTrigger({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Popover$1.Trigger, { "data-slot": "popover-trigger", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Popover$1.Trigger, { "data-slot": "popover-trigger", ...props });
 }
 function PopoverContent({
   className,
@@ -3409,7 +3403,7 @@ function PopoverContent({
   sideOffset = 4,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(Popover$1.Portal, null, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(Popover$1.Portal, null, /* @__PURE__ */ React44__default.createElement(
     Popover$1.Content,
     {
       "data-slot": "popover-content",
@@ -3424,10 +3418,10 @@ function PopoverContent({
   ));
 }
 function PopoverAnchor({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Popover$1.Anchor, { "data-slot": "popover-anchor", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Popover$1.Anchor, { "data-slot": "popover-anchor", ...props });
 }
 function PopoverHeader({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "popover-header",
@@ -3437,10 +3431,10 @@ function PopoverHeader({ className, ...props }) {
   );
 }
 function PopoverTitle({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement("div", { "data-slot": "popover-title", className: cn("font-medium", className), ...props });
+  return /* @__PURE__ */ React44__default.createElement("div", { "data-slot": "popover-title", className: cn("font-medium", className), ...props });
 }
 function PopoverDescription({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "p",
     {
       "data-slot": "popover-description",
@@ -3454,14 +3448,14 @@ function Progress({
   value,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Progress$1.Root,
     {
       "data-slot": "progress",
       className: cn("bg-primary/20 relative h-2 w-full overflow-hidden rounded-full", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React44__default.createElement(
       Progress$1.Indicator,
       {
         "data-slot": "progress-indicator",
@@ -3475,7 +3469,7 @@ function RadioGroup({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     RadioGroup$1.Root,
     {
       "data-slot": "radio-group",
@@ -3488,7 +3482,7 @@ function RadioGroupItem({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     RadioGroup$1.Item,
     {
       "data-slot": "radio-group-item",
@@ -3498,13 +3492,13 @@ function RadioGroupItem({
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React44__default.createElement(
       RadioGroup$1.Indicator,
       {
         "data-slot": "radio-group-indicator",
         className: "relative flex items-center justify-center"
       },
-      /* @__PURE__ */ React.createElement(CircleIcon, { className: "fill-primary absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2" })
+      /* @__PURE__ */ React44__default.createElement(CircleIcon, { className: "fill-primary absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2" })
     )
   );
 }
@@ -3545,14 +3539,14 @@ function ScrollArea({
   orientation = "vertical",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     ScrollArea$1.Root,
     {
       "data-slot": "scroll-area",
       className: cn("relative", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React44__default.createElement(
       ScrollArea$1.Viewport,
       {
         "data-slot": "scroll-area-viewport",
@@ -3560,9 +3554,9 @@ function ScrollArea({
       },
       children
     ),
-    (orientation === "vertical" || orientation === "both") && /* @__PURE__ */ React.createElement(ScrollBar, { orientation: "vertical" }),
-    (orientation === "horizontal" || orientation === "both") && /* @__PURE__ */ React.createElement(ScrollBar, { orientation: "horizontal" }),
-    /* @__PURE__ */ React.createElement(ScrollArea$1.Corner, null)
+    (orientation === "vertical" || orientation === "both") && /* @__PURE__ */ React44__default.createElement(ScrollBar, { orientation: "vertical" }),
+    (orientation === "horizontal" || orientation === "both") && /* @__PURE__ */ React44__default.createElement(ScrollBar, { orientation: "horizontal" }),
+    /* @__PURE__ */ React44__default.createElement(ScrollArea$1.Corner, null)
   );
 }
 function ScrollBar({
@@ -3570,7 +3564,7 @@ function ScrollBar({
   orientation = "vertical",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     ScrollArea$1.ScrollAreaScrollbar,
     {
       "data-slot": "scroll-area-scrollbar",
@@ -3583,7 +3577,7 @@ function ScrollBar({
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React44__default.createElement(
       ScrollArea$1.ScrollAreaThumb,
       {
         "data-slot": "scroll-area-thumb",
@@ -3593,13 +3587,13 @@ function ScrollBar({
   );
 }
 function Select({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Select$1.Root, { "data-slot": "select", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Select$1.Root, { "data-slot": "select", ...props });
 }
 function SelectGroup({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Select$1.Group, { "data-slot": "select-group", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Select$1.Group, { "data-slot": "select-group", ...props });
 }
 function SelectValue({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Select$1.Value, { "data-slot": "select-value", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Select$1.Value, { "data-slot": "select-value", ...props });
 }
 function SelectTrigger({
   className,
@@ -3607,7 +3601,7 @@ function SelectTrigger({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Select$1.Trigger,
     {
       "data-slot": "select-trigger",
@@ -3619,7 +3613,7 @@ function SelectTrigger({
       ...props
     },
     children,
-    /* @__PURE__ */ React.createElement(Select$1.Icon, { asChild: true }, /* @__PURE__ */ React.createElement(ChevronDownIcon, { className: "size-4 opacity-50" }))
+    /* @__PURE__ */ React44__default.createElement(Select$1.Icon, { asChild: true }, /* @__PURE__ */ React44__default.createElement(ChevronDownIcon, { className: "size-4 opacity-50" }))
   );
 }
 function SelectContent({
@@ -3629,7 +3623,7 @@ function SelectContent({
   align = "center",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(Select$1.Portal, null, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(Select$1.Portal, null, /* @__PURE__ */ React44__default.createElement(
     Select$1.Content,
     {
       "data-slot": "select-content",
@@ -3642,8 +3636,8 @@ function SelectContent({
       align,
       ...props
     },
-    /* @__PURE__ */ React.createElement(SelectScrollUpButton, null),
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React44__default.createElement(SelectScrollUpButton, null),
+    /* @__PURE__ */ React44__default.createElement(
       Select$1.Viewport,
       {
         className: cn(
@@ -3653,11 +3647,11 @@ function SelectContent({
       },
       children
     ),
-    /* @__PURE__ */ React.createElement(SelectScrollDownButton, null)
+    /* @__PURE__ */ React44__default.createElement(SelectScrollDownButton, null)
   ));
 }
 function SelectLabel({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Select$1.Label,
     {
       "data-slot": "select-label",
@@ -3671,7 +3665,7 @@ function SelectItem({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Select$1.Item,
     {
       "data-slot": "select-item",
@@ -3681,22 +3675,22 @@ function SelectItem({
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React44__default.createElement(
       "span",
       {
         "data-slot": "select-item-indicator",
         className: "absolute right-2 flex size-3.5 items-center justify-center"
       },
-      /* @__PURE__ */ React.createElement(Select$1.ItemIndicator, null, /* @__PURE__ */ React.createElement(CheckIcon, { className: "size-4" }))
+      /* @__PURE__ */ React44__default.createElement(Select$1.ItemIndicator, null, /* @__PURE__ */ React44__default.createElement(CheckIcon, { className: "size-4" }))
     ),
-    /* @__PURE__ */ React.createElement(Select$1.ItemText, null, children)
+    /* @__PURE__ */ React44__default.createElement(Select$1.ItemText, null, children)
   );
 }
 function SelectSeparator({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Select$1.Separator,
     {
       "data-slot": "select-separator",
@@ -3709,47 +3703,47 @@ function SelectScrollUpButton({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Select$1.ScrollUpButton,
     {
       "data-slot": "select-scroll-up-button",
       className: cn("flex cursor-default items-center justify-center py-1", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement(ChevronUpIcon, { className: "size-4" })
+    /* @__PURE__ */ React44__default.createElement(ChevronUpIcon, { className: "size-4" })
   );
 }
 function SelectScrollDownButton({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Select$1.ScrollDownButton,
     {
       "data-slot": "select-scroll-down-button",
       className: cn("flex cursor-default items-center justify-center py-1", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement(ChevronDownIcon, { className: "size-4" })
+    /* @__PURE__ */ React44__default.createElement(ChevronDownIcon, { className: "size-4" })
   );
 }
 function Sheet({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Dialog$1.Root, { "data-slot": "sheet", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Dialog$1.Root, { "data-slot": "sheet", ...props });
 }
 function SheetTrigger({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Dialog$1.Trigger, { "data-slot": "sheet-trigger", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Dialog$1.Trigger, { "data-slot": "sheet-trigger", ...props });
 }
 function SheetClose({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Dialog$1.Close, { "data-slot": "sheet-close", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Dialog$1.Close, { "data-slot": "sheet-close", ...props });
 }
 function SheetPortal({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Dialog$1.Portal, { "data-slot": "sheet-portal", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Dialog$1.Portal, { "data-slot": "sheet-portal", ...props });
 }
 function SheetOverlay({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Dialog$1.Overlay,
     {
       "data-slot": "sheet-overlay",
@@ -3768,7 +3762,7 @@ function SheetContent({
   showCloseButton = true,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(SheetPortal, null, /* @__PURE__ */ React.createElement(SheetOverlay, null), /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(SheetPortal, null, /* @__PURE__ */ React44__default.createElement(SheetOverlay, null), /* @__PURE__ */ React44__default.createElement(
     Dialog$1.Content,
     {
       "data-slot": "sheet-content",
@@ -3783,11 +3777,11 @@ function SheetContent({
       ...props
     },
     children,
-    showCloseButton && /* @__PURE__ */ React.createElement(Dialog$1.Close, { className: "ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none" }, /* @__PURE__ */ React.createElement(XIcon, { className: "size-4" }), /* @__PURE__ */ React.createElement("span", { className: "sr-only" }, "Close"))
+    showCloseButton && /* @__PURE__ */ React44__default.createElement(Dialog$1.Close, { className: "ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none" }, /* @__PURE__ */ React44__default.createElement(XIcon, { className: "size-4" }), /* @__PURE__ */ React44__default.createElement("span", { className: "sr-only" }, "Close"))
   ));
 }
 function SheetHeader({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "sheet-header",
@@ -3797,7 +3791,7 @@ function SheetHeader({ className, ...props }) {
   );
 }
 function SheetFooter({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "sheet-footer",
@@ -3807,7 +3801,7 @@ function SheetFooter({ className, ...props }) {
   );
 }
 function SheetTitle({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Dialog$1.Title,
     {
       "data-slot": "sheet-title",
@@ -3820,7 +3814,7 @@ function SheetDescription({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Dialog$1.Description,
     {
       "data-slot": "sheet-description",
@@ -3831,8 +3825,8 @@ function SheetDescription({
 }
 var MOBILE_BREAKPOINT = 768;
 function useIsMobile() {
-  const [isMobile, setIsMobile] = React9.useState(void 0);
-  React9.useEffect(() => {
+  const [isMobile, setIsMobile] = React44.useState(void 0);
+  React44.useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
     const onChange = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
@@ -3843,10 +3837,8 @@ function useIsMobile() {
   }, []);
   return !!isMobile;
 }
-
-// src/primitives/skeleton.tsx
 function Skeleton({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "div",
     {
       "data-slot": "skeleton",
@@ -3859,7 +3851,7 @@ function TooltipProvider({
   delayDuration = 0,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Tooltip.Provider,
     {
       "data-slot": "tooltip-provider",
@@ -3869,10 +3861,10 @@ function TooltipProvider({
   );
 }
 function Tooltip2({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Tooltip.Root, { "data-slot": "tooltip", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Tooltip.Root, { "data-slot": "tooltip", ...props });
 }
 function TooltipTrigger({ ...props }) {
-  return /* @__PURE__ */ React.createElement(Tooltip.Trigger, { "data-slot": "tooltip-trigger", ...props });
+  return /* @__PURE__ */ React44__default.createElement(Tooltip.Trigger, { "data-slot": "tooltip-trigger", ...props });
 }
 function TooltipContent({
   className,
@@ -3880,7 +3872,7 @@ function TooltipContent({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(Tooltip.Portal, null, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(Tooltip.Portal, null, /* @__PURE__ */ React44__default.createElement(
     Tooltip.Content,
     {
       "data-slot": "tooltip-content",
@@ -3892,7 +3884,7 @@ function TooltipContent({
       ...props
     },
     children,
-    /* @__PURE__ */ React.createElement(Tooltip.Arrow, { className: "bg-foreground fill-foreground z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" })
+    /* @__PURE__ */ React44__default.createElement(Tooltip.Arrow, { className: "bg-foreground fill-foreground z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" })
   ));
 }
 
@@ -3903,9 +3895,9 @@ var SIDEBAR_WIDTH = "16rem";
 var SIDEBAR_WIDTH_MOBILE = "18rem";
 var SIDEBAR_WIDTH_ICON = "3rem";
 var SIDEBAR_KEYBOARD_SHORTCUT = "b";
-var SidebarContext = React9.createContext(null);
+var SidebarContext = React44.createContext(null);
 function useSidebar() {
-  const context = React9.useContext(SidebarContext);
+  const context = React44.useContext(SidebarContext);
   if (!context) {
     throw new Error("useSidebar must be used within a SidebarProvider.");
   }
@@ -3921,10 +3913,10 @@ function SidebarProvider({
   ...props
 }) {
   const isMobile = useIsMobile();
-  const [openMobile, setOpenMobile] = React9.useState(false);
-  const [_open, _setOpen] = React9.useState(defaultOpen);
+  const [openMobile, setOpenMobile] = React44.useState(false);
+  const [_open, _setOpen] = React44.useState(defaultOpen);
   const open = openProp ?? _open;
-  const setOpen = React9.useCallback(
+  const setOpen = React44.useCallback(
     (value) => {
       const openState = typeof value === "function" ? value(open) : value;
       if (setOpenProp) {
@@ -3936,10 +3928,10 @@ function SidebarProvider({
     },
     [setOpenProp, open]
   );
-  const toggleSidebar = React9.useCallback(() => {
+  const toggleSidebar = React44.useCallback(() => {
     return isMobile ? setOpenMobile((open2) => !open2) : setOpen((open2) => !open2);
   }, [isMobile, setOpen]);
-  React9.useEffect(() => {
+  React44.useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
         event.preventDefault();
@@ -3950,7 +3942,7 @@ function SidebarProvider({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [toggleSidebar]);
   const state = open ? "expanded" : "collapsed";
-  const contextValue = React9.useMemo(
+  const contextValue = React44.useMemo(
     () => ({
       state,
       open,
@@ -3962,7 +3954,7 @@ function SidebarProvider({
     }),
     [state, open, setOpen, isMobile, openMobile, toggleSidebar]
   );
-  return /* @__PURE__ */ React9.createElement(SidebarContext.Provider, { value: contextValue }, /* @__PURE__ */ React9.createElement(TooltipProvider, { delayDuration: 0 }, /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(SidebarContext.Provider, { value: contextValue }, /* @__PURE__ */ React44.createElement(TooltipProvider, { delayDuration: 0 }, /* @__PURE__ */ React44.createElement(
     "div",
     {
       "data-slot": "sidebar-wrapper",
@@ -3990,7 +3982,7 @@ function Sidebar({
 }) {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
   if (collapsible === "none") {
-    return /* @__PURE__ */ React9.createElement(
+    return /* @__PURE__ */ React44.createElement(
       "div",
       {
         "data-slot": "sidebar",
@@ -4004,7 +3996,7 @@ function Sidebar({
     );
   }
   if (isMobile) {
-    return /* @__PURE__ */ React9.createElement(Sheet, { open: openMobile, onOpenChange: setOpenMobile, ...props }, /* @__PURE__ */ React9.createElement(
+    return /* @__PURE__ */ React44.createElement(Sheet, { open: openMobile, onOpenChange: setOpenMobile, ...props }, /* @__PURE__ */ React44.createElement(
       SheetContent,
       {
         "data-sidebar": "sidebar",
@@ -4016,11 +4008,11 @@ function Sidebar({
         },
         side
       },
-      /* @__PURE__ */ React9.createElement(SheetHeader, { className: "sr-only" }, /* @__PURE__ */ React9.createElement(SheetTitle, null, "Sidebar"), /* @__PURE__ */ React9.createElement(SheetDescription, null, "Displays the mobile sidebar.")),
-      /* @__PURE__ */ React9.createElement("div", { className: "flex h-full w-full flex-col" }, children)
+      /* @__PURE__ */ React44.createElement(SheetHeader, { className: "sr-only" }, /* @__PURE__ */ React44.createElement(SheetTitle, null, "Sidebar"), /* @__PURE__ */ React44.createElement(SheetDescription, null, "Displays the mobile sidebar.")),
+      /* @__PURE__ */ React44.createElement("div", { className: "flex h-full w-full flex-col" }, children)
     ));
   }
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "div",
     {
       className: "group peer text-sidebar-foreground hidden md:block",
@@ -4030,7 +4022,7 @@ function Sidebar({
       "data-side": side,
       "data-slot": "sidebar"
     },
-    /* @__PURE__ */ React9.createElement(
+    /* @__PURE__ */ React44.createElement(
       "div",
       {
         "data-slot": "sidebar-gap",
@@ -4042,7 +4034,7 @@ function Sidebar({
         )
       }
     ),
-    /* @__PURE__ */ React9.createElement(
+    /* @__PURE__ */ React44.createElement(
       "div",
       {
         "data-slot": "sidebar-container",
@@ -4055,7 +4047,7 @@ function Sidebar({
         ),
         ...props
       },
-      /* @__PURE__ */ React9.createElement(
+      /* @__PURE__ */ React44.createElement(
         "div",
         {
           "data-sidebar": "sidebar",
@@ -4069,7 +4061,7 @@ function Sidebar({
 }
 function SidebarTrigger({ className, onClick, ...props }) {
   const { toggleSidebar } = useSidebar();
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Button,
     {
       "data-sidebar": "trigger",
@@ -4083,13 +4075,13 @@ function SidebarTrigger({ className, onClick, ...props }) {
       },
       ...props
     },
-    /* @__PURE__ */ React9.createElement(PanelLeftIcon, null),
-    /* @__PURE__ */ React9.createElement("span", { className: "sr-only" }, "Toggle Sidebar")
+    /* @__PURE__ */ React44.createElement(PanelLeftIcon, null),
+    /* @__PURE__ */ React44.createElement("span", { className: "sr-only" }, "Toggle Sidebar")
   );
 }
 function SidebarRail({ className, ...props }) {
   const { toggleSidebar } = useSidebar();
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "button",
     {
       "data-sidebar": "rail",
@@ -4112,7 +4104,7 @@ function SidebarRail({ className, ...props }) {
   );
 }
 function SidebarInset({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "main",
     {
       "data-slot": "sidebar-inset",
@@ -4126,7 +4118,7 @@ function SidebarInset({ className, ...props }) {
   );
 }
 function SidebarInput({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Input,
     {
       "data-slot": "sidebar-input",
@@ -4137,7 +4129,7 @@ function SidebarInput({ className, ...props }) {
   );
 }
 function SidebarHeader({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "div",
     {
       "data-slot": "sidebar-header",
@@ -4148,7 +4140,7 @@ function SidebarHeader({ className, ...props }) {
   );
 }
 function SidebarFooter({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "div",
     {
       "data-slot": "sidebar-footer",
@@ -4159,7 +4151,7 @@ function SidebarFooter({ className, ...props }) {
   );
 }
 function SidebarSeparator({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Separator,
     {
       "data-slot": "sidebar-separator",
@@ -4170,7 +4162,7 @@ function SidebarSeparator({ className, ...props }) {
   );
 }
 function SidebarContent({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "div",
     {
       "data-slot": "sidebar-content",
@@ -4184,7 +4176,7 @@ function SidebarContent({ className, ...props }) {
   );
 }
 function SidebarGroup({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "div",
     {
       "data-slot": "sidebar-group",
@@ -4200,7 +4192,7 @@ function SidebarGroupLabel({
   ...props
 }) {
   const Comp = asChild ? Slot.Root : "div";
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Comp,
     {
       "data-slot": "sidebar-group-label",
@@ -4220,7 +4212,7 @@ function SidebarGroupAction({
   ...props
 }) {
   const Comp = asChild ? Slot.Root : "button";
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Comp,
     {
       "data-slot": "sidebar-group-action",
@@ -4237,7 +4229,7 @@ function SidebarGroupAction({
   );
 }
 function SidebarGroupContent({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "div",
     {
       "data-slot": "sidebar-group-content",
@@ -4248,7 +4240,7 @@ function SidebarGroupContent({ className, ...props }) {
   );
 }
 function SidebarMenu({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "ul",
     {
       "data-slot": "sidebar-menu",
@@ -4259,7 +4251,7 @@ function SidebarMenu({ className, ...props }) {
   );
 }
 function SidebarMenuItem({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "li",
     {
       "data-slot": "sidebar-menu-item",
@@ -4300,7 +4292,7 @@ function SidebarMenuButton({
 }) {
   const Comp = asChild ? Slot.Root : "button";
   const { isMobile, state } = useSidebar();
-  const button = /* @__PURE__ */ React9.createElement(
+  const button = /* @__PURE__ */ React44.createElement(
     Comp,
     {
       "data-slot": "sidebar-menu-button",
@@ -4319,7 +4311,7 @@ function SidebarMenuButton({
       children: tooltip
     };
   }
-  return /* @__PURE__ */ React9.createElement(Tooltip2, null, /* @__PURE__ */ React9.createElement(TooltipTrigger, { asChild: true }, button), /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(Tooltip2, null, /* @__PURE__ */ React44.createElement(TooltipTrigger, { asChild: true }, button), /* @__PURE__ */ React44.createElement(
     TooltipContent,
     {
       side: "right",
@@ -4336,7 +4328,7 @@ function SidebarMenuAction({
   ...props
 }) {
   const Comp = asChild ? Slot.Root : "button";
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Comp,
     {
       "data-slot": "sidebar-menu-action",
@@ -4357,7 +4349,7 @@ function SidebarMenuAction({
   );
 }
 function SidebarMenuBadge({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "div",
     {
       "data-slot": "sidebar-menu-badge",
@@ -4380,10 +4372,10 @@ function SidebarMenuSkeleton({
   showIcon = false,
   ...props
 }) {
-  const width = React9.useMemo(() => {
+  const width = React44.useMemo(() => {
     return `${Math.floor(Math.random() * 40) + 50}%`;
   }, []);
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "div",
     {
       "data-slot": "sidebar-menu-skeleton",
@@ -4391,8 +4383,8 @@ function SidebarMenuSkeleton({
       className: cn("flex h-8 items-center gap-2 rounded-md px-2", className),
       ...props
     },
-    showIcon && /* @__PURE__ */ React9.createElement(Skeleton, { className: "size-4 rounded-md", "data-sidebar": "menu-skeleton-icon" }),
-    /* @__PURE__ */ React9.createElement(
+    showIcon && /* @__PURE__ */ React44.createElement(Skeleton, { className: "size-4 rounded-md", "data-sidebar": "menu-skeleton-icon" }),
+    /* @__PURE__ */ React44.createElement(
       Skeleton,
       {
         className: "h-4 max-w-(--skeleton-width) flex-1",
@@ -4405,7 +4397,7 @@ function SidebarMenuSkeleton({
   );
 }
 function SidebarMenuSub({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "ul",
     {
       "data-slot": "sidebar-menu-sub",
@@ -4420,7 +4412,7 @@ function SidebarMenuSub({ className, ...props }) {
   );
 }
 function SidebarMenuSubItem({ className, ...props }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     "li",
     {
       "data-slot": "sidebar-menu-sub-item",
@@ -4438,7 +4430,7 @@ function SidebarMenuSubButton({
   ...props
 }) {
   const Comp = asChild ? Slot.Root : "a";
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Comp,
     {
       "data-slot": "sidebar-menu-sub-button",
@@ -4465,11 +4457,11 @@ function Slider({
   max = 100,
   ...props
 }) {
-  const _values = React9.useMemo(
+  const _values = React44.useMemo(
     () => Array.isArray(value) ? value : Array.isArray(defaultValue) ? defaultValue : [min, max],
     [value, defaultValue, min, max]
   );
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     Slider$1.Root,
     {
       "data-slot": "slider",
@@ -4483,7 +4475,7 @@ function Slider({
       ),
       ...props
     },
-    /* @__PURE__ */ React9.createElement(
+    /* @__PURE__ */ React44.createElement(
       Slider$1.Track,
       {
         "data-slot": "slider-track",
@@ -4491,7 +4483,7 @@ function Slider({
           "bg-muted relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"
         )
       },
-      /* @__PURE__ */ React9.createElement(
+      /* @__PURE__ */ React44.createElement(
         Slider$1.Range,
         {
           "data-slot": "slider-range",
@@ -4501,7 +4493,7 @@ function Slider({
         }
       )
     ),
-    Array.from({ length: _values.length }, (_, index) => /* @__PURE__ */ React9.createElement(
+    Array.from({ length: _values.length }, (_, index) => /* @__PURE__ */ React44.createElement(
       Slider$1.Thumb,
       {
         "data-slot": "slider-thumb",
@@ -4513,17 +4505,17 @@ function Slider({
 }
 var Toaster = ({ ...props }) => {
   const { theme = "system" } = useTheme();
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Toaster$1,
     {
       theme,
       className: "toaster group",
       icons: {
-        success: /* @__PURE__ */ React.createElement(CircleCheckIcon, { className: "size-4" }),
-        info: /* @__PURE__ */ React.createElement(InfoIcon, { className: "size-4" }),
-        warning: /* @__PURE__ */ React.createElement(TriangleAlertIcon, { className: "size-4" }),
-        error: /* @__PURE__ */ React.createElement(OctagonXIcon, { className: "size-4" }),
-        loading: /* @__PURE__ */ React.createElement(Loader2Icon, { className: "size-4 animate-spin" })
+        success: /* @__PURE__ */ React44__default.createElement(CircleCheckIcon, { className: "size-4" }),
+        info: /* @__PURE__ */ React44__default.createElement(InfoIcon, { className: "size-4" }),
+        warning: /* @__PURE__ */ React44__default.createElement(TriangleAlertIcon, { className: "size-4" }),
+        error: /* @__PURE__ */ React44__default.createElement(OctagonXIcon, { className: "size-4" }),
+        loading: /* @__PURE__ */ React44__default.createElement(Loader2Icon, { className: "size-4 animate-spin" })
       },
       style: {
         "--normal-bg": "var(--popover)",
@@ -4536,7 +4528,7 @@ var Toaster = ({ ...props }) => {
   );
 };
 function Spinner({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Loader2Icon,
     {
       role: "status",
@@ -4551,7 +4543,7 @@ function Switch({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Switch$1.Root,
     {
       "data-slot": "switch",
@@ -4562,7 +4554,7 @@ function Switch({
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React44__default.createElement(
       Switch$1.Thumb,
       {
         "data-slot": "switch-thumb",
@@ -4573,10 +4565,8 @@ function Switch({
     )
   );
 }
-
-// src/primitives/table.tsx
 function Table({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement("div", { "data-slot": "table-container", className: "relative w-full overflow-x-auto" }, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement("div", { "data-slot": "table-container", className: "relative w-full overflow-x-auto" }, /* @__PURE__ */ React44__default.createElement(
     "table",
     {
       "data-slot": "table",
@@ -4586,10 +4576,10 @@ function Table({ className, ...props }) {
   ));
 }
 function TableHeader({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement("thead", { "data-slot": "table-header", className: cn("[&_tr]:border-b", className), ...props });
+  return /* @__PURE__ */ React44__default.createElement("thead", { "data-slot": "table-header", className: cn("[&_tr]:border-b", className), ...props });
 }
 function TableBody({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "tbody",
     {
       "data-slot": "table-body",
@@ -4599,7 +4589,7 @@ function TableBody({ className, ...props }) {
   );
 }
 function TableFooter({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "tfoot",
     {
       "data-slot": "table-footer",
@@ -4609,7 +4599,7 @@ function TableFooter({ className, ...props }) {
   );
 }
 function TableRow({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "tr",
     {
       "data-slot": "table-row",
@@ -4622,7 +4612,7 @@ function TableRow({ className, ...props }) {
   );
 }
 function TableHead({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "th",
     {
       "data-slot": "table-head",
@@ -4635,7 +4625,7 @@ function TableHead({ className, ...props }) {
   );
 }
 function TableCell({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "td",
     {
       "data-slot": "table-cell",
@@ -4648,7 +4638,7 @@ function TableCell({ className, ...props }) {
   );
 }
 function TableCaption({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     "caption",
     {
       "data-slot": "table-caption",
@@ -4662,7 +4652,7 @@ function Tabs({
   orientation = "horizontal",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Tabs$1.Root,
     {
       "data-slot": "tabs",
@@ -4692,7 +4682,7 @@ function TabsList({
   variant = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Tabs$1.List,
     {
       "data-slot": "tabs-list",
@@ -4703,7 +4693,7 @@ function TabsList({
   );
 }
 function TabsTrigger({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Tabs$1.Trigger,
     {
       "data-slot": "tabs-trigger",
@@ -4719,7 +4709,7 @@ function TabsTrigger({ className, ...props }) {
   );
 }
 function TabsContent({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Tabs$1.Content,
     {
       "data-slot": "tabs-content",
@@ -4754,7 +4744,7 @@ function Toggle({
   size,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React44__default.createElement(
     Toggle$1.Root,
     {
       "data-slot": "toggle",
@@ -4763,7 +4753,7 @@ function Toggle({
     }
   );
 }
-var ToggleGroupContext = React9.createContext({
+var ToggleGroupContext = React44.createContext({
   size: "default",
   variant: "default",
   spacing: 0
@@ -4776,7 +4766,7 @@ function ToggleGroup({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React9.createElement(
+  return /* @__PURE__ */ React44.createElement(
     ToggleGroup$1.Root,
     {
       "data-slot": "toggle-group",
@@ -4790,7 +4780,7 @@ function ToggleGroup({
       ),
       ...props
     },
-    /* @__PURE__ */ React9.createElement(ToggleGroupContext.Provider, { value: { variant, size, spacing: spacing2 } }, children)
+    /* @__PURE__ */ React44.createElement(ToggleGroupContext.Provider, { value: { variant, size, spacing: spacing2 } }, children)
   );
 }
 function ToggleGroupItem({
@@ -4800,8 +4790,8 @@ function ToggleGroupItem({
   size,
   ...props
 }) {
-  const context = React9.useContext(ToggleGroupContext);
-  return /* @__PURE__ */ React9.createElement(
+  const context = React44.useContext(ToggleGroupContext);
+  return /* @__PURE__ */ React44.createElement(
     ToggleGroup$1.Item,
     {
       "data-slot": "toggle-group-item",

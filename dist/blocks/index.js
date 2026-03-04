@@ -1,6 +1,6 @@
 'use strict';
 
-var React9 = require('react');
+var React83 = require('react');
 var lucideReact = require('lucide-react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
@@ -32,7 +32,7 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React9__namespace = /*#__PURE__*/_interopNamespace(React9);
+var React83__namespace = /*#__PURE__*/_interopNamespace(React83);
 
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
@@ -52,19 +52,19 @@ function ActivityTimeline({
   compact = false,
   className
 }) {
-  return /* @__PURE__ */ React9__namespace.default.createElement("div", { className: cn("relative", className) }, items.map((item, index) => /* @__PURE__ */ React9__namespace.default.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("relative", className) }, items.map((item, index) => /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       key: item.id,
       className: cn("relative flex gap-4", !compact && "pb-8", compact && "pb-4 last:pb-0")
     },
-    index !== items.length - 1 && /* @__PURE__ */ React9__namespace.default.createElement(
+    index !== items.length - 1 && /* @__PURE__ */ React83__namespace.default.createElement(
       "div",
       {
         className: cn("absolute left-[11px] top-6 h-full w-0.5 bg-muted", compact && "top-4")
       }
     ),
-    /* @__PURE__ */ React9__namespace.default.createElement(
+    /* @__PURE__ */ React83__namespace.default.createElement(
       "div",
       {
         className: cn(
@@ -72,9 +72,9 @@ function ActivityTimeline({
           variantStyles[item.variant || "default"]
         )
       },
-      item.icon ? /* @__PURE__ */ React9__namespace.default.createElement("span", { className: "h-3 w-3 text-white" }, item.icon) : /* @__PURE__ */ React9__namespace.default.createElement(lucideReact.CircleIcon, { className: "h-2 w-2 text-white" })
+      item.icon ? /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "h-3 w-3 text-white" }, item.icon) : /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.CircleIcon, { className: "h-2 w-2 text-white" })
     ),
-    /* @__PURE__ */ React9__namespace.default.createElement("div", { className: cn("flex-1 space-y-1", compact && "space-y-0.5") }, /* @__PURE__ */ React9__namespace.default.createElement("p", { className: cn("text-sm font-medium", compact && "text-xs") }, item.title), item.description && /* @__PURE__ */ React9__namespace.default.createElement("p", { className: cn("text-sm text-muted-foreground", compact && "text-xs") }, item.description), showTimestamp && item.timestamp && /* @__PURE__ */ React9__namespace.default.createElement(
+    /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("flex-1 space-y-1", compact && "space-y-0.5") }, /* @__PURE__ */ React83__namespace.default.createElement("p", { className: cn("text-sm font-medium", compact && "text-xs") }, item.title), item.description && /* @__PURE__ */ React83__namespace.default.createElement("p", { className: cn("text-sm text-muted-foreground", compact && "text-xs") }, item.description), showTimestamp && item.timestamp && /* @__PURE__ */ React83__namespace.default.createElement(
       "p",
       {
         className: cn(
@@ -82,13 +82,11 @@ function ActivityTimeline({
           compact && "text-[10px]"
         )
       },
-      /* @__PURE__ */ React9__namespace.default.createElement(lucideReact.ClockIcon, { className: "h-3 w-3" }),
+      /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.ClockIcon, { className: "h-3 w-3" }),
       item.timestamp
     ))
   )));
 }
-
-// src/blocks/data-display/card-grid.tsx
 var gapSizes = {
   sm: "gap-3",
   md: "gap-4",
@@ -103,10 +101,8 @@ var columnSizes = {
   6: "grid-cols-6"
 };
 function CardGrid({ columns = 3, gap = "md", children, className }) {
-  return /* @__PURE__ */ React.createElement("div", { className: cn("grid", columnSizes[columns], gapSizes[gap], className) }, children);
+  return /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("grid", columnSizes[columns], gapSizes[gap], className) }, children);
 }
-
-// src/blocks/data-display/data-grid.tsx
 function DataGrid({
   columns,
   rows,
@@ -116,7 +112,7 @@ function DataGrid({
   onRowClick,
   className
 }) {
-  return /* @__PURE__ */ React.createElement("div", { className: cn("w-full overflow-auto", className) }, /* @__PURE__ */ React.createElement("table", { className: "w-full caption-bottom text-sm" }, showHeader && /* @__PURE__ */ React.createElement("thead", { className: "border-b bg-muted/50" }, /* @__PURE__ */ React.createElement("tr", null, columns.map((column) => /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("w-full overflow-auto", className) }, /* @__PURE__ */ React83__namespace.default.createElement("table", { className: "w-full caption-bottom text-sm" }, showHeader && /* @__PURE__ */ React83__namespace.default.createElement("thead", { className: "border-b bg-muted/50" }, /* @__PURE__ */ React83__namespace.default.createElement("tr", null, columns.map((column) => /* @__PURE__ */ React83__namespace.default.createElement(
     "th",
     {
       key: column.id,
@@ -128,7 +124,7 @@ function DataGrid({
       style: { width: column.width }
     },
     column.label
-  )))), /* @__PURE__ */ React.createElement("tbody", null, rows.map((row, rowIndex) => /* @__PURE__ */ React.createElement(
+  )))), /* @__PURE__ */ React83__namespace.default.createElement("tbody", null, rows.map((row, rowIndex) => /* @__PURE__ */ React83__namespace.default.createElement(
     "tr",
     {
       key: row.id,
@@ -140,7 +136,7 @@ function DataGrid({
         onRowClick && "cursor-pointer"
       )
     },
-    columns.map((column) => /* @__PURE__ */ React.createElement(
+    columns.map((column) => /* @__PURE__ */ React83__namespace.default.createElement(
       "td",
       {
         key: column.id,
@@ -152,7 +148,7 @@ function DataGrid({
       },
       row.cells[column.id]
     ))
-  )), rows.length === 0 && /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("td", { colSpan: columns.length, className: "p-8 text-center text-muted-foreground" }, "No data available")))));
+  )), rows.length === 0 && /* @__PURE__ */ React83__namespace.default.createElement("tr", null, /* @__PURE__ */ React83__namespace.default.createElement("td", { colSpan: columns.length, className: "p-8 text-center text-muted-foreground" }, "No data available")))));
 }
 var badgeVariants = classVarianceAuthority.cva(
   "inline-flex items-center justify-center rounded-full border border-transparent px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
@@ -179,7 +175,7 @@ function Badge({
   ...props
 }) {
   const Comp = asChild ? radixUi.Slot.Root : "span";
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     Comp,
     {
       "data-slot": "badge",
@@ -189,10 +185,8 @@ function Badge({
     }
   );
 }
-
-// src/primitives/card.tsx
 function Card({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       "data-slot": "card",
@@ -205,7 +199,7 @@ function Card({ className, ...props }) {
   );
 }
 function CardHeader({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       "data-slot": "card-header",
@@ -218,7 +212,7 @@ function CardHeader({ className, ...props }) {
   );
 }
 function CardTitle({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       "data-slot": "card-title",
@@ -228,7 +222,7 @@ function CardTitle({ className, ...props }) {
   );
 }
 function CardDescription({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       "data-slot": "card-description",
@@ -238,21 +232,21 @@ function CardDescription({ className, ...props }) {
   );
 }
 function CardContent({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement("div", { "data-slot": "card-content", className: cn("px-6", className), ...props });
+  return /* @__PURE__ */ React83__namespace.default.createElement("div", { "data-slot": "card-content", className: cn("px-6", className), ...props });
 }
 function Progress({
   className,
   value,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Progress.Root,
     {
       "data-slot": "progress",
       className: cn("bg-primary/20 relative h-2 w-full overflow-hidden rounded-full", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React83__namespace.default.createElement(
       radixUi.Progress.Indicator,
       {
         "data-slot": "progress-indicator",
@@ -276,19 +270,19 @@ function EntityCard({
   onClick,
   className
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     Card,
     {
       className: cn("transition-colors", onClick && "cursor-pointer hover:bg-muted/50", className),
       onClick
     },
-    /* @__PURE__ */ React.createElement(CardHeader, { className: "space-y-3" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-start justify-between" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-start gap-3 min-w-0" }, avatar && /* @__PURE__ */ React.createElement("div", { className: "shrink-0" }, avatar), /* @__PURE__ */ React.createElement("div", { className: "min-w-0" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement(CardTitle, { className: "text-base truncate" }, title), status && /* @__PURE__ */ React.createElement(Badge, { variant: status.variant || "secondary", className: "shrink-0 text-xs" }, status.label)), subtitle && /* @__PURE__ */ React.createElement(CardDescription, { className: "text-sm" }, subtitle)))), description && /* @__PURE__ */ React.createElement(CardDescription, { className: "text-sm line-clamp-2" }, description)),
-    (progress !== void 0 || metadata) && /* @__PURE__ */ React.createElement(CardContent, { className: "space-y-3" }, progress !== void 0 && /* @__PURE__ */ React.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between text-xs text-muted-foreground" }, /* @__PURE__ */ React.createElement("span", null, "Progress"), /* @__PURE__ */ React.createElement("span", null, progress, "%")), /* @__PURE__ */ React.createElement(Progress, { value: progress, className: "h-2" })), metadata && metadata.length > 0 && /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-2 gap-2 text-sm" }, metadata.map((item) => /* @__PURE__ */ React.createElement("div", { key: item.label, className: "flex justify-between" }, /* @__PURE__ */ React.createElement("span", { className: "text-muted-foreground" }, item.label), /* @__PURE__ */ React.createElement("span", { className: "font-medium truncate" }, item.value))))),
-    actions && /* @__PURE__ */ React.createElement(CardContent, { className: "pt-0" }, /* @__PURE__ */ React.createElement("div", { className: "flex gap-2" }, actions))
+    /* @__PURE__ */ React83__namespace.default.createElement(CardHeader, { className: "space-y-3" }, /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex items-start justify-between" }, /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex items-start gap-3 min-w-0" }, avatar && /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "shrink-0" }, avatar), /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "min-w-0" }, /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React83__namespace.default.createElement(CardTitle, { className: "text-base truncate" }, title), status && /* @__PURE__ */ React83__namespace.default.createElement(Badge, { variant: status.variant || "secondary", className: "shrink-0 text-xs" }, status.label)), subtitle && /* @__PURE__ */ React83__namespace.default.createElement(CardDescription, { className: "text-sm" }, subtitle)))), description && /* @__PURE__ */ React83__namespace.default.createElement(CardDescription, { className: "text-sm line-clamp-2" }, description)),
+    (progress !== void 0 || metadata) && /* @__PURE__ */ React83__namespace.default.createElement(CardContent, { className: "space-y-3" }, progress !== void 0 && /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex justify-between text-xs text-muted-foreground" }, /* @__PURE__ */ React83__namespace.default.createElement("span", null, "Progress"), /* @__PURE__ */ React83__namespace.default.createElement("span", null, progress, "%")), /* @__PURE__ */ React83__namespace.default.createElement(Progress, { value: progress, className: "h-2" })), metadata && metadata.length > 0 && /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "grid grid-cols-2 gap-2 text-sm" }, metadata.map((item) => /* @__PURE__ */ React83__namespace.default.createElement("div", { key: item.label, className: "flex justify-between" }, /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "text-muted-foreground" }, item.label), /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "font-medium truncate" }, item.value))))),
+    actions && /* @__PURE__ */ React83__namespace.default.createElement(CardContent, { className: "pt-0" }, /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex gap-2" }, actions))
   );
 }
 function MasonryBoard({ items, columns = 3, gap = 4, className }) {
-  const columnArrays = React9__namespace.useMemo(() => {
+  const columnArrays = React83__namespace.useMemo(() => {
     const cols = Array.from({ length: columns }, () => []);
     const heights = Array(columns).fill(0);
     items.forEach((item) => {
@@ -298,7 +292,7 @@ function MasonryBoard({ items, columns = 3, gap = 4, className }) {
     });
     return cols;
   }, [items, columns]);
-  return /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("grid", `grid-cols-${columns}`, className), style: { gap: `${gap * 4}px` } }, columnArrays.map((column, colIndex) => /* @__PURE__ */ React9__namespace.createElement("div", { key: colIndex, className: "flex flex-col", style: { gap: `${gap * 4}px` } }, column.map((item) => /* @__PURE__ */ React9__namespace.createElement("div", { key: item.id }, item.content)))));
+  return /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("grid", `grid-cols-${columns}`, className), style: { gap: `${gap * 4}px` } }, columnArrays.map((column, colIndex) => /* @__PURE__ */ React83__namespace.createElement("div", { key: colIndex, className: "flex flex-col", style: { gap: `${gap * 4}px` } }, column.map((item) => /* @__PURE__ */ React83__namespace.createElement("div", { key: item.id }, item.content)))));
 }
 var trendConfig = {
   up: {
@@ -329,31 +323,31 @@ function MetricCard({
   className
 }) {
   const trendData = trend ? trendConfig[trend] : null;
-  const changePercent = React9__namespace.useMemo(() => {
+  const changePercent = React83__namespace.useMemo(() => {
     if (!previousValue || !trend) return null;
     const current = typeof value === "number" ? value : parseFloat(String(value));
     const prev = typeof previousValue === "number" ? previousValue : parseFloat(String(previousValue));
     if (Number.isNaN(current) || Number.isNaN(prev) || prev === 0) return null;
     return ((current - prev) / prev * 100).toFixed(1);
   }, [value, previousValue, trend]);
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     Card,
     {
       className: cn("transition-colors", onClick && "cursor-pointer hover:bg-muted/50", className),
       onClick
     },
-    /* @__PURE__ */ React9__namespace.createElement(CardHeader, { className: cn("pb-2", compact && "pb-1") }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React9__namespace.createElement(CardDescription, { className: cn("font-medium text-foreground", compact && "text-sm") }, label), trendData && /* @__PURE__ */ React9__namespace.createElement(Badge, { variant: "outline", className: cn("gap-1 text-xs", trendData.bg, trendData.color) }, trend === "up" && /* @__PURE__ */ React9__namespace.createElement(lucideReact.ArrowUpIcon, { className: "h-3 w-3" }), trend === "down" && /* @__PURE__ */ React9__namespace.createElement(lucideReact.ArrowDownIcon, { className: "h-3 w-3" }), trend === "neutral" && /* @__PURE__ */ React9__namespace.createElement(lucideReact.MinusIcon, { className: "h-3 w-3" }), trendValue || changePercent || "\u2014"))),
-    /* @__PURE__ */ React9__namespace.createElement(CardContent, null, /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("font-bold", compact ? "text-xl" : "text-3xl") }, value), description && !compact && /* @__PURE__ */ React9__namespace.createElement(CardDescription, { className: "mt-1 text-xs" }, description))
+    /* @__PURE__ */ React83__namespace.createElement(CardHeader, { className: cn("pb-2", compact && "pb-1") }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React83__namespace.createElement(CardDescription, { className: cn("font-medium text-foreground", compact && "text-sm") }, label), trendData && /* @__PURE__ */ React83__namespace.createElement(Badge, { variant: "outline", className: cn("gap-1 text-xs", trendData.bg, trendData.color) }, trend === "up" && /* @__PURE__ */ React83__namespace.createElement(lucideReact.ArrowUpIcon, { className: "h-3 w-3" }), trend === "down" && /* @__PURE__ */ React83__namespace.createElement(lucideReact.ArrowDownIcon, { className: "h-3 w-3" }), trend === "neutral" && /* @__PURE__ */ React83__namespace.createElement(lucideReact.MinusIcon, { className: "h-3 w-3" }), trendValue || changePercent || "\u2014"))),
+    /* @__PURE__ */ React83__namespace.createElement(CardContent, null, /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("font-bold", compact ? "text-xl" : "text-3xl") }, value), description && !compact && /* @__PURE__ */ React83__namespace.createElement(CardDescription, { className: "mt-1 text-xs" }, description))
   );
 }
 var buttonVariants = classVarianceAuthority.cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline: "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+        destructive: "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40",
+        outline: "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline"
@@ -361,7 +355,7 @@ var buttonVariants = classVarianceAuthority.cva(
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
         xs: "h-6 gap-1 rounded-md px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
+        sm: "h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
         icon: "size-9",
         "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
@@ -383,7 +377,7 @@ function Button({
   ...props
 }) {
   const Comp = asChild ? radixUi.Slot.Root : "button";
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     Comp,
     {
       "data-slot": "button",
@@ -397,7 +391,7 @@ function Button({
 
 // src/blocks/data-display/section-header.tsx
 function SectionHeader({ title, description, action, icon, className }) {
-  return /* @__PURE__ */ React.createElement(Card, { className: cn("border-0 shadow-none bg-transparent", className) }, /* @__PURE__ */ React.createElement(CardHeader, { className: "flex flex-row items-center justify-between space-y-0 px-0 pb-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, icon && /* @__PURE__ */ React.createElement("div", { className: "flex items-center" }, icon), /* @__PURE__ */ React.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React.createElement(CardTitle, { className: "text-xl font-semibold tracking-tight" }, title), description && /* @__PURE__ */ React.createElement(CardDescription, { className: "text-sm" }, description))), action && /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(Card, { className: cn("border-0 shadow-none bg-transparent", className) }, /* @__PURE__ */ React83__namespace.default.createElement(CardHeader, { className: "flex flex-row items-center justify-between space-y-0 px-0 pb-4" }, /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex items-center gap-3" }, icon && /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex items-center" }, icon), /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React83__namespace.default.createElement(CardTitle, { className: "text-xl font-semibold tracking-tight" }, title), description && /* @__PURE__ */ React83__namespace.default.createElement(CardDescription, { className: "text-sm" }, description))), action && /* @__PURE__ */ React83__namespace.default.createElement(
     Button,
     {
       variant: action.variant || "default",
@@ -405,14 +399,12 @@ function SectionHeader({ title, description, action, icon, className }) {
       onClick: action.onClick,
       className: "shrink-0"
     },
-    action.icon && /* @__PURE__ */ React.createElement("span", { className: "mr-2" }, action.icon),
+    action.icon && /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "mr-2" }, action.icon),
     action.label
-  )), /* @__PURE__ */ React.createElement(CardContent, { className: "px-0" }));
+  )), /* @__PURE__ */ React83__namespace.default.createElement(CardContent, { className: "px-0" }));
 }
-
-// src/primitives/input.tsx
 function Input({ className, type, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "input",
     {
       type,
@@ -427,10 +419,8 @@ function Input({ className, type, ...props }) {
     }
   );
 }
-
-// src/primitives/textarea.tsx
 function Textarea({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "textarea",
     {
       "data-slot": "textarea",
@@ -445,7 +435,7 @@ function Textarea({ className, ...props }) {
 
 // src/primitives/input-group.tsx
 function InputGroup({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       "data-slot": "input-group",
@@ -489,7 +479,7 @@ function InputGroupAddon({
   align = "inline-start",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       role: "group",
@@ -526,7 +516,7 @@ function InputGroupButton({
   size = "xs",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     Button,
     {
       type,
@@ -538,7 +528,7 @@ function InputGroupButton({
   );
 }
 function InputGroupInput({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     Input,
     {
       "data-slot": "input-group-control",
@@ -561,9 +551,9 @@ function SearchBar({
   debounce = 300,
   className
 }) {
-  const [inputValue, setInputValue] = React9__namespace.useState(value || "");
-  const debounceRef = React9__namespace.useRef(null);
-  React9__namespace.useEffect(() => {
+  const [inputValue, setInputValue] = React83__namespace.useState(value || "");
+  const debounceRef = React83__namespace.useRef(null);
+  React83__namespace.useEffect(() => {
     if (value !== void 0) {
       setInputValue(value);
     }
@@ -586,7 +576,7 @@ function SearchBar({
     setInputValue("");
     onClear?.();
   };
-  return /* @__PURE__ */ React9__namespace.createElement(InputGroup, { className }, /* @__PURE__ */ React9__namespace.createElement(InputGroupAddon, { align: "inline-start" }, /* @__PURE__ */ React9__namespace.createElement(lucideReact.Search, { className: "h-4 w-4" })), /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(InputGroup, { className }, /* @__PURE__ */ React83__namespace.createElement(InputGroupAddon, { align: "inline-start" }, /* @__PURE__ */ React83__namespace.createElement(lucideReact.Search, { className: "h-4 w-4" })), /* @__PURE__ */ React83__namespace.createElement(
     InputGroupInput,
     {
       placeholder,
@@ -594,7 +584,7 @@ function SearchBar({
       onChange: handleChange,
       disabled: isLoading
     }
-  ), inputValue && !isLoading && /* @__PURE__ */ React9__namespace.createElement(InputGroupAddon, { align: "inline-end" }, /* @__PURE__ */ React9__namespace.createElement(
+  ), inputValue && !isLoading && /* @__PURE__ */ React83__namespace.createElement(InputGroupAddon, { align: "inline-end" }, /* @__PURE__ */ React83__namespace.createElement(
     Button,
     {
       variant: "ghost",
@@ -602,8 +592,8 @@ function SearchBar({
       onClick: handleClear,
       className: "h-auto p-0 hover:bg-transparent"
     },
-    /* @__PURE__ */ React9__namespace.createElement(lucideReact.X, { className: "h-4 w-4" })
-  )), isLoading && /* @__PURE__ */ React9__namespace.createElement(InputGroupAddon, { align: "inline-end" }, /* @__PURE__ */ React9__namespace.createElement(lucideReact.Loader2Icon, { className: "h-4 w-4 animate-spin" })));
+    /* @__PURE__ */ React83__namespace.createElement(lucideReact.X, { className: "h-4 w-4" })
+  )), isLoading && /* @__PURE__ */ React83__namespace.createElement(InputGroupAddon, { align: "inline-end" }, /* @__PURE__ */ React83__namespace.createElement(lucideReact.Loader2Icon, { className: "h-4 w-4 animate-spin" })));
 }
 
 // src/blocks/data-display/smart-data-table/filter-bar.tsx
@@ -617,7 +607,7 @@ function FilterBar({
   isLoading = false,
   className
 }) {
-  return /* @__PURE__ */ React9__namespace.default.createElement("div", { className: cn("flex items-center justify-between gap-3", className) }, /* @__PURE__ */ React9__namespace.default.createElement("div", { className: "flex-1 min-w-0" }, /* @__PURE__ */ React9__namespace.default.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("flex items-center justify-between gap-3", className) }, /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex-1 min-w-0" }, /* @__PURE__ */ React83__namespace.default.createElement(
     SearchBar,
     {
       value: searchValue,
@@ -628,7 +618,7 @@ function FilterBar({
       debounce: 300,
       className: "w-full"
     }
-  )), /* @__PURE__ */ React9__namespace.default.createElement("div", { className: "flex items-center gap-2 shrink-0" }, /* @__PURE__ */ React9__namespace.default.createElement(Button, { type: "button", variant: "outline", onClick: onAddFilter }, "+ Add Filter"), hasFilters && /* @__PURE__ */ React9__namespace.default.createElement(
+  )), /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex items-center gap-2 shrink-0" }, /* @__PURE__ */ React83__namespace.default.createElement(Button, { type: "button", variant: "outline", onClick: onAddFilter }, "+ Add Filter"), hasFilters && /* @__PURE__ */ React83__namespace.default.createElement(
     Button,
     {
       type: "button",
@@ -686,7 +676,7 @@ function Calendar({
   ...props
 }) {
   const defaultClassNames = reactDayPicker.getDefaultClassNames();
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     reactDayPicker.DayPicker,
     {
       showOutsideDays,
@@ -771,20 +761,20 @@ function Calendar({
       },
       components: {
         Root: ({ className: className2, rootRef, ...props2 }) => {
-          return /* @__PURE__ */ React9__namespace.createElement("div", { "data-slot": "calendar", ref: rootRef, className: cn(className2), ...props2 });
+          return /* @__PURE__ */ React83__namespace.createElement("div", { "data-slot": "calendar", ref: rootRef, className: cn(className2), ...props2 });
         },
         Chevron: ({ className: className2, orientation, ...props2 }) => {
           if (orientation === "left") {
-            return /* @__PURE__ */ React9__namespace.createElement(lucideReact.ChevronLeftIcon, { className: cn("size-4", className2), ...props2 });
+            return /* @__PURE__ */ React83__namespace.createElement(lucideReact.ChevronLeftIcon, { className: cn("size-4", className2), ...props2 });
           }
           if (orientation === "right") {
-            return /* @__PURE__ */ React9__namespace.createElement(lucideReact.ChevronRightIcon, { className: cn("size-4", className2), ...props2 });
+            return /* @__PURE__ */ React83__namespace.createElement(lucideReact.ChevronRightIcon, { className: cn("size-4", className2), ...props2 });
           }
-          return /* @__PURE__ */ React9__namespace.createElement(lucideReact.ChevronDownIcon, { className: cn("size-4", className2), ...props2 });
+          return /* @__PURE__ */ React83__namespace.createElement(lucideReact.ChevronDownIcon, { className: cn("size-4", className2), ...props2 });
         },
         DayButton: CalendarDayButton,
         WeekNumber: ({ children, ...props2 }) => {
-          return /* @__PURE__ */ React9__namespace.createElement("td", { ...props2 }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex size-(--cell-size) items-center justify-center text-center" }, children));
+          return /* @__PURE__ */ React83__namespace.createElement("td", { ...props2 }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex size-(--cell-size) items-center justify-center text-center" }, children));
         },
         ...components
       },
@@ -799,11 +789,11 @@ function CalendarDayButton({
   ...props
 }) {
   const defaultClassNames = reactDayPicker.getDefaultClassNames();
-  const ref = React9__namespace.useRef(null);
-  React9__namespace.useEffect(() => {
+  const ref = React83__namespace.useRef(null);
+  React83__namespace.useEffect(() => {
     if (modifiers.focused) ref.current?.focus();
   }, [modifiers.focused]);
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     Button,
     {
       ref,
@@ -825,7 +815,7 @@ function CalendarDayButton({
 }
 var Combobox = react.Combobox.Root;
 function ComboboxTrigger({ className, children, ...props }) {
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     react.Combobox.Trigger,
     {
       "data-slot": "combobox-trigger",
@@ -833,7 +823,7 @@ function ComboboxTrigger({ className, children, ...props }) {
       ...props
     },
     children,
-    /* @__PURE__ */ React9__namespace.createElement(
+    /* @__PURE__ */ React83__namespace.createElement(
       lucideReact.ChevronDownIcon,
       {
         "data-slot": "combobox-trigger-icon",
@@ -843,15 +833,15 @@ function ComboboxTrigger({ className, children, ...props }) {
   );
 }
 function ComboboxClear({ className, ...props }) {
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     react.Combobox.Clear,
     {
       "data-slot": "combobox-clear",
-      render: /* @__PURE__ */ React9__namespace.createElement(InputGroupButton, { variant: "ghost", size: "icon-xs" }),
+      render: /* @__PURE__ */ React83__namespace.createElement(InputGroupButton, { variant: "ghost", size: "icon-xs" }),
       className: cn(className),
       ...props
     },
-    /* @__PURE__ */ React9__namespace.createElement(lucideReact.XIcon, { className: "pointer-events-none" })
+    /* @__PURE__ */ React83__namespace.createElement(lucideReact.XIcon, { className: "pointer-events-none" })
   );
 }
 function ComboboxInput({
@@ -862,7 +852,7 @@ function ComboboxInput({
   showClear = false,
   ...props
 }) {
-  return /* @__PURE__ */ React9__namespace.createElement(InputGroup, { className: cn("w-auto", className) }, /* @__PURE__ */ React9__namespace.createElement(react.Combobox.Input, { render: /* @__PURE__ */ React9__namespace.createElement(InputGroupInput, { disabled }), ...props }), /* @__PURE__ */ React9__namespace.createElement(InputGroupAddon, { align: "inline-end" }, showTrigger && /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(InputGroup, { className: cn("w-auto", className) }, /* @__PURE__ */ React83__namespace.createElement(react.Combobox.Input, { render: /* @__PURE__ */ React83__namespace.createElement(InputGroupInput, { disabled }), ...props }), /* @__PURE__ */ React83__namespace.createElement(InputGroupAddon, { align: "inline-end" }, showTrigger && /* @__PURE__ */ React83__namespace.createElement(
     InputGroupButton,
     {
       size: "icon-xs",
@@ -872,8 +862,8 @@ function ComboboxInput({
       className: "group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent",
       disabled
     },
-    /* @__PURE__ */ React9__namespace.createElement(ComboboxTrigger, null)
-  ), showClear && /* @__PURE__ */ React9__namespace.createElement(ComboboxClear, { disabled })), children);
+    /* @__PURE__ */ React83__namespace.createElement(ComboboxTrigger, null)
+  ), showClear && /* @__PURE__ */ React83__namespace.createElement(ComboboxClear, { disabled })), children);
 }
 function ComboboxContent({
   className,
@@ -884,7 +874,7 @@ function ComboboxContent({
   anchor,
   ...props
 }) {
-  return /* @__PURE__ */ React9__namespace.createElement(react.Combobox.Portal, null, /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(react.Combobox.Portal, null, /* @__PURE__ */ React83__namespace.createElement(
     react.Combobox.Positioner,
     {
       side,
@@ -894,7 +884,7 @@ function ComboboxContent({
       anchor,
       className: "isolate z-50"
     },
-    /* @__PURE__ */ React9__namespace.createElement(
+    /* @__PURE__ */ React83__namespace.createElement(
       react.Combobox.Popup,
       {
         "data-slot": "combobox-content",
@@ -909,7 +899,7 @@ function ComboboxContent({
   ));
 }
 function ComboboxList({ className, ...props }) {
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     react.Combobox.List,
     {
       "data-slot": "combobox-list",
@@ -922,7 +912,7 @@ function ComboboxList({ className, ...props }) {
   );
 }
 function ComboboxItem({ className, children, ...props }) {
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     react.Combobox.Item,
     {
       "data-slot": "combobox-item",
@@ -933,18 +923,18 @@ function ComboboxItem({ className, children, ...props }) {
       ...props
     },
     children,
-    /* @__PURE__ */ React9__namespace.createElement(
+    /* @__PURE__ */ React83__namespace.createElement(
       react.Combobox.ItemIndicator,
       {
         "data-slot": "combobox-item-indicator",
-        render: /* @__PURE__ */ React9__namespace.createElement("span", { className: "pointer-events-none absolute right-2 flex size-4 items-center justify-center" })
+        render: /* @__PURE__ */ React83__namespace.createElement("span", { className: "pointer-events-none absolute right-2 flex size-4 items-center justify-center" })
       },
-      /* @__PURE__ */ React9__namespace.createElement(lucideReact.CheckIcon, { className: "pointer-events-none size-4 pointer-coarse:size-5" })
+      /* @__PURE__ */ React83__namespace.createElement(lucideReact.CheckIcon, { className: "pointer-events-none size-4 pointer-coarse:size-5" })
     )
   );
 }
 function ComboboxEmpty({ className, ...props }) {
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     react.Combobox.Empty,
     {
       "data-slot": "combobox-empty",
@@ -957,16 +947,16 @@ function ComboboxEmpty({ className, ...props }) {
   );
 }
 function Dialog({ ...props }) {
-  return /* @__PURE__ */ React.createElement(radixUi.Dialog.Root, { "data-slot": "dialog", ...props });
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Dialog.Root, { "data-slot": "dialog", ...props });
 }
 function DialogPortal({ ...props }) {
-  return /* @__PURE__ */ React.createElement(radixUi.Dialog.Portal, { "data-slot": "dialog-portal", ...props });
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Dialog.Portal, { "data-slot": "dialog-portal", ...props });
 }
 function DialogOverlay({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Dialog.Overlay,
     {
       "data-slot": "dialog-overlay",
@@ -984,7 +974,7 @@ function DialogContent({
   showCloseButton = true,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(DialogPortal, { "data-slot": "dialog-portal" }, /* @__PURE__ */ React.createElement(DialogOverlay, null), /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(DialogPortal, { "data-slot": "dialog-portal" }, /* @__PURE__ */ React83__namespace.default.createElement(DialogOverlay, null), /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Dialog.Content,
     {
       "data-slot": "dialog-content",
@@ -995,19 +985,19 @@ function DialogContent({
       ...props
     },
     children,
-    showCloseButton && /* @__PURE__ */ React.createElement(
+    showCloseButton && /* @__PURE__ */ React83__namespace.default.createElement(
       radixUi.Dialog.Close,
       {
         "data-slot": "dialog-close",
         className: "ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
       },
-      /* @__PURE__ */ React.createElement(lucideReact.XIcon, null),
-      /* @__PURE__ */ React.createElement("span", { className: "sr-only" }, "Close")
+      /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.XIcon, null),
+      /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "sr-only" }, "Close")
     )
   ));
 }
 function DialogHeader({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       "data-slot": "dialog-header",
@@ -1017,7 +1007,7 @@ function DialogHeader({ className, ...props }) {
   );
 }
 function DialogTitle({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Dialog.Title,
     {
       "data-slot": "dialog-title",
@@ -1027,7 +1017,7 @@ function DialogTitle({ className, ...props }) {
   );
 }
 function Label({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Label.Root,
     {
       "data-slot": "label",
@@ -1040,10 +1030,10 @@ function Label({ className, ...props }) {
   );
 }
 function Popover({ ...props }) {
-  return /* @__PURE__ */ React.createElement(radixUi.Popover.Root, { "data-slot": "popover", ...props });
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Popover.Root, { "data-slot": "popover", ...props });
 }
 function PopoverTrigger({ ...props }) {
-  return /* @__PURE__ */ React.createElement(radixUi.Popover.Trigger, { "data-slot": "popover-trigger", ...props });
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Popover.Trigger, { "data-slot": "popover-trigger", ...props });
 }
 function PopoverContent({
   className,
@@ -1051,7 +1041,7 @@ function PopoverContent({
   sideOffset = 4,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(radixUi.Popover.Portal, null, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Popover.Portal, null, /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Popover.Content,
     {
       "data-slot": "popover-content",
@@ -1066,10 +1056,10 @@ function PopoverContent({
   ));
 }
 function Select({ ...props }) {
-  return /* @__PURE__ */ React.createElement(radixUi.Select.Root, { "data-slot": "select", ...props });
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Select.Root, { "data-slot": "select", ...props });
 }
 function SelectValue({ ...props }) {
-  return /* @__PURE__ */ React.createElement(radixUi.Select.Value, { "data-slot": "select-value", ...props });
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Select.Value, { "data-slot": "select-value", ...props });
 }
 function SelectTrigger({
   className,
@@ -1077,7 +1067,7 @@ function SelectTrigger({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Select.Trigger,
     {
       "data-slot": "select-trigger",
@@ -1089,7 +1079,7 @@ function SelectTrigger({
       ...props
     },
     children,
-    /* @__PURE__ */ React.createElement(radixUi.Select.Icon, { asChild: true }, /* @__PURE__ */ React.createElement(lucideReact.ChevronDownIcon, { className: "size-4 opacity-50" }))
+    /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Select.Icon, { asChild: true }, /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.ChevronDownIcon, { className: "size-4 opacity-50" }))
   );
 }
 function SelectContent({
@@ -1099,7 +1089,7 @@ function SelectContent({
   align = "center",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(radixUi.Select.Portal, null, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Select.Portal, null, /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Select.Content,
     {
       "data-slot": "select-content",
@@ -1112,8 +1102,8 @@ function SelectContent({
       align,
       ...props
     },
-    /* @__PURE__ */ React.createElement(SelectScrollUpButton, null),
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React83__namespace.default.createElement(SelectScrollUpButton, null),
+    /* @__PURE__ */ React83__namespace.default.createElement(
       radixUi.Select.Viewport,
       {
         className: cn(
@@ -1123,7 +1113,7 @@ function SelectContent({
       },
       children
     ),
-    /* @__PURE__ */ React.createElement(SelectScrollDownButton, null)
+    /* @__PURE__ */ React83__namespace.default.createElement(SelectScrollDownButton, null)
   ));
 }
 function SelectItem({
@@ -1131,7 +1121,7 @@ function SelectItem({
   children,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Select.Item,
     {
       "data-slot": "select-item",
@@ -1141,56 +1131,56 @@ function SelectItem({
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React83__namespace.default.createElement(
       "span",
       {
         "data-slot": "select-item-indicator",
         className: "absolute right-2 flex size-3.5 items-center justify-center"
       },
-      /* @__PURE__ */ React.createElement(radixUi.Select.ItemIndicator, null, /* @__PURE__ */ React.createElement(lucideReact.CheckIcon, { className: "size-4" }))
+      /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Select.ItemIndicator, null, /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.CheckIcon, { className: "size-4" }))
     ),
-    /* @__PURE__ */ React.createElement(radixUi.Select.ItemText, null, children)
+    /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Select.ItemText, null, children)
   );
 }
 function SelectScrollUpButton({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Select.ScrollUpButton,
     {
       "data-slot": "select-scroll-up-button",
       className: cn("flex cursor-default items-center justify-center py-1", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement(lucideReact.ChevronUpIcon, { className: "size-4" })
+    /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.ChevronUpIcon, { className: "size-4" })
   );
 }
 function SelectScrollDownButton({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Select.ScrollDownButton,
     {
       "data-slot": "select-scroll-down-button",
       className: cn("flex cursor-default items-center justify-center py-1", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement(lucideReact.ChevronDownIcon, { className: "size-4" })
+    /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.ChevronDownIcon, { className: "size-4" })
   );
 }
 function Sheet({ ...props }) {
-  return /* @__PURE__ */ React.createElement(radixUi.Dialog.Root, { "data-slot": "sheet", ...props });
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Dialog.Root, { "data-slot": "sheet", ...props });
 }
 function SheetPortal({ ...props }) {
-  return /* @__PURE__ */ React.createElement(radixUi.Dialog.Portal, { "data-slot": "sheet-portal", ...props });
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Dialog.Portal, { "data-slot": "sheet-portal", ...props });
 }
 function SheetOverlay({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Dialog.Overlay,
     {
       "data-slot": "sheet-overlay",
@@ -1209,7 +1199,7 @@ function SheetContent({
   showCloseButton = true,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(SheetPortal, null, /* @__PURE__ */ React.createElement(SheetOverlay, null), /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(SheetPortal, null, /* @__PURE__ */ React83__namespace.default.createElement(SheetOverlay, null), /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Dialog.Content,
     {
       "data-slot": "sheet-content",
@@ -1224,11 +1214,11 @@ function SheetContent({
       ...props
     },
     children,
-    showCloseButton && /* @__PURE__ */ React.createElement(radixUi.Dialog.Close, { className: "ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none" }, /* @__PURE__ */ React.createElement(lucideReact.XIcon, { className: "size-4" }), /* @__PURE__ */ React.createElement("span", { className: "sr-only" }, "Close"))
+    showCloseButton && /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Dialog.Close, { className: "ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none" }, /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.XIcon, { className: "size-4" }), /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "sr-only" }, "Close"))
   ));
 }
 function SheetHeader({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       "data-slot": "sheet-header",
@@ -1238,7 +1228,7 @@ function SheetHeader({ className, ...props }) {
   );
 }
 function SheetFooter({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       "data-slot": "sheet-footer",
@@ -1248,7 +1238,7 @@ function SheetFooter({ className, ...props }) {
   );
 }
 function SheetTitle({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Dialog.Title,
     {
       "data-slot": "sheet-title",
@@ -1261,7 +1251,7 @@ function SheetDescription({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Dialog.Description,
     {
       "data-slot": "sheet-description",
@@ -1282,8 +1272,8 @@ function FilterDialog({
   onClearAll,
   isMobile = false
 }) {
-  const [localValues, setLocalValues] = React9__namespace.useState(values);
-  React9__namespace.useEffect(() => {
+  const [localValues, setLocalValues] = React83__namespace.useState(values);
+  React83__namespace.useEffect(() => {
     if (open) {
       setLocalValues(values);
     }
@@ -1306,7 +1296,7 @@ function FilterDialog({
   const activeCount = Object.keys(localValues).filter(
     (key) => localValues[key] !== "" && localValues[key] !== null
   ).length;
-  const Content = /* @__PURE__ */ React9__namespace.createElement(React9__namespace.Fragment, null, /* @__PURE__ */ React9__namespace.createElement(DialogHeader, { className: "space-y-1" }, /* @__PURE__ */ React9__namespace.createElement(DialogTitle, null, "Filter Data")), /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-4 py-4" }, fields.map((field) => /* @__PURE__ */ React9__namespace.createElement(
+  const Content = /* @__PURE__ */ React83__namespace.createElement(React83__namespace.Fragment, null, /* @__PURE__ */ React83__namespace.createElement(DialogHeader, { className: "space-y-1" }, /* @__PURE__ */ React83__namespace.createElement(DialogTitle, null, "Filter Data")), /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-4 py-4" }, fields.map((field) => /* @__PURE__ */ React83__namespace.createElement(
     FilterFieldInput,
     {
       key: field.name,
@@ -1314,7 +1304,7 @@ function FilterDialog({
       value: localValues[field.name],
       onChange: (value) => handleFieldChange(field.name, value)
     }
-  ))), /* @__PURE__ */ React9__namespace.createElement(SheetFooter, { className: "gap-2 sm:justify-between" }, /* @__PURE__ */ React9__namespace.createElement(
+  ))), /* @__PURE__ */ React83__namespace.createElement(SheetFooter, { className: "gap-2 sm:justify-between" }, /* @__PURE__ */ React83__namespace.createElement(
     Button,
     {
       type: "button",
@@ -1323,9 +1313,9 @@ function FilterDialog({
       disabled: activeCount === 0
     },
     "Clear All"
-  ), /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React9__namespace.createElement(Button, { type: "button", variant: "outline", onClick: () => onOpenChange(false) }, "Cancel"), /* @__PURE__ */ React9__namespace.createElement(Button, { type: "button", onClick: handleApply }, "Apply ", activeCount > 0 && `(${activeCount})`))));
+  ), /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React83__namespace.createElement(Button, { type: "button", variant: "outline", onClick: () => onOpenChange(false) }, "Cancel"), /* @__PURE__ */ React83__namespace.createElement(Button, { type: "button", onClick: handleApply }, "Apply ", activeCount > 0 && `(${activeCount})`))));
   if (isMobile) {
-    return /* @__PURE__ */ React9__namespace.createElement(Sheet, { open, onOpenChange }, /* @__PURE__ */ React9__namespace.createElement(SheetContent, { className: "flex flex-col" }, /* @__PURE__ */ React9__namespace.createElement(SheetHeader, null, /* @__PURE__ */ React9__namespace.createElement(SheetTitle, null, "Filter Data")), /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex-1 overflow-y-auto" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-4 py-4" }, fields.map((field) => /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(Sheet, { open, onOpenChange }, /* @__PURE__ */ React83__namespace.createElement(SheetContent, { className: "flex flex-col" }, /* @__PURE__ */ React83__namespace.createElement(SheetHeader, null, /* @__PURE__ */ React83__namespace.createElement(SheetTitle, null, "Filter Data")), /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex-1 overflow-y-auto" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-4 py-4" }, fields.map((field) => /* @__PURE__ */ React83__namespace.createElement(
       FilterFieldInput,
       {
         key: field.name,
@@ -1333,7 +1323,7 @@ function FilterDialog({
         value: localValues[field.name],
         onChange: (value) => handleFieldChange(field.name, value)
       }
-    )))), /* @__PURE__ */ React9__namespace.createElement(SheetFooter, { className: "gap-2 sm:justify-between" }, /* @__PURE__ */ React9__namespace.createElement(
+    )))), /* @__PURE__ */ React83__namespace.createElement(SheetFooter, { className: "gap-2 sm:justify-between" }, /* @__PURE__ */ React83__namespace.createElement(
       Button,
       {
         type: "button",
@@ -1342,9 +1332,9 @@ function FilterDialog({
         disabled: activeCount === 0
       },
       "Clear All"
-    ), /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React9__namespace.createElement(Button, { type: "button", variant: "outline", onClick: () => onOpenChange(false) }, "Cancel"), /* @__PURE__ */ React9__namespace.createElement(Button, { type: "button", onClick: handleApply }, "Apply ", activeCount > 0 && `(${activeCount})`)))));
+    ), /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React83__namespace.createElement(Button, { type: "button", variant: "outline", onClick: () => onOpenChange(false) }, "Cancel"), /* @__PURE__ */ React83__namespace.createElement(Button, { type: "button", onClick: handleApply }, "Apply ", activeCount > 0 && `(${activeCount})`)))));
   }
-  return /* @__PURE__ */ React9__namespace.createElement(Dialog, { open, onOpenChange }, /* @__PURE__ */ React9__namespace.createElement(DialogContent, { className: "sm:max-w-md" }, Content));
+  return /* @__PURE__ */ React83__namespace.createElement(Dialog, { open, onOpenChange }, /* @__PURE__ */ React83__namespace.createElement(DialogContent, { className: "sm:max-w-md" }, Content));
 }
 function FilterFieldInput({
   field,
@@ -1353,7 +1343,7 @@ function FilterFieldInput({
 }) {
   switch (field.type) {
     case "text":
-      return /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React9__namespace.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React83__namespace.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React83__namespace.createElement(
         Input,
         {
           id: field.name,
@@ -1363,18 +1353,18 @@ function FilterFieldInput({
         }
       ));
     case "select":
-      return /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React9__namespace.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React9__namespace.createElement(Select, { value: value || "", onValueChange: onChange }, /* @__PURE__ */ React9__namespace.createElement(SelectTrigger, { id: field.name }, /* @__PURE__ */ React9__namespace.createElement(SelectValue, { placeholder: field.placeholder || "Select..." })), /* @__PURE__ */ React9__namespace.createElement(SelectContent, null, field.options?.map((option) => /* @__PURE__ */ React9__namespace.createElement(SelectItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label)))));
+      return /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React83__namespace.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React83__namespace.createElement(Select, { value: value || "", onValueChange: onChange }, /* @__PURE__ */ React83__namespace.createElement(SelectTrigger, { id: field.name }, /* @__PURE__ */ React83__namespace.createElement(SelectValue, { placeholder: field.placeholder || "Select..." })), /* @__PURE__ */ React83__namespace.createElement(SelectContent, null, field.options?.map((option) => /* @__PURE__ */ React83__namespace.createElement(SelectItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label)))));
     case "combobox":
-      return /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React9__namespace.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React9__namespace.createElement(Combobox, { value: value || "", onValueChange: onChange }, /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React83__namespace.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React83__namespace.createElement(Combobox, { value: value || "", onValueChange: onChange }, /* @__PURE__ */ React83__namespace.createElement(
         ComboboxInput,
         {
           placeholder: field.placeholder || "Select...",
           showClear: true,
           showTrigger: false
         }
-      ), /* @__PURE__ */ React9__namespace.createElement(ComboboxContent, null, /* @__PURE__ */ React9__namespace.createElement(ComboboxList, null, field.options?.map((option) => /* @__PURE__ */ React9__namespace.createElement(ComboboxItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label)), /* @__PURE__ */ React9__namespace.createElement(ComboboxEmpty, null, "No results found")))));
+      ), /* @__PURE__ */ React83__namespace.createElement(ComboboxContent, null, /* @__PURE__ */ React83__namespace.createElement(ComboboxList, null, field.options?.map((option) => /* @__PURE__ */ React83__namespace.createElement(ComboboxItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label)), /* @__PURE__ */ React83__namespace.createElement(ComboboxEmpty, null, "No results found")))));
     case "date":
-      return /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React9__namespace.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React9__namespace.createElement(Popover, null, /* @__PURE__ */ React9__namespace.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React9__namespace.createElement(Button, { variant: "outline", className: "w-full justify-start text-left font-normal" }, value ? dateFns.format(value, "PPP") : /* @__PURE__ */ React9__namespace.createElement("span", null, field.placeholder || "Pick a date"))), /* @__PURE__ */ React9__namespace.createElement(PopoverContent, { className: "w-auto p-0", align: "start" }, /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React83__namespace.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React83__namespace.createElement(Popover, null, /* @__PURE__ */ React83__namespace.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React83__namespace.createElement(Button, { variant: "outline", className: "w-full justify-start text-left font-normal" }, value ? dateFns.format(value, "PPP") : /* @__PURE__ */ React83__namespace.createElement("span", null, field.placeholder || "Pick a date"))), /* @__PURE__ */ React83__namespace.createElement(PopoverContent, { className: "w-auto p-0", align: "start" }, /* @__PURE__ */ React83__namespace.createElement(
         Calendar,
         {
           mode: "single",
@@ -1384,7 +1374,7 @@ function FilterFieldInput({
         }
       ))));
     default:
-      return /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React9__namespace.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React83__namespace.createElement(Label, { htmlFor: field.name }, field.label), /* @__PURE__ */ React83__namespace.createElement(
         Input,
         {
           id: field.name,
@@ -1396,7 +1386,7 @@ function FilterFieldInput({
   }
 }
 function Pagination({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "nav",
     {
       "aria-label": "pagination",
@@ -1407,7 +1397,7 @@ function Pagination({ className, ...props }) {
   );
 }
 function PaginationContent({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "ul",
     {
       "data-slot": "pagination-content",
@@ -1417,10 +1407,10 @@ function PaginationContent({ className, ...props }) {
   );
 }
 function PaginationItem({ ...props }) {
-  return /* @__PURE__ */ React.createElement("li", { "data-slot": "pagination-item", ...props });
+  return /* @__PURE__ */ React83__namespace.default.createElement("li", { "data-slot": "pagination-item", ...props });
 }
 function PaginationLink({ className, isActive, size = "icon", ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "a",
     {
       "aria-current": isActive ? "page" : void 0,
@@ -1438,7 +1428,7 @@ function PaginationLink({ className, isActive, size = "icon", ...props }) {
   );
 }
 function PaginationPrevious({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     PaginationLink,
     {
       "aria-label": "Go to previous page",
@@ -1446,12 +1436,12 @@ function PaginationPrevious({ className, ...props }) {
       className: cn("gap-1 px-2.5 sm:pl-2.5", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement(lucideReact.ChevronLeftIcon, null),
-    /* @__PURE__ */ React.createElement("span", { className: "hidden sm:block" }, "Previous")
+    /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.ChevronLeftIcon, null),
+    /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "hidden sm:block" }, "Previous")
   );
 }
 function PaginationNext({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     PaginationLink,
     {
       "aria-label": "Go to next page",
@@ -1459,12 +1449,12 @@ function PaginationNext({ className, ...props }) {
       className: cn("gap-1 px-2.5 sm:pr-2.5", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement("span", { className: "hidden sm:block" }, "Next"),
-    /* @__PURE__ */ React.createElement(lucideReact.ChevronRightIcon, null)
+    /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "hidden sm:block" }, "Next"),
+    /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.ChevronRightIcon, null)
   );
 }
 function PaginationEllipsis({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "span",
     {
       "aria-hidden": true,
@@ -1472,8 +1462,8 @@ function PaginationEllipsis({ className, ...props }) {
       className: cn("flex size-9 items-center justify-center", className),
       ...props
     },
-    /* @__PURE__ */ React.createElement(lucideReact.MoreHorizontalIcon, { className: "size-4" }),
-    /* @__PURE__ */ React.createElement("span", { className: "sr-only" }, "More pages")
+    /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.MoreHorizontalIcon, { className: "size-4" }),
+    /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "sr-only" }, "More pages")
   );
 }
 
@@ -1634,12 +1624,12 @@ function SmartDataTable({
   compactPagination = false,
   className
 }) {
-  const [isFilterDialogOpen, setIsFilterDialogOpen] = React9__namespace.useState(false);
-  const [localFilters, setLocalFilters] = React9__namespace.useState(filters || {});
-  const [internalPage, setInternalPage] = React9__namespace.useState(1);
-  const [internalPageSize, setInternalPageSize] = React9__namespace.useState(pageSize);
-  const [isMobile, setIsMobile] = React9__namespace.useState(false);
-  React9__namespace.useEffect(() => {
+  const [isFilterDialogOpen, setIsFilterDialogOpen] = React83__namespace.useState(false);
+  const [localFilters, setLocalFilters] = React83__namespace.useState(filters || {});
+  const [internalPage, setInternalPage] = React83__namespace.useState(1);
+  const [internalPageSize, setInternalPageSize] = React83__namespace.useState(pageSize);
+  const [isMobile, setIsMobile] = React83__namespace.useState(false);
+  React83__namespace.useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -1647,22 +1637,22 @@ function SmartDataTable({
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-  React9__namespace.useEffect(() => {
+  React83__namespace.useEffect(() => {
     if (filters) {
       setLocalFilters(filters);
     }
   }, [filters]);
-  React9__namespace.useEffect(() => {
+  React83__namespace.useEffect(() => {
     if (currentPage) {
       setInternalPage(currentPage);
     }
   }, [currentPage]);
-  React9__namespace.useEffect(() => {
+  React83__namespace.useEffect(() => {
     setInternalPageSize(pageSize);
   }, [pageSize]);
   const actualTotalItems = totalItems ?? data.length;
   const totalPages = Math.ceil(actualTotalItems / internalPageSize);
-  const paginatedData = React9__namespace.useMemo(() => {
+  const paginatedData = React83__namespace.useMemo(() => {
     if (!enablePagination || totalItems !== void 0) {
       return data;
     }
@@ -1670,7 +1660,7 @@ function SmartDataTable({
     const end = start + internalPageSize;
     return data.slice(start, end);
   }, [data, enablePagination, totalItems, internalPage, internalPageSize]);
-  const activeFilters = React9__namespace.useMemo(() => {
+  const activeFilters = React83__namespace.useMemo(() => {
     if (!localFilters) return [];
     return Object.entries(localFilters).filter(([_, value]) => value !== "" && value !== null && value !== void 0).map(([field, value]) => {
       const fieldConfig = filterFields.find((f) => f.name === field);
@@ -1710,7 +1700,7 @@ function SmartDataTable({
     setInternalPage(1);
     onPageSizeChange?.(newSize);
   };
-  return /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("space-y-3", className) }, /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("space-y-3", className) }, /* @__PURE__ */ React83__namespace.createElement(
     FilterBar,
     {
       searchValue: searchQuery,
@@ -1721,14 +1711,14 @@ function SmartDataTable({
       hasFilters: activeFilters.length > 0,
       isLoading
     }
-  ), activeFilters.length > 0 && /* @__PURE__ */ React9__namespace.createElement(
+  ), activeFilters.length > 0 && /* @__PURE__ */ React83__namespace.createElement(
     FilterChips,
     {
       filters: activeFilters,
       onRemoveFilter: handleRemoveFilter,
       onClearAll: handleClearAll
     }
-  ), paginatedData.length === 0 ? emptyState || /* @__PURE__ */ React9__namespace.createElement("div", { className: "py-12 text-center" }, /* @__PURE__ */ React9__namespace.createElement("p", { className: "text-muted-foreground" }, emptyMessage)) : /* @__PURE__ */ React9__namespace.createElement(
+  ), paginatedData.length === 0 ? emptyState || /* @__PURE__ */ React83__namespace.createElement("div", { className: "py-12 text-center" }, /* @__PURE__ */ React83__namespace.createElement("p", { className: "text-muted-foreground" }, emptyMessage)) : /* @__PURE__ */ React83__namespace.createElement(
     DataGrid,
     {
       columns: columns.map((col) => ({
@@ -1761,15 +1751,15 @@ function SmartDataTable({
         }
       }
     }
-  ), enablePagination && /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center justify-between gap-4 pt-4 border-t" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-2 text-sm text-muted-foreground" }, /* @__PURE__ */ React9__namespace.createElement("span", null, "Show"), /* @__PURE__ */ React9__namespace.createElement(
+  ), enablePagination && /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center justify-between gap-4 pt-4 border-t" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-2 text-sm text-muted-foreground" }, /* @__PURE__ */ React83__namespace.createElement("span", null, "Show"), /* @__PURE__ */ React83__namespace.createElement(
     Select,
     {
       value: internalPageSize.toString(),
       onValueChange: (value) => handlePageSizeChange(Number(value))
     },
-    /* @__PURE__ */ React9__namespace.createElement(SelectTrigger, { className: "w-[70px]" }, /* @__PURE__ */ React9__namespace.createElement(SelectValue, null)),
-    /* @__PURE__ */ React9__namespace.createElement(SelectContent, null, pageSizeOptions.map((size) => /* @__PURE__ */ React9__namespace.createElement(SelectItem, { key: size, value: size.toString() }, size, " / page")))
-  ), /* @__PURE__ */ React9__namespace.createElement("span", null, actualTotalItems, " ", actualTotalItems === 1 ? "item" : "items")), /* @__PURE__ */ React9__namespace.createElement(
+    /* @__PURE__ */ React83__namespace.createElement(SelectTrigger, { className: "w-[70px]" }, /* @__PURE__ */ React83__namespace.createElement(SelectValue, null)),
+    /* @__PURE__ */ React83__namespace.createElement(SelectContent, null, pageSizeOptions.map((size) => /* @__PURE__ */ React83__namespace.createElement(SelectItem, { key: size, value: size.toString() }, size, " / page")))
+  ), /* @__PURE__ */ React83__namespace.createElement("span", null, actualTotalItems, " ", actualTotalItems === 1 ? "item" : "items")), /* @__PURE__ */ React83__namespace.createElement(
     Pagination2,
     {
       page: internalPage,
@@ -1779,7 +1769,7 @@ function SmartDataTable({
       compact: compactPagination || isMobile,
       siblingCount: 1
     }
-  )), filterFields.length > 0 && /* @__PURE__ */ React9__namespace.createElement(
+  )), filterFields.length > 0 && /* @__PURE__ */ React83__namespace.createElement(
     FilterDialog,
     {
       open: isFilterDialogOpen,
@@ -1914,15 +1904,15 @@ function DurationPicker({
   presets = [15, 30, 60, 120, 240, 480, 720],
   className
 }) {
-  const [hours, setHours] = React9__namespace.useState(() => {
+  const [hours, setHours] = React83__namespace.useState(() => {
     if (!value) return 0;
     return Math.floor(value / 60);
   });
-  const [minutes, setMinutes] = React9__namespace.useState(() => {
+  const [minutes, setMinutes] = React83__namespace.useState(() => {
     if (!value) return 0;
     return value % 60;
   });
-  React9__namespace.useEffect(() => {
+  React83__namespace.useEffect(() => {
     if (value !== void 0) {
       setHours(Math.floor(value / 60));
       setMinutes(value % 60);
@@ -1948,7 +1938,7 @@ function DurationPicker({
     if (mins < 1440) return `${Math.floor(mins / 60)}h`;
     return `${Math.floor(mins / 1440)}d`;
   };
-  return /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("space-y-3", className) }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React9__namespace.createElement("label", { className: "text-xs text-muted-foreground" }, "Hours"), /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("space-y-3", className) }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React83__namespace.createElement("label", { className: "text-xs text-muted-foreground" }, "Hours"), /* @__PURE__ */ React83__namespace.createElement(
     Input,
     {
       type: "number",
@@ -1958,7 +1948,7 @@ function DurationPicker({
       onChange: handleHoursChange,
       className: "w-full"
     }
-  )), /* @__PURE__ */ React9__namespace.createElement("span", { className: "pt-6 text-muted-foreground" }, ":"), /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React9__namespace.createElement("label", { className: "text-xs text-muted-foreground" }, "Minutes"), /* @__PURE__ */ React9__namespace.createElement(
+  )), /* @__PURE__ */ React83__namespace.createElement("span", { className: "pt-6 text-muted-foreground" }, ":"), /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React83__namespace.createElement("label", { className: "text-xs text-muted-foreground" }, "Minutes"), /* @__PURE__ */ React83__namespace.createElement(
     Input,
     {
       type: "number",
@@ -1968,7 +1958,7 @@ function DurationPicker({
       onChange: handleMinutesChange,
       className: "w-full"
     }
-  ))), showPresets && /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex flex-wrap gap-1" }, presets.map((preset) => /* @__PURE__ */ React9__namespace.createElement(
+  ))), showPresets && /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex flex-wrap gap-1" }, presets.map((preset) => /* @__PURE__ */ React83__namespace.createElement(
     Button,
     {
       key: preset,
@@ -2015,10 +2005,10 @@ function FilterChip({
     )
   );
 }
-var FormFieldContext = React9__namespace.createContext({});
+var FormFieldContext = React83__namespace.createContext({});
 var useFormField = () => {
-  const fieldContext = React9__namespace.useContext(FormFieldContext);
-  const itemContext = React9__namespace.useContext(FormItemContext);
+  const fieldContext = React83__namespace.useContext(FormFieldContext);
+  const itemContext = React83__namespace.useContext(FormItemContext);
   const { getFieldState } = reactHookForm.useFormContext();
   const formState = reactHookForm.useFormState({ name: fieldContext.name });
   const fieldState = getFieldState(fieldContext.name, formState);
@@ -2035,14 +2025,14 @@ var useFormField = () => {
     ...fieldState
   };
 };
-var FormItemContext = React9__namespace.createContext({});
+var FormItemContext = React83__namespace.createContext({});
 function FormItem({ className, ...props }) {
-  const id = React9__namespace.useId();
-  return /* @__PURE__ */ React9__namespace.createElement(FormItemContext.Provider, { value: { id } }, /* @__PURE__ */ React9__namespace.createElement("div", { "data-slot": "form-item", className: cn("grid gap-2", className), ...props }));
+  const id = React83__namespace.useId();
+  return /* @__PURE__ */ React83__namespace.createElement(FormItemContext.Provider, { value: { id } }, /* @__PURE__ */ React83__namespace.createElement("div", { "data-slot": "form-item", className: cn("grid gap-2", className), ...props }));
 }
 function FormLabel({ className, ...props }) {
   const { error, formItemId } = useFormField();
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     Label,
     {
       "data-slot": "form-label",
@@ -2055,7 +2045,7 @@ function FormLabel({ className, ...props }) {
 }
 function FormControl({ ...props }) {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     radixUi.Slot.Root,
     {
       "data-slot": "form-control",
@@ -2068,7 +2058,7 @@ function FormControl({ ...props }) {
 }
 function FormDescription({ className, ...props }) {
   const { formDescriptionId } = useFormField();
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     "p",
     {
       "data-slot": "form-description",
@@ -2084,7 +2074,7 @@ function FormMessage({ className, ...props }) {
   if (!body) {
     return null;
   }
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     "p",
     {
       "data-slot": "form-message",
@@ -2111,14 +2101,14 @@ function FieldRenderer(props) {
     control,
     ...watchFields ? { name: watchFields } : {}
   });
-  const currentValue = React9__namespace.useMemo(() => {
+  const currentValue = React83__namespace.useMemo(() => {
     try {
       return getValues(name);
     } catch {
       return void 0;
     }
   }, [getValues, name, ...watchFields || []]);
-  const shouldBeHidden = React9__namespace.useMemo(() => {
+  const shouldBeHidden = React83__namespace.useMemo(() => {
     if (isHidden) {
       return isHidden(watchedValues, currentValue);
     }
@@ -2127,7 +2117,7 @@ function FieldRenderer(props) {
     }
     return false;
   }, [isHidden, when, watchedValues, currentValue]);
-  const shouldBeDisabled = React9__namespace.useMemo(() => {
+  const shouldBeDisabled = React83__namespace.useMemo(() => {
     if (staticDisabled === true) {
       return true;
     }
@@ -2136,7 +2126,7 @@ function FieldRenderer(props) {
     }
     return false;
   }, [staticDisabled, isDisabled, watchedValues, currentValue]);
-  const handleValueChange = React9__namespace.useCallback(
+  const handleValueChange = React83__namespace.useCallback(
     (value) => {
       setValue2(name, value);
       if (onChangeCallback) {
@@ -2169,7 +2159,7 @@ function FieldRenderer(props) {
     case "number":
     case "tel":
     case "url":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         TextField,
         {
           ...commonProps,
@@ -2181,7 +2171,7 @@ function FieldRenderer(props) {
         }
       );
     case "textarea":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         TextareaField,
         {
           ...commonProps,
@@ -2193,7 +2183,7 @@ function FieldRenderer(props) {
         }
       );
     case "select":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         SelectField,
         {
           ...commonProps,
@@ -2205,7 +2195,7 @@ function FieldRenderer(props) {
       );
     case "combobox":
     case "multi-select":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         ComboboxField,
         {
           ...commonProps,
@@ -2217,7 +2207,7 @@ function FieldRenderer(props) {
         }
       );
     case "checkbox":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         CheckboxField,
         {
           ...commonProps,
@@ -2226,7 +2216,7 @@ function FieldRenderer(props) {
         }
       );
     case "switch":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         SwitchField,
         {
           ...commonProps,
@@ -2235,7 +2225,7 @@ function FieldRenderer(props) {
         }
       );
     case "radio":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         RadioGroupField,
         {
           ...commonProps,
@@ -2246,7 +2236,7 @@ function FieldRenderer(props) {
       );
     case "date":
     case "datetime":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         DateField,
         {
           ...commonProps,
@@ -2256,7 +2246,7 @@ function FieldRenderer(props) {
         }
       );
     case "time":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         TextField,
         {
           ...commonProps,
@@ -2267,7 +2257,7 @@ function FieldRenderer(props) {
         }
       );
     case "file":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         FileUploadField,
         {
           ...commonProps,
@@ -2280,7 +2270,7 @@ function FieldRenderer(props) {
         }
       );
     case "currency":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         CurrencyField,
         {
           ...commonProps,
@@ -2297,7 +2287,7 @@ function FieldRenderer(props) {
         }
       );
     case "phone":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         PhoneField,
         {
           ...commonProps,
@@ -2311,7 +2301,7 @@ function FieldRenderer(props) {
         }
       );
     case "percentage":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         PercentageField,
         {
           ...commonProps,
@@ -2326,7 +2316,7 @@ function FieldRenderer(props) {
         }
       );
     case "otp":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         OTPField,
         {
           ...commonProps,
@@ -2339,7 +2329,7 @@ function FieldRenderer(props) {
         }
       );
     case "rating":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         RatingField,
         {
           ...commonProps,
@@ -2354,7 +2344,7 @@ function FieldRenderer(props) {
         }
       );
     case "color":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         ColorField,
         {
           ...commonProps,
@@ -2367,7 +2357,7 @@ function FieldRenderer(props) {
         }
       );
     case "slider":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         SliderField,
         {
           ...commonProps,
@@ -2384,7 +2374,7 @@ function FieldRenderer(props) {
         }
       );
     case "array":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         ArrayField,
         {
           ...commonProps,
@@ -2401,7 +2391,7 @@ function FieldRenderer(props) {
         }
       );
     case "chip":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         InputChipField,
         {
           ...commonProps,
@@ -2412,9 +2402,16 @@ function FieldRenderer(props) {
           validateChip: props.validateChip
         }
       );
+    case "custom":
+      return props.render?.({
+        value: currentValue,
+        onChange: handleValueChange,
+        form: { control, getValues, setValue: setValue2, watchedValues },
+        field: props
+      });
     case "rich-text":
     case "code":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         TextareaField,
         {
           ...commonProps,
@@ -2427,7 +2424,7 @@ function FieldRenderer(props) {
     case "address":
     case "name":
     case "credit-card":
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         TextField,
         {
           ...commonProps,
@@ -2438,7 +2435,7 @@ function FieldRenderer(props) {
         }
       );
     default:
-      return /* @__PURE__ */ React9__namespace.createElement(
+      return /* @__PURE__ */ React83__namespace.createElement(
         TextField,
         {
           ...commonProps,
@@ -2471,7 +2468,7 @@ function ArrayField({
   defaultCollapsed = false
 }) {
   const { control, watch } = reactHookForm.useFormContext();
-  const [openItems, setOpenItems] = React9__namespace.useState({});
+  const [openItems, setOpenItems] = React83__namespace.useState({});
   const {
     fields: arrayFields,
     append,
@@ -2481,7 +2478,7 @@ function ArrayField({
     control,
     name
   });
-  React9__namespace.useEffect(() => {
+  React83__namespace.useEffect(() => {
     const initialOpenState = {};
     arrayFields.forEach((_, index) => {
       initialOpenState[index] = !defaultCollapsed;
@@ -2556,10 +2553,10 @@ function ArrayField({
     }
     return `Item ${index + 1}`;
   };
-  return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn("space-y-4", className) }, label && /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React9__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-xs text-muted-foreground" }, arrayFields.length, " item(s)")), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-3" }, arrayFields.map((field, index) => {
+  return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn("space-y-4", className) }, label && /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React83__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-xs text-muted-foreground" }, arrayFields.length, " item(s)")), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-3" }, arrayFields.map((field, index) => {
     const isOpen = openItems[index] ?? true;
     const canDelete = canRemoveItems && !disabled;
-    return /* @__PURE__ */ React9__namespace.createElement(Card, { key: field.id, className: "relative" }, collapsibleItems ? /* @__PURE__ */ React9__namespace.createElement(CardHeader, { className: "py-3 px-4" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-2" }, showReorder && /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-1" }, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(Card, { key: field.id, className: "relative" }, collapsibleItems ? /* @__PURE__ */ React83__namespace.createElement(CardHeader, { className: "py-3 px-4" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-2" }, showReorder && /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-1" }, /* @__PURE__ */ React83__namespace.createElement(
       Button,
       {
         type: "button",
@@ -2569,8 +2566,8 @@ function ArrayField({
         disabled: disabled || index === 0,
         onClick: () => handleMove(index, index - 1)
       },
-      /* @__PURE__ */ React9__namespace.createElement(lucideReact.ChevronUp, { className: "h-4 w-4" })
-    ), /* @__PURE__ */ React9__namespace.createElement(
+      /* @__PURE__ */ React83__namespace.createElement(lucideReact.ChevronUp, { className: "h-4 w-4" })
+    ), /* @__PURE__ */ React83__namespace.createElement(
       Button,
       {
         type: "button",
@@ -2580,8 +2577,8 @@ function ArrayField({
         disabled: disabled || index === arrayFields.length - 1,
         onClick: () => handleMove(index, index + 1)
       },
-      /* @__PURE__ */ React9__namespace.createElement(lucideReact.ChevronDown, { className: "h-4 w-4" })
-    )), /* @__PURE__ */ React9__namespace.createElement(
+      /* @__PURE__ */ React83__namespace.createElement(lucideReact.ChevronDown, { className: "h-4 w-4" })
+    )), /* @__PURE__ */ React83__namespace.createElement(
       Button,
       {
         type: "button",
@@ -2590,9 +2587,9 @@ function ArrayField({
         className: "h-8 flex-1 justify-start px-2 font-normal text-left",
         onClick: () => handleToggleItem(index)
       },
-      isOpen ? /* @__PURE__ */ React9__namespace.createElement(lucideReact.ChevronDown, { className: "h-4 w-4 mr-2" }) : /* @__PURE__ */ React9__namespace.createElement(lucideReact.ChevronRight, { className: "h-4 w-4 mr-2" }),
-      /* @__PURE__ */ React9__namespace.createElement("span", { className: "truncate" }, getItemTitle(index))
-    ), canDelete && /* @__PURE__ */ React9__namespace.createElement(
+      isOpen ? /* @__PURE__ */ React83__namespace.createElement(lucideReact.ChevronDown, { className: "h-4 w-4 mr-2" }) : /* @__PURE__ */ React83__namespace.createElement(lucideReact.ChevronRight, { className: "h-4 w-4 mr-2" }),
+      /* @__PURE__ */ React83__namespace.createElement("span", { className: "truncate" }, getItemTitle(index))
+    ), canDelete && /* @__PURE__ */ React83__namespace.createElement(
       Button,
       {
         type: "button",
@@ -2601,8 +2598,8 @@ function ArrayField({
         className: "h-8 w-8 p-0 text-destructive hover:text-destructive",
         onClick: () => handleRemove(index)
       },
-      /* @__PURE__ */ React9__namespace.createElement(lucideReact.Trash2, { className: "h-4 w-4" })
-    ))) : /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center justify-between p-4 pb-0" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-2" }, showReorder && /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center text-muted-foreground" }, /* @__PURE__ */ React9__namespace.createElement(lucideReact.GripVertical, { className: "h-4 w-4" })), /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-sm font-medium" }, getItemTitle(index))), canDelete && /* @__PURE__ */ React9__namespace.createElement(
+      /* @__PURE__ */ React83__namespace.createElement(lucideReact.Trash2, { className: "h-4 w-4" })
+    ))) : /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center justify-between p-4 pb-0" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-2" }, showReorder && /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center text-muted-foreground" }, /* @__PURE__ */ React83__namespace.createElement(lucideReact.GripVertical, { className: "h-4 w-4" })), /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-sm font-medium" }, getItemTitle(index))), canDelete && /* @__PURE__ */ React83__namespace.createElement(
       Button,
       {
         type: "button",
@@ -2611,14 +2608,14 @@ function ArrayField({
         className: "h-8 w-8 p-0 text-destructive hover:text-destructive",
         onClick: () => handleRemove(index)
       },
-      /* @__PURE__ */ React9__namespace.createElement(lucideReact.Trash2, { className: "h-4 w-4" })
-    )), (isOpen || !collapsibleItems) && /* @__PURE__ */ React9__namespace.createElement(CardContent, { className: "p-4 pt-0 space-y-4" }, fields.map((fieldConfig) => /* @__PURE__ */ React9__namespace.createElement(
+      /* @__PURE__ */ React83__namespace.createElement(lucideReact.Trash2, { className: "h-4 w-4" })
+    )), (isOpen || !collapsibleItems) && /* @__PURE__ */ React83__namespace.createElement(CardContent, { className: "p-4 pt-0 space-y-4" }, fields.map((fieldConfig) => /* @__PURE__ */ React83__namespace.createElement(
       reactHookForm.Controller,
       {
         key: `${field.id}-${fieldConfig.name}`,
         name: `${name}.${index}.${fieldConfig.name}`,
         control,
-        render: () => /* @__PURE__ */ React9__namespace.createElement(
+        render: () => /* @__PURE__ */ React83__namespace.createElement(
           FieldRenderer,
           {
             ...fieldConfig,
@@ -2627,7 +2624,7 @@ function ArrayField({
           }
         )
       }
-    )), !collapsibleItems && canDelete && /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex justify-end pt-2 border-t" }, /* @__PURE__ */ React9__namespace.createElement(
+    )), !collapsibleItems && canDelete && /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex justify-end pt-2 border-t" }, /* @__PURE__ */ React83__namespace.createElement(
       Button,
       {
         type: "button",
@@ -2636,10 +2633,10 @@ function ArrayField({
         className: "text-destructive",
         onClick: () => handleRemove(index)
       },
-      /* @__PURE__ */ React9__namespace.createElement(lucideReact.Trash2, { className: "h-4 w-4 mr-2" }),
+      /* @__PURE__ */ React83__namespace.createElement(lucideReact.Trash2, { className: "h-4 w-4 mr-2" }),
       "Remove"
     ))));
-  }), arrayFields.length === 0 && /* @__PURE__ */ React9__namespace.createElement("div", { className: "text-center py-8 text-muted-foreground border-2 border-dashed rounded-lg" }, "No items added yet"), canAdd && /* @__PURE__ */ React9__namespace.createElement(
+  }), arrayFields.length === 0 && /* @__PURE__ */ React83__namespace.createElement("div", { className: "text-center py-8 text-muted-foreground border-2 border-dashed rounded-lg" }, "No items added yet"), canAdd && /* @__PURE__ */ React83__namespace.createElement(
     Button,
     {
       type: "button",
@@ -2648,12 +2645,12 @@ function ArrayField({
       onClick: handleAdd,
       disabled
     },
-    /* @__PURE__ */ React9__namespace.createElement(lucideReact.Plus, { className: "h-4 w-4 mr-2" }),
+    /* @__PURE__ */ React83__namespace.createElement(lucideReact.Plus, { className: "h-4 w-4 mr-2" }),
     addItemLabel
-  ), !canAdd && maxItems !== Infinity && /* @__PURE__ */ React9__namespace.createElement("p", { className: "text-xs text-muted-foreground text-center" }, "Maximum ", maxItems, " item(s) reached")), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+  ), !canAdd && maxItems !== Infinity && /* @__PURE__ */ React83__namespace.createElement("p", { className: "text-xs text-muted-foreground text-center" }, "Maximum ", maxItems, " item(s) reached")), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
 }
 function Checkbox({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Checkbox.Root,
     {
       "data-slot": "checkbox",
@@ -2663,13 +2660,13 @@ function Checkbox({ className, ...props }) {
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React83__namespace.default.createElement(
       radixUi.Checkbox.Indicator,
       {
         "data-slot": "checkbox-indicator",
         className: "grid place-content-center text-current transition-none"
       },
-      /* @__PURE__ */ React.createElement(lucideReact.CheckIcon, { className: "size-3.5" })
+      /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.CheckIcon, { className: "size-3.5" })
     )
   );
 }
@@ -2688,7 +2685,7 @@ function CheckboxField({
   const { control } = reactHookForm.useFormContext();
   const isControlled = checked !== void 0 && onCheckedChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React83__namespace.createElement(
       Checkbox,
       {
         id: name,
@@ -2696,7 +2693,7 @@ function CheckboxField({
         onCheckedChange,
         disabled
       }
-    ), label && /* @__PURE__ */ React9__namespace.createElement(
+    ), label && /* @__PURE__ */ React83__namespace.createElement(
       Label,
       {
         htmlFor: name,
@@ -2707,14 +2704,14 @@ function CheckboxField({
         )
       },
       label
-    )), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+    )), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React9__namespace.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React83__namespace.createElement(
         Checkbox,
         {
           id: name,
@@ -2723,7 +2720,7 @@ function CheckboxField({
           disabled,
           "aria-invalid": !!error
         }
-      ), label && /* @__PURE__ */ React9__namespace.createElement(
+      ), label && /* @__PURE__ */ React83__namespace.createElement(
         Label,
         {
           htmlFor: name,
@@ -2734,8 +2731,8 @@ function CheckboxField({
           )
         },
         label,
-        required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")
-      )), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null))
+        required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")
+      )), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null))
     }
   );
 }
@@ -2776,13 +2773,13 @@ function ColorField({
   onChange
 }) {
   const { control } = reactHookForm.useFormContext();
-  const [open, setOpen] = React9__namespace.useState(false);
+  const [open, setOpen] = React83__namespace.useState(false);
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
     const handleColorChange = (e) => {
       onChange(e.target.value);
     };
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex flex-col gap-3" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex gap-2" }, showPreview && /* @__PURE__ */ React9__namespace.createElement(Popover, { open, onOpenChange: setOpen }, /* @__PURE__ */ React9__namespace.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex flex-col gap-3" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex gap-2" }, showPreview && /* @__PURE__ */ React83__namespace.createElement(Popover, { open, onOpenChange: setOpen }, /* @__PURE__ */ React83__namespace.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React83__namespace.createElement(
       Button,
       {
         type: "button",
@@ -2794,7 +2791,7 @@ function ColorField({
         },
         "aria-label": "Select color"
       }
-    )), /* @__PURE__ */ React9__namespace.createElement(PopoverContent, { className: "w-auto p-3", align: "start" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-3" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex justify-center" }, /* @__PURE__ */ React9__namespace.createElement(
+    )), /* @__PURE__ */ React83__namespace.createElement(PopoverContent, { className: "w-auto p-3", align: "start" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-3" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex justify-center" }, /* @__PURE__ */ React83__namespace.createElement(
       Input,
       {
         type: "color",
@@ -2803,7 +2800,7 @@ function ColorField({
         className: "h-20 w-20 cursor-pointer border-0 p-0",
         disabled: disabled || readOnly
       }
-    )), presets && presets.length > 0 && /* @__PURE__ */ React9__namespace.createElement("div", { className: "grid grid-cols-5 gap-1.5" }, presets.map((preset) => /* @__PURE__ */ React9__namespace.createElement(
+    )), presets && presets.length > 0 && /* @__PURE__ */ React83__namespace.createElement("div", { className: "grid grid-cols-5 gap-1.5" }, presets.map((preset) => /* @__PURE__ */ React83__namespace.createElement(
       "button",
       {
         key: preset,
@@ -2819,7 +2816,7 @@ function ColorField({
         style: { backgroundColor: preset },
         "aria-label": `Select color ${preset}`
       }
-    )))))), /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React9__namespace.createElement(
+    )))))), /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React83__namespace.createElement(
       Input,
       {
         id: name,
@@ -2830,13 +2827,13 @@ function ColorField({
         disabled: disabled || readOnly,
         className: cn("font-mono", showPreview && "flex-1")
       }
-    ))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null))));
+    ))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null))));
   }
-  const formatColor = React9__namespace.useCallback((value2) => {
+  const formatColor = React83__namespace.useCallback((value2) => {
     if (!value2) return "";
     return value2;
   }, []);
-  return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
@@ -2845,7 +2842,7 @@ function ColorField({
         const handleColorChange = (e) => {
           field.onChange(e.target.value);
         };
-        return /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex flex-col gap-3" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex gap-2" }, showPreview && /* @__PURE__ */ React9__namespace.createElement(Popover, { open, onOpenChange: setOpen }, /* @__PURE__ */ React9__namespace.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React9__namespace.createElement(
+        return /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex flex-col gap-3" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex gap-2" }, showPreview && /* @__PURE__ */ React83__namespace.createElement(Popover, { open, onOpenChange: setOpen }, /* @__PURE__ */ React83__namespace.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React83__namespace.createElement(
           Button,
           {
             type: "button",
@@ -2860,7 +2857,7 @@ function ColorField({
             },
             "aria-label": "Select color"
           }
-        )), /* @__PURE__ */ React9__namespace.createElement(PopoverContent, { className: "w-auto p-3", align: "start" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-3" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex justify-center" }, /* @__PURE__ */ React9__namespace.createElement(
+        )), /* @__PURE__ */ React83__namespace.createElement(PopoverContent, { className: "w-auto p-3", align: "start" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-3" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex justify-center" }, /* @__PURE__ */ React83__namespace.createElement(
           Input,
           {
             type: "color",
@@ -2869,7 +2866,7 @@ function ColorField({
             className: "h-20 w-20 cursor-pointer border-0 p-0",
             disabled: disabled || readOnly
           }
-        )), presets && presets.length > 0 && /* @__PURE__ */ React9__namespace.createElement("div", { className: "grid grid-cols-5 gap-1.5" }, presets.map((preset) => /* @__PURE__ */ React9__namespace.createElement(
+        )), presets && presets.length > 0 && /* @__PURE__ */ React83__namespace.createElement("div", { className: "grid grid-cols-5 gap-1.5" }, presets.map((preset) => /* @__PURE__ */ React83__namespace.createElement(
           "button",
           {
             key: preset,
@@ -2885,7 +2882,7 @@ function ColorField({
             style: { backgroundColor: preset },
             "aria-label": `Select color ${preset}`
           }
-        )))))), /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React9__namespace.createElement(
+        )))))), /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React83__namespace.createElement(
           Input,
           {
             ...field,
@@ -2898,7 +2895,7 @@ function ColorField({
             "aria-invalid": !!error,
             className: cn("font-mono", showPreview && "flex-1")
           }
-        ))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null)));
+        ))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null)));
       }
     }
   ));
@@ -2919,7 +2916,7 @@ function ComboboxField({
   const { control } = reactHookForm.useFormContext();
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(Combobox, { value, onValueChange: onChange, disabled }, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(Combobox, { value, onValueChange: onChange, disabled }, /* @__PURE__ */ React83__namespace.createElement(
       ComboboxInput,
       {
         placeholder,
@@ -2927,14 +2924,14 @@ function ComboboxField({
         showClear: true,
         showTrigger: false
       }
-    ), /* @__PURE__ */ React9__namespace.createElement(ComboboxContent, null, /* @__PURE__ */ React9__namespace.createElement(ComboboxList, null, options.map((option) => /* @__PURE__ */ React9__namespace.createElement(ComboboxItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label)), /* @__PURE__ */ React9__namespace.createElement(ComboboxEmpty, null, "No results found"))))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+    ), /* @__PURE__ */ React83__namespace.createElement(ComboboxContent, null, /* @__PURE__ */ React83__namespace.createElement(ComboboxList, null, options.map((option) => /* @__PURE__ */ React83__namespace.createElement(ComboboxItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label)), /* @__PURE__ */ React83__namespace.createElement(ComboboxEmpty, null, "No results found"))))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(Combobox, { value: field.value, onValueChange: field.onChange, disabled }, /* @__PURE__ */ React9__namespace.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(Combobox, { value: field.value, onValueChange: field.onChange, disabled }, /* @__PURE__ */ React83__namespace.createElement(
         ComboboxInput,
         {
           placeholder,
@@ -2942,7 +2939,7 @@ function ComboboxField({
           showClear: true,
           showTrigger: false
         }
-      ), /* @__PURE__ */ React9__namespace.createElement(ComboboxContent, null, /* @__PURE__ */ React9__namespace.createElement(ComboboxList, null, options.map((option) => /* @__PURE__ */ React9__namespace.createElement(
+      ), /* @__PURE__ */ React83__namespace.createElement(ComboboxContent, null, /* @__PURE__ */ React83__namespace.createElement(ComboboxList, null, options.map((option) => /* @__PURE__ */ React83__namespace.createElement(
         ComboboxItem,
         {
           key: option.value,
@@ -2950,7 +2947,7 @@ function ComboboxField({
           disabled: option.disabled
         },
         option.label
-      )), /* @__PURE__ */ React9__namespace.createElement(ComboboxEmpty, null, "No results found"))))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null))
+      )), /* @__PURE__ */ React83__namespace.createElement(ComboboxEmpty, null, "No results found"))))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null))
     }
   );
 }
@@ -2973,10 +2970,10 @@ function CurrencyField({
   onChange
 }) {
   const { control } = reactHookForm.useFormContext();
-  const [displayValue, setDisplayValue] = React9__namespace.useState("");
+  const [displayValue, setDisplayValue] = React83__namespace.useState("");
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    React9__namespace.useEffect(() => {
+    React83__namespace.useEffect(() => {
       if (value !== void 0 && value !== null) {
         const numValue = typeof value === "number" ? value : parseFloat(value);
         if (!Number.isNaN(numValue)) {
@@ -3016,7 +3013,7 @@ function CurrencyField({
         }
       }
     };
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(InputGroup, null, currencyPosition === "prefix" && /* @__PURE__ */ React9__namespace.createElement(InputGroupAddon, { align: "inline-start" }, currencySymbol), /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(InputGroup, null, currencyPosition === "prefix" && /* @__PURE__ */ React83__namespace.createElement(InputGroupAddon, { align: "inline-start" }, currencySymbol), /* @__PURE__ */ React83__namespace.createElement(
       InputGroupInput,
       {
         id: name,
@@ -3029,9 +3026,9 @@ function CurrencyField({
         disabled,
         readOnly
       }
-    ), currencyPosition === "suffix" && /* @__PURE__ */ React9__namespace.createElement(InputGroupAddon, { align: "inline-end" }, currencySymbol))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+    ), currencyPosition === "suffix" && /* @__PURE__ */ React83__namespace.createElement(InputGroupAddon, { align: "inline-end" }, currencySymbol))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
   }
-  const formatCurrency = React9__namespace.useCallback(
+  const formatCurrency = React83__namespace.useCallback(
     (value2) => {
       if (!value2) return "";
       const numericValue = value2.replace(/[^0-9.-]/g, "");
@@ -3044,16 +3041,16 @@ function CurrencyField({
     },
     [decimalPlaces]
   );
-  const parseValue = React9__namespace.useCallback((displayValue2) => {
+  const parseValue = React83__namespace.useCallback((displayValue2) => {
     return displayValue2.replace(/,/g, "");
   }, []);
-  return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
       render: ({ field, fieldState: { error } }) => {
-        React9__namespace.useEffect(() => {
+        React83__namespace.useEffect(() => {
           if (field.value !== void 0 && field.value !== null) {
             const numValue = typeof field.value === "number" ? field.value : parseFloat(field.value);
             if (!Number.isNaN(numValue)) {
@@ -3093,7 +3090,7 @@ function CurrencyField({
             }
           }
         };
-        return /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(InputGroup, { "data-invalid": !!error || void 0 }, currencyPosition === "prefix" && /* @__PURE__ */ React9__namespace.createElement(InputGroupAddon, { align: "inline-start" }, currencySymbol), /* @__PURE__ */ React9__namespace.createElement(
+        return /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(InputGroup, { "data-invalid": !!error || void 0 }, currencyPosition === "prefix" && /* @__PURE__ */ React83__namespace.createElement(InputGroupAddon, { align: "inline-start" }, currencySymbol), /* @__PURE__ */ React83__namespace.createElement(
           InputGroupInput,
           {
             id: name,
@@ -3107,10 +3104,10 @@ function CurrencyField({
             readOnly,
             "aria-invalid": !!error
           }
-        ), currencyPosition === "suffix" && /* @__PURE__ */ React9__namespace.createElement(InputGroupAddon, { align: "inline-end" }, currencySymbol)));
+        ), currencyPosition === "suffix" && /* @__PURE__ */ React83__namespace.createElement(InputGroupAddon, { align: "inline-end" }, currencySymbol)));
       }
     }
-  ), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+  ), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
 }
 function DateField({
   name,
@@ -3128,7 +3125,7 @@ function DateField({
   const { control } = reactHookForm.useFormContext();
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React.createElement(Popover, null, /* @__PURE__ */ React.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React.createElement(FormControl, null, /* @__PURE__ */ React.createElement(
+    return /* @__PURE__ */ React83__namespace.default.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.default.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.default.createElement(Popover, null, /* @__PURE__ */ React83__namespace.default.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React83__namespace.default.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.default.createElement(
       Button,
       {
         variant: "outline",
@@ -3138,9 +3135,9 @@ function DateField({
         ),
         disabled
       },
-      /* @__PURE__ */ React.createElement(lucideReact.CalendarIcon, { className: "mr-2 h-4 w-4" }),
-      value ? dateFns.format(value, dateFormat) : /* @__PURE__ */ React.createElement("span", null, placeholder)
-    ))), /* @__PURE__ */ React.createElement(PopoverContent, { className: "w-auto p-0", align: "start" }, /* @__PURE__ */ React.createElement(
+      /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.CalendarIcon, { className: "mr-2 h-4 w-4" }),
+      value ? dateFns.format(value, dateFormat) : /* @__PURE__ */ React83__namespace.default.createElement("span", null, placeholder)
+    ))), /* @__PURE__ */ React83__namespace.default.createElement(PopoverContent, { className: "w-auto p-0", align: "start" }, /* @__PURE__ */ React83__namespace.default.createElement(
       Calendar,
       {
         mode: "single",
@@ -3149,14 +3146,14 @@ function DateField({
         disabled,
         autoFocus: true
       }
-    ))), description && /* @__PURE__ */ React.createElement(FormDescription, null, description), /* @__PURE__ */ React.createElement(FormMessage, null));
+    ))), description && /* @__PURE__ */ React83__namespace.default.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.default.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React.createElement(Popover, null, /* @__PURE__ */ React.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React.createElement(FormControl, null, /* @__PURE__ */ React.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React83__namespace.default.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.default.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.default.createElement(Popover, null, /* @__PURE__ */ React83__namespace.default.createElement(PopoverTrigger, { asChild: true }, /* @__PURE__ */ React83__namespace.default.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.default.createElement(
         Button,
         {
           variant: "outline",
@@ -3167,9 +3164,9 @@ function DateField({
           ),
           disabled
         },
-        /* @__PURE__ */ React.createElement(lucideReact.CalendarIcon, { className: "mr-2 h-4 w-4" }),
-        field.value ? dateFns.format(field.value, dateFormat) : /* @__PURE__ */ React.createElement("span", null, placeholder)
-      ))), /* @__PURE__ */ React.createElement(PopoverContent, { className: "w-auto p-0", align: "start" }, /* @__PURE__ */ React.createElement(
+        /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.CalendarIcon, { className: "mr-2 h-4 w-4" }),
+        field.value ? dateFns.format(field.value, dateFormat) : /* @__PURE__ */ React83__namespace.default.createElement("span", null, placeholder)
+      ))), /* @__PURE__ */ React83__namespace.default.createElement(PopoverContent, { className: "w-auto p-0", align: "start" }, /* @__PURE__ */ React83__namespace.default.createElement(
         Calendar,
         {
           mode: "single",
@@ -3178,7 +3175,7 @@ function DateField({
           disabled,
           autoFocus: true
         }
-      ))), description && /* @__PURE__ */ React.createElement(FormDescription, null, description), /* @__PURE__ */ React.createElement(FormMessage, null))
+      ))), description && /* @__PURE__ */ React83__namespace.default.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.default.createElement(FormMessage, null))
     }
   );
 }
@@ -3198,14 +3195,14 @@ function UploadDropzone({
   description,
   className
 }) {
-  const [isDragOver, setIsDragOver] = React9__namespace.useState(false);
-  const [files, setFiles] = React9__namespace.useState([]);
-  const inputRef = React9__namespace.useRef(null);
-  const handleDragOver = React9__namespace.useCallback((e) => {
+  const [isDragOver, setIsDragOver] = React83__namespace.useState(false);
+  const [files, setFiles] = React83__namespace.useState([]);
+  const inputRef = React83__namespace.useRef(null);
+  const handleDragOver = React83__namespace.useCallback((e) => {
     e.preventDefault();
     setIsDragOver(true);
   }, []);
-  const handleDragLeave = React9__namespace.useCallback((e) => {
+  const handleDragLeave = React83__namespace.useCallback((e) => {
     e.preventDefault();
     setIsDragOver(false);
   }, []);
@@ -3232,7 +3229,7 @@ function UploadDropzone({
     }
     return null;
   };
-  const handleFiles = React9__namespace.useCallback(
+  const handleFiles = React83__namespace.useCallback(
     async (newFiles) => {
       const validFiles = [];
       const errors = [];
@@ -3257,7 +3254,7 @@ function UploadDropzone({
     },
     [maxFiles, onFilesSelected, onFileSelected, validateFile]
   );
-  const handleDrop = React9__namespace.useCallback(
+  const handleDrop = React83__namespace.useCallback(
     async (e) => {
       e.preventDefault();
       setIsDragOver(false);
@@ -3267,7 +3264,7 @@ function UploadDropzone({
     },
     [disabled, handleFiles]
   );
-  const handleInputChange = React9__namespace.useCallback(
+  const handleInputChange = React83__namespace.useCallback(
     async (e) => {
       if (disabled) return;
       const selectedFiles = Array.from(e.target.files || []);
@@ -3278,7 +3275,7 @@ function UploadDropzone({
     },
     [disabled, handleFiles]
   );
-  const handleRemoveFile = React9__namespace.useCallback(
+  const handleRemoveFile = React83__namespace.useCallback(
     (file, index) => {
       setFiles((prev) => prev.filter((_, i) => i !== index));
       onFileRemove?.(file);
@@ -3292,7 +3289,7 @@ function UploadDropzone({
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return `${Math.round(bytes / k ** i * 100) / 100} ${sizes[i]}`;
   };
-  return /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("w-full space-y-3", className) }, /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("w-full space-y-3", className) }, /* @__PURE__ */ React83__namespace.createElement(
     "div",
     {
       onDragOver: handleDragOver,
@@ -3307,7 +3304,7 @@ function UploadDropzone({
         isUploading && "pointer-events-none"
       )
     },
-    /* @__PURE__ */ React9__namespace.createElement(
+    /* @__PURE__ */ React83__namespace.createElement(
       "input",
       {
         ref: inputRef,
@@ -3319,23 +3316,23 @@ function UploadDropzone({
         disabled
       }
     ),
-    /* @__PURE__ */ React9__namespace.createElement(
+    /* @__PURE__ */ React83__namespace.createElement(
       lucideReact.UploadCloud,
       {
         className: cn("mb-4 h-10 w-10", isDragOver ? "text-primary" : "text-muted-foreground")
       }
     ),
-    /* @__PURE__ */ React9__namespace.createElement("p", { className: "mb-1 text-sm font-medium" }, label),
-    description && /* @__PURE__ */ React9__namespace.createElement("p", { className: "text-center text-sm text-muted-foreground" }, description),
-    /* @__PURE__ */ React9__namespace.createElement("div", { className: "mt-2 flex flex-wrap justify-center gap-2 text-xs text-muted-foreground" }, accept && /* @__PURE__ */ React9__namespace.createElement("span", null, "Accepted:", " ", accept.split(",").map((t) => t.trim().toUpperCase()).join(", ")), maxSize && /* @__PURE__ */ React9__namespace.createElement("span", null, "Max size: ", formatFileSize(maxSize)), maxFiles > 1 && /* @__PURE__ */ React9__namespace.createElement("span", null, "Max files: ", maxFiles))
-  ), isUploading && uploadProgress !== void 0 && /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React9__namespace.createElement(Progress, { value: uploadProgress, className: "h-2" }), /* @__PURE__ */ React9__namespace.createElement("p", { className: "text-right text-xs text-muted-foreground" }, uploadProgress, "%")), (files.length > 0 || uploadedFiles.length > 0) && /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-2" }, files.map((file, index) => /* @__PURE__ */ React9__namespace.createElement(
+    /* @__PURE__ */ React83__namespace.createElement("p", { className: "mb-1 text-sm font-medium" }, label),
+    description && /* @__PURE__ */ React83__namespace.createElement("p", { className: "text-center text-sm text-muted-foreground" }, description),
+    /* @__PURE__ */ React83__namespace.createElement("div", { className: "mt-2 flex flex-wrap justify-center gap-2 text-xs text-muted-foreground" }, accept && /* @__PURE__ */ React83__namespace.createElement("span", null, "Accepted:", " ", accept.split(",").map((t) => t.trim().toUpperCase()).join(", ")), maxSize && /* @__PURE__ */ React83__namespace.createElement("span", null, "Max size: ", formatFileSize(maxSize)), maxFiles > 1 && /* @__PURE__ */ React83__namespace.createElement("span", null, "Max files: ", maxFiles))
+  ), isUploading && uploadProgress !== void 0 && /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React83__namespace.createElement(Progress, { value: uploadProgress, className: "h-2" }), /* @__PURE__ */ React83__namespace.createElement("p", { className: "text-right text-xs text-muted-foreground" }, uploadProgress, "%")), (files.length > 0 || uploadedFiles.length > 0) && /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-2" }, files.map((file, index) => /* @__PURE__ */ React83__namespace.createElement(
     "div",
     {
       key: `${file.name}-${index}`,
       className: "flex items-center justify-between rounded-md border bg-muted/50 p-3"
     },
-    /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React9__namespace.createElement(lucideReact.File, { className: "h-5 w-5 text-muted-foreground" }), /* @__PURE__ */ React9__namespace.createElement("div", null, /* @__PURE__ */ React9__namespace.createElement("p", { className: "text-sm font-medium" }, file.name), /* @__PURE__ */ React9__namespace.createElement("p", { className: "text-xs text-muted-foreground" }, formatFileSize(file.size)))),
-    !isUploading && /* @__PURE__ */ React9__namespace.createElement(
+    /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React83__namespace.createElement(lucideReact.File, { className: "h-5 w-5 text-muted-foreground" }), /* @__PURE__ */ React83__namespace.createElement("div", null, /* @__PURE__ */ React83__namespace.createElement("p", { className: "text-sm font-medium" }, file.name), /* @__PURE__ */ React83__namespace.createElement("p", { className: "text-xs text-muted-foreground" }, formatFileSize(file.size)))),
+    !isUploading && /* @__PURE__ */ React83__namespace.createElement(
       Button,
       {
         type: "button",
@@ -3344,16 +3341,16 @@ function UploadDropzone({
         onClick: () => handleRemoveFile(file, index),
         className: "h-8 w-8"
       },
-      /* @__PURE__ */ React9__namespace.createElement(lucideReact.X, { className: "h-4 w-4" })
+      /* @__PURE__ */ React83__namespace.createElement(lucideReact.X, { className: "h-4 w-4" })
     )
-  )), uploadedFiles.map((file, index) => /* @__PURE__ */ React9__namespace.createElement(
+  )), uploadedFiles.map((file, index) => /* @__PURE__ */ React83__namespace.createElement(
     "div",
     {
       key: `${file.name}-${index}`,
       className: "flex items-center justify-between rounded-md border bg-muted/50 p-3"
     },
-    /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React9__namespace.createElement(lucideReact.File, { className: "h-5 w-5 text-muted-foreground" }), /* @__PURE__ */ React9__namespace.createElement("div", null, /* @__PURE__ */ React9__namespace.createElement("p", { className: "text-sm font-medium" }, file.name), /* @__PURE__ */ React9__namespace.createElement("p", { className: "text-xs text-muted-foreground" }, formatFileSize(file.size)))),
-    onFileRemove && /* @__PURE__ */ React9__namespace.createElement(
+    /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React83__namespace.createElement(lucideReact.File, { className: "h-5 w-5 text-muted-foreground" }), /* @__PURE__ */ React83__namespace.createElement("div", null, /* @__PURE__ */ React83__namespace.createElement("p", { className: "text-sm font-medium" }, file.name), /* @__PURE__ */ React83__namespace.createElement("p", { className: "text-xs text-muted-foreground" }, formatFileSize(file.size)))),
+    onFileRemove && /* @__PURE__ */ React83__namespace.createElement(
       Button,
       {
         type: "button",
@@ -3362,7 +3359,7 @@ function UploadDropzone({
         onClick: () => onFileRemove(file),
         className: "h-8 w-8"
       },
-      /* @__PURE__ */ React9__namespace.createElement(lucideReact.X, { className: "h-4 w-4" })
+      /* @__PURE__ */ React83__namespace.createElement(lucideReact.X, { className: "h-4 w-4" })
     )
   ))));
 }
@@ -3383,12 +3380,12 @@ function FileUploadField({
   onChange
 }) {
   const { control } = reactHookForm.useFormContext();
-  const [isUploading, setIsUploading] = React9__namespace.useState(false);
-  const [uploadProgress, setUploadProgress] = React9__namespace.useState();
-  const [uploadedFiles, setUploadedFiles] = React9__namespace.useState([]);
+  const [isUploading, setIsUploading] = React83__namespace.useState(false);
+  const [uploadProgress, setUploadProgress] = React83__namespace.useState();
+  const [uploadedFiles, setUploadedFiles] = React83__namespace.useState([]);
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    const handleFilesSelected2 = React9__namespace.useCallback(
+    const handleFilesSelected2 = React83__namespace.useCallback(
       async (files) => {
         if (!onUpload) return;
         setIsUploading(true);
@@ -3421,10 +3418,10 @@ function FileUploadField({
       },
       [onUpload]
     );
-    const handleFileRemove2 = React9__namespace.useCallback((file) => {
+    const handleFileRemove2 = React83__namespace.useCallback((file) => {
       setUploadedFiles((prev) => prev.filter((f) => f.name !== file.name));
     }, []);
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(
       UploadDropzone,
       {
         accept,
@@ -3439,9 +3436,9 @@ function FileUploadField({
         label: value?.length ? "Add more files" : "Upload files",
         description
       }
-    )), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+    )), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
   }
-  const handleFilesSelected = React9__namespace.useCallback(
+  const handleFilesSelected = React83__namespace.useCallback(
     async (files) => {
       if (!onUpload) return;
       setIsUploading(true);
@@ -3474,15 +3471,15 @@ function FileUploadField({
     },
     [onUpload]
   );
-  const handleFileRemove = React9__namespace.useCallback((file) => {
+  const handleFileRemove = React83__namespace.useCallback((file) => {
     setUploadedFiles((prev) => prev.filter((f) => f.name !== file.name));
   }, []);
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(
         UploadDropzone,
         {
           accept,
@@ -3500,7 +3497,7 @@ function FileUploadField({
           label: field.value?.length ? "Add more files" : "Upload files",
           description
         }
-      )), error && /* @__PURE__ */ React9__namespace.createElement(FormMessage, null, error.message))
+      )), error && /* @__PURE__ */ React83__namespace.createElement(FormMessage, null, error.message))
     }
   );
 }
@@ -3519,9 +3516,9 @@ function InputChipField({
   validateChip
 }) {
   const { control } = reactHookForm.useFormContext();
-  const [inputValue, setInputValue] = React9__namespace.useState("");
-  const inputRef = React9__namespace.useRef(null);
-  const handleAddChip = React9__namespace.useCallback(
+  const [inputValue, setInputValue] = React83__namespace.useState("");
+  const inputRef = React83__namespace.useRef(null);
+  const handleAddChip = React83__namespace.useCallback(
     (value, currentValue) => {
       const transformed = transform(value);
       if (!transformed) return;
@@ -3542,7 +3539,7 @@ function InputChipField({
     },
     [allowDuplicates, maxChips, transform, validateChip]
   );
-  const handleKeyDown = React9__namespace.useCallback(
+  const handleKeyDown = React83__namespace.useCallback(
     (e, currentValue, onChange) => {
       if (e.key === "Enter" || e.key === ",") {
         e.preventDefault();
@@ -3559,7 +3556,7 @@ function InputChipField({
     },
     [inputValue, handleAddChip]
   );
-  const handleRemoveChip = React9__namespace.useCallback(
+  const handleRemoveChip = React83__namespace.useCallback(
     (index, currentValue, onChange) => {
       const newValue = [...currentValue];
       newValue.splice(index, 1);
@@ -3568,7 +3565,7 @@ function InputChipField({
     },
     []
   );
-  const handleBlur = React9__namespace.useCallback(
+  const handleBlur = React83__namespace.useCallback(
     (currentValue, onChange) => {
       if (inputValue.trim()) {
         const newValue = handleAddChip(inputValue, currentValue);
@@ -3580,7 +3577,7 @@ function InputChipField({
     },
     [inputValue, handleAddChip]
   );
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
@@ -3590,7 +3587,7 @@ function InputChipField({
         const currentValue = Array.isArray(field.value) ? field.value : [];
         const isReadOnly = readOnly || disabled;
         const canAdd = currentValue.length < maxChips;
-        return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn("space-y-2", className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(
+        return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn("space-y-2", className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(
           "div",
           {
             className: cn(
@@ -3601,14 +3598,14 @@ function InputChipField({
               className
             )
           },
-          currentValue.map((chip, index) => /* @__PURE__ */ React9__namespace.createElement(
+          currentValue.map((chip, index) => /* @__PURE__ */ React83__namespace.createElement(
             "div",
             {
               key: `${chip}-${index}`,
               className: "inline-flex items-center gap-1 bg-secondary text-secondary-foreground px-2 py-1 rounded-md text-sm"
             },
-            /* @__PURE__ */ React9__namespace.createElement("span", { className: "max-w-[200px] truncate" }, chip),
-            !isReadOnly && /* @__PURE__ */ React9__namespace.createElement(
+            /* @__PURE__ */ React83__namespace.createElement("span", { className: "max-w-[200px] truncate" }, chip),
+            !isReadOnly && /* @__PURE__ */ React83__namespace.createElement(
               Button,
               {
                 type: "button",
@@ -3617,10 +3614,10 @@ function InputChipField({
                 className: "h-4 w-4 p-0 hover:bg-transparent",
                 onClick: () => handleRemoveChip(index, currentValue, field.onChange)
               },
-              /* @__PURE__ */ React9__namespace.createElement(lucideReact.X, { className: "h-3 w-3" })
+              /* @__PURE__ */ React83__namespace.createElement(lucideReact.X, { className: "h-3 w-3" })
             )
           )),
-          canAdd && !isReadOnly && /* @__PURE__ */ React9__namespace.createElement(
+          canAdd && !isReadOnly && /* @__PURE__ */ React83__namespace.createElement(
             Input,
             {
               ref: inputRef,
@@ -3633,8 +3630,8 @@ function InputChipField({
               className: "flex-1 min-w-[120px] border-0 shadow-none focus-visible:ring-0 px-2 py-1 h-auto"
             }
           ),
-          currentValue.length === 0 && isReadOnly && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-muted-foreground text-sm" }, "No chips added")
-        )), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+          currentValue.length === 0 && isReadOnly && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-muted-foreground text-sm" }, "No chips added")
+        )), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
       }
     }
   );
@@ -3644,7 +3641,7 @@ function InputOTP({
   containerClassName,
   ...props
 }) {
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     inputOtp.OTPInput,
     {
       "data-slot": "input-otp",
@@ -3655,16 +3652,16 @@ function InputOTP({
   );
 }
 function InputOTPGroup({ className, ...props }) {
-  return /* @__PURE__ */ React9__namespace.createElement("div", { "data-slot": "input-otp-group", className: cn("flex items-center", className), ...props });
+  return /* @__PURE__ */ React83__namespace.createElement("div", { "data-slot": "input-otp-group", className: cn("flex items-center", className), ...props });
 }
 function InputOTPSlot({
   index,
   className,
   ...props
 }) {
-  const inputOTPContext = React9__namespace.useContext(inputOtp.OTPInputContext);
+  const inputOTPContext = React83__namespace.useContext(inputOtp.OTPInputContext);
   const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {};
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     "div",
     {
       "data-slot": "input-otp-slot",
@@ -3676,11 +3673,11 @@ function InputOTPSlot({
       ...props
     },
     char,
-    hasFakeCaret && /* @__PURE__ */ React9__namespace.createElement("div", { className: "pointer-events-none absolute inset-0 flex items-center justify-center" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "animate-caret-blink bg-foreground h-4 w-px duration-1000" }))
+    hasFakeCaret && /* @__PURE__ */ React83__namespace.createElement("div", { className: "pointer-events-none absolute inset-0 flex items-center justify-center" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "animate-caret-blink bg-foreground h-4 w-px duration-1000" }))
   );
 }
 function InputOTPSeparator({ ...props }) {
-  return /* @__PURE__ */ React9__namespace.createElement("div", { "data-slot": "input-otp-separator", role: "separator", ...props }, /* @__PURE__ */ React9__namespace.createElement(lucideReact.MinusIcon, null));
+  return /* @__PURE__ */ React83__namespace.createElement("div", { "data-slot": "input-otp-separator", role: "separator", ...props }, /* @__PURE__ */ React83__namespace.createElement(lucideReact.MinusIcon, null));
 }
 
 // src/blocks/data-entry/form-builder/fields/otp-field.tsx
@@ -3702,10 +3699,10 @@ function OTPField({
   onChange
 }) {
   const { control } = reactHookForm.useFormContext();
-  const [otpValue, setOtpValue] = React9__namespace.useState("");
+  const [otpValue, setOtpValue] = React83__namespace.useState("");
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    React9__namespace.useEffect(() => {
+    React83__namespace.useEffect(() => {
       if (value !== void 0 && value !== null) {
         setOtpValue(value.toString());
       } else {
@@ -3718,7 +3715,7 @@ function OTPField({
     };
     const firstGroupSize = showSeparator ? groupSize : otpLength;
     const secondGroupSize = showSeparator ? otpLength - groupSize : 0;
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex flex-col items-start gap-2" }, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex flex-col items-start gap-2" }, /* @__PURE__ */ React83__namespace.createElement(
       InputOTP,
       {
         maxLength: otpLength,
@@ -3730,9 +3727,9 @@ function OTPField({
         pattern: otpType === "numeric" ? "[0-9]*" : "[0-9a-zA-Z]*",
         inputMode: otpType === "numeric" ? "numeric" : "text"
       },
-      /* @__PURE__ */ React9__namespace.createElement(InputOTPGroup, null, Array.from({ length: firstGroupSize }).map((_, index) => /* @__PURE__ */ React9__namespace.createElement(InputOTPSlot, { key: index, index, className: cn("h-12 w-12 text-lg") }))),
-      showSeparator && secondGroupSize > 0 && /* @__PURE__ */ React9__namespace.createElement(InputOTPSeparator, null),
-      secondGroupSize > 0 && /* @__PURE__ */ React9__namespace.createElement(InputOTPGroup, null, Array.from({ length: secondGroupSize }).map((_, index) => /* @__PURE__ */ React9__namespace.createElement(
+      /* @__PURE__ */ React83__namespace.createElement(InputOTPGroup, null, Array.from({ length: firstGroupSize }).map((_, index) => /* @__PURE__ */ React83__namespace.createElement(InputOTPSlot, { key: index, index, className: cn("h-12 w-12 text-lg") }))),
+      showSeparator && secondGroupSize > 0 && /* @__PURE__ */ React83__namespace.createElement(InputOTPSeparator, null),
+      secondGroupSize > 0 && /* @__PURE__ */ React83__namespace.createElement(InputOTPGroup, null, Array.from({ length: secondGroupSize }).map((_, index) => /* @__PURE__ */ React83__namespace.createElement(
         InputOTPSlot,
         {
           key: index,
@@ -3740,15 +3737,15 @@ function OTPField({
           className: cn("h-12 w-12 text-lg")
         }
       )))
-    ), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null))));
+    ), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null))));
   }
-  return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
       render: ({ field, fieldState: { error } }) => {
-        React9__namespace.useEffect(() => {
+        React83__namespace.useEffect(() => {
           if (field.value !== void 0 && field.value !== null) {
             setValue(field.value.toString());
           }
@@ -3759,7 +3756,7 @@ function OTPField({
         };
         const firstGroupSize = showSeparator ? groupSize : otpLength;
         const secondGroupSize = showSeparator ? otpLength - groupSize : 0;
-        return /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex flex-col items-start gap-2" }, /* @__PURE__ */ React9__namespace.createElement(
+        return /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex flex-col items-start gap-2" }, /* @__PURE__ */ React83__namespace.createElement(
           InputOTP,
           {
             maxLength: otpLength,
@@ -3773,7 +3770,7 @@ function OTPField({
             "aria-invalid": !!error,
             className: cn(error && "ring-destructive border-destructive")
           },
-          /* @__PURE__ */ React9__namespace.createElement(InputOTPGroup, null, Array.from({ length: firstGroupSize }).map((_, index) => /* @__PURE__ */ React9__namespace.createElement(
+          /* @__PURE__ */ React83__namespace.createElement(InputOTPGroup, null, Array.from({ length: firstGroupSize }).map((_, index) => /* @__PURE__ */ React83__namespace.createElement(
             InputOTPSlot,
             {
               key: index,
@@ -3784,8 +3781,8 @@ function OTPField({
               )
             }
           ))),
-          showSeparator && secondGroupSize > 0 && /* @__PURE__ */ React9__namespace.createElement(InputOTPSeparator, null),
-          secondGroupSize > 0 && /* @__PURE__ */ React9__namespace.createElement(InputOTPGroup, null, Array.from({ length: secondGroupSize }).map((_, index) => /* @__PURE__ */ React9__namespace.createElement(
+          showSeparator && secondGroupSize > 0 && /* @__PURE__ */ React83__namespace.createElement(InputOTPSeparator, null),
+          secondGroupSize > 0 && /* @__PURE__ */ React83__namespace.createElement(InputOTPGroup, null, Array.from({ length: secondGroupSize }).map((_, index) => /* @__PURE__ */ React83__namespace.createElement(
             InputOTPSlot,
             {
               key: index,
@@ -3796,7 +3793,7 @@ function OTPField({
               )
             }
           )))
-        ), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null)));
+        ), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null)));
       }
     }
   ));
@@ -3818,10 +3815,10 @@ function PercentageField({
   onChange
 }) {
   const { control } = reactHookForm.useFormContext();
-  const [displayValue, setDisplayValue] = React9__namespace.useState("");
+  const [displayValue, setDisplayValue] = React83__namespace.useState("");
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    React9__namespace.useEffect(() => {
+    React83__namespace.useEffect(() => {
       if (value !== void 0 && value !== null) {
         const numValue = typeof value === "number" ? value : parseFloat(value);
         if (!Number.isNaN(numValue)) {
@@ -3860,7 +3857,7 @@ function PercentageField({
         }
       }
     };
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(InputGroup, null, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(InputGroup, null, /* @__PURE__ */ React83__namespace.createElement(
       InputGroupInput,
       {
         id: name,
@@ -3873,9 +3870,9 @@ function PercentageField({
         disabled,
         readOnly
       }
-    ), /* @__PURE__ */ React9__namespace.createElement(InputGroupAddon, { align: "inline-end" }, "%"))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description, " ", minValue !== 0 || maxValue !== 100 ? /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-xs" }, "(", minValue, "% - ", maxValue, "%)") : null), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+    ), /* @__PURE__ */ React83__namespace.createElement(InputGroupAddon, { align: "inline-end" }, "%"))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description, " ", minValue !== 0 || maxValue !== 100 ? /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-xs" }, "(", minValue, "% - ", maxValue, "%)") : null), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
   }
-  const formatPercentage = React9__namespace.useCallback(
+  const formatPercentage = React83__namespace.useCallback(
     (value2) => {
       if (!value2) return "";
       const number = parseFloat(value2);
@@ -3884,13 +3881,13 @@ function PercentageField({
     },
     [decimalPlaces]
   );
-  return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
       render: ({ field, fieldState: { error } }) => {
-        React9__namespace.useEffect(() => {
+        React83__namespace.useEffect(() => {
           if (field.value !== void 0 && field.value !== null) {
             const numValue = typeof field.value === "number" ? field.value : parseFloat(field.value);
             if (!Number.isNaN(numValue)) {
@@ -3929,7 +3926,7 @@ function PercentageField({
             }
           }
         };
-        return /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(InputGroup, { "data-invalid": !!error || void 0 }, /* @__PURE__ */ React9__namespace.createElement(
+        return /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(InputGroup, { "data-invalid": !!error || void 0 }, /* @__PURE__ */ React83__namespace.createElement(
           InputGroupInput,
           {
             id: name,
@@ -3943,10 +3940,10 @@ function PercentageField({
             readOnly,
             "aria-invalid": !!error
           }
-        ), /* @__PURE__ */ React9__namespace.createElement(InputGroupAddon, { align: "inline-end" }, "%")));
+        ), /* @__PURE__ */ React83__namespace.createElement(InputGroupAddon, { align: "inline-end" }, "%")));
       }
     }
-  ), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description, " ", minValue !== 0 || maxValue !== 100 ? /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-xs" }, "(", minValue, "% - ", maxValue, "%)") : null), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+  ), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description, " ", minValue !== 0 || maxValue !== 100 ? /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-xs" }, "(", minValue, "% - ", maxValue, "%)") : null), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
 }
 var COUNTRY_CODES = [
   { code: "US", label: "\u{1F1FA}\u{1F1F8} +1", dialCode: "+1" },
@@ -4016,11 +4013,11 @@ function PhoneField({
   onChange
 }) {
   const { control, setValue: setValue2, watch } = reactHookForm.useFormContext();
-  const [displayValue, setDisplayValue] = React9__namespace.useState("");
-  const [selectedCountry, setSelectedCountry] = React9__namespace.useState(defaultCountry);
+  const [displayValue, setDisplayValue] = React83__namespace.useState("");
+  const [selectedCountry, setSelectedCountry] = React83__namespace.useState(defaultCountry);
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    React9__namespace.useEffect(() => {
+    React83__namespace.useEffect(() => {
       if (value !== void 0 && value !== null) {
         const digits = value.toString().replace(/\D/g, "");
         setDisplayValue(formatPhoneNumber(digits));
@@ -4048,7 +4045,7 @@ function PhoneField({
       const fullNumber = dialCode + digits;
       onChange(fullNumber);
     };
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex gap-2" }, showCountrySelect && /* @__PURE__ */ React9__namespace.createElement(Select, { value: selectedCountry, onValueChange: handleCountryChange }, /* @__PURE__ */ React9__namespace.createElement(SelectTrigger, { className: "w-[110px]" }, /* @__PURE__ */ React9__namespace.createElement(SelectValue, { placeholder: "Select" })), /* @__PURE__ */ React9__namespace.createElement(SelectContent, null, COUNTRY_CODES.map((country) => /* @__PURE__ */ React9__namespace.createElement(SelectItem, { key: country.code, value: country.code }, country.label)))), /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(InputGroup, null, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex gap-2" }, showCountrySelect && /* @__PURE__ */ React83__namespace.createElement(Select, { value: selectedCountry, onValueChange: handleCountryChange }, /* @__PURE__ */ React83__namespace.createElement(SelectTrigger, { className: "w-[110px]" }, /* @__PURE__ */ React83__namespace.createElement(SelectValue, { placeholder: "Select" })), /* @__PURE__ */ React83__namespace.createElement(SelectContent, null, COUNTRY_CODES.map((country) => /* @__PURE__ */ React83__namespace.createElement(SelectItem, { key: country.code, value: country.code }, country.label)))), /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(InputGroup, null, /* @__PURE__ */ React83__namespace.createElement(
       InputGroupInput,
       {
         id: name,
@@ -4060,15 +4057,15 @@ function PhoneField({
         disabled,
         readOnly
       }
-    ))))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+    ))))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
   }
   const countryValue = countryFieldName ? watch(countryFieldName) : null;
-  React9__namespace.useEffect(() => {
+  React83__namespace.useEffect(() => {
     if (countryValue && countryValue !== selectedCountry) {
       setSelectedCountry(countryValue);
     }
   }, [countryValue, selectedCountry]);
-  const formatPhoneNumber = React9__namespace.useCallback((value2) => {
+  const formatPhoneNumber = React83__namespace.useCallback((value2) => {
     const digits = value2.replace(/\D/g, "");
     if (!digits) return "";
     if (digits.length <= 3) {
@@ -4079,17 +4076,17 @@ function PhoneField({
       return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
     }
   }, []);
-  const getDialCode = React9__namespace.useCallback((countryCode) => {
+  const getDialCode = React83__namespace.useCallback((countryCode) => {
     const country = COUNTRY_CODES.find((c) => c.code === countryCode);
     return country?.dialCode || "+1";
   }, []);
-  return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
       render: ({ field, fieldState: { error } }) => {
-        React9__namespace.useEffect(() => {
+        React83__namespace.useEffect(() => {
           if (field.value !== void 0 && field.value !== null) {
             const digits = field.value.toString().replace(/\D/g, "");
             setDisplayValue(formatPhoneNumber(digits));
@@ -4117,7 +4114,7 @@ function PhoneField({
           const fullNumber = dialCode + digits;
           field.onChange(fullNumber);
         };
-        return /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex gap-2" }, showCountrySelect && /* @__PURE__ */ React9__namespace.createElement(Select, { value: selectedCountry, onValueChange: handleCountryChange }, /* @__PURE__ */ React9__namespace.createElement(SelectTrigger, { className: "w-[110px]" }, /* @__PURE__ */ React9__namespace.createElement(SelectValue, { placeholder: "Select" })), /* @__PURE__ */ React9__namespace.createElement(SelectContent, null, COUNTRY_CODES.map((country) => /* @__PURE__ */ React9__namespace.createElement(SelectItem, { key: country.code, value: country.code }, country.label)))), /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(InputGroup, { "data-invalid": !!error || void 0 }, /* @__PURE__ */ React9__namespace.createElement(
+        return /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex gap-2" }, showCountrySelect && /* @__PURE__ */ React83__namespace.createElement(Select, { value: selectedCountry, onValueChange: handleCountryChange }, /* @__PURE__ */ React83__namespace.createElement(SelectTrigger, { className: "w-[110px]" }, /* @__PURE__ */ React83__namespace.createElement(SelectValue, { placeholder: "Select" })), /* @__PURE__ */ React83__namespace.createElement(SelectContent, null, COUNTRY_CODES.map((country) => /* @__PURE__ */ React83__namespace.createElement(SelectItem, { key: country.code, value: country.code }, country.label)))), /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex-1" }, /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(InputGroup, { "data-invalid": !!error || void 0 }, /* @__PURE__ */ React83__namespace.createElement(
           InputGroupInput,
           {
             id: name,
@@ -4133,13 +4130,13 @@ function PhoneField({
         )))));
       }
     }
-  ), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+  ), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
 }
 function RadioGroup({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.RadioGroup.Root,
     {
       "data-slot": "radio-group",
@@ -4152,7 +4149,7 @@ function RadioGroupItem({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.RadioGroup.Item,
     {
       "data-slot": "radio-group-item",
@@ -4162,13 +4159,13 @@ function RadioGroupItem({
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React83__namespace.default.createElement(
       radixUi.RadioGroup.Indicator,
       {
         "data-slot": "radio-group-indicator",
         className: "relative flex items-center justify-center"
       },
-      /* @__PURE__ */ React.createElement(lucideReact.CircleIcon, { className: "fill-primary absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2" })
+      /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.CircleIcon, { className: "fill-primary absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2" })
     )
   );
 }
@@ -4189,7 +4186,7 @@ function RadioGroupField({
   const { control } = reactHookForm.useFormContext();
   const isControlled = value !== void 0 && onValueChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(
       RadioGroup,
       {
         onValueChange,
@@ -4198,13 +4195,13 @@ function RadioGroupField({
         orientation,
         className: cn(orientation === "horizontal" && "flex flex-wrap gap-4")
       },
-      options.map((option) => /* @__PURE__ */ React9__namespace.createElement(
+      options.map((option) => /* @__PURE__ */ React83__namespace.createElement(
         "div",
         {
           key: option.value,
           className: cn("flex items-start gap-2", orientation === "vertical" && "flex-col")
         },
-        /* @__PURE__ */ React9__namespace.createElement(
+        /* @__PURE__ */ React83__namespace.createElement(
           RadioGroupItem,
           {
             id: `${name}-${option.value}`,
@@ -4212,7 +4209,7 @@ function RadioGroupField({
             disabled: disabled || option.disabled
           }
         ),
-        /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React9__namespace.createElement(
+        /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React83__namespace.createElement(
           Label,
           {
             htmlFor: `${name}-${option.value}`,
@@ -4222,16 +4219,16 @@ function RadioGroupField({
             )
           },
           option.label
-        ), option.description && /* @__PURE__ */ React9__namespace.createElement("p", { className: "text-sm text-muted-foreground" }, option.description))
+        ), option.description && /* @__PURE__ */ React83__namespace.createElement("p", { className: "text-sm text-muted-foreground" }, option.description))
       ))
-    )), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+    )), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(
         RadioGroup,
         {
           onValueChange: field.onChange,
@@ -4241,13 +4238,13 @@ function RadioGroupField({
           className: cn(orientation === "horizontal" && "flex flex-wrap gap-4"),
           "aria-invalid": !!error
         },
-        options.map((option) => /* @__PURE__ */ React9__namespace.createElement(
+        options.map((option) => /* @__PURE__ */ React83__namespace.createElement(
           "div",
           {
             key: option.value,
             className: cn("flex items-start gap-2", orientation === "vertical" && "flex-col")
           },
-          /* @__PURE__ */ React9__namespace.createElement(
+          /* @__PURE__ */ React83__namespace.createElement(
             RadioGroupItem,
             {
               id: `${name}-${option.value}`,
@@ -4255,7 +4252,7 @@ function RadioGroupField({
               disabled: disabled || option.disabled
             }
           ),
-          /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React9__namespace.createElement(
+          /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React83__namespace.createElement(
             Label,
             {
               htmlFor: `${name}-${option.value}`,
@@ -4265,9 +4262,9 @@ function RadioGroupField({
               )
             },
             option.label
-          ), option.description && /* @__PURE__ */ React9__namespace.createElement("p", { className: "text-sm text-muted-foreground" }, option.description))
+          ), option.description && /* @__PURE__ */ React83__namespace.createElement("p", { className: "text-sm text-muted-foreground" }, option.description))
         ))
-      )), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null))
+      )), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null))
     }
   );
 }
@@ -4289,14 +4286,14 @@ function RatingField({
   onChange
 }) {
   const { control } = reactHookForm.useFormContext();
-  const [hoverValue, setHoverValue] = React9__namespace.useState(null);
+  const [hoverValue, setHoverValue] = React83__namespace.useState(null);
   const isControlled = value !== void 0 && onChange !== void 0;
-  const sizeClasses = {
+  const sizeClasses2 = {
     sm: "h-4 w-4",
     md: "h-6 w-6",
     lg: "h-8 w-8"
   };
-  const IconComponent = icon === "star" ? lucideReact.StarIcon : icon === "heart" ? ({ className: className2 }) => /* @__PURE__ */ React9__namespace.createElement("svg", { className: className2, fill: "currentColor", viewBox: "0 0 24 24" }, /* @__PURE__ */ React9__namespace.createElement("path", { d: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" })) : ({ className: className2 }) => /* @__PURE__ */ React9__namespace.createElement("svg", { className: className2, fill: "currentColor", viewBox: "0 0 24 24" }, /* @__PURE__ */ React9__namespace.createElement("path", { d: "M1 21h4V9H1v12zm22 0h-6v-9h6v9zM10.69 3.86L9.28 2.45a1 1 0 00-1.41 0l-1.42 1.41L1 9.41V21h22V9.41l-5.44-5.55-1.41 1.41a6 6 0 01-8.46 0z" }));
+  const IconComponent = icon === "star" ? lucideReact.StarIcon : icon === "heart" ? ({ className: className2 }) => /* @__PURE__ */ React83__namespace.createElement("svg", { className: className2, fill: "currentColor", viewBox: "0 0 24 24" }, /* @__PURE__ */ React83__namespace.createElement("path", { d: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" })) : ({ className: className2 }) => /* @__PURE__ */ React83__namespace.createElement("svg", { className: className2, fill: "currentColor", viewBox: "0 0 24 24" }, /* @__PURE__ */ React83__namespace.createElement("path", { d: "M1 21h4V9H1v12zm22 0h-6v-9h6v9zM10.69 3.86L9.28 2.45a1 1 0 00-1.41 0l-1.42 1.41L1 9.41V21h22V9.41l-5.44-5.55-1.41 1.41a6 6 0 01-8.46 0z" }));
   if (isControlled) {
     const currentValue = value || 0;
     const handleKeyDown = (e, rating) => {
@@ -4307,7 +4304,7 @@ function RatingField({
         }
       }
     };
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex flex-col gap-2" }, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex flex-col gap-2" }, /* @__PURE__ */ React83__namespace.createElement(
       "div",
       {
         className: "flex items-center gap-1",
@@ -4317,7 +4314,7 @@ function RatingField({
       Array.from({ length: maxRating }).map((_, index) => {
         const rating = index + 1;
         const isFilled = hoverValue !== null ? rating <= hoverValue : rating <= currentValue;
-        return /* @__PURE__ */ React9__namespace.createElement(
+        return /* @__PURE__ */ React83__namespace.createElement(
           "button",
           {
             key: index,
@@ -4342,20 +4339,20 @@ function RatingField({
             "aria-label": `${rating} out of ${maxRating}`,
             tabIndex: disabled || readOnly ? -1 : 0
           },
-          /* @__PURE__ */ React9__namespace.createElement(
+          /* @__PURE__ */ React83__namespace.createElement(
             IconComponent,
             {
               className: cn(
-                sizeClasses[size],
+                sizeClasses2[size],
                 isFilled ? "text-yellow-400 fill-yellow-400" : "text-muted-foreground"
               )
             }
           )
         );
       })
-    ), (showNumbers || labels) && /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex justify-between text-xs text-muted-foreground" }, Array.from({ length: maxRating }).map((_, index) => /* @__PURE__ */ React9__namespace.createElement("span", { key: index, className: "flex-1 text-center" }, labels?.[index] || (showNumbers ? index + 1 : "")))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null))));
+    ), (showNumbers || labels) && /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex justify-between text-xs text-muted-foreground" }, Array.from({ length: maxRating }).map((_, index) => /* @__PURE__ */ React83__namespace.createElement("span", { key: index, className: "flex-1 text-center" }, labels?.[index] || (showNumbers ? index + 1 : "")))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null))));
   }
-  return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, null, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
@@ -4370,7 +4367,7 @@ function RatingField({
             }
           }
         };
-        return /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex flex-col gap-2" }, /* @__PURE__ */ React9__namespace.createElement(
+        return /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex flex-col gap-2" }, /* @__PURE__ */ React83__namespace.createElement(
           "div",
           {
             className: "flex items-center gap-1",
@@ -4380,7 +4377,7 @@ function RatingField({
           Array.from({ length: maxRating }).map((_, index) => {
             const rating = index + 1;
             const isFilled = hoverValue !== null ? rating <= hoverValue : rating <= currentValue;
-            return /* @__PURE__ */ React9__namespace.createElement(
+            return /* @__PURE__ */ React83__namespace.createElement(
               "button",
               {
                 key: index,
@@ -4405,18 +4402,18 @@ function RatingField({
                 "aria-label": `${rating} out of ${maxRating}`,
                 tabIndex: disabled || readOnly ? -1 : 0
               },
-              /* @__PURE__ */ React9__namespace.createElement(
+              /* @__PURE__ */ React83__namespace.createElement(
                 IconComponent,
                 {
                   className: cn(
-                    sizeClasses[size],
+                    sizeClasses2[size],
                     isFilled ? "text-yellow-400 fill-yellow-400" : "text-muted-foreground"
                   )
                 }
               )
             );
           })
-        ), (showNumbers || labels) && /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex justify-between text-xs text-muted-foreground" }, Array.from({ length: maxRating }).map((_, index) => /* @__PURE__ */ React9__namespace.createElement("span", { key: index, className: "flex-1 text-center" }, labels?.[index] || (showNumbers ? index + 1 : "")))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null)));
+        ), (showNumbers || labels) && /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex justify-between text-xs text-muted-foreground" }, Array.from({ length: maxRating }).map((_, index) => /* @__PURE__ */ React83__namespace.createElement("span", { key: index, className: "flex-1 text-center" }, labels?.[index] || (showNumbers ? index + 1 : "")))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null)));
       }
     }
   ));
@@ -4436,14 +4433,14 @@ function SelectField({
   const { control } = reactHookForm.useFormContext();
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(Select, { onValueChange: onChange, value, disabled }, /* @__PURE__ */ React9__namespace.createElement(SelectTrigger, { id: name, className: "w-full" }, /* @__PURE__ */ React9__namespace.createElement(SelectValue, { placeholder })), /* @__PURE__ */ React9__namespace.createElement(SelectContent, null, options.map((option) => /* @__PURE__ */ React9__namespace.createElement(SelectItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label))))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(Select, { onValueChange: onChange, value, disabled }, /* @__PURE__ */ React83__namespace.createElement(SelectTrigger, { id: name, className: "w-full" }, /* @__PURE__ */ React83__namespace.createElement(SelectValue, { placeholder })), /* @__PURE__ */ React83__namespace.createElement(SelectContent, null, options.map((option) => /* @__PURE__ */ React83__namespace.createElement(SelectItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label))))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(Select, { onValueChange: field.onChange, value: field.value, disabled }, /* @__PURE__ */ React9__namespace.createElement(SelectTrigger, { id: name, className: "w-full" }, /* @__PURE__ */ React9__namespace.createElement(SelectValue, { placeholder })), /* @__PURE__ */ React9__namespace.createElement(SelectContent, null, options.map((option) => /* @__PURE__ */ React9__namespace.createElement(SelectItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label))))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null))
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(Select, { onValueChange: field.onChange, value: field.value, disabled }, /* @__PURE__ */ React83__namespace.createElement(SelectTrigger, { id: name, className: "w-full" }, /* @__PURE__ */ React83__namespace.createElement(SelectValue, { placeholder })), /* @__PURE__ */ React83__namespace.createElement(SelectContent, null, options.map((option) => /* @__PURE__ */ React83__namespace.createElement(SelectItem, { key: option.value, value: option.value, disabled: option.disabled }, option.label))))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null))
     }
   );
 }
@@ -4455,11 +4452,11 @@ function Slider({
   max = 100,
   ...props
 }) {
-  const _values = React9__namespace.useMemo(
+  const _values = React83__namespace.useMemo(
     () => Array.isArray(value) ? value : Array.isArray(defaultValue) ? defaultValue : [min, max],
     [value, defaultValue, min, max]
   );
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     radixUi.Slider.Root,
     {
       "data-slot": "slider",
@@ -4473,7 +4470,7 @@ function Slider({
       ),
       ...props
     },
-    /* @__PURE__ */ React9__namespace.createElement(
+    /* @__PURE__ */ React83__namespace.createElement(
       radixUi.Slider.Track,
       {
         "data-slot": "slider-track",
@@ -4481,7 +4478,7 @@ function Slider({
           "bg-muted relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"
         )
       },
-      /* @__PURE__ */ React9__namespace.createElement(
+      /* @__PURE__ */ React83__namespace.createElement(
         radixUi.Slider.Range,
         {
           "data-slot": "slider-range",
@@ -4491,7 +4488,7 @@ function Slider({
         }
       )
     ),
-    Array.from({ length: _values.length }, (_, index) => /* @__PURE__ */ React9__namespace.createElement(
+    Array.from({ length: _values.length }, (_, index) => /* @__PURE__ */ React83__namespace.createElement(
       radixUi.Slider.Thumb,
       {
         "data-slot": "slider-thumb",
@@ -4523,10 +4520,10 @@ function SliderField({
   onChange
 }) {
   const { control } = reactHookForm.useFormContext();
-  const [localValue, setLocalValue] = React9__namespace.useState(min);
+  const [localValue, setLocalValue] = React83__namespace.useState(min);
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    React9__namespace.useEffect(() => {
+    React83__namespace.useEffect(() => {
       const controlledValue = value !== void 0 ? Number(value) : min;
       setLocalValue(Math.min(Math.max(controlledValue, min), max));
     }, [value]);
@@ -4547,7 +4544,7 @@ function SliderField({
       }
     };
     const valueLabel = `${localValue}${suffix || ""}`;
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("flex items-center gap-4", orientation === "vertical" && "flex-col") }, /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("flex-1", orientation === "vertical" && "h-48 w-full") }, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("flex items-center gap-4", orientation === "vertical" && "flex-col") }, /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("flex-1", orientation === "vertical" && "h-48 w-full") }, /* @__PURE__ */ React83__namespace.createElement(
       Slider,
       {
         value: [localValue],
@@ -4561,7 +4558,7 @@ function SliderField({
         "aria-label": label,
         className: cn("rounded")
       }
-    )), showValue && /* @__PURE__ */ React9__namespace.createElement(
+    )), showValue && /* @__PURE__ */ React83__namespace.createElement(
       "div",
       {
         className: cn(
@@ -4569,7 +4566,7 @@ function SliderField({
           orientation === "vertical" && "w-full justify-between"
         )
       },
-      showInput ? /* @__PURE__ */ React9__namespace.createElement(
+      showInput ? /* @__PURE__ */ React83__namespace.createElement(
         Input,
         {
           type: "number",
@@ -4582,8 +4579,8 @@ function SliderField({
           className: "w-20",
           "aria-label": `${label} value`
         }
-      ) : /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-sm font-medium tabular-nums min-w-[3rem] text-center" }, valueLabel)
-    ))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null), /* @__PURE__ */ React9__namespace.createElement(
+      ) : /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-sm font-medium tabular-nums min-w-[3rem] text-center" }, valueLabel)
+    ))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null), /* @__PURE__ */ React83__namespace.createElement(
       "div",
       {
         className: cn(
@@ -4591,17 +4588,17 @@ function SliderField({
           orientation === "vertical" && "flex-row"
         )
       },
-      /* @__PURE__ */ React9__namespace.createElement("span", null, min, suffix),
-      /* @__PURE__ */ React9__namespace.createElement("span", null, max, suffix)
+      /* @__PURE__ */ React83__namespace.createElement("span", null, min, suffix),
+      /* @__PURE__ */ React83__namespace.createElement("span", null, max, suffix)
     ));
   }
-  return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
       render: ({ field, fieldState: { error } }) => {
-        React9__namespace.useEffect(() => {
+        React83__namespace.useEffect(() => {
           const value2 = field.value !== void 0 ? Number(field.value) : min;
           setLocalValue(Math.min(Math.max(value2, min), max));
         }, [field.value]);
@@ -4622,12 +4619,12 @@ function SliderField({
           }
         };
         const valueLabel = `${localValue}${suffix || ""}`;
-        return /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(
+        return /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(
           "div",
           {
             className: cn("flex items-center gap-4", orientation === "vertical" && "flex-col")
           },
-          /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("flex-1", orientation === "vertical" && "h-48 w-full") }, /* @__PURE__ */ React9__namespace.createElement(
+          /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("flex-1", orientation === "vertical" && "h-48 w-full") }, /* @__PURE__ */ React83__namespace.createElement(
             Slider,
             {
               value: [localValue],
@@ -4643,7 +4640,7 @@ function SliderField({
               className: cn(error && "ring-destructive rounded")
             }
           )),
-          showValue && /* @__PURE__ */ React9__namespace.createElement(
+          showValue && /* @__PURE__ */ React83__namespace.createElement(
             "div",
             {
               className: cn(
@@ -4651,7 +4648,7 @@ function SliderField({
                 orientation === "vertical" && "w-full justify-between"
               )
             },
-            showInput ? /* @__PURE__ */ React9__namespace.createElement(
+            showInput ? /* @__PURE__ */ React83__namespace.createElement(
               Input,
               {
                 type: "number",
@@ -4664,12 +4661,12 @@ function SliderField({
                 className: "w-20",
                 "aria-label": `${label} value`
               }
-            ) : /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-sm font-medium tabular-nums min-w-[3rem] text-center" }, valueLabel)
+            ) : /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-sm font-medium tabular-nums min-w-[3rem] text-center" }, valueLabel)
           )
         ));
       }
     }
-  ), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null), /* @__PURE__ */ React9__namespace.createElement(
+  ), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null), /* @__PURE__ */ React83__namespace.createElement(
     "div",
     {
       className: cn(
@@ -4677,8 +4674,8 @@ function SliderField({
         orientation === "vertical" && "flex-row"
       )
     },
-    /* @__PURE__ */ React9__namespace.createElement("span", null, min, suffix),
-    /* @__PURE__ */ React9__namespace.createElement("span", null, max, suffix)
+    /* @__PURE__ */ React83__namespace.createElement("span", null, min, suffix),
+    /* @__PURE__ */ React83__namespace.createElement("span", null, max, suffix)
   ));
 }
 function Switch({
@@ -4686,7 +4683,7 @@ function Switch({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.Switch.Root,
     {
       "data-slot": "switch",
@@ -4697,7 +4694,7 @@ function Switch({
       ),
       ...props
     },
-    /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React83__namespace.default.createElement(
       radixUi.Switch.Thumb,
       {
         "data-slot": "switch-thumb",
@@ -4723,7 +4720,7 @@ function SwitchField({
   const { control } = reactHookForm.useFormContext();
   const isControlled = checked !== void 0 && onCheckedChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center justify-between gap-2" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center justify-between gap-2" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React83__namespace.createElement(
       Switch,
       {
         id: name,
@@ -4731,22 +4728,22 @@ function SwitchField({
         onCheckedChange,
         disabled
       }
-    ), label && /* @__PURE__ */ React9__namespace.createElement(
+    ), label && /* @__PURE__ */ React83__namespace.createElement(
       Label,
       {
         htmlFor: name,
         className: cn("font-medium", disabled && "cursor-not-allowed opacity-50")
       },
       label,
-      required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")
-    ))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+      required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")
+    ))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center justify-between gap-2" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React9__namespace.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center justify-between gap-2" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React83__namespace.createElement(
         Switch,
         {
           id: name,
@@ -4755,7 +4752,7 @@ function SwitchField({
           disabled,
           "aria-invalid": !!error
         }
-      ), label && /* @__PURE__ */ React9__namespace.createElement(
+      ), label && /* @__PURE__ */ React83__namespace.createElement(
         Label,
         {
           htmlFor: name,
@@ -4766,8 +4763,8 @@ function SwitchField({
           )
         },
         label,
-        required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")
-      ))), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null))
+        required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")
+      ))), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null))
     }
   );
 }
@@ -4787,7 +4784,7 @@ function TextField({
   const { control } = reactHookForm.useFormContext();
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(
       Input,
       {
         id: name,
@@ -4798,14 +4795,14 @@ function TextField({
         disabled,
         readOnly
       }
-    )), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+    )), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(
         Input,
         {
           ...field,
@@ -4816,7 +4813,7 @@ function TextField({
           readOnly,
           "aria-invalid": !!error
         }
-      )), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null))
+      )), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null))
     }
   );
 }
@@ -4836,7 +4833,7 @@ function TextareaField({
   const { control } = reactHookForm.useFormContext();
   const isControlled = value !== void 0 && onChange !== void 0;
   if (isControlled) {
-    return /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(
       Textarea,
       {
         id: name,
@@ -4847,14 +4844,14 @@ function TextareaField({
         readOnly,
         rows
       }
-    )), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null));
+    )), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null));
   }
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     reactHookForm.Controller,
     {
       name,
       control,
-      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React9__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React9__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React9__namespace.createElement(FormControl, null, /* @__PURE__ */ React9__namespace.createElement(
+      render: ({ field, fieldState: { error } }) => /* @__PURE__ */ React83__namespace.createElement(FormItem, { className: cn(className) }, label && /* @__PURE__ */ React83__namespace.createElement(FormLabel, { htmlFor: name }, label, required && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-destructive ml-1" }, "*")), /* @__PURE__ */ React83__namespace.createElement(FormControl, null, /* @__PURE__ */ React83__namespace.createElement(
         Textarea,
         {
           ...field,
@@ -4865,25 +4862,10 @@ function TextareaField({
           rows,
           "aria-invalid": !!error
         }
-      )), description && /* @__PURE__ */ React9__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React9__namespace.createElement(FormMessage, null))
+      )), description && /* @__PURE__ */ React83__namespace.createElement(FormDescription, null, description), /* @__PURE__ */ React83__namespace.createElement(FormMessage, null))
     }
   );
 }
-function Collapsible({ ...props }) {
-  return /* @__PURE__ */ React.createElement(radixUi.Collapsible.Root, { "data-slot": "collapsible", ...props });
-}
-function CollapsibleTrigger({
-  ...props
-}) {
-  return /* @__PURE__ */ React.createElement(radixUi.Collapsible.CollapsibleTrigger, { "data-slot": "collapsible-trigger", ...props });
-}
-function CollapsibleContent({
-  ...props
-}) {
-  return /* @__PURE__ */ React.createElement(radixUi.Collapsible.CollapsibleContent, { "data-slot": "collapsible-content", ...props });
-}
-
-// src/blocks/data-entry/form-section.tsx
 var statusConfig = {
   valid: {
     color: "text-emerald-500",
@@ -4901,40 +4883,64 @@ function FormSection({
   title,
   description,
   validationStatus = "none",
-  collapsible = false,
-  defaultOpen = true,
-  open,
-  onOpenChange,
   children,
   actions,
   error,
   className
 }) {
-  const [internalOpen, setInternalOpen] = React9__namespace.useState(defaultOpen);
-  const isControlled = open !== void 0;
-  const isOpen = isControlled ? open : internalOpen;
-  const handleOpenChange = (newOpen) => {
-    if (!isControlled) {
-      setInternalOpen(newOpen);
-    }
-    onOpenChange?.(newOpen);
-  };
-  const sectionContent = /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("space-y-4", className) }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React9__namespace.createElement("h3", { className: "text-base font-semibold" }, title), validationStatus === "valid" && /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("flex items-center gap-1 text-xs", statusConfig.valid.color) }, /* @__PURE__ */ React9__namespace.createElement(lucideReact.CheckCircleIcon, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ React9__namespace.createElement("span", null, statusConfig.valid.label)), validationStatus === "invalid" && /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("flex items-center gap-1 text-xs", statusConfig.invalid.color) }, /* @__PURE__ */ React9__namespace.createElement(lucideReact.AlertCircleIcon, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ React9__namespace.createElement("span", null, statusConfig.invalid.label)), validationStatus === "pending" && /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("flex items-center gap-1 text-xs", statusConfig.pending.color) }, /* @__PURE__ */ React9__namespace.createElement(lucideReact.AlertCircleIcon, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ React9__namespace.createElement("span", null, statusConfig.pending.label))), /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-2" }, actions, collapsible && /* @__PURE__ */ React9__namespace.createElement(CollapsibleTrigger, { asChild: true }, /* @__PURE__ */ React9__namespace.createElement("button", { type: "button", className: "p-1 hover:bg-muted rounded" }, /* @__PURE__ */ React9__namespace.createElement(
-    lucideReact.ChevronDownIcon,
-    {
-      className: cn(
-        "h-4 w-4 text-muted-foreground transition-transform",
-        !isOpen && "-rotate-90"
-      )
-    }
-  ))))), description && /* @__PURE__ */ React9__namespace.createElement("p", { className: "text-sm text-muted-foreground" }, description), error && /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-2 text-sm text-red-500" }, /* @__PURE__ */ React9__namespace.createElement(lucideReact.AlertCircleIcon, { className: "h-4 w-4" }), error), children);
-  if (!collapsible) {
-    return sectionContent;
-  }
-  return /* @__PURE__ */ React9__namespace.createElement(Collapsible, { open: isOpen, onOpenChange: handleOpenChange }, sectionContent, /* @__PURE__ */ React9__namespace.createElement(CollapsibleContent, { className: "overflow-hidden data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-up data-[state=open]:slide-down" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "pt-2" }, children)));
+  return /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("space-y-4", className) }, /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React83__namespace.default.createElement("h3", { className: "text-base font-semibold" }, title), validationStatus === "valid" && /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("flex items-center gap-1 text-xs", statusConfig.valid.color) }, /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.CheckCircleIcon, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ React83__namespace.default.createElement("span", null, statusConfig.valid.label)), validationStatus === "invalid" && /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("flex items-center gap-1 text-xs", statusConfig.invalid.color) }, /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.AlertCircleIcon, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ React83__namespace.default.createElement("span", null, statusConfig.invalid.label)), validationStatus === "pending" && /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("flex items-center gap-1 text-xs", statusConfig.pending.color) }, /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.AlertCircleIcon, { className: "h-3.5 w-3.5" }), /* @__PURE__ */ React83__namespace.default.createElement("span", null, statusConfig.pending.label))), /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex items-center gap-2" }, actions)), description && /* @__PURE__ */ React83__namespace.default.createElement("p", { className: "text-sm text-muted-foreground" }, description), error && /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex items-center gap-2 text-sm text-red-500" }, /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.AlertCircleIcon, { className: "h-4 w-4" }), error), children);
 }
 
-// src/blocks/data-entry/sticky-actions.tsx
+// src/blocks/data-entry/form-builder/form-body.tsx
+function FormBody({
+  form,
+  sections,
+  renderField,
+  className
+}) {
+  const { watch, formState } = form;
+  const { errors, dirtyFields } = formState;
+  const visibleSections = sections.filter((section) => {
+    if (!section.when) return true;
+    const values = watch();
+    return section.when(values);
+  });
+  const getSectionValidationStatus = (section) => {
+    const sectionFields = section.fields.map((f) => f.name);
+    const sectionErrors = sectionFields.filter((field) => errors[field]);
+    if (sectionErrors.length > 0) return "invalid";
+    if (sectionFields.every((field) => dirtyFields[field]))
+      return "valid";
+    return section.validationStatus || "none";
+  };
+  return /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("space-y-6", className) }, visibleSections.map((section) => {
+    const visibleFields = section.fields.filter((field) => {
+      if (!field.when) return true;
+      const values = watch();
+      return field.when(values);
+    });
+    if (visibleFields.length === 0) return null;
+    const sectionError = section.fields.map((f) => errors[f.name]?.message).filter(Boolean)[0];
+    return /* @__PURE__ */ React83__namespace.default.createElement(
+      FormSection,
+      {
+        key: section.id,
+        title: section.title,
+        description: section.description,
+        validationStatus: getSectionValidationStatus(section),
+        actions: section.actions,
+        error: sectionError
+      },
+      /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "space-y-4" }, visibleFields.map((fieldConfig) => /* @__PURE__ */ React83__namespace.default.createElement("div", { key: fieldConfig.name }, renderField ? renderField(fieldConfig, form) : /* @__PURE__ */ React83__namespace.default.createElement(
+        FieldRenderer,
+        {
+          ...fieldConfig,
+          render: fieldConfig.render ? () => fieldConfig.render?.(form, form) : void 0
+        }
+      ))))
+    );
+  }));
+}
 function StickyActions({
   children,
   showDirtyWarning = false,
@@ -4942,7 +4948,7 @@ function StickyActions({
   position = "bottom",
   className
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       className: cn(
@@ -4952,12 +4958,12 @@ function StickyActions({
         className
       )
     },
-    /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, showDirtyWarning && isDirty && /* @__PURE__ */ React.createElement("span", { className: "text-sm text-amber-600 dark:text-amber-400" }, "You have unsaved changes")),
-    /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, children)
+    /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex items-center gap-2" }, showDirtyWarning && isDirty && /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "text-sm text-amber-600 dark:text-amber-400" }, "You have unsaved changes")),
+    /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex items-center gap-2" }, children)
   );
 }
 function Spinner({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     lucideReact.Loader2Icon,
     {
       role: "status",
@@ -4997,8 +5003,8 @@ function FormBuilder({
     reValidateMode: "onChange"
   });
   const { handleSubmit, watch, formState, reset } = form;
-  const { isDirty, isValid, errors, dirtyFields } = formState;
-  React9__namespace.useEffect(() => {
+  const { isDirty, isValid } = formState;
+  React83__namespace.useEffect(() => {
     if (!onAutoSave || !isDirty) return;
     const timer = setTimeout(() => {
       const values = watch();
@@ -5006,24 +5012,7 @@ function FormBuilder({
     }, autoSaveDelay);
     return () => clearTimeout(timer);
   }, [onAutoSave, autoSaveDelay, isDirty, watch]);
-  const [openSections, setOpenSections] = React9__namespace.useState({});
-  const handleSectionOpenChange = (sectionId, open) => {
-    setOpenSections((prev) => ({ ...prev, [sectionId]: open }));
-  };
-  const visibleSections = sections.filter((section) => {
-    if (!section.when) return true;
-    const values = watch();
-    return section.when(values);
-  });
-  const getSectionValidationStatus = (section) => {
-    const sectionFields = section.fields.map((f) => f.name);
-    const sectionErrors = sectionFields.filter((field) => errors[field]);
-    if (sectionErrors.length > 0) return "invalid";
-    if (sectionFields.every((field) => dirtyFields[field]))
-      return "valid";
-    return section.validationStatus || "none";
-  };
-  const actionsContent = /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-2" }, showCancel && /* @__PURE__ */ React9__namespace.createElement(
+  const actionsContent = /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-2" }, showCancel && /* @__PURE__ */ React83__namespace.createElement(
     Button,
     {
       type: "button",
@@ -5032,50 +5021,28 @@ function FormBuilder({
       disabled: isLoading
     },
     cancelLabel
-  ), submitButton || /* @__PURE__ */ React9__namespace.createElement(Button, { type: "submit", disabled: isLoading || !isValid }, isLoading && /* @__PURE__ */ React9__namespace.createElement(Spinner, { className: "mr-2 h-4 w-4" }), submitLabel));
-  return /* @__PURE__ */ React9__namespace.createElement(reactHookForm.FormProvider, { ...form }, /* @__PURE__ */ React9__namespace.createElement("form", { onSubmit: handleSubmit(onSubmit), className: cn("w-full space-y-6", className), id }, header, successMessage && /* @__PURE__ */ React9__namespace.createElement("div", { className: "rounded-md bg-green-50 p-4 text-sm text-green-700 dark:bg-green-900/20 dark:text-green-400" }, successMessage), error && /* @__PURE__ */ React9__namespace.createElement("div", { className: "rounded-md bg-red-50 p-4 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-400" }, error), /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-6" }, visibleSections.map((section) => {
-    const visibleFields = section.fields.filter((field) => {
-      if (!field.when) return true;
-      const values = watch();
-      return field.when(values);
-    });
-    if (visibleFields.length === 0) return null;
-    const sectionError = section.fields.map((f) => errors[f.name]?.message).filter(Boolean)[0];
-    return /* @__PURE__ */ React9__namespace.createElement(
-      FormSection,
-      {
-        key: section.id,
-        title: section.title,
-        description: section.description,
-        validationStatus: getSectionValidationStatus(section),
-        collapsible: section.collapsible,
-        defaultOpen: section.defaultOpen,
-        open: openSections[section.id],
-        onOpenChange: (open) => handleSectionOpenChange(section.id, open),
-        actions: section.actions,
-        error: sectionError
-      },
-      /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-4" }, visibleFields.map((fieldConfig) => /* @__PURE__ */ React9__namespace.createElement("div", { key: fieldConfig.name }, renderField ? renderField(fieldConfig, form) : /* @__PURE__ */ React9__namespace.createElement(
-        FieldRenderer,
-        {
-          ...fieldConfig,
-          render: fieldConfig.render ? () => fieldConfig.render?.(form, form) : void 0
-        }
-      ))))
-    );
-  })), footer, stickyFooter && /* @__PURE__ */ React9__namespace.createElement(StickyActions, { showDirtyWarning, isDirty }, actionsContent), !stickyFooter && /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex justify-end gap-2 pt-4 border-t" }, actionsContent)));
+  ), submitButton || /* @__PURE__ */ React83__namespace.createElement(Button, { type: "submit", disabled: isLoading || !isValid }, isLoading && /* @__PURE__ */ React83__namespace.createElement(Spinner, { className: "mr-2 h-4 w-4" }), submitLabel));
+  return /* @__PURE__ */ React83__namespace.createElement(reactHookForm.FormProvider, { ...form }, /* @__PURE__ */ React83__namespace.createElement("form", { onSubmit: handleSubmit(onSubmit), className: cn("w-full space-y-6", className), id }, header, successMessage && /* @__PURE__ */ React83__namespace.createElement("div", { className: "rounded-md bg-green-50 p-4 text-sm text-green-700 dark:bg-green-900/20 dark:text-green-400" }, successMessage), error && /* @__PURE__ */ React83__namespace.createElement("div", { className: "rounded-md bg-red-50 p-4 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-400" }, error), /* @__PURE__ */ React83__namespace.createElement(FormBody, { form, sections, renderField }), footer, stickyFooter && /* @__PURE__ */ React83__namespace.createElement(StickyActions, { showDirtyWarning, isDirty }, actionsContent), !stickyFooter && /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex justify-end gap-2 pt-4 border-t" }, actionsContent)));
+}
+function WizardStep({
+  sections,
+  form,
+  renderField,
+  className
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(FormBody, { form, sections, renderField, className });
 }
 function AlertDialog({ ...props }) {
-  return /* @__PURE__ */ React.createElement(radixUi.AlertDialog.Root, { "data-slot": "alert-dialog", ...props });
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.AlertDialog.Root, { "data-slot": "alert-dialog", ...props });
 }
 function AlertDialogPortal({ ...props }) {
-  return /* @__PURE__ */ React.createElement(radixUi.AlertDialog.Portal, { "data-slot": "alert-dialog-portal", ...props });
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.AlertDialog.Portal, { "data-slot": "alert-dialog-portal", ...props });
 }
 function AlertDialogOverlay({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.AlertDialog.Overlay,
     {
       "data-slot": "alert-dialog-overlay",
@@ -5092,7 +5059,7 @@ function AlertDialogContent({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(AlertDialogPortal, null, /* @__PURE__ */ React.createElement(AlertDialogOverlay, null), /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(AlertDialogPortal, null, /* @__PURE__ */ React83__namespace.default.createElement(AlertDialogOverlay, null), /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.AlertDialog.Content,
     {
       "data-slot": "alert-dialog-content",
@@ -5106,7 +5073,7 @@ function AlertDialogContent({
   ));
 }
 function AlertDialogHeader({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       "data-slot": "alert-dialog-header",
@@ -5119,7 +5086,7 @@ function AlertDialogHeader({ className, ...props }) {
   );
 }
 function AlertDialogFooter({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       "data-slot": "alert-dialog-footer",
@@ -5135,7 +5102,7 @@ function AlertDialogTitle({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.AlertDialog.Title,
     {
       "data-slot": "alert-dialog-title",
@@ -5151,7 +5118,7 @@ function AlertDialogDescription({
   className,
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.AlertDialog.Description,
     {
       "data-slot": "alert-dialog-description",
@@ -5166,7 +5133,7 @@ function AlertDialogAction({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(Button, { variant, size, asChild: true }, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(Button, { variant, size, asChild: true }, /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.AlertDialog.Action,
     {
       "data-slot": "alert-dialog-action",
@@ -5181,7 +5148,7 @@ function AlertDialogCancel({
   size = "default",
   ...props
 }) {
-  return /* @__PURE__ */ React.createElement(Button, { variant, size, asChild: true }, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(Button, { variant, size, asChild: true }, /* @__PURE__ */ React83__namespace.default.createElement(
     radixUi.AlertDialog.Cancel,
     {
       "data-slot": "alert-dialog-cancel",
@@ -5190,8 +5157,1082 @@ function AlertDialogCancel({
     }
   ));
 }
+function Avatar({
+  className,
+  size = "default",
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    radixUi.Avatar.Root,
+    {
+      "data-slot": "avatar",
+      "data-size": size,
+      className: cn(
+        "group/avatar relative flex size-8 shrink-0 overflow-hidden rounded-full select-none data-[size=lg]:size-10 data-[size=sm]:size-6",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function AvatarImage({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    radixUi.Avatar.Image,
+    {
+      "data-slot": "avatar-image",
+      className: cn("aspect-square size-full", className),
+      ...props
+    }
+  );
+}
+function AvatarFallback({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    radixUi.Avatar.Fallback,
+    {
+      "data-slot": "avatar-fallback",
+      className: cn(
+        "bg-muted text-muted-foreground flex size-full items-center justify-center rounded-full text-sm group-data-[size=sm]/avatar:text-xs",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function Breadcrumb({ ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement("nav", { "aria-label": "breadcrumb", "data-slot": "breadcrumb", ...props });
+}
+function BreadcrumbList({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    "ol",
+    {
+      "data-slot": "breadcrumb-list",
+      className: cn(
+        "text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function BreadcrumbItem({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    "li",
+    {
+      "data-slot": "breadcrumb-item",
+      className: cn("inline-flex items-center gap-1.5", className),
+      ...props
+    }
+  );
+}
+function BreadcrumbLink({
+  asChild,
+  className,
+  ...props
+}) {
+  const Comp = asChild ? radixUi.Slot.Root : "a";
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    Comp,
+    {
+      "data-slot": "breadcrumb-link",
+      className: cn("hover:text-foreground transition-colors", className),
+      ...props
+    }
+  );
+}
+function BreadcrumbPage({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    "span",
+    {
+      "data-slot": "breadcrumb-page",
+      role: "link",
+      "aria-disabled": "true",
+      "aria-current": "page",
+      className: cn("text-foreground font-normal", className),
+      ...props
+    }
+  );
+}
+function BreadcrumbSeparator({ children, className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    "li",
+    {
+      "data-slot": "breadcrumb-separator",
+      role: "presentation",
+      "aria-hidden": "true",
+      className: cn("[&>svg]:size-3.5", className),
+      ...props
+    },
+    children ?? /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.ChevronRight, null)
+  );
+}
+function Separator({
+  className,
+  orientation = "horizontal",
+  decorative = true,
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.createElement(
+    radixUi.Separator.Root,
+    {
+      "data-slot": "separator",
+      decorative,
+      orientation,
+      className: cn(
+        "shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function Collapsible({ ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Collapsible.Root, { "data-slot": "collapsible", ...props });
+}
+function CollapsibleTrigger({
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Collapsible.CollapsibleTrigger, { "data-slot": "collapsible-trigger", ...props });
+}
+function CollapsibleContent({
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Collapsible.CollapsibleContent, { "data-slot": "collapsible-content", ...props });
+}
+function DropdownMenu({ ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.DropdownMenu.Root, { "data-slot": "dropdown-menu", ...props });
+}
+function DropdownMenuTrigger({
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.DropdownMenu.Trigger, { "data-slot": "dropdown-menu-trigger", ...props });
+}
+function DropdownMenuContent({
+  className,
+  sideOffset = 4,
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.DropdownMenu.Portal, null, /* @__PURE__ */ React83__namespace.default.createElement(
+    radixUi.DropdownMenu.Content,
+    {
+      "data-slot": "dropdown-menu-content",
+      sideOffset,
+      className: cn(
+        "bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 max-h-(--radix-dropdown-menu-content-available-height) min-w-[8rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border p-1 shadow-md",
+        className
+      ),
+      ...props
+    }
+  ));
+}
+function DropdownMenuGroup({ ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.DropdownMenu.Group, { "data-slot": "dropdown-menu-group", ...props });
+}
+function DropdownMenuItem({
+  className,
+  inset,
+  variant = "default",
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    radixUi.DropdownMenu.Item,
+    {
+      "data-slot": "dropdown-menu-item",
+      "data-inset": inset,
+      "data-variant": variant,
+      className: cn(
+        "focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function DropdownMenuLabel({
+  className,
+  inset,
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    radixUi.DropdownMenu.Label,
+    {
+      "data-slot": "dropdown-menu-label",
+      "data-inset": inset,
+      className: cn("px-2 py-1.5 text-sm font-medium data-[inset]:pl-8", className),
+      ...props
+    }
+  );
+}
+function DropdownMenuSeparator({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    radixUi.DropdownMenu.Separator,
+    {
+      "data-slot": "dropdown-menu-separator",
+      className: cn("bg-border -mx-1 my-1 h-px", className),
+      ...props
+    }
+  );
+}
+var MOBILE_BREAKPOINT = 768;
+function useIsMobile() {
+  const [isMobile, setIsMobile] = React83__namespace.useState(void 0);
+  React83__namespace.useEffect(() => {
+    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
+    const onChange = () => {
+      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    };
+    mql.addEventListener("change", onChange);
+    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+  return !!isMobile;
+}
+function Skeleton({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    "div",
+    {
+      "data-slot": "skeleton",
+      className: cn("bg-accent animate-pulse rounded-md", className),
+      ...props
+    }
+  );
+}
+function TooltipProvider({
+  delayDuration = 0,
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    radixUi.Tooltip.Provider,
+    {
+      "data-slot": "tooltip-provider",
+      delayDuration,
+      ...props
+    }
+  );
+}
+function Tooltip({ ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Tooltip.Root, { "data-slot": "tooltip", ...props });
+}
+function TooltipTrigger({ ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Tooltip.Trigger, { "data-slot": "tooltip-trigger", ...props });
+}
+function TooltipContent({
+  className,
+  sideOffset = 0,
+  children,
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Tooltip.Portal, null, /* @__PURE__ */ React83__namespace.default.createElement(
+    radixUi.Tooltip.Content,
+    {
+      "data-slot": "tooltip-content",
+      sideOffset,
+      className: cn(
+        "bg-foreground text-background animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-fit origin-(--radix-tooltip-content-transform-origin) rounded-md px-3 py-1.5 text-xs text-balance",
+        className
+      ),
+      ...props
+    },
+    children,
+    /* @__PURE__ */ React83__namespace.default.createElement(radixUi.Tooltip.Arrow, { className: "bg-foreground fill-foreground z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" })
+  ));
+}
 
-// src/blocks/feedback/confirmation-dialog.tsx
+// src/primitives/sidebar.tsx
+var SIDEBAR_COOKIE_NAME = "sidebar_state";
+var SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
+var SIDEBAR_WIDTH = "16rem";
+var SIDEBAR_WIDTH_MOBILE = "18rem";
+var SIDEBAR_WIDTH_ICON = "3rem";
+var SIDEBAR_KEYBOARD_SHORTCUT = "b";
+var SidebarContext = React83__namespace.createContext(null);
+function useSidebar() {
+  const context = React83__namespace.useContext(SidebarContext);
+  if (!context) {
+    throw new Error("useSidebar must be used within a SidebarProvider.");
+  }
+  return context;
+}
+function SidebarProvider({
+  defaultOpen = true,
+  open: openProp,
+  onOpenChange: setOpenProp,
+  className,
+  style,
+  children,
+  ...props
+}) {
+  const isMobile = useIsMobile();
+  const [openMobile, setOpenMobile] = React83__namespace.useState(false);
+  const [_open, _setOpen] = React83__namespace.useState(defaultOpen);
+  const open = openProp ?? _open;
+  const setOpen = React83__namespace.useCallback(
+    (value) => {
+      const openState = typeof value === "function" ? value(open) : value;
+      if (setOpenProp) {
+        setOpenProp(openState);
+      } else {
+        _setOpen(openState);
+      }
+      document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
+    },
+    [setOpenProp, open]
+  );
+  const toggleSidebar = React83__namespace.useCallback(() => {
+    return isMobile ? setOpenMobile((open2) => !open2) : setOpen((open2) => !open2);
+  }, [isMobile, setOpen]);
+  React83__namespace.useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault();
+        toggleSidebar();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [toggleSidebar]);
+  const state = open ? "expanded" : "collapsed";
+  const contextValue = React83__namespace.useMemo(
+    () => ({
+      state,
+      open,
+      setOpen,
+      isMobile,
+      openMobile,
+      setOpenMobile,
+      toggleSidebar
+    }),
+    [state, open, setOpen, isMobile, openMobile, toggleSidebar]
+  );
+  return /* @__PURE__ */ React83__namespace.createElement(SidebarContext.Provider, { value: contextValue }, /* @__PURE__ */ React83__namespace.createElement(TooltipProvider, { delayDuration: 0 }, /* @__PURE__ */ React83__namespace.createElement(
+    "div",
+    {
+      "data-slot": "sidebar-wrapper",
+      style: {
+        "--sidebar-width": SIDEBAR_WIDTH,
+        "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
+        ...style
+      },
+      className: cn(
+        "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full",
+        className
+      ),
+      ...props
+    },
+    children
+  )));
+}
+function Sidebar({
+  side = "left",
+  variant = "sidebar",
+  collapsible = "offcanvas",
+  className,
+  children,
+  ...props
+}) {
+  const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
+  if (collapsible === "none") {
+    return /* @__PURE__ */ React83__namespace.createElement(
+      "div",
+      {
+        "data-slot": "sidebar",
+        className: cn(
+          "bg-sidebar text-sidebar-foreground flex h-full w-(--sidebar-width) flex-col",
+          className
+        ),
+        ...props
+      },
+      children
+    );
+  }
+  if (isMobile) {
+    return /* @__PURE__ */ React83__namespace.createElement(Sheet, { open: openMobile, onOpenChange: setOpenMobile, ...props }, /* @__PURE__ */ React83__namespace.createElement(
+      SheetContent,
+      {
+        "data-sidebar": "sidebar",
+        "data-slot": "sidebar",
+        "data-mobile": "true",
+        className: "bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden",
+        style: {
+          "--sidebar-width": SIDEBAR_WIDTH_MOBILE
+        },
+        side
+      },
+      /* @__PURE__ */ React83__namespace.createElement(SheetHeader, { className: "sr-only" }, /* @__PURE__ */ React83__namespace.createElement(SheetTitle, null, "Sidebar"), /* @__PURE__ */ React83__namespace.createElement(SheetDescription, null, "Displays the mobile sidebar.")),
+      /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex h-full w-full flex-col" }, children)
+    ));
+  }
+  return /* @__PURE__ */ React83__namespace.createElement(
+    "div",
+    {
+      className: "group peer text-sidebar-foreground hidden md:block",
+      "data-state": state,
+      "data-collapsible": state === "collapsed" ? collapsible : "",
+      "data-variant": variant,
+      "data-side": side,
+      "data-slot": "sidebar"
+    },
+    /* @__PURE__ */ React83__namespace.createElement(
+      "div",
+      {
+        "data-slot": "sidebar-gap",
+        className: cn(
+          "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
+          "group-data-[collapsible=offcanvas]:w-0",
+          "group-data-[side=right]:rotate-180",
+          variant === "floating" || variant === "inset" ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]" : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)"
+        )
+      }
+    ),
+    /* @__PURE__ */ React83__namespace.createElement(
+      "div",
+      {
+        "data-slot": "sidebar-container",
+        className: cn(
+          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex",
+          side === "left" ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]" : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
+          // Adjust the padding for floating and inset variants.
+          variant === "floating" || variant === "inset" ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]" : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
+          className
+        ),
+        ...props
+      },
+      /* @__PURE__ */ React83__namespace.createElement(
+        "div",
+        {
+          "data-sidebar": "sidebar",
+          "data-slot": "sidebar-inner",
+          className: "bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
+        },
+        children
+      )
+    )
+  );
+}
+function SidebarTrigger({ className, onClick, ...props }) {
+  const { toggleSidebar } = useSidebar();
+  return /* @__PURE__ */ React83__namespace.createElement(
+    Button,
+    {
+      "data-sidebar": "trigger",
+      "data-slot": "sidebar-trigger",
+      variant: "ghost",
+      size: "icon",
+      className: cn("size-7", className),
+      onClick: (event) => {
+        onClick?.(event);
+        toggleSidebar();
+      },
+      ...props
+    },
+    /* @__PURE__ */ React83__namespace.createElement(lucideReact.PanelLeftIcon, null),
+    /* @__PURE__ */ React83__namespace.createElement("span", { className: "sr-only" }, "Toggle Sidebar")
+  );
+}
+function SidebarRail({ className, ...props }) {
+  const { toggleSidebar } = useSidebar();
+  return /* @__PURE__ */ React83__namespace.createElement(
+    "button",
+    {
+      "data-sidebar": "rail",
+      "data-slot": "sidebar-rail",
+      "aria-label": "Toggle Sidebar",
+      tabIndex: -1,
+      onClick: toggleSidebar,
+      title: "Toggle Sidebar",
+      className: cn(
+        "hover:after:bg-sidebar-border absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] sm:flex",
+        "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
+        "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
+        "hover:group-data-[collapsible=offcanvas]:bg-sidebar group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full",
+        "[[data-side=left][data-collapsible=offcanvas]_&]:-right-2",
+        "[[data-side=right][data-collapsible=offcanvas]_&]:-left-2",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function SidebarInset({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.createElement(
+    "main",
+    {
+      "data-slot": "sidebar-inset",
+      className: cn(
+        "bg-background relative flex w-full flex-1 flex-col",
+        "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function SidebarHeader({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.createElement(
+    "div",
+    {
+      "data-slot": "sidebar-header",
+      "data-sidebar": "header",
+      className: cn("flex flex-col gap-2 p-2", className),
+      ...props
+    }
+  );
+}
+function SidebarFooter({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.createElement(
+    "div",
+    {
+      "data-slot": "sidebar-footer",
+      "data-sidebar": "footer",
+      className: cn("flex flex-col gap-2 p-2", className),
+      ...props
+    }
+  );
+}
+function SidebarContent({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.createElement(
+    "div",
+    {
+      "data-slot": "sidebar-content",
+      "data-sidebar": "content",
+      className: cn(
+        "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function SidebarGroup({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.createElement(
+    "div",
+    {
+      "data-slot": "sidebar-group",
+      "data-sidebar": "group",
+      className: cn("relative flex w-full min-w-0 flex-col p-2", className),
+      ...props
+    }
+  );
+}
+function SidebarGroupLabel({
+  className,
+  asChild = false,
+  ...props
+}) {
+  const Comp = asChild ? radixUi.Slot.Root : "div";
+  return /* @__PURE__ */ React83__namespace.createElement(
+    Comp,
+    {
+      "data-slot": "sidebar-group-label",
+      "data-sidebar": "group-label",
+      className: cn(
+        "text-sidebar-foreground/70 ring-sidebar-ring flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+        "group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function SidebarMenu({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.createElement(
+    "ul",
+    {
+      "data-slot": "sidebar-menu",
+      "data-sidebar": "menu",
+      className: cn("flex w-full min-w-0 flex-col gap-1", className),
+      ...props
+    }
+  );
+}
+function SidebarMenuItem({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.createElement(
+    "li",
+    {
+      "data-slot": "sidebar-menu-item",
+      "data-sidebar": "menu-item",
+      className: cn("group/menu-item relative", className),
+      ...props
+    }
+  );
+}
+var sidebarMenuButtonVariants = classVarianceAuthority.cva(
+  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+  {
+    variants: {
+      variant: {
+        default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+        outline: "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]"
+      },
+      size: {
+        default: "h-8 text-sm",
+        sm: "h-7 text-xs",
+        lg: "h-12 text-sm group-data-[collapsible=icon]:p-0!"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default"
+    }
+  }
+);
+function SidebarMenuButton({
+  asChild = false,
+  isActive = false,
+  variant = "default",
+  size = "default",
+  tooltip,
+  className,
+  ...props
+}) {
+  const Comp = asChild ? radixUi.Slot.Root : "button";
+  const { isMobile, state } = useSidebar();
+  const button = /* @__PURE__ */ React83__namespace.createElement(
+    Comp,
+    {
+      "data-slot": "sidebar-menu-button",
+      "data-sidebar": "menu-button",
+      "data-size": size,
+      "data-active": isActive,
+      className: cn(sidebarMenuButtonVariants({ variant, size }), className),
+      ...props
+    }
+  );
+  if (!tooltip) {
+    return button;
+  }
+  if (typeof tooltip === "string") {
+    tooltip = {
+      children: tooltip
+    };
+  }
+  return /* @__PURE__ */ React83__namespace.createElement(Tooltip, null, /* @__PURE__ */ React83__namespace.createElement(TooltipTrigger, { asChild: true }, button), /* @__PURE__ */ React83__namespace.createElement(
+    TooltipContent,
+    {
+      side: "right",
+      align: "center",
+      hidden: state !== "collapsed" || isMobile,
+      ...tooltip
+    }
+  ));
+}
+function SidebarMenuBadge({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.createElement(
+    "div",
+    {
+      "data-slot": "sidebar-menu-badge",
+      "data-sidebar": "menu-badge",
+      className: cn(
+        "text-sidebar-foreground pointer-events-none absolute right-1 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-xs font-medium tabular-nums select-none",
+        "peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[active=true]/menu-button:text-sidebar-accent-foreground",
+        "peer-data-[size=sm]/menu-button:top-1",
+        "peer-data-[size=default]/menu-button:top-1.5",
+        "peer-data-[size=lg]/menu-button:top-2.5",
+        "group-data-[collapsible=icon]:hidden",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function SidebarMenuSub({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.createElement(
+    "ul",
+    {
+      "data-slot": "sidebar-menu-sub",
+      "data-sidebar": "menu-sub",
+      className: cn(
+        "border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l px-2.5 py-0.5",
+        "group-data-[collapsible=icon]:hidden",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function SidebarMenuSubItem({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.createElement(
+    "li",
+    {
+      "data-slot": "sidebar-menu-sub-item",
+      "data-sidebar": "menu-sub-item",
+      className: cn("group/menu-sub-item relative", className),
+      ...props
+    }
+  );
+}
+function SidebarMenuSubButton({
+  asChild = false,
+  size = "md",
+  isActive = false,
+  className,
+  ...props
+}) {
+  const Comp = asChild ? radixUi.Slot.Root : "a";
+  return /* @__PURE__ */ React83__namespace.createElement(
+    Comp,
+    {
+      "data-slot": "sidebar-menu-sub-button",
+      "data-sidebar": "menu-sub-button",
+      "data-size": size,
+      "data-active": isActive,
+      className: cn(
+        "text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground [&>svg]:text-sidebar-accent-foreground flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 outline-hidden focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+        "data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground",
+        size === "sm" && "text-xs",
+        size === "md" && "text-sm",
+        "group-data-[collapsible=icon]:hidden",
+        className
+      ),
+      ...props
+    }
+  );
+}
+var Toaster = ({ ...props }) => {
+  const { theme = "system" } = nextThemes.useTheme();
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    sonner.Toaster,
+    {
+      theme,
+      className: "toaster group",
+      icons: {
+        success: /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.CircleCheckIcon, { className: "size-4" }),
+        info: /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.InfoIcon, { className: "size-4" }),
+        warning: /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.TriangleAlertIcon, { className: "size-4" }),
+        error: /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.OctagonXIcon, { className: "size-4" }),
+        loading: /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.Loader2Icon, { className: "size-4 animate-spin" })
+      },
+      style: {
+        "--normal-bg": "var(--popover)",
+        "--normal-text": "var(--popover-foreground)",
+        "--normal-border": "var(--border)",
+        "--border-radius": "var(--radius)"
+      },
+      ...props
+    }
+  );
+};
+function Tabs({
+  className,
+  orientation = "horizontal",
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    radixUi.Tabs.Root,
+    {
+      "data-slot": "tabs",
+      "data-orientation": orientation,
+      orientation,
+      className: cn("group/tabs flex gap-2 data-[orientation=horizontal]:flex-col", className),
+      ...props
+    }
+  );
+}
+var tabsListVariants = classVarianceAuthority.cva(
+  "rounded-lg p-[3px] group-data-[orientation=horizontal]/tabs:h-9 data-[variant=line]:rounded-none group/tabs-list text-muted-foreground inline-flex w-fit items-center justify-center group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col",
+  {
+    variants: {
+      variant: {
+        default: "bg-muted",
+        line: "gap-1 bg-transparent"
+      }
+    },
+    defaultVariants: {
+      variant: "default"
+    }
+  }
+);
+function TabsList({
+  className,
+  variant = "default",
+  ...props
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    radixUi.Tabs.List,
+    {
+      "data-slot": "tabs-list",
+      "data-variant": variant,
+      className: cn(tabsListVariants({ variant }), className),
+      ...props
+    }
+  );
+}
+function TabsTrigger({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    radixUi.Tabs.Trigger,
+    {
+      "data-slot": "tabs-trigger",
+      className: cn(
+        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring text-foreground/60 hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-all group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 group-data-[variant=default]/tabs-list:data-[state=active]:shadow-sm group-data-[variant=line]/tabs-list:data-[state=active]:shadow-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent dark:group-data-[variant=line]/tabs-list:data-[state=active]:border-transparent dark:group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent",
+        "data-[state=active]:bg-background dark:data-[state=active]:text-foreground dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 data-[state=active]:text-foreground",
+        "after:bg-foreground after:absolute after:opacity-0 after:transition-opacity group-data-[orientation=horizontal]/tabs:after:inset-x-0 group-data-[orientation=horizontal]/tabs:after:bottom-[-5px] group-data-[orientation=horizontal]/tabs:after:h-0.5 group-data-[orientation=vertical]/tabs:after:inset-y-0 group-data-[orientation=vertical]/tabs:after:-right-1 group-data-[orientation=vertical]/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-[state=active]:after:opacity-100",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function TabsContent({ className, ...props }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    radixUi.Tabs.Content,
+    {
+      "data-slot": "tabs-content",
+      className: cn("flex-1 outline-none", className),
+      ...props
+    }
+  );
+}
+
+// src/blocks/data-entry/form-wizard/wizard-stepper.tsx
+function getStepStatus(index, currentStep, completedSteps) {
+  if (index === currentStep) return "current";
+  if (completedSteps.includes(index)) return "completed";
+  return "pending";
+}
+function StepIndicator({
+  step,
+  index,
+  status,
+  showIcon,
+  isClickable,
+  onClick
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    Button,
+    {
+      type: "button",
+      className: cn(
+        "relative flex items-center rounded-full opacity-100!",
+        isClickable && "cursor-pointer",
+        !isClickable && "cursor-default"
+      ),
+      variant: status === "pending" ? "outline" : "default",
+      size: "icon-lg",
+      onClick: isClickable ? onClick : void 0,
+      disabled: !isClickable,
+      tabIndex: isClickable ? 0 : -1,
+      onKeyDown: isClickable ? (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      } : void 0,
+      "aria-current": status === "current" ? "step" : void 0,
+      "aria-disabled": !isClickable
+    },
+    status === "completed" ? /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.CheckIcon, { className: "h-5 w-5" }) : showIcon && step.icon ? step.icon : /* @__PURE__ */ React83__namespace.default.createElement("span", null, index + 1)
+  );
+}
+function WizardStepper({
+  steps,
+  currentStep,
+  completedSteps,
+  showIcons = true,
+  allowNavigation = false,
+  onStepClick,
+  className
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    "nav",
+    {
+      "aria-label": "Progress",
+      className: cn("relative w-full flex justify-between items-center", className)
+    },
+    /* @__PURE__ */ React83__namespace.default.createElement(
+      Progress,
+      {
+        className: "absolute w-full h-0.5",
+        value: currentStep / (steps.length - 1) * 100
+      }
+    ),
+    steps.map((step, index) => {
+      const status = getStepStatus(index, currentStep, completedSteps);
+      const isClickable = allowNavigation && (status === "completed" || status === "current");
+      return /* @__PURE__ */ React83__namespace.default.createElement(
+        StepIndicator,
+        {
+          key: step.id,
+          step,
+          index,
+          status,
+          showIcon: showIcons,
+          isClickable,
+          onClick: () => onStepClick?.(index)
+        }
+      );
+    })
+  );
+}
+
+// src/blocks/data-entry/form-wizard/form-wizard.tsx
+function FormWizard({
+  id,
+  steps,
+  defaultValues,
+  onSubmit,
+  onAutoSave,
+  autoSaveDelay = 1e3,
+  isLoading = false,
+  submitLabel = "Submit",
+  cancelLabel = "Cancel",
+  showCancel = false,
+  onCancel,
+  showDirtyWarning = false,
+  stickyFooter = false,
+  submitButton,
+  header,
+  footer,
+  error,
+  successMessage,
+  renderField,
+  stepperOrientation = "horizontal",
+  navigationMode = "free",
+  showStepDescriptions = false,
+  showStepIcons = true,
+  onStepChange,
+  className
+}) {
+  const form = reactHookForm.useForm({
+    defaultValues,
+    mode: "onChange",
+    reValidateMode: "onChange"
+  });
+  const { handleSubmit, watch, formState, reset, trigger } = form;
+  const { isDirty, isValid } = formState;
+  const [currentStep, setCurrentStep] = React83__namespace.useState(0);
+  const [completedSteps, setCompletedSteps] = React83__namespace.useState([]);
+  const visibleSteps = React83__namespace.useMemo(() => {
+    return steps.filter((step) => {
+      if (!step.when) return true;
+      const values = watch();
+      return step.when(values);
+    });
+  }, [steps, watch]);
+  React83__namespace.useEffect(() => {
+    if (!onAutoSave || !isDirty) return;
+    const timer = setTimeout(() => {
+      const values = watch();
+      onAutoSave(values);
+    }, autoSaveDelay);
+    return () => clearTimeout(timer);
+  }, [onAutoSave, autoSaveDelay, isDirty, watch]);
+  React83__namespace.useEffect(() => {
+    if (onStepChange) {
+      const step = visibleSteps[currentStep];
+      if (step) {
+        onStepChange(currentStep, step.id);
+      }
+    }
+  }, [currentStep, visibleSteps, onStepChange]);
+  const navigationState = React83__namespace.useMemo(() => {
+    const totalSteps = visibleSteps.length;
+    const isFirst = currentStep === 0;
+    const isLast = currentStep === totalSteps - 1;
+    return {
+      currentStep,
+      totalSteps,
+      isFirst,
+      isLast,
+      canGoBack: !isFirst,
+      canGoNext: !isLast,
+      completedSteps: [...completedSteps]
+    };
+  }, [currentStep, visibleSteps.length, completedSteps]);
+  const validateCurrentStep = async () => {
+    const currentStepConfig2 = visibleSteps[currentStep];
+    if (!currentStepConfig2?.enableValidation) return true;
+    if (!currentStepConfig2.sections) return true;
+    const fieldNames = currentStepConfig2.sections.flatMap(
+      (section) => section.fields.map((field) => field.name)
+    );
+    const isValid2 = await trigger(fieldNames);
+    return isValid2;
+  };
+  const handleNext = async () => {
+    const isValid2 = await validateCurrentStep();
+    if (!isValid2) return;
+    if (currentStep < visibleSteps.length - 1) {
+      const newStep = currentStep + 1;
+      setCurrentStep(newStep);
+      setCompletedSteps((prev) => prev.includes(currentStep) ? prev : [...prev, currentStep]);
+    }
+  };
+  const handleBack = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleStepClick = async (stepIndex) => {
+    if (navigationMode === "sequential") return;
+    if (stepIndex === currentStep || completedSteps.includes(stepIndex)) {
+      setCurrentStep(stepIndex);
+    }
+  };
+  const handleFinalSubmit = async (data) => {
+    const allFieldNames = visibleSteps.flatMap(
+      (step) => (step.sections || []).flatMap((section) => section.fields.map((field) => field.name))
+    );
+    const allValid = await trigger(allFieldNames);
+    if (!allValid) return;
+    await onSubmit(data);
+  };
+  const handleCancel = () => {
+    if (onCancel) {
+      onCancel();
+    } else {
+      reset(defaultValues);
+      setCurrentStep(0);
+      setCompletedSteps([]);
+    }
+  };
+  const currentStepConfig = visibleSteps[currentStep];
+  const actionsContent = /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-2" }, showCancel && /* @__PURE__ */ React83__namespace.createElement(Button, { type: "button", variant: "outline", onClick: handleCancel, disabled: isLoading }, cancelLabel), !navigationState.isLast && /* @__PURE__ */ React83__namespace.createElement(Button, { type: "button", onClick: handleNext, disabled: isLoading, className: "min-w-[100px]" }, "Next"), navigationState.isLast && (submitButton || /* @__PURE__ */ React83__namespace.createElement(Button, { type: "submit", disabled: isLoading || !isValid }, isLoading && /* @__PURE__ */ React83__namespace.createElement(Spinner, { className: "mr-2 h-4 w-4" }), submitLabel)), !navigationState.isFirst && !navigationState.isLast && /* @__PURE__ */ React83__namespace.createElement(Button, { type: "button", variant: "outline", onClick: handleBack, disabled: isLoading }, "Back"));
+  return /* @__PURE__ */ React83__namespace.createElement(reactHookForm.FormProvider, { ...form }, /* @__PURE__ */ React83__namespace.createElement(
+    "form",
+    {
+      onSubmit: handleSubmit((data) => handleFinalSubmit(data)),
+      className: cn("w-2xl space-y-6", className),
+      id
+    },
+    header,
+    successMessage && /* @__PURE__ */ React83__namespace.createElement("div", { className: "rounded-md bg-green-50 p-4 text-sm text-green-700 dark:bg-green-900/20 dark:text-green-400" }, successMessage),
+    error && /* @__PURE__ */ React83__namespace.createElement("div", { className: "rounded-md bg-red-50 p-4 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-400" }, error),
+    /* @__PURE__ */ React83__namespace.createElement(
+      WizardStepper,
+      {
+        steps: visibleSteps,
+        currentStep,
+        completedSteps,
+        orientation: stepperOrientation,
+        showDescriptions: showStepDescriptions,
+        showIcons: showStepIcons,
+        allowNavigation: navigationMode === "free",
+        onStepClick: handleStepClick
+      }
+    ),
+    currentStepConfig && (currentStepConfig.render ? /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-6" }, currentStepConfig.render({
+      form,
+      values: watch(),
+      navigation: navigationState
+    })) : /* @__PURE__ */ React83__namespace.createElement(
+      WizardStep,
+      {
+        sections: currentStepConfig.sections || [],
+        form,
+        renderField
+      }
+    )),
+    footer,
+    stickyFooter && /* @__PURE__ */ React83__namespace.createElement(StickyActions, { showDirtyWarning, isDirty }, actionsContent),
+    !stickyFooter && /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex justify-between gap-2 border-t pt-4" }, /* @__PURE__ */ React83__namespace.createElement("div", null), actionsContent)
+  ));
+}
 var variantConfig = {
   danger: {
     icon: lucideReact.AlertTriangleIcon,
@@ -5294,7 +6335,7 @@ function EmptyState({
   className
 }) {
   if (compact) {
-    return /* @__PURE__ */ React.createElement("div", { className: cn("flex flex-col items-center justify-center p-6 text-center", className) }, /* @__PURE__ */ React.createElement(Icon, { className: "h-8 w-8 text-muted-foreground/60", strokeWidth: 1.5 }), /* @__PURE__ */ React.createElement("h3", { className: "mt-3 text-sm font-medium" }, title), description && /* @__PURE__ */ React.createElement("p", { className: "mt-1 text-xs text-muted-foreground" }, description), action && /* @__PURE__ */ React.createElement(
+    return /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("flex flex-col items-center justify-center p-6 text-center", className) }, /* @__PURE__ */ React83__namespace.default.createElement(Icon, { className: "h-8 w-8 text-muted-foreground/60", strokeWidth: 1.5 }), /* @__PURE__ */ React83__namespace.default.createElement("h3", { className: "mt-3 text-sm font-medium" }, title), description && /* @__PURE__ */ React83__namespace.default.createElement("p", { className: "mt-1 text-xs text-muted-foreground" }, description), action && /* @__PURE__ */ React83__namespace.default.createElement(
       Button,
       {
         size: "sm",
@@ -5302,11 +6343,11 @@ function EmptyState({
         className: "mt-3",
         onClick: action.onClick
       },
-      action.icon && /* @__PURE__ */ React.createElement("span", { className: "mr-2" }, action.icon),
+      action.icon && /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "mr-2" }, action.icon),
       action.label
     ));
   }
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       className: cn(
@@ -5314,16 +6355,16 @@ function EmptyState({
         className
       )
     },
-    /* @__PURE__ */ React.createElement("div", { className: "rounded-full bg-muted p-3" }, /* @__PURE__ */ React.createElement(Icon, { className: "h-8 w-8 text-muted-foreground", strokeWidth: 1.5 })),
-    /* @__PURE__ */ React.createElement("h3", { className: "mt-4 text-lg font-semibold" }, title),
-    description && /* @__PURE__ */ React.createElement("p", { className: "mt-2 max-w-sm text-sm text-muted-foreground" }, description),
-    (action || secondaryAction) && /* @__PURE__ */ React.createElement("div", { className: "mt-6 flex items-center gap-3" }, action && /* @__PURE__ */ React.createElement(Button, { variant: action.variant || "default", onClick: action.onClick }, action.icon && /* @__PURE__ */ React.createElement("span", { className: "mr-2" }, action.icon), action.label), secondaryAction && /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "rounded-full bg-muted p-3" }, /* @__PURE__ */ React83__namespace.default.createElement(Icon, { className: "h-8 w-8 text-muted-foreground", strokeWidth: 1.5 })),
+    /* @__PURE__ */ React83__namespace.default.createElement("h3", { className: "mt-4 text-lg font-semibold" }, title),
+    description && /* @__PURE__ */ React83__namespace.default.createElement("p", { className: "mt-2 max-w-sm text-sm text-muted-foreground" }, description),
+    (action || secondaryAction) && /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "mt-6 flex items-center gap-3" }, action && /* @__PURE__ */ React83__namespace.default.createElement(Button, { variant: action.variant || "default", onClick: action.onClick }, action.icon && /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "mr-2" }, action.icon), action.label), secondaryAction && /* @__PURE__ */ React83__namespace.default.createElement(
       Button,
       {
         variant: secondaryAction.variant || "outline",
         onClick: secondaryAction.onClick
       },
-      secondaryAction.icon && /* @__PURE__ */ React.createElement("span", { className: "mr-2" }, secondaryAction.icon),
+      secondaryAction.icon && /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "mr-2" }, secondaryAction.icon),
       secondaryAction.label
     ))
   );
@@ -5337,7 +6378,7 @@ function ErrorFallback({
   showDetails = false,
   className
 }) {
-  const [copied, setCopied] = React9__namespace.useState(false);
+  const [copied, setCopied] = React83__namespace.useState(false);
   const handleCopyError = () => {
     if (error) {
       navigator.clipboard.writeText(error.message);
@@ -5345,13 +6386,11 @@ function ErrorFallback({
       setTimeout(() => setCopied(false), 2e3);
     }
   };
-  return /* @__PURE__ */ React9__namespace.createElement(Card, { className: cn3("border-destructive/50", className) }, /* @__PURE__ */ React9__namespace.createElement(CardHeader, { className: "space-y-3" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10" }, /* @__PURE__ */ React9__namespace.createElement(lucideReact.AlertTriangleIcon, { className: "h-5 w-5 text-destructive" })), /* @__PURE__ */ React9__namespace.createElement("div", null, /* @__PURE__ */ React9__namespace.createElement(CardTitle, { className: "text-lg" }, title), errorId && /* @__PURE__ */ React9__namespace.createElement(CardDescription, { className: "text-xs font-mono" }, "Error ID: ", errorId)))), /* @__PURE__ */ React9__namespace.createElement(CardContent, { className: "space-y-4" }, /* @__PURE__ */ React9__namespace.createElement("p", { className: "text-sm text-muted-foreground" }, description), showDetails && error && /* @__PURE__ */ React9__namespace.createElement("div", { className: "rounded-md bg-muted p-3" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center justify-between mb-2" }, /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-xs font-medium" }, "Error Details"), /* @__PURE__ */ React9__namespace.createElement(Button, { variant: "ghost", size: "sm", onClick: handleCopyError, className: "h-6 text-xs" }, copied ? "Copied!" : "Copy")), /* @__PURE__ */ React9__namespace.createElement("pre", { className: "text-xs text-destructive overflow-auto max-h-32" }, error.message)), resetError && /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React9__namespace.createElement(Button, { onClick: resetError, variant: "default" }, /* @__PURE__ */ React9__namespace.createElement(lucideReact.RefreshCwIcon, { className: "mr-2 h-4 w-4" }), "Try Again"), /* @__PURE__ */ React9__namespace.createElement(Button, { onClick: () => window.location.reload(), variant: "outline" }, "Reload Page"))));
+  return /* @__PURE__ */ React83__namespace.createElement(Card, { className: cn3("border-destructive/50", className) }, /* @__PURE__ */ React83__namespace.createElement(CardHeader, { className: "space-y-3" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10" }, /* @__PURE__ */ React83__namespace.createElement(lucideReact.AlertTriangleIcon, { className: "h-5 w-5 text-destructive" })), /* @__PURE__ */ React83__namespace.createElement("div", null, /* @__PURE__ */ React83__namespace.createElement(CardTitle, { className: "text-lg" }, title), errorId && /* @__PURE__ */ React83__namespace.createElement(CardDescription, { className: "text-xs font-mono" }, "Error ID: ", errorId)))), /* @__PURE__ */ React83__namespace.createElement(CardContent, { className: "space-y-4" }, /* @__PURE__ */ React83__namespace.createElement("p", { className: "text-sm text-muted-foreground" }, description), showDetails && error && /* @__PURE__ */ React83__namespace.createElement("div", { className: "rounded-md bg-muted p-3" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center justify-between mb-2" }, /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-xs font-medium" }, "Error Details"), /* @__PURE__ */ React83__namespace.createElement(Button, { variant: "ghost", size: "sm", onClick: handleCopyError, className: "h-6 text-xs" }, copied ? "Copied!" : "Copy")), /* @__PURE__ */ React83__namespace.createElement("pre", { className: "text-xs text-destructive overflow-auto max-h-32" }, error.message)), resetError && /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React83__namespace.createElement(Button, { onClick: resetError, variant: "default" }, /* @__PURE__ */ React83__namespace.createElement(lucideReact.RefreshCwIcon, { className: "mr-2 h-4 w-4" }), "Try Again"), /* @__PURE__ */ React83__namespace.createElement(Button, { onClick: () => window.location.reload(), variant: "outline" }, "Reload Page"))));
 }
 function cn3(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
-// src/blocks/feedback/loading-overlay.tsx
 function LoadingOverlay({
   isLoading,
   message,
@@ -5360,7 +6399,7 @@ function LoadingOverlay({
   className,
   children
 }) {
-  return /* @__PURE__ */ React.createElement("div", { className: cn("relative", className) }, children && /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("relative", className) }, children && /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       className: cn(
@@ -5369,7 +6408,7 @@ function LoadingOverlay({
       )
     },
     children
-  ), isLoading && /* @__PURE__ */ React.createElement(
+  ), isLoading && /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       className: cn(
@@ -5377,9 +6416,9 @@ function LoadingOverlay({
         fullScreen ? "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm" : "absolute inset-0 bg-background/60 backdrop-blur-sm"
       )
     },
-    /* @__PURE__ */ React.createElement(Spinner, { className: "size-8" }),
-    message && /* @__PURE__ */ React.createElement("p", { className: "text-sm font-medium text-foreground" }, message),
-    description && /* @__PURE__ */ React.createElement("p", { className: "text-sm text-muted-foreground" }, description)
+    /* @__PURE__ */ React83__namespace.default.createElement(Spinner, { className: "size-8" }),
+    message && /* @__PURE__ */ React83__namespace.default.createElement("p", { className: "text-sm font-medium text-foreground" }, message),
+    description && /* @__PURE__ */ React83__namespace.default.createElement("p", { className: "text-sm text-muted-foreground" }, description)
   ));
 }
 function ProgressTracker({
@@ -5391,11 +6430,11 @@ function ProgressTracker({
   className
 }) {
   const isHorizontal = orientation === "horizontal";
-  return /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("flex", isHorizontal ? "flex-row items-center" : "flex-col", className) }, steps.map((step, index) => {
+  return /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("flex", isHorizontal ? "flex-row items-center" : "flex-col", className) }, steps.map((step, index) => {
     const isCompleted = index < currentStep;
     const isCurrent = index === currentStep;
     const isClickable = clickable && step.onClick;
-    return /* @__PURE__ */ React9__namespace.createElement(React9__namespace.Fragment, { key: step.id }, index > 0 && /* @__PURE__ */ React9__namespace.createElement(
+    return /* @__PURE__ */ React83__namespace.createElement(React83__namespace.Fragment, { key: step.id }, index > 0 && /* @__PURE__ */ React83__namespace.createElement(
       "div",
       {
         className: cn(
@@ -5403,7 +6442,7 @@ function ProgressTracker({
           isHorizontal ? "h-0.5 mx-2 bg-muted" : "w-0.5 my-2 ml-[11px] bg-muted"
         )
       },
-      /* @__PURE__ */ React9__namespace.createElement(
+      /* @__PURE__ */ React83__namespace.createElement(
         "div",
         {
           className: cn(
@@ -5413,7 +6452,7 @@ function ProgressTracker({
           )
         }
       )
-    ), /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("flex items-center gap-3", !isHorizontal && "min-h-[60px]") }, /* @__PURE__ */ React9__namespace.createElement(
+    ), /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("flex items-center gap-3", !isHorizontal && "min-h-[60px]") }, /* @__PURE__ */ React83__namespace.createElement(
       "div",
       {
         ...isClickable ? {
@@ -5430,8 +6469,8 @@ function ProgressTracker({
           isClickable && "cursor-pointer hover:border-primary"
         )
       },
-      isCompleted ? /* @__PURE__ */ React9__namespace.createElement(lucideReact.CheckIcon, { className: "h-3 w-3" }) : isCurrent ? /* @__PURE__ */ React9__namespace.createElement(lucideReact.ChevronRightIcon, { className: "h-3 w-3" }) : /* @__PURE__ */ React9__namespace.createElement(lucideReact.CircleIcon, { className: "h-2 w-2" })
-    ), (showDescriptions || isCurrent) && /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("flex flex-col", isHorizontal && "min-w-0") }, /* @__PURE__ */ React9__namespace.createElement(
+      isCompleted ? /* @__PURE__ */ React83__namespace.createElement(lucideReact.CheckIcon, { className: "h-3 w-3" }) : isCurrent ? /* @__PURE__ */ React83__namespace.createElement(lucideReact.ChevronRightIcon, { className: "h-3 w-3" }) : /* @__PURE__ */ React83__namespace.createElement(lucideReact.CircleIcon, { className: "h-2 w-2" })
+    ), (showDescriptions || isCurrent) && /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("flex flex-col", isHorizontal && "min-w-0") }, /* @__PURE__ */ React83__namespace.createElement(
       "span",
       {
         className: cn(
@@ -5441,20 +6480,8 @@ function ProgressTracker({
         )
       },
       step.title
-    ), showDescriptions && step.description && /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-xs text-muted-foreground" }, step.description))));
+    ), showDescriptions && step.description && /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-xs text-muted-foreground" }, step.description))));
   }));
-}
-
-// src/primitives/skeleton.tsx
-function Skeleton({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
-    "div",
-    {
-      "data-slot": "skeleton",
-      className: cn("bg-accent animate-pulse rounded-md", className),
-      ...props
-    }
-  );
 }
 
 // src/blocks/feedback/skeleton-generator.tsx
@@ -5474,30 +6501,6 @@ function SkeletonGenerator({
   }
   return /* @__PURE__ */ React.createElement("div", { className: cn("space-y-2", className) }, Array.from({ length: count }).map((_, i) => /* @__PURE__ */ React.createElement(Skeleton, { key: i, className: "h-4 w-full" })));
 }
-var Toaster = ({ ...props }) => {
-  const { theme = "system" } = nextThemes.useTheme();
-  return /* @__PURE__ */ React.createElement(
-    sonner.Toaster,
-    {
-      theme,
-      className: "toaster group",
-      icons: {
-        success: /* @__PURE__ */ React.createElement(lucideReact.CircleCheckIcon, { className: "size-4" }),
-        info: /* @__PURE__ */ React.createElement(lucideReact.InfoIcon, { className: "size-4" }),
-        warning: /* @__PURE__ */ React.createElement(lucideReact.TriangleAlertIcon, { className: "size-4" }),
-        error: /* @__PURE__ */ React.createElement(lucideReact.OctagonXIcon, { className: "size-4" }),
-        loading: /* @__PURE__ */ React.createElement(lucideReact.Loader2Icon, { className: "size-4 animate-spin" })
-      },
-      style: {
-        "--normal-bg": "var(--popover)",
-        "--normal-text": "var(--popover-foreground)",
-        "--normal-border": "var(--border)",
-        "--border-radius": "var(--radius)"
-      },
-      ...props
-    }
-  );
-};
 
 // src/blocks/feedback/toast-manager.tsx
 function ToastManager({
@@ -5507,95 +6510,247 @@ function ToastManager({
 }) {
   return /* @__PURE__ */ React.createElement(Toaster, { position, theme, className: cn(className) });
 }
-function Breadcrumb({ ...props }) {
-  return /* @__PURE__ */ React.createElement("nav", { "aria-label": "breadcrumb", "data-slot": "breadcrumb", ...props });
+function AppShellHeader({ children }) {
+  const { isMobile } = useSidebar();
+  return /* @__PURE__ */ React83__namespace.default.createElement("header", { className: "flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4 lg:px-6" }, isMobile && /* @__PURE__ */ React83__namespace.default.createElement(React83__namespace.default.Fragment, null, /* @__PURE__ */ React83__namespace.default.createElement(SidebarTrigger, { className: "-ml-1" }), /* @__PURE__ */ React83__namespace.default.createElement(Separator, { orientation: "vertical", className: "mr-2 h-4" })), /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex flex-1 items-center justify-between gap-4" }, children));
 }
-function BreadcrumbList({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
-    "ol",
-    {
-      "data-slot": "breadcrumb-list",
-      className: cn(
-        "text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5",
-        className
-      ),
-      ...props
-    }
-  );
-}
-function BreadcrumbItem({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
-    "li",
-    {
-      "data-slot": "breadcrumb-item",
-      className: cn("inline-flex items-center gap-1.5", className),
-      ...props
-    }
-  );
-}
-function BreadcrumbLink({
-  asChild,
-  className,
-  ...props
+function AppShell({
+  sidebar,
+  sidebarHeader,
+  sidebarFooter,
+  header,
+  children,
+  footer,
+  defaultOpen = true,
+  variant = "sidebar",
+  className
 }) {
-  const Comp = asChild ? radixUi.Slot.Root : "a";
-  return /* @__PURE__ */ React.createElement(
-    Comp,
-    {
-      "data-slot": "breadcrumb-link",
-      className: cn("hover:text-foreground transition-colors", className),
-      ...props
-    }
-  );
+  return /* @__PURE__ */ React83__namespace.default.createElement(SidebarProvider, { defaultOpen }, /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("flex min-h-screen w-full", className) }, (sidebar || sidebarHeader || sidebarFooter) && /* @__PURE__ */ React83__namespace.default.createElement(Sidebar, { variant, className: "border-r" }, sidebarHeader && /* @__PURE__ */ React83__namespace.default.createElement(SidebarHeader, null, sidebarHeader), /* @__PURE__ */ React83__namespace.default.createElement(SidebarContent, null, sidebar), sidebarFooter && /* @__PURE__ */ React83__namespace.default.createElement(SidebarFooter, null, sidebarFooter), /* @__PURE__ */ React83__namespace.default.createElement(SidebarRail, null)), /* @__PURE__ */ React83__namespace.default.createElement(SidebarInset, null, (header || footer) && /* @__PURE__ */ React83__namespace.default.createElement(AppShellHeader, null, header), /* @__PURE__ */ React83__namespace.default.createElement("main", { className: "flex-1 flex flex-col p-4 lg:p-6 min-h-0" }, children), footer && /* @__PURE__ */ React83__namespace.default.createElement("footer", { className: "border-t bg-background py-4 px-6 shrink-0" }, footer))));
 }
-function BreadcrumbPage({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
-    "span",
+var ratioValues = {
+  square: 1,
+  // 1:1
+  video: 16 / 9,
+  // 16:9
+  photo: 4 / 3,
+  // 4:3
+  wide: 21 / 9,
+  // 21:9
+  golden: 1.618
+  // golden ratio
+};
+function AspectRatio({ children, ratio = "video", className }) {
+  const ratioValue = typeof ratio === "number" ? ratio : ratioValues[ratio] || 16 / 9;
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    "div",
     {
-      "data-slot": "breadcrumb-page",
-      role: "link",
-      "aria-disabled": "true",
-      "aria-current": "page",
-      className: cn("text-foreground font-normal", className),
-      ...props
-    }
-  );
-}
-function BreadcrumbSeparator({ children, className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
-    "li",
-    {
-      "data-slot": "breadcrumb-separator",
-      role: "presentation",
-      "aria-hidden": "true",
-      className: cn("[&>svg]:size-3.5", className),
-      ...props
+      className: cn("relative w-full overflow-hidden", className),
+      style: { paddingBottom: `${1 / ratioValue * 100}%` }
     },
-    children ?? /* @__PURE__ */ React.createElement(lucideReact.ChevronRight, null)
+    children && /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "absolute inset-0 flex items-center justify-center" }, children)
   );
 }
-function Separator({
-  className,
-  orientation = "horizontal",
-  decorative = true,
-  ...props
+function Center({
+  children,
+  horizontal = true,
+  vertical = true,
+  fullHeight = false,
+  className
 }) {
-  return /* @__PURE__ */ React.createElement(
-    radixUi.Separator.Root,
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    "div",
     {
-      "data-slot": "separator",
-      decorative,
-      orientation,
       className: cn(
-        "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        "flex",
+        horizontal && "justify-center",
+        vertical && "items-center",
+        fullHeight && "min-h-screen",
         className
-      ),
-      ...props
-    }
+      )
+    },
+    children
   );
 }
-
-// src/blocks/layout/page-header.tsx
+var sizeClasses = {
+  sm: "max-w-3xl",
+  md: "max-w-5xl",
+  lg: "max-w-6xl",
+  xl: "max-w-7xl",
+  "2xl": "max-w-8xl",
+  "3xl": "max-w-9xl",
+  full: "max-w-full"
+};
+var paddingClasses = {
+  none: "",
+  sm: "p-2",
+  md: "p-4 md:p-6",
+  lg: "p-4 md:p-8"
+};
+function Container({
+  children,
+  size = "xl",
+  padding = "md",
+  center = false,
+  className
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    "div",
+    {
+      className: cn(
+        "mx-auto w-full",
+        sizeClasses[size],
+        paddingClasses[padding],
+        center && "flex flex-col items-center",
+        className
+      )
+    },
+    children
+  );
+}
+function TeamSwitcher({
+  teams,
+  activeTeam,
+  onTeamChange
+}) {
+  const { isMobile } = useSidebar();
+  const [active, setActive] = React83__namespace.useState(activeTeam || teams?.[0]);
+  if (!teams || teams.length === 0) return null;
+  const handleTeamChange = (team) => {
+    setActive(team);
+    onTeamChange?.(team);
+  };
+  return /* @__PURE__ */ React83__namespace.createElement(SidebarMenu, null, /* @__PURE__ */ React83__namespace.createElement(SidebarMenuItem, null, /* @__PURE__ */ React83__namespace.createElement(DropdownMenu, null, /* @__PURE__ */ React83__namespace.createElement(DropdownMenuTrigger, { asChild: true }, /* @__PURE__ */ React83__namespace.createElement(
+    SidebarMenuButton,
+    {
+      size: "lg",
+      className: "data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+    },
+    /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" }, active?.icon && /* @__PURE__ */ React83__namespace.createElement(active.icon, { className: "size-4" })),
+    /* @__PURE__ */ React83__namespace.createElement("div", { className: "grid flex-1 text-left text-sm leading-tight" }, /* @__PURE__ */ React83__namespace.createElement("span", { className: "truncate font-medium" }, active?.name), /* @__PURE__ */ React83__namespace.createElement("span", { className: "truncate text-xs" }, active?.plan))
+  )), /* @__PURE__ */ React83__namespace.createElement(
+    DropdownMenuContent,
+    {
+      className: "w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg",
+      align: "start",
+      side: isMobile ? "bottom" : "right",
+      sideOffset: 4
+    },
+    /* @__PURE__ */ React83__namespace.createElement(DropdownMenuLabel, { className: "text-xs text-muted-foreground" }, "Teams"),
+    teams.map((team) => /* @__PURE__ */ React83__namespace.createElement(
+      DropdownMenuItem,
+      {
+        key: team.name,
+        onClick: () => handleTeamChange(team),
+        className: "gap-2 p-2"
+      },
+      /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex size-6 items-center justify-center rounded-md border" }, team.icon && /* @__PURE__ */ React83__namespace.createElement(team.icon, { className: "size-3.5 shrink-0" })),
+      team.name
+    ))
+  ))));
+}
+function NavItemComponent({ item, isActive }) {
+  const hasSubItems = item.items && item.items.length > 0;
+  if (hasSubItems) {
+    return /* @__PURE__ */ React83__namespace.createElement(Collapsible, { defaultOpen: item.isActive, className: "group/collapsible" }, /* @__PURE__ */ React83__namespace.createElement(CollapsibleTrigger, { asChild: true }, /* @__PURE__ */ React83__namespace.createElement(SidebarMenuButton, { tooltip: item.title }, item.icon && /* @__PURE__ */ React83__namespace.createElement(item.icon, null), /* @__PURE__ */ React83__namespace.createElement("span", null, item.title), item.badge !== void 0 && /* @__PURE__ */ React83__namespace.createElement(SidebarMenuBadge, null, item.badge))), /* @__PURE__ */ React83__namespace.createElement(CollapsibleContent, null, /* @__PURE__ */ React83__namespace.createElement(SidebarMenuSub, null, item.items?.map((subItem) => /* @__PURE__ */ React83__namespace.createElement(SidebarMenuSubItem, { key: subItem.id }, /* @__PURE__ */ React83__namespace.createElement(SidebarMenuSubButton, { asChild: true }, /* @__PURE__ */ React83__namespace.createElement("a", { href: subItem.url, className: cn(subItem.disabled && "opacity-50") }, /* @__PURE__ */ React83__namespace.createElement("span", null, subItem.title))))))));
+  }
+  return /* @__PURE__ */ React83__namespace.createElement(
+    SidebarMenuButton,
+    {
+      asChild: true,
+      isActive,
+      tooltip: item.title,
+      className: cn(item.disabled && "opacity-50")
+    },
+    /* @__PURE__ */ React83__namespace.createElement("a", { href: item.url }, item.icon && /* @__PURE__ */ React83__namespace.createElement(item.icon, null), /* @__PURE__ */ React83__namespace.createElement("span", null, item.title), item.badge !== void 0 && /* @__PURE__ */ React83__namespace.createElement(SidebarMenuBadge, null, item.badge))
+  );
+}
+function NavGroupComponent({ group, activeUrl }) {
+  return /* @__PURE__ */ React83__namespace.createElement(SidebarGroup, null, /* @__PURE__ */ React83__namespace.createElement(SidebarGroupLabel, null, group.title), /* @__PURE__ */ React83__namespace.createElement(SidebarMenu, null, group.items.map((item) => /* @__PURE__ */ React83__namespace.createElement(SidebarMenuItem, { key: item.id }, /* @__PURE__ */ React83__namespace.createElement(NavItemComponent, { item, isActive: item.url === activeUrl || item.isActive })))));
+}
+function NavUser({ user }) {
+  const { isMobile } = useSidebar();
+  if (!user) return null;
+  return /* @__PURE__ */ React83__namespace.createElement(SidebarMenu, null, /* @__PURE__ */ React83__namespace.createElement(SidebarMenuItem, null, /* @__PURE__ */ React83__namespace.createElement(DropdownMenu, null, /* @__PURE__ */ React83__namespace.createElement(DropdownMenuTrigger, { asChild: true }, /* @__PURE__ */ React83__namespace.createElement(
+    SidebarMenuButton,
+    {
+      size: "lg",
+      className: "data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+    },
+    /* @__PURE__ */ React83__namespace.createElement(Avatar, { className: "h-8 w-8 rounded-lg" }, /* @__PURE__ */ React83__namespace.createElement(AvatarImage, { src: user.avatar, alt: user.name }), /* @__PURE__ */ React83__namespace.createElement(AvatarFallback, { className: "rounded-lg" }, user.fallback || user.name.charAt(0).toUpperCase())),
+    /* @__PURE__ */ React83__namespace.createElement("div", { className: "grid flex-1 text-left text-sm leading-tight" }, /* @__PURE__ */ React83__namespace.createElement("span", { className: "truncate font-medium" }, user.name), /* @__PURE__ */ React83__namespace.createElement("span", { className: "truncate text-xs" }, user.email))
+  )), /* @__PURE__ */ React83__namespace.createElement(
+    DropdownMenuContent,
+    {
+      className: "w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg",
+      side: isMobile ? "bottom" : "right",
+      align: "end",
+      sideOffset: 4
+    },
+    /* @__PURE__ */ React83__namespace.createElement(DropdownMenuLabel, { className: "p-0 font-normal" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-2 px-1 py-1.5 text-left text-sm" }, /* @__PURE__ */ React83__namespace.createElement(Avatar, { className: "h-8 w-8 rounded-lg" }, /* @__PURE__ */ React83__namespace.createElement(AvatarImage, { src: user.avatar, alt: user.name }), /* @__PURE__ */ React83__namespace.createElement(AvatarFallback, { className: "rounded-lg" }, user.fallback || user.name.charAt(0).toUpperCase())), /* @__PURE__ */ React83__namespace.createElement("div", { className: "grid flex-1 text-left text-sm leading-tight" }, /* @__PURE__ */ React83__namespace.createElement("span", { className: "truncate font-medium" }, user.name), /* @__PURE__ */ React83__namespace.createElement("span", { className: "truncate text-xs" }, user.email)))),
+    /* @__PURE__ */ React83__namespace.createElement(DropdownMenuSeparator, null),
+    /* @__PURE__ */ React83__namespace.createElement(DropdownMenuGroup, null, /* @__PURE__ */ React83__namespace.createElement(DropdownMenuItem, null, "Account"), /* @__PURE__ */ React83__namespace.createElement(DropdownMenuItem, null, "Settings")),
+    /* @__PURE__ */ React83__namespace.createElement(DropdownMenuSeparator, null),
+    /* @__PURE__ */ React83__namespace.createElement(DropdownMenuItem, null, "Log out")
+  ))));
+}
+function DefaultSidebarHeader({
+  teams,
+  activeTeam,
+  onTeamChange
+}) {
+  return /* @__PURE__ */ React83__namespace.createElement(SidebarHeader, null, /* @__PURE__ */ React83__namespace.createElement(TeamSwitcher, { teams, activeTeam, onTeamChange }));
+}
+function DefaultSidebarFooter({ user }) {
+  return /* @__PURE__ */ React83__namespace.createElement(SidebarFooter, null, /* @__PURE__ */ React83__namespace.createElement(NavUser, { user }));
+}
+function DashboardHeader({ children }) {
+  const { isMobile } = useSidebar();
+  return /* @__PURE__ */ React83__namespace.createElement("header", { className: "flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4 lg:px-6" }, isMobile && /* @__PURE__ */ React83__namespace.createElement(React83__namespace.Fragment, null, /* @__PURE__ */ React83__namespace.createElement(SidebarTrigger, { className: "-ml-1" }), /* @__PURE__ */ React83__namespace.createElement(Separator, { orientation: "vertical", className: "mr-2 h-4" })), /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex flex-1 items-center justify-between gap-4" }, children));
+}
+function DashboardLayout({
+  navGroups,
+  activeUrl,
+  user,
+  teams,
+  activeTeam,
+  onTeamChange,
+  sidebarHeader,
+  sidebarFooter,
+  header,
+  children,
+  footer,
+  defaultOpen = true,
+  variant = "sidebar",
+  className
+}) {
+  return /* @__PURE__ */ React83__namespace.createElement(SidebarProvider, { defaultOpen }, /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("flex min-h-screen w-full", className) }, /* @__PURE__ */ React83__namespace.createElement(Sidebar, { collapsible: "icon", variant, className: "border-r" }, sidebarHeader ? /* @__PURE__ */ React83__namespace.createElement(SidebarHeader, null, sidebarHeader) : /* @__PURE__ */ React83__namespace.createElement(
+    DefaultSidebarHeader,
+    {
+      teams,
+      activeTeam,
+      onTeamChange
+    }
+  ), /* @__PURE__ */ React83__namespace.createElement(SidebarContent, null, navGroups?.map((group) => /* @__PURE__ */ React83__namespace.createElement(NavGroupComponent, { key: group.id, group, activeUrl }))), sidebarFooter ? /* @__PURE__ */ React83__namespace.createElement(SidebarFooter, null, sidebarFooter) : /* @__PURE__ */ React83__namespace.createElement(DefaultSidebarFooter, { user }), /* @__PURE__ */ React83__namespace.createElement(SidebarRail, null)), /* @__PURE__ */ React83__namespace.createElement(SidebarInset, null, (header || footer) && /* @__PURE__ */ React83__namespace.createElement(DashboardHeader, null, header), /* @__PURE__ */ React83__namespace.createElement("main", { className: "flex-1 flex flex-col p-4 lg:p-6 min-h-0" }, children), footer && /* @__PURE__ */ React83__namespace.createElement("footer", { className: "border-t bg-background py-4 px-6 shrink-0" }, footer))));
+}
+var variantClasses = {
+  default: "",
+  sticky: "sticky bottom-0",
+  fixed: "fixed bottom-0 left-0 right-0"
+};
+function Footer({ children, variant = "default", center = false, className }) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    "footer",
+    {
+      className: cn(
+        "border-t bg-background py-4 px-6",
+        variantClasses[variant],
+        center && "text-center",
+        className
+      )
+    },
+    children
+  );
+}
 function PageHeader({
   title,
   subtitle,
@@ -5604,13 +6759,43 @@ function PageHeader({
   children,
   className
 }) {
-  return /* @__PURE__ */ React9__namespace.createElement("div", { className: cn("space-y-4", className) }, breadcrumbs && breadcrumbs.length > 0 && /* @__PURE__ */ React9__namespace.createElement(Breadcrumb, null, /* @__PURE__ */ React9__namespace.createElement(BreadcrumbList, null, breadcrumbs.map((crumb, index) => {
+  return /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("space-y-4", className) }, breadcrumbs && breadcrumbs.length > 0 && /* @__PURE__ */ React83__namespace.createElement(Breadcrumb, null, /* @__PURE__ */ React83__namespace.createElement(BreadcrumbList, null, breadcrumbs.map((crumb, index) => {
     const isLast = index === breadcrumbs.length - 1;
-    return /* @__PURE__ */ React9__namespace.createElement(React9__namespace.Fragment, { key: `${crumb.label}-${index}` }, /* @__PURE__ */ React9__namespace.createElement(BreadcrumbItem, null, isLast ? /* @__PURE__ */ React9__namespace.createElement(BreadcrumbPage, null, crumb.label) : crumb.href ? /* @__PURE__ */ React9__namespace.createElement(BreadcrumbLink, { href: crumb.href }, crumb.label) : /* @__PURE__ */ React9__namespace.createElement("span", null, crumb.label)), !isLast && /* @__PURE__ */ React9__namespace.createElement(BreadcrumbSeparator, null));
-  }))), /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-start justify-between gap-4" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React9__namespace.createElement("h1", { className: "text-2xl font-semibold tracking-tight" }, title), subtitle && /* @__PURE__ */ React9__namespace.createElement("p", { className: "text-sm text-muted-foreground" }, subtitle)), actions && /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center gap-2" }, actions)), children && /* @__PURE__ */ React9__namespace.createElement("div", { className: "pt-2" }, children), /* @__PURE__ */ React9__namespace.createElement(Separator, null));
+    return /* @__PURE__ */ React83__namespace.createElement(React83__namespace.Fragment, { key: `${crumb.label}-${index}` }, /* @__PURE__ */ React83__namespace.createElement(BreadcrumbItem, null, isLast ? /* @__PURE__ */ React83__namespace.createElement(BreadcrumbPage, null, crumb.label) : crumb.href ? /* @__PURE__ */ React83__namespace.createElement(BreadcrumbLink, { href: crumb.href }, crumb.label) : /* @__PURE__ */ React83__namespace.createElement("span", null, crumb.label)), !isLast && /* @__PURE__ */ React83__namespace.createElement(BreadcrumbSeparator, null));
+  }))), /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-start justify-between gap-4" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-1" }, /* @__PURE__ */ React83__namespace.createElement("h1", { className: "text-2xl font-semibold tracking-tight" }, title), subtitle && /* @__PURE__ */ React83__namespace.createElement("p", { className: "text-sm text-muted-foreground" }, subtitle)), actions && /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center gap-2" }, actions)), children && /* @__PURE__ */ React83__namespace.createElement("div", { className: "pt-2" }, children), /* @__PURE__ */ React83__namespace.createElement(Separator, null));
 }
-
-// src/blocks/layout/right-drawer.tsx
+var defaultColumns = {
+  mobile: 1,
+  tablet: 2,
+  desktop: 3,
+  wide: 4
+};
+function ResponsiveGrid({
+  children,
+  columns = defaultColumns,
+  gap = 4,
+  className
+}) {
+  const mobile = columns.mobile ?? 1;
+  const tablet = columns.tablet ?? 2;
+  const desktop = columns.desktop ?? 3;
+  const wide = columns.wide ?? 4;
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    "div",
+    {
+      className: cn(
+        "grid",
+        `grid-cols-${mobile}`,
+        tablet !== mobile && `sm:grid-cols-${tablet}`,
+        desktop !== tablet && `lg:grid-cols-${desktop}`,
+        wide !== desktop && `xl:grid-cols-${wide}`,
+        className
+      ),
+      style: { gap: `${gap * 0.25}rem` }
+    },
+    children
+  );
+}
 var widthClasses = {
   sm: "max-w-sm",
   md: "max-w-md",
@@ -5627,7 +6812,7 @@ function RightDrawer({
   showClose = true,
   className
 }) {
-  return /* @__PURE__ */ React.createElement(Sheet, { open, onOpenChange }, /* @__PURE__ */ React.createElement(SheetContent, { className: cn(widthClasses[width], "overflow-y-auto", className) }, (title || showClose) && /* @__PURE__ */ React.createElement(SheetHeader, { className: "mb-4" }, title && /* @__PURE__ */ React.createElement(SheetTitle, null, title), description && /* @__PURE__ */ React.createElement(SheetDescription, null, description)), children));
+  return /* @__PURE__ */ React83__namespace.default.createElement(Sheet, { open, onOpenChange }, /* @__PURE__ */ React83__namespace.default.createElement(SheetContent, { className: cn(widthClasses[width], "overflow-y-auto", className) }, (title || showClose) && /* @__PURE__ */ React83__namespace.default.createElement(SheetHeader, { className: "mb-4" }, title && /* @__PURE__ */ React83__namespace.default.createElement(SheetTitle, null, title), description && /* @__PURE__ */ React83__namespace.default.createElement(SheetDescription, null, description)), children));
 }
 function SplitPane({
   primary,
@@ -5638,15 +6823,15 @@ function SplitPane({
   orientation = "horizontal",
   className
 }) {
-  const [ratio, setRatio] = React9__namespace.useState(initialRatio);
-  const containerRef = React9__namespace.useRef(null);
-  const isDragging = React9__namespace.useRef(false);
+  const [ratio, setRatio] = React83__namespace.useState(initialRatio);
+  const containerRef = React83__namespace.useRef(null);
+  const isDragging = React83__namespace.useRef(false);
   const handleMouseDown = () => {
     isDragging.current = true;
     document.body.style.cursor = orientation === "horizontal" ? "col-resize" : "row-resize";
     document.body.style.userSelect = "none";
   };
-  React9__namespace.useEffect(() => {
+  React83__namespace.useEffect(() => {
     const handleMouseMove = (e) => {
       if (!isDragging.current || !containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
@@ -5675,14 +6860,14 @@ function SplitPane({
     };
   }, [orientation, minPrimaryWidth, minSecondaryWidth]);
   const isHorizontal = orientation === "horizontal";
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     "div",
     {
       ref: containerRef,
       className: cn("flex", isHorizontal ? "flex-row" : "flex-col", className)
     },
-    /* @__PURE__ */ React9__namespace.createElement("div", { className: "overflow-auto", style: { [isHorizontal ? "width" : "height"]: `${ratio}%` } }, primary),
-    /* @__PURE__ */ React9__namespace.createElement(
+    /* @__PURE__ */ React83__namespace.createElement("div", { className: "overflow-auto", style: { [isHorizontal ? "width" : "height"]: `${ratio}%` } }, primary),
+    /* @__PURE__ */ React83__namespace.createElement(
       "div",
       {
         onMouseDown: handleMouseDown,
@@ -5691,9 +6876,9 @@ function SplitPane({
           isHorizontal ? "w-1 cursor-col-resize" : "h-1 cursor-row-resize"
         )
       },
-      /* @__PURE__ */ React9__namespace.createElement(lucideReact.GripVerticalIcon, { className: cn("text-muted-foreground", !isHorizontal && "rotate-90") })
+      /* @__PURE__ */ React83__namespace.createElement(lucideReact.GripVerticalIcon, { className: cn("text-muted-foreground", !isHorizontal && "rotate-90") })
     ),
-    /* @__PURE__ */ React9__namespace.createElement(
+    /* @__PURE__ */ React83__namespace.createElement(
       "div",
       {
         className: "overflow-auto",
@@ -5703,14 +6888,62 @@ function SplitPane({
     )
   );
 }
+var alignClasses = {
+  start: "items-start",
+  center: "items-center",
+  end: "items-end",
+  stretch: "items-stretch",
+  baseline: "items-baseline"
+};
+var justifyClasses = {
+  start: "justify-start",
+  center: "justify-center",
+  end: "justify-end",
+  between: "justify-between",
+  around: "justify-around",
+  evenly: "justify-evenly"
+};
+function Stack({
+  children,
+  direction = "vertical",
+  gap = 4,
+  align,
+  justify,
+  wrap = false,
+  fullWidth = false,
+  className
+}) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(
+    "div",
+    {
+      className: cn(
+        "flex",
+        direction === "vertical" ? "flex-col" : "flex-row",
+        align && alignClasses[align],
+        justify && justifyClasses[justify],
+        wrap && "flex-wrap",
+        fullWidth && "w-full",
+        className
+      ),
+      style: { gap: `${gap * 0.25}rem` }
+    },
+    children
+  );
+}
+function HStack(props) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(Stack, { ...props, direction: "horizontal" });
+}
+function VStack(props) {
+  return /* @__PURE__ */ React83__namespace.default.createElement(Stack, { ...props, direction: "vertical" });
+}
 function StickyHeader({
   children,
   offset = 0,
   showBorder = true,
   className
 }) {
-  const [isScrolled, setIsScrolled] = React9__namespace.useState(false);
-  React9__namespace.useEffect(() => {
+  const [isScrolled, setIsScrolled] = React83__namespace.useState(false);
+  React83__namespace.useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > offset);
     };
@@ -5718,7 +6951,7 @@ function StickyHeader({
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [offset]);
-  return /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(
     "div",
     {
       className: cn(
@@ -5729,6 +6962,77 @@ function StickyHeader({
     },
     children
   );
+}
+function ThreeColumnLayout({
+  sidebar,
+  children,
+  aside,
+  sidebarWidth = 240,
+  asideWidth = 320,
+  sidebarCollapsible = true,
+  asideCollapsible = true,
+  defaultSidebarCollapsed = false,
+  defaultAsideCollapsed = false,
+  className
+}) {
+  const [sidebarCollapsed, setSidebarCollapsed] = React83__namespace.useState(defaultSidebarCollapsed);
+  const [asideCollapsed, setAsideCollapsed] = React83__namespace.useState(defaultAsideCollapsed);
+  return /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("flex min-h-screen bg-background", className) }, /* @__PURE__ */ React83__namespace.createElement(
+    "aside",
+    {
+      className: cn(
+        "flex flex-col border-r bg-card transition-all duration-300",
+        sidebarCollapsed ? "w-16" : ""
+      ),
+      style: { width: sidebarCollapsed ? 64 : sidebarWidth }
+    },
+    /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex h-16 items-center justify-between border-b px-4" }, !sidebarCollapsed && /* @__PURE__ */ React83__namespace.createElement("span", { className: "font-semibold" }, "Nav"), sidebarCollapsible && sidebarCollapsed && /* @__PURE__ */ React83__namespace.createElement(Button, { variant: "ghost", size: "sm", onClick: () => setSidebarCollapsed(false) }, /* @__PURE__ */ React83__namespace.createElement(lucideReact.ChevronRight, { className: "h-4 w-4" }))),
+    /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex-1 overflow-y-auto py-4" }, sidebar),
+    sidebarCollapsible && !sidebarCollapsed && /* @__PURE__ */ React83__namespace.createElement("div", { className: "border-t p-2" }, /* @__PURE__ */ React83__namespace.createElement(
+      Button,
+      {
+        variant: "ghost",
+        size: "sm",
+        className: "w-full",
+        onClick: () => setSidebarCollapsed(true)
+      },
+      /* @__PURE__ */ React83__namespace.createElement(lucideReact.ChevronLeft, { className: "h-4 w-4" })
+    ))
+  ), /* @__PURE__ */ React83__namespace.createElement("main", { className: "flex-1 min-w-0 overflow-auto" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "min-h-screen p-6" }, children)), aside && /* @__PURE__ */ React83__namespace.createElement(
+    "aside",
+    {
+      className: cn(
+        "flex flex-col border-l bg-card transition-all duration-300",
+        asideCollapsed ? "w-0 overflow-hidden" : ""
+      ),
+      style: { width: asideCollapsed ? 0 : asideWidth }
+    },
+    /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex h-16 items-center justify-between border-b px-4" }, /* @__PURE__ */ React83__namespace.createElement("span", { className: "font-semibold" }, "Details"), asideCollapsible && /* @__PURE__ */ React83__namespace.createElement(Button, { variant: "ghost", size: "sm", onClick: () => setAsideCollapsed(true) }, /* @__PURE__ */ React83__namespace.createElement(lucideReact.ChevronRight, { className: "h-4 w-4" }))),
+    /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex-1 overflow-y-auto py-4" }, aside)
+  ));
+}
+function TwoColumnLayout({
+  sidebar,
+  children,
+  sidebarWidth = 280,
+  collapsible = true,
+  defaultCollapsed = false,
+  sidebarPosition = "left",
+  className
+}) {
+  const [collapsed, setCollapsed] = React83__namespace.useState(defaultCollapsed);
+  return /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("flex min-h-screen bg-background", className) }, /* @__PURE__ */ React83__namespace.createElement(
+    "aside",
+    {
+      className: cn(
+        "flex flex-col border-r bg-card transition-all duration-300",
+        collapsed ? "w-16" : ""
+      ),
+      style: { width: collapsed ? 64 : sidebarWidth }
+    },
+    /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex h-16 items-center justify-between border-b px-4" }, !collapsed && /* @__PURE__ */ React83__namespace.createElement("span", { className: "font-semibold" }, "Sidebar"), collapsible && /* @__PURE__ */ React83__namespace.createElement(Button, { variant: "ghost", size: "sm", onClick: () => setCollapsed(!collapsed) }, collapsed ? /* @__PURE__ */ React83__namespace.createElement(lucideReact.ChevronRight, { className: "h-4 w-4" }) : /* @__PURE__ */ React83__namespace.createElement(lucideReact.ChevronLeft, { className: "h-4 w-4" }))),
+    /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex-1 overflow-y-auto py-4" }, sidebar)
+  ), /* @__PURE__ */ React83__namespace.createElement("div", { className: cn("flex-1 min-w-0", sidebarPosition === "right" && "order-first") }, /* @__PURE__ */ React83__namespace.createElement("main", { className: "min-h-screen p-6" }, children)));
 }
 function BreadcrumbTrail({
   items,
@@ -5751,7 +7055,7 @@ function BreadcrumbTrail({
     ];
   };
   const displayItems = getDisplayItems();
-  return /* @__PURE__ */ React9__namespace.createElement(Breadcrumb, { className }, /* @__PURE__ */ React9__namespace.createElement(BreadcrumbList, null, displayItems.map((item, index) => /* @__PURE__ */ React9__namespace.createElement(React9__namespace.Fragment, { key: item.key }, /* @__PURE__ */ React9__namespace.createElement(BreadcrumbItem, null, item.isActive || index === displayItems.length - 1 ? /* @__PURE__ */ React9__namespace.createElement(BreadcrumbPage, null, item.label) : item.href ? /* @__PURE__ */ React9__namespace.createElement(BreadcrumbLink, { href: item.href }, item.label) : /* @__PURE__ */ React9__namespace.createElement("span", { className: "text-muted-foreground" }, item.label)), index < displayItems.length - 1 && /* @__PURE__ */ React9__namespace.createElement(BreadcrumbSeparator, null)))));
+  return /* @__PURE__ */ React83__namespace.createElement(Breadcrumb, { className }, /* @__PURE__ */ React83__namespace.createElement(BreadcrumbList, null, displayItems.map((item, index) => /* @__PURE__ */ React83__namespace.createElement(React83__namespace.Fragment, { key: item.key }, /* @__PURE__ */ React83__namespace.createElement(BreadcrumbItem, null, item.isActive || index === displayItems.length - 1 ? /* @__PURE__ */ React83__namespace.createElement(BreadcrumbPage, null, item.label) : item.href ? /* @__PURE__ */ React83__namespace.createElement(BreadcrumbLink, { href: item.href }, item.label) : /* @__PURE__ */ React83__namespace.createElement("span", { className: "text-muted-foreground" }, item.label)), index < displayItems.length - 1 && /* @__PURE__ */ React83__namespace.createElement(BreadcrumbSeparator, null)))));
 }
 function CommandPalette({
   open,
@@ -5760,11 +7064,11 @@ function CommandPalette({
   placeholder = "Type a command or search...",
   className
 }) {
-  const [query, setQuery] = React9__namespace.useState("");
+  const [query, setQuery] = React83__namespace.useState("");
   const filteredItems = items.filter(
     (item) => item.label.toLowerCase().includes(query.toLowerCase())
   );
-  return /* @__PURE__ */ React9__namespace.createElement(Dialog, { open, onOpenChange }, /* @__PURE__ */ React9__namespace.createElement(DialogContent, { className: "max-w-[600px] p-0 overflow-hidden" }, /* @__PURE__ */ React9__namespace.createElement("div", { className: "flex items-center border-b px-3", "cmdk-input-wrapper": "" }, /* @__PURE__ */ React9__namespace.createElement(lucideReact.SearchIcon, { className: "mr-2 h-4 w-4 shrink-0 opacity-50" }), /* @__PURE__ */ React9__namespace.createElement(
+  return /* @__PURE__ */ React83__namespace.createElement(Dialog, { open, onOpenChange }, /* @__PURE__ */ React83__namespace.createElement(DialogContent, { className: "max-w-[600px] p-0 overflow-hidden" }, /* @__PURE__ */ React83__namespace.createElement("div", { className: "flex items-center border-b px-3", "cmdk-input-wrapper": "" }, /* @__PURE__ */ React83__namespace.createElement(lucideReact.SearchIcon, { className: "mr-2 h-4 w-4 shrink-0 opacity-50" }), /* @__PURE__ */ React83__namespace.createElement(
     "input",
     {
       "cmdk-input": "",
@@ -5773,7 +7077,7 @@ function CommandPalette({
       value: query,
       onChange: (e) => setQuery(e.target.value)
     }
-  )), /* @__PURE__ */ React9__namespace.createElement("div", { className: "max-h-[300px] overflow-y-auto p-2" }, filteredItems.length === 0 ? /* @__PURE__ */ React9__namespace.createElement("p", { className: "p-4 text-center text-sm text-muted-foreground" }, "No results found.") : /* @__PURE__ */ React9__namespace.createElement("div", { className: "space-y-1" }, filteredItems.map((item) => /* @__PURE__ */ React9__namespace.createElement(
+  )), /* @__PURE__ */ React83__namespace.createElement("div", { className: "max-h-[300px] overflow-y-auto p-2" }, filteredItems.length === 0 ? /* @__PURE__ */ React83__namespace.createElement("p", { className: "p-4 text-center text-sm text-muted-foreground" }, "No results found.") : /* @__PURE__ */ React83__namespace.createElement("div", { className: "space-y-1" }, filteredItems.map((item) => /* @__PURE__ */ React83__namespace.createElement(
     "button",
     {
       type: "button",
@@ -5785,7 +7089,7 @@ function CommandPalette({
       }
     },
     item.icon,
-    /* @__PURE__ */ React9__namespace.createElement("span", { className: "ml-2" }, item.label)
+    /* @__PURE__ */ React83__namespace.createElement("span", { className: "ml-2" }, item.label)
   ))))));
 }
 function MobileNav({
@@ -5796,7 +7100,7 @@ function MobileNav({
   onMenu,
   className
 }) {
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     "div",
     {
       className: cn(
@@ -5804,25 +7108,25 @@ function MobileNav({
         className
       )
     },
-    /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-around" }, onMenu && /* @__PURE__ */ React.createElement(
+    /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "flex items-center justify-around" }, onMenu && /* @__PURE__ */ React83__namespace.default.createElement(
       "button",
       {
         onClick: onMenu,
         className: "flex flex-col items-center gap-1 p-2 text-muted-foreground"
       },
-      /* @__PURE__ */ React.createElement(lucideReact.MenuIcon, { className: "h-5 w-5" }),
-      /* @__PURE__ */ React.createElement("span", { className: "text-xs" }, "Menu")
-    ), showSearch && /* @__PURE__ */ React.createElement(
+      /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.MenuIcon, { className: "h-5 w-5" }),
+      /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "text-xs" }, "Menu")
+    ), showSearch && /* @__PURE__ */ React83__namespace.default.createElement(
       "button",
       {
         onClick: onSearch,
         className: "flex flex-col items-center gap-1 p-2 text-muted-foreground"
       },
-      /* @__PURE__ */ React.createElement(lucideReact.SearchIcon, { className: "h-5 w-5" }),
-      /* @__PURE__ */ React.createElement("span", { className: "text-xs" }, "Search")
+      /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.SearchIcon, { className: "h-5 w-5" }),
+      /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "text-xs" }, "Search")
     ), items.map((item) => {
       const isActive = activeItem === item.id;
-      return /* @__PURE__ */ React.createElement(
+      return /* @__PURE__ */ React83__namespace.default.createElement(
         "button",
         {
           key: item.id,
@@ -5832,7 +7136,7 @@ function MobileNav({
             isActive ? "text-primary" : "text-muted-foreground"
           )
         },
-        /* @__PURE__ */ React.createElement("div", { className: "relative" }, item.icon, item.badge !== void 0 && item.badge > 0 && /* @__PURE__ */ React.createElement(
+        /* @__PURE__ */ React83__namespace.default.createElement("div", { className: "relative" }, item.icon, item.badge !== void 0 && item.badge > 0 && /* @__PURE__ */ React83__namespace.default.createElement(
           Badge,
           {
             variant: "destructive",
@@ -5840,7 +7144,7 @@ function MobileNav({
           },
           item.badge > 9 ? "9+" : item.badge
         )),
-        /* @__PURE__ */ React.createElement("span", { className: "text-xs" }, item.label)
+        /* @__PURE__ */ React83__namespace.default.createElement("span", { className: "text-xs" }, item.label)
       );
     }))
   );
@@ -5852,9 +7156,9 @@ function SectionJumper({
   showIcons = true,
   className
 }) {
-  return /* @__PURE__ */ React.createElement("div", { className: cn("flex flex-wrap gap-1", className) }, sections.map((section) => {
+  return /* @__PURE__ */ React83__namespace.default.createElement("div", { className: cn("flex flex-wrap gap-1", className) }, sections.map((section) => {
     const isActive = activeSection === section.id;
-    return /* @__PURE__ */ React.createElement(
+    return /* @__PURE__ */ React83__namespace.default.createElement(
       Button,
       {
         key: section.id,
@@ -5865,83 +7169,10 @@ function SectionJumper({
       },
       showIcons && section.icon,
       section.label,
-      /* @__PURE__ */ React.createElement(lucideReact.ChevronRightIcon, { className: "h-3 w-3" })
+      /* @__PURE__ */ React83__namespace.default.createElement(lucideReact.ChevronRightIcon, { className: "h-3 w-3" })
     );
   }));
 }
-function Tabs({
-  className,
-  orientation = "horizontal",
-  ...props
-}) {
-  return /* @__PURE__ */ React.createElement(
-    radixUi.Tabs.Root,
-    {
-      "data-slot": "tabs",
-      "data-orientation": orientation,
-      orientation,
-      className: cn("group/tabs flex gap-2 data-[orientation=horizontal]:flex-col", className),
-      ...props
-    }
-  );
-}
-var tabsListVariants = classVarianceAuthority.cva(
-  "rounded-lg p-[3px] group-data-[orientation=horizontal]/tabs:h-9 data-[variant=line]:rounded-none group/tabs-list text-muted-foreground inline-flex w-fit items-center justify-center group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col",
-  {
-    variants: {
-      variant: {
-        default: "bg-muted",
-        line: "gap-1 bg-transparent"
-      }
-    },
-    defaultVariants: {
-      variant: "default"
-    }
-  }
-);
-function TabsList({
-  className,
-  variant = "default",
-  ...props
-}) {
-  return /* @__PURE__ */ React.createElement(
-    radixUi.Tabs.List,
-    {
-      "data-slot": "tabs-list",
-      "data-variant": variant,
-      className: cn(tabsListVariants({ variant }), className),
-      ...props
-    }
-  );
-}
-function TabsTrigger({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
-    radixUi.Tabs.Trigger,
-    {
-      "data-slot": "tabs-trigger",
-      className: cn(
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring text-foreground/60 hover:text-foreground dark:text-muted-foreground dark:hover:text-foreground relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-all group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 group-data-[variant=default]/tabs-list:data-[state=active]:shadow-sm group-data-[variant=line]/tabs-list:data-[state=active]:shadow-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        "group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent dark:group-data-[variant=line]/tabs-list:data-[state=active]:border-transparent dark:group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent",
-        "data-[state=active]:bg-background dark:data-[state=active]:text-foreground dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 data-[state=active]:text-foreground",
-        "after:bg-foreground after:absolute after:opacity-0 after:transition-opacity group-data-[orientation=horizontal]/tabs:after:inset-x-0 group-data-[orientation=horizontal]/tabs:after:bottom-[-5px] group-data-[orientation=horizontal]/tabs:after:h-0.5 group-data-[orientation=vertical]/tabs:after:inset-y-0 group-data-[orientation=vertical]/tabs:after:-right-1 group-data-[orientation=vertical]/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-[state=active]:after:opacity-100",
-        className
-      ),
-      ...props
-    }
-  );
-}
-function TabsContent({ className, ...props }) {
-  return /* @__PURE__ */ React.createElement(
-    radixUi.Tabs.Content,
-    {
-      "data-slot": "tabs-content",
-      className: cn("flex-1 outline-none", className),
-      ...props
-    }
-  );
-}
-
-// src/blocks/navigation/tabs-panel.tsx
 function TabsPanel({
   items,
   defaultTab,
@@ -5952,7 +7183,7 @@ function TabsPanel({
 }) {
   const defaultValue = defaultTab || items[0]?.id;
   const variantClass = variant === "pills" ? "bg-muted p-1" : variant === "outline" ? "border-b" : "";
-  return /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React83__namespace.default.createElement(
     Tabs,
     {
       defaultValue,
@@ -5960,17 +7191,22 @@ function TabsPanel({
       onValueChange,
       className
     },
-    /* @__PURE__ */ React.createElement(TabsList, { className: cn(variantClass) }, items.map((item) => /* @__PURE__ */ React.createElement(TabsTrigger, { key: item.id, value: item.id, disabled: item.disabled }, item.label))),
-    items.map((item) => /* @__PURE__ */ React.createElement(TabsContent, { key: item.id, value: item.id }, item.content))
+    /* @__PURE__ */ React83__namespace.default.createElement(TabsList, { className: cn(variantClass) }, items.map((item) => /* @__PURE__ */ React83__namespace.default.createElement(TabsTrigger, { key: item.id, value: item.id, disabled: item.disabled }, item.label))),
+    items.map((item) => /* @__PURE__ */ React83__namespace.default.createElement(TabsContent, { key: item.id, value: item.id }, item.content))
   );
 }
 
 exports.ActivityTimeline = ActivityTimeline;
+exports.AppShell = AppShell;
+exports.AspectRatio = AspectRatio;
 exports.BreadcrumbTrail = BreadcrumbTrail;
 exports.CardGrid = CardGrid;
+exports.Center = Center;
 exports.CommandPalette = CommandPalette;
 exports.ConfirmationDialog = ConfirmationDialog;
 exports.ConnectionStatus = ConnectionStatus;
+exports.Container = Container;
+exports.DashboardLayout = DashboardLayout;
 exports.DataGrid = DataGrid;
 exports.DurationPicker = DurationPicker;
 exports.EmptyState = EmptyState;
@@ -5980,8 +7216,11 @@ exports.FilterBar = FilterBar;
 exports.FilterChip = FilterChip;
 exports.FilterChips = FilterChips;
 exports.FilterDialog = FilterDialog;
+exports.Footer = Footer;
 exports.FormBuilder = FormBuilder;
 exports.FormSection = FormSection;
+exports.FormWizard = FormWizard;
+exports.HStack = HStack;
 exports.LoadingOverlay = LoadingOverlay;
 exports.MasonryBoard = MasonryBoard;
 exports.MetricCard = MetricCard;
@@ -5989,6 +7228,7 @@ exports.MobileNav = MobileNav;
 exports.PageHeader = PageHeader;
 exports.Pagination = Pagination2;
 exports.ProgressTracker = ProgressTracker;
+exports.ResponsiveGrid = ResponsiveGrid;
 exports.RightDrawer = RightDrawer;
 exports.SearchBar = SearchBar;
 exports.SectionHeader = SectionHeader;
@@ -5996,11 +7236,15 @@ exports.SectionJumper = SectionJumper;
 exports.SkeletonGenerator = SkeletonGenerator;
 exports.SmartDataTable = SmartDataTable;
 exports.SplitPane = SplitPane;
+exports.Stack = Stack;
 exports.StatCard = StatCard;
 exports.StatusGrid = StatusGrid;
 exports.StickyActions = StickyActions;
 exports.StickyHeader = StickyHeader;
 exports.TabsPanel = TabsPanel;
+exports.ThreeColumnLayout = ThreeColumnLayout;
 exports.ToastManager = ToastManager;
+exports.TwoColumnLayout = TwoColumnLayout;
+exports.VStack = VStack;
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
