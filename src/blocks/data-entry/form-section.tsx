@@ -1,5 +1,5 @@
 import { AlertCircleIcon, CheckCircleIcon } from "lucide-react";
-import type * as React from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 
 export type ValidationStatus = "valid" | "invalid" | "pending" | "none";

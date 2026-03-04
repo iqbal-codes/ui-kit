@@ -1,6 +1,6 @@
 "use client";
 
-import type * as React from "react";
+import React from "react";
 import type { FieldValues, UseFormReturn } from "react-hook-form";
 import { FormSection, type ValidationStatus } from "@/blocks/data-entry/form-section";
 import { cn } from "@/lib/utils";

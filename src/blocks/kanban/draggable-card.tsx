@@ -2,7 +2,7 @@
 
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import type * as React from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 import { KanbanCard } from "./card/kanban-card";
 import type { BaseCardMetadata } from "./types";

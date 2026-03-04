@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { BreadcrumbTrail } from "../navigation/breadcrumb-trail";
 import { StickyHeader } from "./sticky-header";

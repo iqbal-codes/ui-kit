@@ -1,6 +1,6 @@
 "use client";
 
-import type * as React from "react";
+import React from "react";
 import type { FieldValues, UseFormReturn } from "react-hook-form";
 import { FormBody } from "@/blocks/data-entry/form-builder/form-body";
 import type { FieldConfig, FormSectionConfig } from "@/blocks/data-entry/form-builder/types";

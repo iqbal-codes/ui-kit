@@ -2,7 +2,7 @@
 
 import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import type * as React from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/primitives/scroll-area";
 import { ColumnHeader } from "./column-header";
