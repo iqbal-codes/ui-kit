@@ -34,7 +34,8 @@ export type FieldType =
   | "name"
   | "credit-card"
   | "array"
-  | "chip";
+  | "chip"
+  | "custom";
 
 export interface FieldOption {
   value: string;
@@ -331,6 +332,30 @@ export interface ChipFieldConfig<T extends FieldValues = FieldValues> extends Ba
 }
 
 /**
+ * Custom field - render any custom component
+ * Use this when you need to render a component that's not in the standard field types
+ */
+export interface CustomFieldConfig<T extends FieldValues = FieldValues> extends BaseFieldConfig<T> {
+  type: "custom";
+  /** Custom render function */
+  render: (props: {
+    /** Current field value */
+    value: any;
+    /** onChange handler to update form value */
+    onChange: (value: any) => void;
+    /** Form context */
+    form: {
+      control: any;
+      getValues: () => T;
+      setValue: (name: any, value: any) => void;
+      watchedValues: Partial<T>;
+    };
+    /** Field configuration */
+    field: CustomFieldConfig<T>;
+  }) => React.ReactNode;
+}
+
+/**
  * Union of all field config types - enables type-safe field configurations
  * When type is "select", only "options" prop is shown, not currency/phone/etc props
  */
@@ -356,7 +381,8 @@ export type FieldConfig<T extends FieldValues = FieldValues> =
   | NameFieldConfig<T>
   | CreditCardFieldConfig<T>
   | ArrayFieldConfig<T>
-  | ChipFieldConfig<T>;
+  | ChipFieldConfig<T>
+  | CustomFieldConfig<T>;
 
 /**
  * Helper type to get field-specific config based on type

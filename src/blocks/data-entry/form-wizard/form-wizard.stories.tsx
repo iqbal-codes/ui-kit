@@ -539,3 +539,144 @@ export const ConditionalSteps: Story = {
     showStepDescriptions: true,
   },
 };
+
+/**
+ * Wizard with custom render step (for review page)
+ * Shows how to use the render prop to display read-only form data
+ */
+const customRenderSteps: WizardStepConfig<any>[] = [
+  {
+    id: "personal",
+    title: "Personal Info",
+    enableValidation: true,
+    sections: [
+      {
+        id: "personal-info",
+        title: "Personal Information",
+        fields: [
+          {
+            name: "firstName",
+            type: "text",
+            label: "First Name",
+            rules: { required: "First name is required" },
+          },
+          {
+            name: "lastName",
+            type: "text",
+            label: "Last Name",
+            rules: { required: "Last name is required" },
+          },
+          {
+            name: "email",
+            type: "email",
+            label: "Email",
+            rules: { required: "Email is required" },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "contact",
+    title: "Contact",
+    enableValidation: true,
+    sections: [
+      {
+        id: "contact-info",
+        title: "Contact Details",
+        fields: [
+          {
+            name: "phone",
+            type: "tel",
+            label: "Phone Number",
+          },
+          {
+            name: "address",
+            type: "textarea",
+            label: "Address",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "review",
+    title: "Review",
+    // This step uses custom render to show read-only data
+    stepType: "custom",
+    render: ({ values, navigation }) => (
+      <div className="space-y-6">
+        <div>
+          <h3 className="text-lg font-semibold">Review Your Information</h3>
+          <p className="text-sm text-muted-foreground">
+            Please review your information before submitting
+          </p>
+        </div>
+
+        <div className="rounded-lg border">
+          <div className="border-b px-4 py-3">
+            <h4 className="font-medium">Personal Information</h4>
+          </div>
+          <dl className="divide-y">
+            <div className="grid grid-cols-3 gap-4 px-4 py-3">
+              <dt className="text-sm font-medium text-muted-foreground">First Name</dt>
+              <dd className="col-span-2 text-sm">{values.firstName || "-"}</dd>
+            </div>
+            <div className="grid grid-cols-3 gap-4 px-4 py-3">
+              <dt className="text-sm font-medium text-muted-foreground">Last Name</dt>
+              <dd className="col-span-2 text-sm">{values.lastName || "-"}</dd>
+            </div>
+            <div className="grid grid-cols-3 gap-4 px-4 py-3">
+              <dt className="text-sm font-medium text-muted-foreground">Email</dt>
+              <dd className="col-span-2 text-sm">{values.email || "-"}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div className="rounded-lg border">
+          <div className="border-b px-4 py-3">
+            <h4 className="font-medium">Contact Details</h4>
+          </div>
+          <dl className="divide-y">
+            <div className="grid grid-cols-3 gap-4 px-4 py-3">
+              <dt className="text-sm font-medium text-muted-foreground">Phone</dt>
+              <dd className="col-span-2 text-sm">{values.phone || "-"}</dd>
+            </div>
+            <div className="grid grid-cols-3 gap-4 px-4 py-3">
+              <dt className="text-sm font-medium text-muted-foreground">Address</dt>
+              <dd className="col-span-2 text-sm">{values.address || "-"}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <input type="checkbox" id="confirmReview" className="h-4 w-4 rounded border-gray-300" />
+          <label htmlFor="confirmReview" className="text-sm">
+            I confirm that all the information provided is accurate
+          </label>
+        </div>
+      </div>
+    ),
+  },
+];
+
+export const WithCustomRender: Story = {
+  args: {
+    id: "custom-render-wizard",
+    steps: customRenderSteps,
+    defaultValues: {
+      firstName: "John",
+      lastName: "Doe",
+      email: "john.doe@example.com",
+      phone: "+1 (555) 123-4567",
+      address: "123 Main Street, New York, NY 10001",
+    },
+    onSubmit: (data) => {
+      console.log("Custom render wizard submitted:", data);
+      alert("Submitted! Check console for data.");
+    },
+    submitLabel: "Confirm & Submit",
+    showStepDescriptions: true,
+    navigationMode: "free",
+  },
+};

@@ -13,8 +13,19 @@ export interface WizardStepConfig<T extends FieldValues = FieldValues> {
   description?: string;
   /** Icon for the step (optional) */
   icon?: React.ReactNode;
-  /** Form sections for this step */
-  sections: FormSectionConfig<T>[];
+  /** Form sections for this step (used when type is 'form') */
+  sections?: FormSectionConfig<T>[];
+  /** Custom render function for this step */
+  render?: (props: {
+    /** Form instance from react-hook-form */
+    form: UseFormReturn<T>;
+    /** Current form values */
+    values: T;
+    /** Navigation state */
+    navigation: WizardNavigationState;
+  }) => React.ReactNode;
+  /** Step type - 'form' for form fields, 'custom' for custom render */
+  stepType?: "form" | "custom";
   /** Enable validation before proceeding to next step */
   enableValidation?: boolean;
   /** Conditional rendering - hide step based on form values */

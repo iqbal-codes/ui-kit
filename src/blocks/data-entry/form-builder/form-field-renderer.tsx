@@ -366,6 +366,14 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
         />
       );
 
+    case "custom":
+      return props.render?.({
+        value: currentValue,
+        onChange: handleValueChange,
+        form: { control, getValues, setValue, watchedValues },
+        field: props as any,
+      });
+
     case "rich-text":
     case "code":
       return (

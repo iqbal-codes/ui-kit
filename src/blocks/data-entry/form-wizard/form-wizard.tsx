@@ -121,6 +121,7 @@ export function FormWizard<T extends FieldValues>({
   const validateCurrentStep = async (): Promise<boolean> => {
     const currentStepConfig = visibleSteps[currentStep];
     if (!currentStepConfig?.enableValidation) return true;
+    if (!currentStepConfig.sections) return true;
 
     // Collect all field names from current step's sections
     const fieldNames = currentStepConfig.sections.flatMap((section) =>
@@ -166,7 +167,7 @@ export function FormWizard<T extends FieldValues>({
   const handleFinalSubmit = async (data: T) => {
     // Validate all steps before final submit
     const allFieldNames = visibleSteps.flatMap((step) =>
-      step.sections.flatMap((section) => section.fields.map((field) => field.name))
+      (step.sections || []).flatMap((section) => section.fields.map((field) => field.name))
     );
 
     const allValid = await trigger(allFieldNames as any);
@@ -254,9 +255,22 @@ export function FormWizard<T extends FieldValues>({
         />
 
         {/* Current Step Content */}
-        {currentStepConfig && (
-          <WizardStep sections={currentStepConfig.sections} form={form} renderField={renderField} />
-        )}
+        {currentStepConfig &&
+          (currentStepConfig.render ? (
+            <div className="space-y-6">
+              {currentStepConfig.render({
+                form,
+                values: watch() as T,
+                navigation: navigationState,
+              })}
+            </div>
+          ) : (
+            <WizardStep
+              sections={currentStepConfig.sections || []}
+              form={form}
+              renderField={renderField}
+            />
+          ))}
 
         {/* Footer */}
         {footer}
