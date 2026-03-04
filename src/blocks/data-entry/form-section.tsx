@@ -1,7 +1,6 @@
-import { AlertCircleIcon, CheckCircleIcon, ChevronDownIcon } from "lucide-react";
-import * as React from "react";
+import { AlertCircleIcon, CheckCircleIcon } from "lucide-react";
+import type * as React from "react";
 import { cn } from "@/lib/utils";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/primitives/collapsible";
 
 export type ValidationStatus = "valid" | "invalid" | "pending" | "none";
 
@@ -12,14 +11,6 @@ export interface FormSectionProps {
   description?: string;
   /** Validation status */
   validationStatus?: ValidationStatus;
-  /** Whether section is collapsible */
-  collapsible?: boolean;
-  /** Default open state */
-  defaultOpen?: boolean;
-  /** Currently open state (controlled) */
-  open?: boolean;
-  /** Callback when open state changes */
-  onOpenChange?: (open: boolean) => void;
   /** Section content */
   children: React.ReactNode;
   /** Optional actions (buttons, etc.) */
@@ -52,29 +43,14 @@ export function FormSection({
   title,
   description,
   validationStatus = "none",
-  collapsible = false,
-  defaultOpen = true,
-  open,
-  onOpenChange,
   children,
   actions,
   error,
   className,
 }: FormSectionProps) {
-  const [internalOpen, setInternalOpen] = React.useState(defaultOpen);
-  const isControlled = open !== undefined;
-  const isOpen = isControlled ? open : internalOpen;
-
-  const handleOpenChange = (newOpen: boolean) => {
-    if (!isControlled) {
-      setInternalOpen(newOpen);
-    }
-    onOpenChange?.(newOpen);
-  };
-
   const _status = statusConfig[validationStatus];
 
-  const sectionContent = (
+  return (
     <div className={cn("space-y-4", className)}>
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -99,21 +75,7 @@ export function FormSection({
             </div>
           )}
         </div>
-        <div className="flex items-center gap-2">
-          {actions}
-          {collapsible && (
-            <CollapsibleTrigger asChild>
-              <button type="button" className="p-1 hover:bg-muted rounded">
-                <ChevronDownIcon
-                  className={cn(
-                    "h-4 w-4 text-muted-foreground transition-transform",
-                    !isOpen && "-rotate-90"
-                  )}
-                />
-              </button>
-            </CollapsibleTrigger>
-          )}
-        </div>
+        <div className="flex items-center gap-2">{actions}</div>
       </div>
 
       {/* Description */}
@@ -130,19 +92,6 @@ export function FormSection({
       {/* Content */}
       {children}
     </div>
-  );
-
-  if (!collapsible) {
-    return sectionContent;
-  }
-
-  return (
-    <Collapsible open={isOpen} onOpenChange={handleOpenChange}>
-      {sectionContent}
-      <CollapsibleContent className="overflow-hidden data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-up data-[state=open]:slide-down">
-        <div className="pt-2">{children}</div>
-      </CollapsibleContent>
-    </Collapsible>
   );
 }
 

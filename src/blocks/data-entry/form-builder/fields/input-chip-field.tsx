@@ -1,12 +1,12 @@
 "use client";
 
+import { X } from "lucide-react";
 import * as React from "react";
 import { Controller, type FieldPath, type FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
+import { Button } from "@/primitives/button";
 import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from "@/primitives/form";
 import { Input } from "@/primitives/input";
-import { Button } from "@/primitives/button";
-import { X } from "lucide-react";
 
 export interface InputChipFieldProps<T extends FieldValues = FieldValues> {
   name: FieldPath<T>;
@@ -110,10 +110,7 @@ export function InputChipField<T extends FieldValues>({
   );
 
   const handleBlur = React.useCallback(
-    (
-      currentValue: string[],
-      onChange: (value: string[]) => void
-    ) => {
+    (currentValue: string[], onChange: (value: string[]) => void) => {
       // Add chip on blur if there's input
       if (inputValue.trim()) {
         const newValue = handleAddChip(inputValue, currentValue);

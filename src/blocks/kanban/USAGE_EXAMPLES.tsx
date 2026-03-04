@@ -1,10 +1,10 @@
 /**
  * Kanban Board Usage Examples
- * 
+ *
  * Complete examples for using the Kanban Board components
  */
 
-import type { KanbanBoard, KanbanCard, BoardToolbar } from "./index";
+import type { BoardToolbar, KanbanBoard, KanbanCard } from "./index";
 
 // ============================================================================
 // Example 1: Basic Kanban Board
@@ -85,12 +85,10 @@ function CustomCardExample() {
           <KanbanCard.Header>
             <KanbanCard.Title>{card.title}</KanbanCard.Title>
             {card.priority && (
-              <KanbanCard.Badge priority={card.priority}>
-                {card.priority}
-              </KanbanCard.Badge>
+              <KanbanCard.Badge priority={card.priority}>{card.priority}</KanbanCard.Badge>
             )}
           </KanbanCard.Header>
-          
+
           <KanbanCard.Content>
             {card.description && (
               <KanbanCard.Description>{card.description}</KanbanCard.Description>
@@ -105,13 +103,10 @@ function CustomCardExample() {
               </KanbanCard.Labels>
             )}
           </KanbanCard.Content>
-          
+
           <KanbanCard.Footer>
             {card.assignee && (
-              <KanbanCard.Avatar
-                name={card.assignee.name}
-                avatarUrl={card.assignee.avatarUrl}
-              />
+              <KanbanCard.Avatar name={card.assignee.name} avatarUrl={card.assignee.avatarUrl} />
             )}
             {card.dueDate && <KanbanCard.DueDate date={card.dueDate} />}
             {card.subtasks && (
@@ -159,17 +154,13 @@ function DragAndDropBoardExample() {
   const handleCardMove = async (cardId, fromColumnId, toColumnId, newIndex) => {
     // Optimistic update
     updateCardLocation(cardId, toColumnId, newIndex);
-    
+
     // API call
     await api.moveCard(cardId, toColumnId, newIndex);
   };
 
   return (
-    <KanbanBoard
-      columns={columns}
-      features={{ dragDrop: true }}
-      onCardMove={handleCardMove}
-    />
+    <KanbanBoard columns={columns} features={{ dragDrop: true }} onCardMove={handleCardMove} />
   );
 }
 
@@ -236,17 +227,13 @@ function SalesPipelineExample() {
         <KanbanCard>
           <KanbanCard.Header>
             <KanbanCard.Title>{deal.company}</KanbanCard.Title>
-            <KanbanCard.Badge priority="medium">
-              ${deal.value.toLocaleString()}
-            </KanbanCard.Badge>
+            <KanbanCard.Badge priority="medium">${deal.value.toLocaleString()}</KanbanCard.Badge>
           </KanbanCard.Header>
-          
+
           <KanbanCard.Content>
-            <div className="text-sm text-muted-foreground">
-              Probability: {deal.probability}%
-            </div>
+            <div className="text-sm text-muted-foreground">Probability: {deal.probability}%</div>
           </KanbanCard.Content>
-          
+
           <KanbanCard.Footer>
             <KanbanCard.Avatar name={deal.assignee.name} />
             <KanbanCard.DueDate date={deal.closeDate} />
@@ -317,7 +304,7 @@ function ContentCalendarExample() {
               {content.channel}
             </KanbanCard.Label>
           </KanbanCard.Header>
-          
+
           <KanbanCard.Footer>
             <KanbanCard.Avatar name={content.author} />
             <KanbanCard.DueDate date={content.publishDate} />
@@ -379,17 +366,13 @@ function WorkOrderBoardExample() {
             <KanbanCard.Title>WO: {wo.machineId}</KanbanCard.Title>
             <KanbanCard.Badge
               priority={
-                wo.priority === "critical"
-                  ? "urgent"
-                  : wo.priority === "high"
-                    ? "high"
-                    : "medium"
+                wo.priority === "critical" ? "urgent" : wo.priority === "high" ? "high" : "medium"
               }
             >
               {wo.priority}
             </KanbanCard.Badge>
           </KanbanCard.Header>
-          
+
           <KanbanCard.Content>
             <KanbanCard.Label
               color={
@@ -402,9 +385,7 @@ function WorkOrderBoardExample() {
             >
               {wo.issueType}
             </KanbanCard.Label>
-            <div className="text-xs text-muted-foreground mt-2">
-              Est: {wo.estimatedHours}h
-            </div>
+            <div className="text-xs text-muted-foreground mt-2">Est: {wo.estimatedHours}h</div>
           </KanbanCard.Content>
         </KanbanCard>
       )}

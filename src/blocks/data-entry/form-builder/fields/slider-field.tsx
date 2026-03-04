@@ -102,9 +102,7 @@ export function SliderField<T extends FieldValues>({
           </FormLabel>
         )}
         <FormControl>
-          <div
-            className={cn("flex items-center gap-4", orientation === "vertical" && "flex-col")}
-          >
+          <div className={cn("flex items-center gap-4", orientation === "vertical" && "flex-col")}>
             <div className={cn("flex-1", orientation === "vertical" && "h-48 w-full")}>
               <Slider
                 value={[localValue]}

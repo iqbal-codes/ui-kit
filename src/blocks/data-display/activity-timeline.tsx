@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/style/useImportType: <explanation> */
 /** biome-ignore-all assist/source/organizeImports: <explanation> */
-import React from 'react'
+import React from "react";
 import { CircleIcon, ClockIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 

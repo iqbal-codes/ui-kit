@@ -100,11 +100,7 @@ export function OTPField<T extends FieldValues>({
             >
               <InputOTPGroup>
                 {Array.from({ length: firstGroupSize }).map((_, index) => (
-                  <InputOTPSlot
-                    key={index}
-                    index={index}
-                    className={cn("h-12 w-12 text-lg")}
-                  />
+                  <InputOTPSlot key={index} index={index} className={cn("h-12 w-12 text-lg")} />
                 ))}
               </InputOTPGroup>
               {showSeparator && secondGroupSize > 0 && <InputOTPSeparator />}

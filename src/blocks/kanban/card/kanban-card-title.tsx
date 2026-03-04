@@ -18,11 +18,7 @@ export const KanbanCardTitle = React.forwardRef<HTMLHeadingElement, KanbanCardTi
   ({ className, ...props }, ref) => (
     <h3
       ref={ref}
-      className={cn(
-        "font-semibold text-foreground text-ellipsis",
-        "line-clamp-2",
-        className
-      )}
+      className={cn("font-semibold text-foreground text-ellipsis", "line-clamp-2", className)}
       {...props}
     />
   )

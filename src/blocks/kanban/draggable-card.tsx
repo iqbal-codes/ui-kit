@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import type * as React from "react";
+import { cn } from "@/lib/utils";
 import { KanbanCard } from "./card/kanban-card";
 import type { BaseCardMetadata } from "./types";
 
@@ -56,21 +56,11 @@ export function DraggableCard<T extends BaseCardMetadata>({
   };
 
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      className="group"
-      {...attributes}
-      {...listeners}
-    >
+    <div ref={setNodeRef} style={style} className="group" {...attributes} {...listeners}>
       {renderCard ? (
         renderCard(card)
       ) : (
-        <KanbanCard
-          card={card}
-          onClick={onClick}
-          isDragging={isDraggingState}
-        />
+        <KanbanCard card={card} onClick={onClick} isDragging={isDraggingState} />
       )}
     </div>
   );

@@ -58,20 +58,6 @@ export const ValidationInvalid: Story = {
   },
 };
 
-export const Collapsible: Story = {
-  args: {
-    title: "Advanced Settings",
-    description: "Click to expand",
-    collapsible: true,
-    children: (
-      <div className="space-y-2">
-        <Input placeholder="Setting 1" />
-        <Input placeholder="Setting 2" />
-      </div>
-    ),
-  },
-};
-
 export const WithActions: Story = {
   args: {
     title: "Section with Actions",

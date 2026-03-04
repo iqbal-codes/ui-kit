@@ -3,8 +3,8 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/primitives/scroll-area";
+import type { BaseCardMetadata, KanbanColumn as KanbanColumnType } from "../types";
 import { ColumnHeader } from "./column-header";
-import type { KanbanColumn as KanbanColumnType, BaseCardMetadata } from "../types";
 
 /**
  * KanbanColumn props

@@ -4,6 +4,7 @@ import * as React from "react";
 import { type FieldValues, type Path, useFormContext, useWatch } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import {
+  ArrayField,
   CheckboxField,
   ColorField,
   ComboboxField,
@@ -21,7 +22,6 @@ import {
   SwitchField,
   TextareaField,
   TextField,
-  ArrayField,
 } from "./fields";
 import type { FieldConfig } from "./types";
 
@@ -51,9 +51,7 @@ export function FieldRenderer<T extends FieldValues>(props: FieldRendererProps<T
   // Get watched values - either specific fields or all values
   const watchedValues = useWatch({
     control,
-    ...(watchFields
-      ? { name: watchFields as any }
-      : {}),
+    ...(watchFields ? { name: watchFields as any } : {}),
   }) as Partial<T>;
 
   // Get current field value

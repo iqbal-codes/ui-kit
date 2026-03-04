@@ -1,25 +1,18 @@
 "use client";
 
+import { ChevronDown, ChevronRight, ChevronUp, GripVertical, Plus, Trash2 } from "lucide-react";
 import * as React from "react";
 import {
   Controller,
-  useFieldArray,
   type FieldPath,
   type FieldValues,
+  useFieldArray,
   useFormContext,
 } from "react-hook-form";
 import { cn } from "@/lib/utils";
-import { Card, CardContent, CardHeader } from "@/primitives/card";
 import { Button } from "@/primitives/button";
+import { Card, CardContent, CardHeader } from "@/primitives/card";
 import { FormDescription, FormItem, FormLabel, FormMessage } from "@/primitives/form";
-import {
-  GripVertical,
-  Plus,
-  Trash2,
-  ChevronDown,
-  ChevronUp,
-  ChevronRight,
-} from "lucide-react";
 import { FieldRenderer } from "../form-field-renderer";
 import type { FieldConfig } from "../types";
 
@@ -146,17 +139,19 @@ export function ArrayField<T extends FieldValues>({
     // Use custom template if provided
     if (itemTitleTemplate) {
       const parts = itemTitleTemplate.split(/\{([^}]+)\}/);
-      return parts
-        .map((part) => {
-          if (part.startsWith("{") && part.endsWith("}")) return "";
-          if (part.trim()) {
-            const value = part.split(".").reduce((obj, key) => obj?.[key], item);
-            return value ?? "";
-          }
-          return "";
-        })
-        .join("")
-        .trim() || `Item ${index + 1}`;
+      return (
+        parts
+          .map((part) => {
+            if (part.startsWith("{") && part.endsWith("}")) return "";
+            if (part.trim()) {
+              const value = part.split(".").reduce((obj, key) => obj?.[key], item);
+              return value ?? "";
+            }
+            return "";
+          })
+          .join("")
+          .trim() || `Item ${index + 1}`
+      );
     }
 
     // Use title field if provided

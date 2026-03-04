@@ -1,6 +1,6 @@
-import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { CheckCircleIcon, ClockIcon, XCircleIcon } from "lucide-react";
+import React from "react";
 import { ActivityTimeline } from "./activity-timeline";
 
 const meta: Meta<typeof ActivityTimeline> = {

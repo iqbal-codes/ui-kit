@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { DraggableKanbanBoard } from "./draggable-kanban-board";
-import type { KanbanColumn, BaseCardMetadata } from "./types";
+import type { BaseCardMetadata, KanbanColumn } from "./types";
 
 /**
  * DraggableKanbanBoard with full drag-and-drop support using dnd-kit.

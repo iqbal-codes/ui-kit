@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import type { KanbanColumn, BaseCardMetadata, KanbanFeatures } from "../types";
+import type { BaseCardMetadata, KanbanColumn, KanbanFeatures } from "../types";
 
 /**
  * Kanban board state
@@ -48,11 +48,7 @@ interface KanbanBoardActions<T extends BaseCardMetadata> {
     columnId: string
   ) => Promise<void>;
   /** Reorder columns */
-  reorderColumns: (
-    columnId: string,
-    fromIndex: number,
-    toIndex: number
-  ) => Promise<void>;
+  reorderColumns: (columnId: string, fromIndex: number, toIndex: number) => Promise<void>;
   /** Add new card */
   addCard: (columnId: string, card: T) => Promise<void>;
   /** Update card */
@@ -65,12 +61,10 @@ interface KanbanBoardActions<T extends BaseCardMetadata> {
   setError: (error: string | null) => void;
 }
 
-type KanbanBoardContextValue<T extends BaseCardMetadata> =
-  KanbanBoardState<T> & KanbanBoardActions<T>;
+type KanbanBoardContextValue<T extends BaseCardMetadata> = KanbanBoardState<T> &
+  KanbanBoardActions<T>;
 
-const KanbanBoardContext = React.createContext<
-  KanbanBoardContextValue<any> | undefined
->(undefined);
+const KanbanBoardContext = React.createContext<KanbanBoardContextValue<any> | undefined>(undefined);
 
 /**
  * Kanban board provider props
@@ -95,11 +89,7 @@ export interface KanbanBoardProviderProps<T extends BaseCardMetadata> {
     columnId: string
   ) => Promise<void>;
   /** API callback for reordering columns */
-  onReorderColumns?: (
-    columnId: string,
-    fromIndex: number,
-    toIndex: number
-  ) => Promise<void>;
+  onReorderColumns?: (columnId: string, fromIndex: number, toIndex: number) => Promise<void>;
   /** API callback for adding cards */
   onAddCard?: (columnId: string, card: T) => Promise<void>;
   /** API callback for updating cards */
@@ -195,10 +185,8 @@ export function KanbanBoardProvider<T extends BaseCardMetadata>({
   const value = React.useMemo<KanbanBoardContextValue<T>>(
     () => ({
       ...state,
-      setSearchQuery: (query) =>
-        setState((prev) => ({ ...prev, searchQuery: query })),
-      setFilters: (filters) =>
-        setState((prev) => ({ ...prev, filters })),
+      setSearchQuery: (query) => setState((prev) => ({ ...prev, searchQuery: query })),
+      setFilters: (filters) => setState((prev) => ({ ...prev, filters })),
       moveCard: async (cardId, fromColumnId, toColumnId, newIndex) => {
         const previousColumns = state.columns;
 
@@ -290,9 +278,7 @@ export function KanbanBoardProvider<T extends BaseCardMetadata>({
             setState((prev) => ({
               ...prev,
               columns: prev.columns.map((col) =>
-                col.id === columnId
-                  ? { ...col, cards: [...col.cards, card] }
-                  : col
+                col.id === columnId ? { ...col, cards: [...col.cards, card] } : col
               ),
             }));
           },
@@ -318,9 +304,7 @@ export function KanbanBoardProvider<T extends BaseCardMetadata>({
               ...prev,
               columns: prev.columns.map((col) => ({
                 ...col,
-                cards: col.cards.map((c) =>
-                  c.id === cardId ? { ...c, ...updates } : c
-                ),
+                cards: col.cards.map((c) => (c.id === cardId ? { ...c, ...updates } : c)),
               })),
             }));
           },
@@ -362,10 +346,8 @@ export function KanbanBoardProvider<T extends BaseCardMetadata>({
           }
         );
       },
-      setLoading: (loading) =>
-        setState((prev) => ({ ...prev, isLoading: loading })),
-      setError: (error) =>
-        setState((prev) => ({ ...prev, error })),
+      setLoading: (loading) => setState((prev) => ({ ...prev, isLoading: loading })),
+      setError: (error) => setState((prev) => ({ ...prev, error })),
     }),
     [
       state,
@@ -379,11 +361,7 @@ export function KanbanBoardProvider<T extends BaseCardMetadata>({
     ]
   );
 
-  return (
-    <KanbanBoardContext.Provider value={value}>
-      {children}
-    </KanbanBoardContext.Provider>
-  );
+  return <KanbanBoardContext.Provider value={value}>{children}</KanbanBoardContext.Provider>;
 }
 
 /**
@@ -392,9 +370,7 @@ export function KanbanBoardProvider<T extends BaseCardMetadata>({
 export function useKanbanBoard<T extends BaseCardMetadata>() {
   const context = React.useContext(KanbanBoardContext);
   if (context === undefined) {
-    throw new Error(
-      "useKanbanBoard must be used within a KanbanBoardProvider"
-    );
+    throw new Error("useKanbanBoard must be used within a KanbanBoardProvider");
   }
   return context as KanbanBoardContextValue<T>;
 }

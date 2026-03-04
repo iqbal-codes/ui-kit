@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
-import { KanbanBoard, KanbanColumn, ColumnHeader, BoardToolbar, QuickAddCard } from "../index";
 import { KanbanCard } from "../card";
+import { BoardToolbar, ColumnHeader, KanbanBoard, KanbanColumn, QuickAddCard } from "../index";
 
 /**
  * KanbanBoard displays columns horizontally with scrollable content.
- * 
+ *
  * Supports:
  * - Horizontal scrolling for many columns
  * - Empty state when no cards exist
@@ -55,9 +55,7 @@ const sampleCards = [
     priority: "medium" as const,
     assignee: { id: "u2", name: "Jane Smith", avatarUrl: "" },
     dueDate: new Date(Date.now() + 86400000 * 5).toISOString(),
-    tags: [
-      { id: "t3", label: "Feature", color: "green" },
-    ],
+    tags: [{ id: "t3", label: "Feature", color: "green" }],
     subtasks: [],
     attachments: [],
   },
@@ -65,9 +63,7 @@ const sampleCards = [
     id: "3",
     title: "Update documentation",
     priority: "low" as const,
-    tags: [
-      { id: "t4", label: "Docs", color: "purple" },
-    ],
+    tags: [{ id: "t4", label: "Docs", color: "purple" }],
   },
 ];
 
@@ -178,9 +174,7 @@ export const CustomCards: Story = {
   },
   render: (args) => (
     <div className="h-screen">
-      <KanbanBoard
-        {...args}
-      />
+      <KanbanBoard {...args} />
     </div>
   ),
 };

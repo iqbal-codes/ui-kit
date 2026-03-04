@@ -1,29 +1,25 @@
 "use client";
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
 import {
+  closestCenter,
   DndContext,
   DragOverlay,
   PointerSensor,
   useSensor,
   useSensors,
-  closestCenter,
 } from "@dnd-kit/core";
 import {
-  SortableContext,
-  horizontalListSortingStrategy,
-  verticalListSortingStrategy,
   arrayMove,
+  horizontalListSortingStrategy,
+  SortableContext,
+  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import * as React from "react";
+import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/primitives/scroll-area";
-import { DraggableColumn } from "./draggable-column";
 import { KanbanCard } from "./card";
-import type {
-  KanbanBoardProps,
-  KanbanColumn as KanbanColumnType,
-  BaseCardMetadata,
-} from "./types";
+import { DraggableColumn } from "./draggable-column";
+import type { BaseCardMetadata, KanbanBoardProps, KanbanColumn as KanbanColumnType } from "./types";
 
 /**
  * Draggable kanban board props
@@ -95,51 +91,74 @@ export function DraggableKanbanBoard<T extends BaseCardMetadata>({
     return columns.flatMap((col) => col.cards.map((c) => `${col.id}-card-${c.id}`));
   }, [columns]);
 
-  const handleDragStart = React.useCallback((event: any) => {
-    const { active } = event;
-    setActiveId(active.id);
-    
-    // Check if it's a card
-    if (active.id.includes("-card-")) {
-      const cardId = active.id.replace(/.*-card-/, "");
-      const result = findCard(cardId);
-      if (result) {
-        setActiveCard(result.card as T);
+  const handleDragStart = React.useCallback(
+    (event: any) => {
+      const { active } = event;
+      setActiveId(active.id);
+
+      // Check if it's a card
+      if (active.id.includes("-card-")) {
+        const cardId = active.id.replace(/.*-card-/, "");
+        const result = findCard(cardId);
+        if (result) {
+          setActiveCard(result.card as T);
+        }
       }
-    }
-  }, [findCard]);
+    },
+    [findCard]
+  );
 
-  const handleDragEnd = React.useCallback((event: any) => {
-    const { active, over } = event;
-    setActiveId(null);
-    setActiveCard(null);
+  const handleDragEnd = React.useCallback(
+    (event: any) => {
+      const { active, over } = event;
+      setActiveId(null);
+      setActiveCard(null);
 
-    if (!over || active.id === over.id) return;
+      if (!over || active.id === over.id) return;
 
-    // Card dragged over another card
-    if (active.id.includes("-card-") && over.id.includes("-card-")) {
-      const activeCardId = active.id.replace(/.*-card-/, "");
-      const overCardId = over.id.replace(/.*-card-/, "");
-      
-      const activeResult = findCard(activeCardId);
-      const overResult = findCard(overCardId);
-      
-      if (!activeResult || !overResult) return;
+      // Card dragged over another card
+      if (active.id.includes("-card-") && over.id.includes("-card-")) {
+        const activeCardId = active.id.replace(/.*-card-/, "");
+        const overCardId = over.id.replace(/.*-card-/, "");
 
-      const { card: activeCard, column: activeColumn } = activeResult;
-      const { card: overCard, column: overColumn } = overResult;
+        const activeResult = findCard(activeCardId);
+        const overResult = findCard(overCardId);
 
-      if (activeColumn.id === overColumn.id) {
-        // Same column - reorder
-        const oldIndex = activeColumn.cards.findIndex((c) => c.id === activeCard.id);
-        const newIndex = overColumn.cards.findIndex((c) => c.id === overCard.id);
+        if (!activeResult || !overResult) return;
 
-        if (oldIndex !== newIndex) {
+        const { card: activeCard, column: activeColumn } = activeResult;
+        const { card: overCard, column: overColumn } = overResult;
+
+        if (activeColumn.id === overColumn.id) {
+          // Same column - reorder
+          const oldIndex = activeColumn.cards.findIndex((c) => c.id === activeCard.id);
+          const newIndex = overColumn.cards.findIndex((c) => c.id === overCard.id);
+
+          if (oldIndex !== newIndex) {
+            setColumns((prev) => {
+              return prev.map((col) => {
+                if (col.id === activeColumn.id) {
+                  const newCards = [...col.cards];
+                  newCards.splice(oldIndex, 1);
+                  newCards.splice(newIndex, 0, activeCard);
+                  return { ...col, cards: newCards };
+                }
+                return col;
+              });
+            });
+
+            onCardReorder?.(activeCard.id, oldIndex, newIndex, activeColumn.id);
+          }
+        } else {
+          // Different column - move
           setColumns((prev) => {
             return prev.map((col) => {
               if (col.id === activeColumn.id) {
+                return { ...col, cards: col.cards.filter((c) => c.id !== activeCard.id) };
+              }
+              if (col.id === overColumn.id) {
+                const newIndex = col.cards.findIndex((c) => c.id === overCard.id);
                 const newCards = [...col.cards];
-                newCards.splice(oldIndex, 1);
                 newCards.splice(newIndex, 0, activeCard);
                 return { ...col, cards: newCards };
               }
@@ -147,55 +166,38 @@ export function DraggableKanbanBoard<T extends BaseCardMetadata>({
             });
           });
 
-          onCardReorder?.(activeCard.id, oldIndex, newIndex, activeColumn.id);
+          onCardMove?.(activeCard.id, activeColumn.id, overColumn.id, 0);
         }
-      } else {
-        // Different column - move
-        setColumns((prev) => {
-          return prev.map((col) => {
-            if (col.id === activeColumn.id) {
-              return { ...col, cards: col.cards.filter((c) => c.id !== activeCard.id) };
-            }
-            if (col.id === overColumn.id) {
-              const newIndex = col.cards.findIndex((c) => c.id === overCard.id);
-              const newCards = [...col.cards];
-              newCards.splice(newIndex, 0, activeCard);
-              return { ...col, cards: newCards };
-            }
-            return col;
-          });
-        });
-
-        onCardMove?.(activeCard.id, activeColumn.id, overColumn.id, 0);
       }
-    }
-    // Card dragged over column (empty space)
-    else if (active.id.includes("-card-") && !over.id.includes("-card-")) {
-      const activeCardId = active.id.replace(/.*-card-/, "");
-      const result = findCard(activeCardId);
-      
-      if (!result) return;
+      // Card dragged over column (empty space)
+      else if (active.id.includes("-card-") && !over.id.includes("-card-")) {
+        const activeCardId = active.id.replace(/.*-card-/, "");
+        const result = findCard(activeCardId);
 
-      const { card, column: fromColumn } = result;
-      const toColumn = columns.find((c) => c.id === over.id);
+        if (!result) return;
 
-      if (toColumn && fromColumn.id !== toColumn.id) {
-        setColumns((prev) => {
-          return prev.map((col) => {
-            if (col.id === fromColumn.id) {
-              return { ...col, cards: col.cards.filter((c) => c.id !== card.id) };
-            }
-            if (col.id === toColumn.id) {
-              return { ...col, cards: [...col.cards, card] };
-            }
-            return col;
+        const { card, column: fromColumn } = result;
+        const toColumn = columns.find((c) => c.id === over.id);
+
+        if (toColumn && fromColumn.id !== toColumn.id) {
+          setColumns((prev) => {
+            return prev.map((col) => {
+              if (col.id === fromColumn.id) {
+                return { ...col, cards: col.cards.filter((c) => c.id !== card.id) };
+              }
+              if (col.id === toColumn.id) {
+                return { ...col, cards: [...col.cards, card] };
+              }
+              return col;
+            });
           });
-        });
 
-        onCardMove?.(card.id, fromColumn.id, toColumn.id, toColumn.cards.length);
+          onCardMove?.(card.id, fromColumn.id, toColumn.id, toColumn.cards.length);
+        }
       }
-    }
-  }, [columns, findCard, onCardMove, onCardReorder]);
+    },
+    [columns, findCard, onCardMove, onCardReorder]
+  );
 
   if (isLoading) {
     return (
@@ -244,9 +246,7 @@ export function DraggableKanbanBoard<T extends BaseCardMetadata>({
               <div className="flex items-center justify-center min-h-[200px] px-8 py-12 border-2 border-dashed rounded-lg bg-muted/50">
                 <div className="text-center text-muted-foreground">
                   <p className="text-lg font-medium">{emptyStateMessage}</p>
-                  <p className="text-sm mt-1">
-                    Click "Add card" to create your first card
-                  </p>
+                  <p className="text-sm mt-1">Click "Add card" to create your first card</p>
                 </div>
               </div>
             )}

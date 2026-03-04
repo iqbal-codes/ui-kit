@@ -1,14 +1,13 @@
 "use client";
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
-import { useSortable } from "@dnd-kit/sortable";
+import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import type * as React from "react";
+import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/primitives/scroll-area";
 import { ColumnHeader } from "./column-header";
 import { DraggableCard } from "./draggable-card";
-import type { KanbanColumn as KanbanColumnType, BaseCardMetadata } from "./types";
-import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import type { BaseCardMetadata, KanbanColumn as KanbanColumnType } from "./types";
 
 /**
  * Draggable column props

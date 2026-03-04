@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 import { FormBuilder } from "./form-builder";
 
 const meta = {
@@ -123,8 +124,6 @@ export const CollapsibleSections: Story = {
         id: "contact",
         title: "Contact Information",
         description: "How can we reach you?",
-        collapsible: true,
-        defaultOpen: true,
         fields: [
           {
             name: "email",
@@ -144,8 +143,6 @@ export const CollapsibleSections: Story = {
         id: "address",
         title: "Address",
         description: "Your mailing address",
-        collapsible: true,
-        defaultOpen: false,
         fields: [
           { name: "street", type: "text", label: "Street Address" },
           { name: "city", type: "text", label: "City" },
@@ -156,8 +153,6 @@ export const CollapsibleSections: Story = {
       {
         id: "preferences",
         title: "Preferences",
-        collapsible: true,
-        defaultOpen: false,
         fields: [
           {
             name: "newsletter",
@@ -753,7 +748,7 @@ export const DynamicFields: Story = {
             // Only show when custom delivery is enabled
             isHidden: (values) => !values.enableCustomDelivery,
             rules: {
-              required: values => values.enableCustomDelivery ? "Address is required" : false,
+              required: (values) => (values.enableCustomDelivery ? "Address is required" : false),
             },
           },
           {
@@ -793,7 +788,7 @@ export const DynamicFields: Story = {
             // Only visible when notifications are enabled
             isHidden: (values) => !values.enableNotifications,
             rules: {
-              required: values => values.enableNotifications ? "Email is required" : false,
+              required: (values) => (values.enableNotifications ? "Email is required" : false),
             },
           },
           {

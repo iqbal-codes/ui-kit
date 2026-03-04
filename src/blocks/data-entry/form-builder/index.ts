@@ -25,6 +25,7 @@ export {
   TextareaField,
   TextField,
 } from "./fields";
+export { FormBody } from "./form-body";
 export { FormBuilder } from "./form-builder";
 export { FieldRenderer } from "./form-field-renderer";
 // Types
@@ -32,6 +33,7 @@ export type {
   FieldConfig,
   FieldOption,
   FieldType,
+  FormBodyProps,
   FormBuilderProps,
   FormSectionConfig,
 } from "./types";

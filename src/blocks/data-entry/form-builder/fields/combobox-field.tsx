@@ -70,11 +70,7 @@ export function ComboboxField<T extends FieldValues>({
             <ComboboxContent>
               <ComboboxList>
                 {options.map((option) => (
-                  <ComboboxItem
-                    key={option.value}
-                    value={option.value}
-                    disabled={option.disabled}
-                  >
+                  <ComboboxItem key={option.value} value={option.value} disabled={option.disabled}>
                     {option.label}
                   </ComboboxItem>
                 ))}

@@ -2,13 +2,12 @@
 
 import * as React from "react";
 import { type FieldValues, FormProvider, useForm } from "react-hook-form";
-import { FormSection, type ValidationStatus } from "@/blocks/data-entry/form-section";
 import { StickyActions } from "@/blocks/data-entry/sticky-actions";
 import { cn } from "@/lib/utils";
 import { Button } from "@/primitives/button";
 import { Spinner } from "@/primitives/spinner";
-import { FieldRenderer } from "./form-field-renderer";
-import type { FormBuilderProps, FormSectionConfig } from "./types";
+import { FormBody } from "./form-body";
+import type { FormBuilderProps } from "./types";
 
 export function FormBuilder<T extends FieldValues>({
   id,
@@ -23,7 +22,7 @@ export function FormBuilder<T extends FieldValues>({
   showCancel = false,
   onCancel,
   showDirtyWarning = false,
-  stickyFooter = true,
+  stickyFooter = false,
   submitButton,
   header,
   footer,
@@ -39,7 +38,7 @@ export function FormBuilder<T extends FieldValues>({
   });
 
   const { handleSubmit, watch, formState, reset } = form;
-  const { isDirty, isValid, errors, dirtyFields } = formState;
+  const { isDirty, isValid } = formState;
 
   // Auto-save functionality
   React.useEffect(() => {
@@ -52,31 +51,6 @@ export function FormBuilder<T extends FieldValues>({
 
     return () => clearTimeout(timer);
   }, [onAutoSave, autoSaveDelay, isDirty, watch]);
-
-  // Track open sections
-  const [openSections, setOpenSections] = React.useState<Record<string, boolean>>({});
-
-  const handleSectionOpenChange = (sectionId: string, open: boolean) => {
-    setOpenSections((prev) => ({ ...prev, [sectionId]: open }));
-  };
-
-  // Filter sections by conditional rendering
-  const visibleSections = sections.filter((section) => {
-    if (!section.when) return true;
-    const values = watch();
-    return section.when(values);
-  });
-
-  // Calculate validation status per section
-  const getSectionValidationStatus = (section: FormSectionConfig<T>): ValidationStatus => {
-    const sectionFields = section.fields.map((f) => f.name);
-    const sectionErrors = sectionFields.filter((field) => errors[field as string]);
-
-    if (sectionErrors.length > 0) return "invalid";
-    if (sectionFields.every((field) => dirtyFields[field as keyof typeof dirtyFields]))
-      return "valid";
-    return section.validationStatus || "none";
-  };
 
   const actionsContent = (
     <div className="flex items-center gap-2">
@@ -117,55 +91,8 @@ export function FormBuilder<T extends FieldValues>({
           </div>
         )}
 
-        {/* Sections */}
-        <div className="space-y-6">
-          {visibleSections.map((section) => {
-            // Filter fields by conditional rendering
-            const visibleFields = section.fields.filter((field) => {
-              if (!field.when) return true;
-              const values = watch();
-              return field.when(values);
-            });
-
-            if (visibleFields.length === 0) return null;
-
-            const sectionError = section.fields
-              .map((f) => errors[f.name as string]?.message as string)
-              .filter(Boolean)[0];
-
-            return (
-              <FormSection
-                key={section.id}
-                title={section.title}
-                description={section.description}
-                validationStatus={getSectionValidationStatus(section)}
-                collapsible={section.collapsible}
-                defaultOpen={section.defaultOpen}
-                open={openSections[section.id]}
-                onOpenChange={(open) => handleSectionOpenChange(section.id, open)}
-                actions={section.actions}
-                error={sectionError}
-              >
-                <div className="space-y-4">
-                  {visibleFields.map((fieldConfig) => (
-                    <div key={fieldConfig.name}>
-                      {renderField ? (
-                        renderField(fieldConfig, form)
-                      ) : (
-                        <FieldRenderer
-                          {...fieldConfig}
-                          render={
-                            fieldConfig.render ? () => fieldConfig.render?.(form, form) : undefined
-                          }
-                        />
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </FormSection>
-            );
-          })}
-        </div>
+        {/* Form Body - renders sections and fields */}
+        <FormBody form={form} sections={sections} renderField={renderField} />
 
         {/* Footer */}
         {footer}

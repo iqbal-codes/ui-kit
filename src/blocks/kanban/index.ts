@@ -26,40 +26,31 @@
  * </KanbanBoardProvider>
  */
 
-// Board & Column
-export { KanbanBoard } from "./kanban-board";
-export type { KanbanBoardProps } from "./kanban-board";
-
-export { KanbanColumn } from "./kanban-column";
-export type { KanbanColumnProps } from "./kanban-column";
-
-// Draggable versions
-export { DraggableKanbanBoard } from "./draggable-kanban-board";
-export type { DraggableKanbanBoardProps } from "./draggable-kanban-board";
-
-export { DraggableColumn } from "./draggable-column";
-export type { DraggableColumnProps } from "./draggable-column";
-
-export { DraggableCard } from "./draggable-card";
-export type { DraggableCardProps } from "./draggable-card";
-
-// Provider & State
-export { KanbanBoardProvider, useKanbanBoard } from "./kanban-board-provider";
-
+export type { BoardToolbarProps } from "./board-toolbar";
 // Toolbar
 export { BoardToolbar } from "./board-toolbar";
-export type { BoardToolbarProps } from "./board-toolbar";
-
-// Quick Add
-export { QuickAddCard } from "./quick-add-card";
-export type { QuickAddCardProps } from "./quick-add-card";
-
-// Column Header
-export { ColumnHeader } from "./column-header";
-export type { ColumnHeaderProps } from "./column-header";
-
 // Card components (re-export from card directory)
 export * from "./card";
+export type { ColumnHeaderProps } from "./column-header";
+// Column Header
+export { ColumnHeader } from "./column-header";
+export type { DraggableCardProps } from "./draggable-card";
+export { DraggableCard } from "./draggable-card";
+export type { DraggableColumnProps } from "./draggable-column";
+export { DraggableColumn } from "./draggable-column";
+export type { DraggableKanbanBoardProps } from "./draggable-kanban-board";
+// Draggable versions
+export { DraggableKanbanBoard } from "./draggable-kanban-board";
+export type { KanbanBoardProps } from "./kanban-board";
+// Board & Column
+export { KanbanBoard } from "./kanban-board";
+// Provider & State
+export { KanbanBoardProvider, useKanbanBoard } from "./kanban-board-provider";
+export type { KanbanColumnProps } from "./kanban-column";
+export { KanbanColumn } from "./kanban-column";
+export type { QuickAddCardProps } from "./quick-add-card";
+// Quick Add
+export { QuickAddCard } from "./quick-add-card";
 
 // Types
 export * from "./types";

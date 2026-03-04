@@ -380,10 +380,6 @@ export interface FormSectionConfig<T extends FieldValues = FieldValues> {
   fields: FieldConfig<T>[];
   /** Validation status */
   validationStatus?: "valid" | "invalid" | "pending" | "none";
-  /** Collapsible */
-  collapsible?: boolean;
-  /** Default open state */
-  defaultOpen?: boolean;
   /** Section-level actions */
   actions?: React.ReactNode;
   /** Conditional rendering */
@@ -429,5 +425,22 @@ export interface FormBuilderProps<T extends FieldValues = FieldValues> {
   successMessage?: string;
   /** Custom field renderer override */
   renderField?: (config: FieldConfig<T>, form: UseFormReturn<T>) => React.ReactNode;
+  className?: string;
+}
+
+/**
+ * FormBody - Rendering component props (without form state management)
+ *
+ * Use this when you need to render form fields with an existing form instance
+ * (e.g., in FormWizard). For standalone forms, use FormBuilder instead.
+ */
+export interface FormBodyProps<T extends FieldValues = FieldValues> {
+  /** React Hook Form instance */
+  form: UseFormReturn<T>;
+  /** Form sections configuration */
+  sections: FormSectionConfig<T>[];
+  /** Custom field renderer (optional) */
+  renderField?: (config: FieldConfig<T>, form: UseFormReturn<T>) => React.ReactNode;
+  /** Additional CSS classes */
   className?: string;
 }

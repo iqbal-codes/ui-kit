@@ -128,9 +128,7 @@ export function RatingField<T extends FieldValues>({
                     onKeyDown={(e) => handleKeyDown(e, rating)}
                     className={cn(
                       "transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded",
-                      disabled || readOnly
-                        ? "cursor-default"
-                        : "cursor-pointer hover:scale-110",
+                      disabled || readOnly ? "cursor-default" : "cursor-pointer hover:scale-110",
                       (disabled || readOnly) && "opacity-50"
                     )}
                     aria-checked={currentValue === rating}

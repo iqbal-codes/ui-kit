@@ -68,7 +68,9 @@ function DefaultCard<T extends BaseCardMetadata>({
     >
       {/* Header */}
       <KanbanCardHeader>
-        <KanbanCardTitle>{card.title}askdlf lqkwr jelkqjwre oqiwjfoqw jwa askdfj qwoirejqi</KanbanCardTitle>
+        <KanbanCardTitle>
+          {card.title}askdlf lqkwr jelkqjwre oqiwjfoqw jwa askdfj qwoirejqi
+        </KanbanCardTitle>
         {card.priority && (
           <KanbanCardBadge priority={card.priority}>
             {card.priority.charAt(0).toUpperCase() + card.priority.slice(1)}
